@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 31, 2020 at 04:01 PM
+-- Generation Time: Mar 31, 2020 at 04:27 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -51,7 +51,7 @@ CREATE TABLE `blog_posts` (
   `main_image` varchar(255) NOT NULL,
   `second_image` varchar(255) DEFAULT NULL,
   `third_image` varchar(255) DEFAULT NULL,
-  `catagory` varchar(100) NOT NULL,
+  `category` varchar(100) DEFAULT NULL,
   `views` int(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
