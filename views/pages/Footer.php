@@ -9,7 +9,7 @@
             <li class='sm'>Pintrest</li>
         </ul>
     </div>
-    <div class='copyright'><p>&copy; Screw It Crew | Amrtia, Alex, Linzi, Steph, Tese</p></div>
+    <div class='copyright'><p>&copy; Screw It Crew | Amrita, Alex, Linzi, Steph, Tese</p></div>
 </footer>
 
 
