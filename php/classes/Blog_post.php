@@ -1,19 +1,42 @@
 <?php
 
 class Blog_post {
-    protected $blog_title;
-    protected $blog_body;
-    protected $main_img;
-    protected $second_img;
-    protected $third_img;
-    protected $category;
+    private $blog_id;
+    private $user_id;
+    private $itle;
+    private $body;
+    private $main_img;
+    private $second_img;
+    private $third_img;
+    private $category;
+    private $dbh;
     
-         function getBlogTitle() {
-        return $this->blog_title;
+    function __construct(){
+        $this->dbh = new PDO("mysql:dbname=Screw-It;host=localhost;", 'root', '');
     }
     
-         function getBlogBody() {
-        return $this->blog_body;
+    function createNew(){
+        $this->setByParams(-1,date("d.m.Y h:m", author))
+    }
+    
+    function createNewFromPOST(){
+        
+    }
+    
+    function getBlogId(){
+        return $this->blog_id;
+    }
+    
+    function getUserId(){
+        return $this->user_id;
+    }
+    
+         function getTitle() {
+        return $this->title;
+    }
+    
+         function getBody() {
+        return $this->body;
     }
     
          function getMainImg() {
@@ -32,12 +55,20 @@ class Blog_post {
         return $this->category;
     }
     
-         function setBlogTitle($blog_title) {
-        $this->blog_title = $blog_title;
+    function setBlogId($blog_id){
+        $this->blog_id = $blog_id;
     }
     
-         function setBlogBody($blog_body) {
-        $this->blog_body = $blog_body;
+    function setUserId($user_id){
+        $this->user_id=$user_id;
+    }
+    
+         function setTitle($title) {
+        $this->title = $title;
+    }
+    
+         function setBody($body) {
+        $this->body = $body;
     }
     
          function setMainImg($main_img) {
@@ -54,6 +85,39 @@ class Blog_post {
     
         function setCategory($category) {
         $this->category = $category;
+    }
+    
+    function setByParams(){
+        
+    }
+    
+    function setByRow(){
+        $this->setByParams(
+                $row['blog_id']
+                $row['user_id'],
+                $row['title'],
+                $row['body'],
+                $row['main_img'],
+                $row['second_img'],
+                $row['third_img'],
+                $row['category'],
+                );
+    }
+    
+    function sqlInsertEntry(){
+        
+    }
+    
+    function sqlSelectEntryById($blog_id){
+        
+    }
+    
+    function sqlUpdateEntryById($blog_id){
+        
+    }
+    
+    private function validateString(){
+        
     }
     
     private function is_valid_category($category) {
