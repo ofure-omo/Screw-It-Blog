@@ -4,7 +4,7 @@ class Dbconnect {
     private $host = "localhost";
     private $user = "root";
     private $pwd = "";
-    private $dbname = "Screw_It";
+    private $dbname = "Screw-It";
 
 //needsb to be protected
 public function connect (){
