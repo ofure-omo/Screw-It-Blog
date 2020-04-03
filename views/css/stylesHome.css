@@ -1,0 +1,28 @@
+
+/* Carousel */
+
+    /* Carousel Image */
+
+            .carousel {
+              width:900px;
+              height:560px;
+            }
+
+            .carousel-inner > .item > img {
+                height: 560px !important;
+                width: auto;
+            }
+            
+
+    /* Carousel Text */
+    
+            .carousel-content {
+                position: fixed;
+                top:50px;
+                z-index: 10;
+                color: white;
+              }
+
+              #Favourite1{
+                  background-color: black;
+              }
