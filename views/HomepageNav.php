@@ -7,11 +7,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Bootstrap CSS -->
+    <!-- Bootstrap CSS styles and font -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    
     <link href="https://fonts.googleapis.com/css?family=Francois+One&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <link rel="stylesheet" href="views/css/stylesHome.css">
     <link rel="stylesheet" href="views/css/styles.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -69,29 +71,9 @@ ul li a i:hover {
   /*text-decoration: none;*/
 }
 
-/* Page content 
-.content {
-  padding: 16px;
-}*/
-
-/* The sticky class is added to the navbar with JS when it reaches its scroll position
-.sticky {
-  position: fixed;
-  top: 0;
-  width: 100%;
-}
-
-/* Add some top padding to the page content to prevent sudden quick movement (as the navigation bar gets a new position at the top of the page (position:fixed and top:0)
-.sticky + .content {
-  padding-top: 60px;
-}*/
 
 .nav-item {
         font-size: 25px;
-}
-
-.form-inline {
-    /* style for the search box here */
 }
 
 .navbar-toggler {
@@ -108,46 +90,31 @@ img {max-width:100%}
   box-sizing: border-box;
 }
 
-/* Style the search field */
-form.example input[type=text] {
-  padding: 10px;
-  font-size: 17px;
-  border: 1px solid grey;
-  float: left;
-  width: 80%;
-  background: #f1f1f1;
-}
 
-/* Style the submit button */
-form.example button {
-  float: left;
-  width: 20%;
+
+/* Style the search button */
+.openbtn {
   padding: 10px;
   background: #FCB078;
   color: white;
   font-size: 17px;
-  border: 1px solid grey;
-  border-left: none; /* Prevent double borders */
   cursor: pointer;
 }
 
-form.example button:hover {
+.openbtn:hover {
   background: #70D6FF;
 }
 
-/* Clear floats */
-form.example::after {
+/* Clear floats 
+example::after {
   content: "";
   clear: both;
   display: table;
-}
+}*/
 
 i.fa {
     font-size: 20px;
 }
-
-
-
 
 
 /* The overlay effect with black background */
@@ -215,6 +182,23 @@ i.fa {
 .overlay button:hover {
   background: #bbb;
 }
+
+/* Page content 
+.content {
+  padding: 16px;
+}*/
+
+/* The sticky class is added to the navbar with JS when it reaches its scroll position
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+/* Add some top padding to the page content to prevent sudden quick movement (as the navigation bar gets a new position at the top of the page (position:fixed and top:0)
+.sticky + .content {
+  padding-top: 60px;
+}*/
 </style>
 </head>
     <!-- Stylesheet internal
@@ -252,14 +236,13 @@ i.fa {
     <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav mr-auto">      
             <li class="nav-item">
-                <a class="nav-link" href="Home.php">HOME</a>
+                <a class="nav-link" href="">HOME</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="About.php">ABOUT</>
+                <a class="nav-link" href="">ABOUT</a>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    CATEGORIES
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">CATEGORIES
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" href="#">KITCHEN</a>
@@ -270,27 +253,26 @@ i.fa {
                     <a class="dropdown-item" href="#">GARDEN </a>
                     <a class="dropdown-item" href="#">LIFESTYLE </a>
                 </div>
-            </li></ul>
+            </li>
+        </ul>
 
-    <div class="nav-centered">
-        <form class="example" action="action_page.php">
-             <input type="text" placeholder="" name="search">
-             <button type="submit"><i class="fa fa-search"></i></button>
-        </form>
-    </div>
             
             
     <div id="myOverlay" class="overlay">
         <span class="closebtn" onclick="closeSearch()" title="Close Overlay">x</span>
         <div class="overlay-content">
-            <form action="action_page.php">
+            <form action="?controller=search&action=search" method="POST">
                 <input type="text" placeholder="" name="search">
-                <button type="submit"><i class="fa fa-search"></i></button>
+                <button type="submit" name="submit-search"><i class="fa fa-search"></i></button>
             </form>
         </div>
     </div>
-            <button class="openBtn" onclick="openSearch()">Open Search Box</button>
-        </div>
+        <ul class="navbar-nav ml-auto"> 
+    <div class="openbtn" onclick="openSearch()">
+        <i class="fa fa-search"></i>
+    </div>
+        </ul>
+   </div>
 </nav>
 
   <!-- Required meta tags 
