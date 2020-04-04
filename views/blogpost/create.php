@@ -132,7 +132,7 @@
                    name="MAX_FILE_SIZE" 
                    value="10000000" />
 
-            <div class='img-upload'>
+            <div class='img-upload'>  <!-- image uploads- need to finda way to validate the uploads without refreshing the page -->
                 <span> Image 1 </span>
                <input type="file" name="myUploader" required/>
                 <input type="submit" value="UPLOAD"/>
