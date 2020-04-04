@@ -175,7 +175,8 @@ include  other MVC relevant pages
                         </tr>
                         </thead>
                                
-                                    <?php /*foreach ($userDetails as $user): ?>
+                                    <?php /*pull through from DB, user details
+                                     * foreach ($userDetails as $user): ?>
                         <tr>
                             <td><?=  $user['user_ID'] ?></td>
                             <td><?= $user['user_UN'] ?></td>
