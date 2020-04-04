@@ -175,7 +175,7 @@ include  other MVC relevant pages
                         </tr>
                         </thead>
                                
-                                    <?php /*pull through from DB, user details
+                                    <?php /*pull through from DB, user details : WOULD THIS BIT BE CONTROLLER?
                                      * foreach ($userDetails as $user): ?>
                         <tr>
                             <td><?=  $user['user_ID'] ?></td>
