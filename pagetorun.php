@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>MVC Skeleton</title>
+        <title>Screw it Blog</title>
     </head>
     <body>
         <?php
@@ -16,7 +16,7 @@
         $action     = 'home';
   }
 
-    require_once('views/HomepageNav.php');
+    require_once('views/Page_Template.php');
         ?>
     </body>
 </html>

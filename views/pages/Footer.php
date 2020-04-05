@@ -11,5 +11,3 @@
     </div>
     <div class='copyright'><p>&copy; Screw It Crew <?= date('Y'); ?> | Amrita, Alex, Linzi, Steph, Tese </p></div>
 </footer>
-
-
