@@ -1,182 +1,3 @@
-<style>
-p {
-    font-family: 'Open Sans', sans-serif;
-    }
-
-ul {
-    /*overflow: auto;*/
-    font-family: 'Francois One', sans-serif;
-}
- 
-ul li {
-    list-style-type: none;
-    /*float: left;*/
-}
-ul li a:hover {
-    opacity: .7;
-}
- 
-ul li a i {
-    background: #3F7CAC;
-    color: #70D6FF;
-    width: 35px;
-    /*height: -20px;*/
-   /*border-radius: 20px;*/
-    /*font-size: 70px;
-    /*text-align: center;*/
-    /*margin-right: 10px;*/
-    /*padding-top: 50%
-    /*transition: all 0.2s ease-in-out;*/
-}
-ul li a i:hover {
-    opacity: .7;
-}
-
-/* Style the navbar */
-#navbar {
-  /*overflow: hidden;*/
-  background-color: #3F7CAC;
-}
-
-/* Navbar links */
-#navbar a {
-  float: left;
-  /*display: block;*/
-  color: #70D6FF;
-  /*text-align: center;*/
-  /*padding: 14px; - increases height of the nav */
-  /*text-decoration: none;*/
-}
-
-
-.nav-item {
-        font-size: 20px;
-}
-
-.navbar-toggler {
-    background-color: #FFFFFF; 
-}
-
-img {max-width:100%}
-
-.header {
-    text-align: center;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-
-
-/* Style the search button */
-.openbtn {
-  padding: 10px;
-  background: #FCB078;
-  color: white;
-  font-size: 17px;
-  cursor: pointer;
-}
-
-.openbtn:hover {
-  background: #70D6FF;
-}
-
-/* Clear floats 
-example::after {
-  content: "";
-  clear: both;
-  display: table;
-}*/
-
-i.fa {
-    font-size: 20px;
-}
-
-
-/* The overlay effect with black background */
-.overlay {
-  height: 100%;
-  width: 100%;
-  display: none;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  background-color: rgb(0,0,0);
-  background-color: rgba(0,0,0, 0.9); /* Black with a little bit see-through */
-}
-
-/* The content */
-.overlay-content {
-  position: relative;
-  top: 46%;
-  width: 80%;
-  text-align: center;
-  margin-top: 30px;
-  margin: auto;
-}
-
-/* Close button */
-.overlay .closebtn {
-  position: absolute;
-  top: 20px;
-  right: 45px;
-  font-size: 60px;
-  cursor: pointer;
-  color: white;
-}
-
-.overlay .closebtn:hover {
-  color: #ccc;
-}
-
-/* Style the search field */
-.overlay input[type=text] {
-  padding: 15px;
-  font-size: 17px;
-  border: none;
-  float: left;
-  width: 80%;
-  background: white;
-}
-
-.overlay input[type=text]:hover {
-  background: #f1f1f1;
-}
-
-/* Style the submit button */
-.overlay button {
-  float: left;
-  width: 20%;
-  padding: 15px;
-  background: #ddd;
-  font-size: 17px;
-  border: none;
-  cursor: pointer;
-}
-
-.overlay button:hover {
-  background: #bbb;
-}
-
-/* Page content 
-.content {
-  padding: 16px;
-}*/
-
-/* The sticky class is added to the navbar with JS when it reaches its scroll position
-.sticky {
-  position: fixed;
-  top: 0;
-  width: 100%;
-}
-
-/* Add some top padding to the page content to prevent sudden quick movement (as the navigation bar gets a new position at the top of the page (position:fixed and top:0)
-.sticky + .content {
-  padding-top: 60px;
-}*/
-</style>
 </head>
     <!-- Stylesheet internal
     <link rel="stylesheet" type="text/css" href="BlogStyles.css">-->
@@ -187,7 +8,7 @@ i.fa {
     <nav class="navbar justify-content-between" id="navbar">
         <ul class="nav mr-auto">     
             <li>
-                <a class="nav-link" href='?controller=blog&action=create'>SIGN UP</a>
+                <a class="nav-link" href='?controller=product&action=readAll'>SIGN UP</a>
             </li>
             <form class="form-inline">
                 <button class="btn btn-outline-light" type="button" onclick="window.location.href = 'Screw-it/Login.php';" >Log in</button>
@@ -203,7 +24,7 @@ i.fa {
     </div>
     </nav>
 <div class="header">
-  <img src="views/images/screwit2.png" alt="Screw it">
+    <a href="?controller=pages&action=home"><img src="views/images/screwit2.png" alt="Screw it"></a>
 </div>
     
 <nav class="navbar navbar-expand-lg flex-column flex-md-row d-flex sticky-top navbar-light" id="navbar">
@@ -213,10 +34,10 @@ i.fa {
     <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav mr-auto">      
             <li class="nav-item">
-                <a class="nav-link" href="">HOME</a>
+                <a class="nav-link" href="?controller=pages&action=home">HOME</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="">ABOUT</a>
+                <a class="nav-link" href="?controller=pages&action=about">ABOUT</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">CATEGORIES
