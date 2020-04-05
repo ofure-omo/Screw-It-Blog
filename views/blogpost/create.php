@@ -6,8 +6,8 @@
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
         <script src="ajaxreq.js" type="text/javascript"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.js" crossorigin="anonymous"></script>
-    
+        <script src="https://code.jquery.com/jquery-3.3.1.js" crossorigin="anonymous"></script>
+
     </head>
     <body>
 
@@ -28,7 +28,7 @@
             }
 
             .button {
-               
+
                 border: none;
                 color: white;
                 padding: 10px 30px;
@@ -53,31 +53,39 @@
             }
 
             .container-btn {
-                
+
             }
-            
+
             .img-upload {
                 margin-bottom: 10px;
             }
-            
+
             .blog-template {
                 float: right; 
                 height: 800px;
                 margin-right: 150px;
             }
-            
+
             #template-container {
                 float:right;
                 margin-top: 50px;
             }
-            
+
             .blog-container {
                 margin-left: 170px;
                 text-transform: uppercase;
                 margin-bottom: 0;
-                
+
             }
             
+            .img-title {
+                margin-bottom: 0;
+            }
+            
+            .file-type {
+                padding-top: 20px;
+            }
+
 
         </style>
         <!--<form action="" method="POST" class="w3-container" enctype="multipart/form-data">
@@ -108,67 +116,79 @@
         <span>
             <div id="template-container">
                 <p class="blog-container"> blog template </p>
-                <img src="blogtemplate.png" alt="blog template" class="blog-template" >
+                <img src="views/images/blogtemplate.png" alt="blog template" class="blog-template" >
             </div>
-        <div class=' form-container'>
-            <form action="" method="POST" class="w3-container" enctype="multipart/form-data">
-                <div class="form-group">
-                    <label for="formGroupExampleInput">Title</label>
-                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Title of your blog" autofocus required>
-                </div>
-                <div class="form-group">
-                    <label for="exampleFormControlTextarea1">Body</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="20" placeholder="Blog entry" required></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="exampleFormControlTextarea1">Body 2</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="7" placeholder="Blog entry 2" required></textarea>
-                </div>
-                <div id='img_container'>
-                    <p> Images </p> 
-                  <p>Format accepted jpg</p> 
+            <div class=' form-container'>
+                <form action="" method="POST" class="w3-container" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="formGroupExampleInput">Title</label>
+                        <input type="text" class="form-control" id="formGroupExampleInput" name="title" placeholder="Title of your blog" autofocus required>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Body</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" name="body" rows="20" placeholder="Body text" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Body 2</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" name="body2" rows="7" placeholder="Body text" required></textarea>
+                    </div>
 
-            <input type="hidden" 
-                   name="MAX_FILE_SIZE" 
-                   value="10000000" />
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Category</label>
+                        <select class="form-control" name ="category" id="exampleFormControlSelect1">
+                            <option>Kitchen</option>
+                            <option>Dining Room</option>
+                            <option>Living Room</option>
+                            <option>Bedroom</option>
+                            <option>Office</option>
+                            <option>Garden</option>
+                            <option>Lifestyle</option>
+                        </select>
+                    </div>
+                    <div id='img_container'>
+                        <p class="img-title"> Images </p> 
+                        <small class="file-type">Format accepted jpg/jpeg</small> 
 
-            <div class='img-upload'>  <!-- image uploads- need to finda way to validate the uploads without refreshing the page -->
-                <span> Image 1 </span>
-               <input type="file" name="myUploader" required/>
-                <input type="submit" value="UPLOAD"/>
+                        <input type="hidden" 
+                               name="MAX_FILE_SIZE" 
+                               value="10000000" />
+                
+                        <div class="form-group">
+                            <label for="exampleFormControlFile1">Image 1</label>
+                            <input type="file" name="myUploader" class="form-control-file" id="exampleFormControlFile1" >
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlFile1">Image 2</label>
+                            <input type="file" name="myUploader" class="form-control-file" id="exampleFormControlFile1">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlFile1">Image 3</label>
+                            <input type="file" name="myUploader" class="form-control-file" id="exampleFormControlFile1">
+                        </div>
+                           <!-- image uploads- need to find a way to validate the uploads without refreshing the page -->
+                   
+
+                        <div class="pure-form pure-form-aligned container-btn">
+                            <input type="submit" value="SUBMIT" name= "submit" class="button" >
+                        </div>        
+                        <!-- <div class="custom-file">
+                             <input type="file" class="custom-file-input" id="customFile">
+                             <label class="custom-file-label" for="customFile">Choose a file</label> <small> Formats accepted png/jpeg/jpg/pdf </small>
+                         </div>
+                         <div class="custom-file">
+                             <input type="file" class="custom-file-input" id="customFile">
+                             <label class="custom-file-label" for="customFile">Choose a file</label> <small> Formats accepted png/jpeg/jpg/pdf </small>
+                         </div>
+                         <div class="custom-file">
+                             <input type="file" class="custom-file-input" id="customFile">
+                             <label class="custom-file-label" for="customFile">Choose a file</label> <small> Formats accepted png/jpeg/jpg/pdf </small>
+                         </div>
+                        -->
+
+                </form>
+
             </div>
-            <div class='img-upload'>
-                <span> Image 2 </span>
-                <input type="file" name="myfile" required/>
-                <input type="submit" value="UPLOAD"/>
-            </div>
-            <div class='img-upload'>
-                <span> Image 3 </span>
-                <input type="file" name="myfile" required/>
-                <input type="submit" value="UPLOAD"/>
-                </div>
-       
-            <div class="pure-form pure-form-aligned container-btn">
-                <input type="submit" value="SUBMIT" name= "submit" class="button" >
-                    </div>        
-                   <!-- <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="customFile">
-                        <label class="custom-file-label" for="customFile">Choose a file</label> <small> Formats accepted png/jpeg/jpg/pdf </small>
-                    </div>
-                    <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="customFile">
-                        <label class="custom-file-label" for="customFile">Choose a file</label> <small> Formats accepted png/jpeg/jpg/pdf </small>
-                    </div>
-                    <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="customFile">
-                        <label class="custom-file-label" for="customFile">Choose a file</label> <small> Formats accepted png/jpeg/jpg/pdf </small>
-                    </div>
-                    -->
-              
-            </form>
-            
-        </div>
-                </span>
+        </span>
     </body>
 </html>
 

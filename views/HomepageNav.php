@@ -210,7 +210,7 @@ i.fa {
     <nav class="navbar justify-content-between" id="navbar">
         <ul class="nav mr-auto">     
             <li>
-                <a class="nav-link" href='?controller=product&action=readAll'>SIGN UP</a>
+                <a class="nav-link" href='?controller=blog&action=create'>SIGN UP</a>
             </li>
             <form class="form-inline">
                 <button class="btn btn-outline-light" type="button" onclick="window.location.href = 'Screw-it/Login.php';" >Log in</button>

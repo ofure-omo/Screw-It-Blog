@@ -80,8 +80,9 @@
 
             #social-media{
                 border: 1px solid red;
-                margin-top: 20px;
+                margin-top: 50px;
                 font-size: 1.3em;
+                
             }
 
             .fa {
@@ -104,7 +105,7 @@
         <!--text to be replaced with data from the blog_post table -->
         <div class='blog-container'>
             <div id='title'>
-                <h1>HOW TO MAKE A FLOWER WALL FROM A SHOE RACK</h1> <!--header section to retrieve data from db -->
+                <h1>HOW TO TRANSFORM YOUR LIVING ROOM WITH ONLY 2 ITEMS</h1> <!--header section to retrieve data from db -->
 
                 <p class='header-info'>Author:fffffffff</p>
                 <p class='header-info'>Date: 10/10/2000</p>
@@ -141,7 +142,7 @@
                 <div id='main_image column'>
                     <?php
                     //use when displaying images in their grids
-                    $file = 'views/blogposts/blogpost_images/' . $blog->main_image . '.jpg';
+                    $file = 'views/blogposts/images/' . $blog->main_image . '.jpg';
                     if (file_exists($file)) {
                         $img = "<img src='$file' width='150' />";
                         echo $img;
@@ -153,7 +154,7 @@
                 <div id='second_image column'>
                     <?php
 //use when displaying images in their grids
-                    $file = 'views/blogposts/blogpost_images/' . $blog->second_image . '.jpg';
+                    $file = 'views/blogposts/images/' . $blog->second_image . '.jpg';
                     if (file_exists($file)) {
                         $img = "<img src='$file' width='150' />";
                         echo $img;
@@ -174,7 +175,7 @@
             <div id='third_image'>
                 <?php
 //use when displaying images in their grids
-                $file = 'views/blogposts/blogpost_images/' . $blog->third_image . '.jpg'; //retrieve image name and concatenate it with location of image
+                $file = 'views/blogposts/images/' . $blog->third_image . '.jpg'; //retrieve image name and concatenate it with location of image
                 if (file_exists($file)) {
                     $img = "<img src='$file' width='150' />";
                     echo $img;
@@ -187,7 +188,9 @@
                 <i class="fa fa-facebook" aria-hidden="true"></i>
                 <i class="fa fa-instagram" aria-hidden="true"></i>
                 <i class="fa fa-twitter" aria-hidden="true"></i>
+                <i class="fa fa-pinterest"></i>
                 <i class="fa fa-heart-o" onclick="myFunction(this)"></i> 
+                
                 
                 <script>
             function myFunction(x) {

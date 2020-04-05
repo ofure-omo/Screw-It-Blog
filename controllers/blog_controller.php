@@ -50,7 +50,7 @@ class BlogController {
         }
       else
           { 
-            $id = $_GET['blog_id'];
+            $blog_id = $_GET['blog_id'];
             Blog::update($blog_id);
                         
             $blog = Blog::all();

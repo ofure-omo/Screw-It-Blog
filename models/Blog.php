@@ -35,15 +35,18 @@ class Blog {
     public static function all() {
         $list = [];
         $db = Screw_it::getInstance();
-        $req = $db->query('SELECT * FROM blog_posts');
+        $req = $db->query('SELECT Users.username, title, body, body2, date_posted, main_image, second_image, third_image, category FROM blog_posts
+                           INNER JOIN Users on blog_posts.user_id = Users.user_id,
+                           SELECT twitter_url insta_url facebook_url FROM Users;'); //order by most recent 
         // we create a list of blog_post objects from the database results
-        foreach ($req->fetchAll() as $blog_post) {
-            $list[] = new Blog($blog_post['blog_id'], $blog_post['user_id'], $blog_post['title'], $blog_post['body'], $blog_post['body2'], $blog_post['date_posted'], $blog_post['main_image'], $blog_post['second_image'], $blog_post['third_image'], $blog_post['category']);
+        foreach ($req->fetch(PDO::FETCH_ASSOC) as $blog_post) {
+            $list[] = new Blog($blog_post['user_id'], $blog_post['title'], $blog_post['body'], $blog_post['body2'], $blog_post['date_posted'], $blog_post['main_image'], $blog_post['second_image'], $blog_post['third_image'], $blog_post['category'],
+                 $blog_post['twitter_url'], $blog_post['insta_url'], $blog_post['facebook_url']);
         }
         return $list;
     }
 
-    public static function find($title) {
+    /*public static function find($title) {
         $db = Screw_it::getInstance();
         $title = string($title);
         $req = $db->prepare('SELECT * FROM blog_post WHERE title = :title;');
@@ -51,20 +54,18 @@ class Blog {
         $req->execute(array('title' => $title));
         $blog = $req->fetch();
         if ($blog) {
-            return new Blog($blog_post['blog_id'], $blog_post['user_id'], $blog_post['title'], $blog_post['body'], $blog_post['body2'], $blog_post['date_posted'], $blog_post['main_image'], $blog_post['second_image'], $blog_post['third_image'], $blog_post['category']);
+            return new Blog($blog_post['user_id'], $blog_post['title'], $blog_post['body'], $blog_post['body2'], $blog_post['date_posted'], $blog_post['main_image'], $blog_post['second_image'], $blog_post['third_image'], $blog_post['category']);
         } else {
             throw new Exception('Blog not found, please search again');
         }
-    }
+    }*/
 
-    public static function add() {
-        $db = Screw_it::getInstance();
-        $req = $db->prepare("INSERT INTO blog_posts(title, body, body2, category) values (:title, :body, :body2, :category);");
-        $req->bindParam(':title', $title);
-        $req->bindParam(':body', $body);
-        $req->bindParam(':body2', $body2);
-        $req->bindParam(':category', $category);
+    public static function add() {       
+        
+        $db = Screw_it::getInstance();       
 
+        if (isset($_POST['submit'])) {
+        
 // set parameters and execute
         if (isset($_POST['title']) && $_POST['title'] != "") {
             $filteredTitle = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -78,26 +79,38 @@ class Blog {
         if (isset($_POST['category']) && $_POST['category'] != "") {
             $filteredCategory = filter_input(INPUT_POST, 'category', FILTER_SANITIZE_SPECIAL_CHARS);
         }
+        
+           
+        $req = $db->prepare("INSERT INTO blog_posts(title, body, body2, category) VALUES (:title, :body, :body2, :category);");
+        $req->bindParam(':title', $title);
+        $req->bindParam(':body', $body);
+        $req->bindParam(':body2', $body2);
+        $req->bindParam(':category', $category);
 
         $title = $filteredTitle;
         $body = $filteredBody;
         $body2 = $filteredBody2;
         $category = $filteredCategory;
         $req->execute();
+           
 
-//upload product image ASK MARTINA HOW I CAN UPLOAD 3 IMAGES 
-        Blog::uploadFiles($main_image);
+//upload product image: ASK MARTINA HOW I CAN UPLOAD 3 IMAGES 
+        /*Blog::uploadFiles($main_image);
+        Blog::uploadFiles($second_image);
+        Blog::uploadFiles($third_image);*/
+        }
     }
 
     const AllowedTypes = ['image/jpeg', 'image/jpg'];
     const InputKey = 'myUploader';
 
+
 //die() function calls replaced with trigger_error() calls
 //replace with structured exception handling
-    public static function uploadFiles(string $main_image) {
+    public static function uploadFiles(string $name) {
 
         if (empty($_FILES[self::InputKey])) {
-//die("File Missing!");
+        //die("File Missing!");
             trigger_error("File Missing!");
         }
 
@@ -111,8 +124,8 @@ class Blog {
         }
 
         $tempFile = $_FILES[self::InputKey]['tmp_name'];
-        $path = "/Applications/XAMPP/xamppfiles/htdocs/Screw-it/views/blogpost/images/";
-        $destinationFile = $path . $main_image . '.jpeg';
+        $path = "/Applications/XAMPP/xamppfiles/htdocs/Screw-it/views/images/";
+        $destinationFile = $path . $name . '.jpeg';
 
         if (!move_uploaded_file($tempFile, $destinationFile)) {
             trigger_error("File not uploaded");
@@ -122,8 +135,8 @@ class Blog {
             unlink($tempFile);
         }
     }
-
-    public static function remove($blog_id) {
+   
+   /* public static function remove($blog_id) {
         $db = Screw_it::getInstance();
         //make sure $id is an integer
         $blog_id = intval($blog_id);
@@ -256,7 +269,7 @@ class Blog {
 
       private function validateString(){
 
-      } */
+      }
 
     private function is_valid_category($category) {
         $UpperCategory = ucfirst($category);
@@ -268,6 +281,6 @@ class Blog {
         } else {
             echo "Not a valid category!";
         }
-    }
+    } */
 
 }
