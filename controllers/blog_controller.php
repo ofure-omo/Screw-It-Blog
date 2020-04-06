@@ -1,4 +1,5 @@
-<?php
+ <?php
+
 
 class BlogController {
     public function readAll() {
@@ -23,7 +24,8 @@ class BlogController {
  }
     }
     public function create() {
-      // we expect a url of form ?controller=blog&action=create
+
+      //// we expect a url of form ?controller=blog&action=create
       // if it's a GET request display a blank form for creating a new product
       // else it's a POST so add to the database and redirect to readAll action
       if($_SERVER['REQUEST_METHOD'] == 'GET'){
@@ -32,7 +34,7 @@ class BlogController {
       else { 
             Blog::add();
              
-            $blog = Blog::all(); //$products is used within the view
+            $blog= Blog::all(); //$products is used within the view
             require_once('views/blogpost/readAll.php');
       }
       

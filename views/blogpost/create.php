@@ -77,13 +77,17 @@
                 margin-bottom: 0;
 
             }
-            
+
             .img-title {
                 margin-bottom: 0;
             }
-            
+
             .file-type {
                 padding-top: 20px;
+            }
+            
+            #tags {
+                margin-bottom: 20px;
             }
 
 
@@ -145,6 +149,12 @@
                             <option>Lifestyle</option>
                         </select>
                     </div>
+                    <div id="tags" name="tags"><p>Tags</p>
+                   <div class="form-group">
+                            <label class="sr-only" for="tag">Hashtags</label>
+                            <input type="text" name="tag" id="tag" class="form-control" placeholder="#recycle #diy #garden" required />
+                        </div>
+                </div>
                     <div id='img_container'>
                         <p class="img-title"> Images </p> 
                         <small class="file-type">Format accepted jpg/jpeg</small> 
@@ -152,21 +162,21 @@
                         <input type="hidden" 
                                name="MAX_FILE_SIZE" 
                                value="10000000" />
-                
+
                         <div class="form-group">
                             <label for="exampleFormControlFile1">Image 1</label>
-                            <input type="file" name="myUploader" class="form-control-file" id="exampleFormControlFile1" >
+                            <input type="file" name="myfile" class="form-control-file" id="exampleFormControlFile1">
                         </div>
-                        <div class="form-group">
-                            <label for="exampleFormControlFile1">Image 2</label>
-                            <input type="file" name="myUploader" class="form-control-file" id="exampleFormControlFile1">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleFormControlFile1">Image 3</label>
-                            <input type="file" name="myUploader" class="form-control-file" id="exampleFormControlFile1">
-                        </div>
-                           <!-- image uploads- need to find a way to validate the uploads without refreshing the page -->
-                   
+                        <!-- <div class="form-group">
+                             <label for="exampleFormControlFile1">Image 2</label>
+                             <input type="file" name="myUploader" class="form-control-file" id="exampleFormControlFile1">
+                         </div>
+                         <div class="form-group">
+                             <label for="exampleFormControlFile1">Image 3</label>
+                             <input type="file" name="myUploader" class="form-control-file" id="exampleFormControlFile1">
+                         </div>
+                        <!-- image uploads- need to find a way to validate the uploads without refreshing the page -->
+
 
                         <div class="pure-form pure-form-aligned container-btn">
                             <input type="submit" value="SUBMIT" name= "submit" class="button" >

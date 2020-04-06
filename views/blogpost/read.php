@@ -1,17 +1,4 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Blog</title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" crossorigin="anonymous">
-        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <script
-            src="https://code.jquery.com/jquery-3.4.1.js"
-        crossorigin="anonymous"></script>
-        <script src="jquery.min.js"></script>
-    </head>
+
     <body>
 
         <style>
@@ -100,16 +87,15 @@
             }
 
 
-        </style>
-
+        </style> 
         <!--text to be replaced with data from the blog_post table -->
         <div class='blog-container'>
             <div id='title'>
-                <h1>HOW TO TRANSFORM YOUR LIVING ROOM WITH ONLY 2 ITEMS</h1> <!--header section to retrieve data from db -->
+                <h1><?php echo $blog->title; ?></h1> <!--header section to retrieve data from db -->
 
-                <p class='header-info'>Author:fffffffff</p>
-                <p class='header-info'>Date: 10/10/2000</p>
-                <p class='header-info'>Category: Lifestyle</p> 
+                <p class='header-info'>Author: <?php echo $blog->user_id; ?></p>
+                <p class='header-info'>Date: <?php echo $blog->date_posted; ?></p>
+                <p class='header-info'>Category: <?php echo $blog->category; ?></p> 
 
             </div>
 
@@ -120,67 +106,47 @@
             </div>
 
             <div id='body-container'> <!--main body section -->
-                <p class='body'> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
-                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute 
-                    irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                    pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia 
-                    deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
-                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute 
-                    irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                    pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia 
-                    deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
-                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute 
-                    irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                    pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia 
-                    deserunt mollit anim id est laborum.  </p>
+                <p class='body'> <?php echo $blog->body; ?></p>
 
             </div>
             <div id='img_container row'> <!--grid for 2 images, that will be positioned side by side at at the same size, when viewing on phone they will lay on top of each other -->
                 <div id='main_image column'>
                     <?php
                     //use when displaying images in their grids
-                    $file = 'views/blogposts/images/' . $blog->main_image . '.jpg';
+                    $file = 'views/blogpost/images/' . $blog->image . '.jpg';
                     if (file_exists($file)) {
                         $img = "<img src='$file' width='150' />";
                         echo $img;
                     } else {
-                        echo "<img src='views/images/standard/_noproductimage.png' width='150' />";
+                        echo "no image";
                     }
                     ?>
                 </div>
                 <div id='second_image column'>
                     <?php
 //use when displaying images in their grids
-                    $file = 'views/blogposts/images/' . $blog->second_image . '.jpg';
+                    $file = 'views//blogpost/images/' . $blog->image . '.jpg';
                     if (file_exists($file)) {
                         $img = "<img src='$file' width='150' />";
                         echo $img;
                     } else {
-                        echo "<img src='views/images/standard/_noproductimage.png' width='150' />";
+                        echo "no image";
                     }
                     ?>
                 </div>
             </div>
             <div id='body-container'> <!--body 2 section -->
-                <p class='body'> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
-                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute 
-                    irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                    pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia 
-                    deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit,</p>
+                <p class='body'> <?php echo $blog->body2; ?></p>
             </div>
             <div id='third_image'>
                 <?php
 //use when displaying images in their grids
-                $file = 'views/blogposts/images/' . $blog->third_image . '.jpg'; //retrieve image name and concatenate it with location of image
+                $file = 'views/blogpost/images/' . $blog->image . '.jpg'; //retrieve image name and concatenate it with location of image
                 if (file_exists($file)) {
                     $img = "<img src='$file' width='150' />";
                     echo $img;
                 } else {
-                    echo "<img src='views/images/standard/_noproductimage.png' width='150' />"; //assign a noimage image that will be used if image on db not found
+                    echo "no image"; //assign a noimage image that will be used if image on db not found
                 }
                 ?>
             </div>
@@ -189,7 +155,7 @@
                 <i class="fa fa-instagram" aria-hidden="true"></i>
                 <i class="fa fa-twitter" aria-hidden="true"></i>
                 <i class="fa fa-pinterest"></i>
-                <i class="fa fa-heart-o" onclick="myFunction(this)"></i> 
+                <a href="read.php?type=blog_post&id=<?php echo $blog_post->blog_id; ?>"><i class="fa fa-heart-o" onclick="myFunction(this)"></i> </a>
                 
                 
                 <script>
@@ -206,11 +172,12 @@
        
     </body>
 
-</html>
+
+
 
 <!--<p>This is the requested product:</p>
 
-<p>Product ID: <?php
+<p>Product ID: 
 /* echo $product->id; ?></p>
   <p>Product Name: <?php echo $product->name; ?></p>
   <p>Product Price: £<?php echo $product->price; ?></p>

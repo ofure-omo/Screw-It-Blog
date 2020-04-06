@@ -1,70 +1,70 @@
 <?php
 
 class Blog {
+    
+    public $title;
+    public $body;
+    public $body2;
+    public $date_posted;
+    public $tag;
+    //private $main_image;
+    //private $second_image;
+    //private $third_image;
+    public $category;
+    //private $facebook_url;
+    //private $insta_url;
+    //private $twitter_url;
 
-    private $blog_id;
-    private $user_id;
-    private $title;
-    private $body;
-    private $body2;
-    private $date_posted;
-    private $main_image;
-    private $second_image;
-    private $third_image;
-    private $category;
-    private $facebook_url;
-    private $insta_url;
-    private $twitter_url;
+    function __construct($title, $body, $body2, $date_posted, $category, $tag) {
 
-    function __construct($blog_id, $user_id, $title, $body, $body2, $date_posted, $main_image, $second_image, $third_image, $category, $facebook_url, $insta_url, $twitter_url) {
-        $this->blog_id = $blog_id;
-        $this->user_id = $user_id;
         $this->title = $title;
         $this->body = $body;
         $this->body2 = $body2;
         $this->date_posted = $date_posted;
-        $this->main_image = $main_image;
-        $this->second_image = $second_image;
-        $this->third_image = $third_image;
+       // $this->main_image = $main_image;
+        //$this->second_image = $second_image;
+        //$this->third_image = $third_image;
         $this->category = $category;
-        $this->facebook_url = $facebook_url;
-        $this->insta_url = $insta_url;
-        $this->twitter_url= $twitter_url;
+        $this->tag = $tag;
+        //$this->facebook_url = $facebook_url;
+        //$this->insta_url = $insta_url;
+        //$this->twitter_url= $twitter_url;
     }
 
     public static function all() {
         $list = [];
         $db = Screw_it::getInstance();
-        $req = $db->query('SELECT Users.username, title, body, body2, date_posted, main_image, second_image, third_image, category FROM blog_posts
-                           INNER JOIN Users on blog_posts.user_id = Users.user_id,
-                           SELECT twitter_url insta_url facebook_url FROM Users;'); //order by most recent 
+        $req = $db->query('SELECT user_id, title, body, body2, date_posted, category FROM blog_posts;
+                           SELECT tag_id FROM post_tags WHERE blog_id = ?? INNER JOIN blog_posts post_tags.blog_id = blog_posts.blog_id
+                           INNER JOIN tags post_tags.tag_id = tags.tag; 
+                          '); //order by most recent *ASK MARTINA*
         // we create a list of blog_post objects from the database results
-        foreach ($req->fetch(PDO::FETCH_ASSOC) as $blog_post) {
-            $list[] = new Blog($blog_post['user_id'], $blog_post['title'], $blog_post['body'], $blog_post['body2'], $blog_post['date_posted'], $blog_post['main_image'], $blog_post['second_image'], $blog_post['third_image'], $blog_post['category'],
-                 $blog_post['twitter_url'], $blog_post['insta_url'], $blog_post['facebook_url']);
+        foreach ($req->fetch(PDO::FETCH_ASSOC) as $blog) {
+            $list[] = new Blog($blog['user_id'], $blog['title'], $blog['body'], $blog['body2'], $blog['date_posted'], $blog['category']);
+                 
         }
         return $list;
     }
 
-    /*public static function find($title) {
+    public static function find($blog_id) {
         $db = Screw_it::getInstance();
-        $title = string($title);
-        $req = $db->prepare('SELECT * FROM blog_post WHERE title = :title;');
+        $blog_id = string($blog_id);
+        $req = $db->prepare('SELECT * FROM blog_post WHERE blog_id = :blog_id;');
         //querey has been prepared replace :blog_id with actual value 
-        $req->execute(array('title' => $title));
+        $req->execute(array('blog_id' => $blog_id));
         $blog = $req->fetch();
         if ($blog) {
-            return new Blog($blog_post['user_id'], $blog_post['title'], $blog_post['body'], $blog_post['body2'], $blog_post['date_posted'], $blog_post['main_image'], $blog_post['second_image'], $blog_post['third_image'], $blog_post['category']);
+            return new Blog($blog['title'], $blog['body'], $blog['body2'], $blog['date_posted'], $blog['main_image'], $blog['second_image'], $blog['third_image'], $blog['category']);
         } else {
             throw new Exception('Blog not found, please search again');
         }
-    }*/
+    }
 
     public static function add() {       
         
         $db = Screw_it::getInstance();       
 
-        if (isset($_POST['submit'])) {
+       if (isset($_POST['submit'])) {
         
 // set parameters and execute
         if (isset($_POST['title']) && $_POST['title'] != "") {
@@ -80,43 +80,61 @@ class Blog {
             $filteredCategory = filter_input(INPUT_POST, 'category', FILTER_SANITIZE_SPECIAL_CHARS);
         }
         
-           
-        $req = $db->prepare("INSERT INTO blog_posts(title, body, body2, category) VALUES (:title, :body, :body2, :category);");
+        if (isset($_POST['tag']) && $_POST['tag'] !="") {
+            $filteredTag = filter_input(INPUT_POST, 'tag', FILTER_SANITIZE_STRING);
+        }
+        
+        if (isset($_POST['image']) && $_POST['image'] != "") {
+            $filteredImage = filter_input(INPUT_POST, 'image', FILTER_SANITIZE_SPECIAL_CHARS);
+        }
+        
+           //for user_id once sessions is done it will need to be the session(user_id) that would go into the values for user_id!!
+        $req = $db->prepare("INSERT INTO blog_posts(user_id, title, body, body2, category, image) VALUES ('1', :title, :body, :body2, :category, :image);
+                INSERT INTO tags (tag) VALUES (:tag);");
         $req->bindParam(':title', $title);
         $req->bindParam(':body', $body);
         $req->bindParam(':body2', $body2);
         $req->bindParam(':category', $category);
+        $req->bindParam(':image', $image);
+        $req->bindParam(':tag', $selected_tags);
+
+
+        $post->add_hashtags($db, $hashtags, $id);
 
         $title = $filteredTitle;
         $body = $filteredBody;
         $body2 = $filteredBody2;
         $category = $filteredCategory;
+        $image = $image;
+        $tag = $filteredTag;
         $req->execute();
            
 
-//upload product image: ASK MARTINA HOW I CAN UPLOAD 3 IMAGES 
-        /*Blog::uploadFiles($main_image);
-        Blog::uploadFiles($second_image);
-        Blog::uploadFiles($third_image);*/
+//upload product image:  
+        Blog::uploadFiles($image);
         }
+    
     }
 
     const AllowedTypes = ['image/jpeg', 'image/jpg'];
-    const InputKey = 'myUploader';
+    const InputKey = 'myfile';
 
 
 //die() function calls replaced with trigger_error() calls
 //replace with structured exception handling
-    public static function uploadFiles(string $name) {
+    public static function uploadFiles($image){
+       
+        $image = pathinfo($_FILES['myfile']['name'], PATHINFO_FILENAME);
 
-        if (empty($_FILES[self::InputKey])) {
+       if (empty($_FILES[self::InputKey])) {
         //die("File Missing!");
             trigger_error("File Missing!");
+       
         }
 
-        if ($_FILES[self::InputKey]['error'] > 0) {
+        /*if ($_FILES[self::InputKey]['error'] > 0) {
             trigger_error("Handle the error! " . $_FILES[InputKey]['error']);
-        }
+        }*/
 
 
         if (!in_array($_FILES[self::InputKey]['type'], self::AllowedTypes)) {
@@ -125,18 +143,24 @@ class Blog {
 
         $tempFile = $_FILES[self::InputKey]['tmp_name'];
         $path = "/Applications/XAMPP/xamppfiles/htdocs/Screw-it/views/images/";
-        $destinationFile = $path . $name . '.jpeg';
+        $destinationFile = $path . $image;
+        
+        move_uploaded_file($_FILES[self::InputKey]['tmp_name'],$destinationFile);
 
         if (!move_uploaded_file($tempFile, $destinationFile)) {
             trigger_error("File not uploaded");
         }
+        
         //Clean up the temp file
         if (file_exists($tempFile)) {
             unlink($tempFile);
         }
+            
     }
+    
+    
    
-   /* public static function remove($blog_id) {
+   public static function remove($blog_id) {
         $db = Screw_it::getInstance();
         //make sure $id is an integer
         $blog_id = intval($blog_id);
