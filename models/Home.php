@@ -1,5 +1,5 @@
 <?php
-include "../../connection.php";
+//include "../../connection.php";
 
 class BlogHP extends Screw_it {
     

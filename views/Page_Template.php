@@ -6,14 +6,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Bootstrap, CSS styles and fonts -->
+    <!-- Bootstrap, CSS styles and fonts-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Francois+One&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="views/css/stylesHome.css">
-    <link rel="stylesheet" href="views/css/styles.css">
     <link rel="stylesheet" href="views/css/templatestyles.css">
+    <link rel="stylesheet" href="views/css/styles.css">
+    <link rel="stylesheet" href="views/css/stylesHome.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     
@@ -28,6 +28,9 @@ include_once "views/pages/Header.php";
 ?> 
 
 <!---MAIN BODY--------------------------------------------------------------->
+<div class="content">
+    <?php require_once('routes.php'); ?>
+</div>
 
 
 <!---FOOTER------------------------------------------------------------------>   
@@ -35,6 +38,8 @@ include_once "views/pages/Header.php";
 <?php
 include_once "views/pages/Footer.php";
 ?>
+
+
 
 </div>
 

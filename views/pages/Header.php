@@ -8,7 +8,7 @@
     <nav class="navbar justify-content-between" id="navbar">
         <ul class="nav mr-auto">     
             <li>
-                <a class="nav-link" href='?controller=product&action=readAll'>SIGN UP</a>
+                <a class="nav-link" href='?controller=blog&action=readAll'>SIGN UP</a>
             </li>
             <form class="form-inline">
                 <button class="btn btn-outline-light" type="button" onclick="window.location.href = 'Screw-it/Login.php';" >Log in</button>
@@ -24,7 +24,7 @@
     </div>
     </nav>
 <div class="header">
-    <a href="?controller=pages&action=home"><img src="views/images/screwit2.png" alt="Screw it"></a>
+    <a href="?controller=home&action=home"><img src="views/images/screwit2.png" alt="Screw it"></a>
 </div>
     
 <nav class="navbar navbar-expand-lg flex-column flex-md-row d-flex sticky-top navbar-light" id="navbar">
@@ -34,10 +34,13 @@
     <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav mr-auto">      
             <li class="nav-item">
-                <a class="nav-link" href="?controller=pages&action=home">HOME</a>
+                <a class="nav-link" href="?controller=home&action=home">HOME</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="?controller=pages&action=about">ABOUT</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="?controller=blog&action=create">CREATE BLOG</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">CATEGORIES
@@ -92,10 +95,6 @@ function myFunction() {
 
 
 
-</div>
-<div class="content">
-    <?php require_once('routes.php'); ?>
-    
 </div>
 
 

@@ -1,25 +1,3 @@
-<?php
-//include "../../models/Homepage.php";
-include "../../controllers/home_controller.php";
-?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>     
-
-    <link rel="stylesheet" href="../css/styles.css">
-    <link rel="stylesheet" href="../css/stylesHome.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"  crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"  crossorigin="anonymous"></script>
-    
-    <title>Screw it | Home</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-</head>
-
 <body>
     
     
@@ -131,14 +109,14 @@ include "../../controllers/home_controller.php";
     <!-- IMAGES-->
   
     <div class = "categories-div">
-        <img class="HPCategories" src="../images/HP_images/kitchen.png" style="width:10%; padding: 5px;" alt="kitchen">
-        <img class="HPCategories2" src="../images/HP_images/dining.png" style="width:10%; padding: 5px" alt="dining">
-        <img class="HPCategories3" src="../images/HP_images/office.png" style="width:10%; padding: 5px" alt="office">
-        <img class="HPCategories4" src="../images/HP_images/living.png" style="width:10%; padding: 5px" alt="living room">
-        <img class="HPCategories5" src="../images/HP_images/bedroom.png" style="width:10%; padding: 5px" alt="bedroom">
-        <img class="HPCategories6" src="../images/HP_images/bathroom.png" style="width:10%; padding: 5px" alt="bathroom">
-        <img class="HPCategories7" src="../images/HP_images/garden.png" style="width:10%; padding: 5px" alt="garden">
-        <img class="HPCategories8" src="../images/HP_images/lifestyle.png" style="width:10%; padding: 5px" alt="lifestyle">
+        <img class="HPCategories" src="views/images/HP_images/kitchen.png" style="width:10%; padding: 5px;" alt="kitchen">
+        <img class="HPCategories2" src="views/images/HP_images/dining.png" style="width:10%; padding: 5px" alt="dining">
+        <img class="HPCategories3" src="views/images/HP_images/office.png" style="width:10%; padding: 5px" alt="office">
+        <img class="HPCategories4" src="views/images/HP_images/living.png" style="width:10%; padding: 5px" alt="living room">
+        <img class="HPCategories5" src="views/images/HP_images/bedroom.png" style="width:10%; padding: 5px" alt="bedroom">
+        <img class="HPCategories6" src="views/images/HP_images/bathroom.png" style="width:10%; padding: 5px" alt="bathroom">
+        <img class="HPCategories7" src="views/images/HP_images/garden.png" style="width:10%; padding: 5px" alt="garden">
+        <img class="HPCategories8" src="views/images/HP_images/lifestyle.png" style="width:10%; padding: 5px" alt="lifestyle">
     </div>
     
             <br>
@@ -169,13 +147,12 @@ include "../../controllers/home_controller.php";
                         <!-- image -->
                         <!--IMAGE-->
                         <?php
-                        $url = "'".$blog1->getLatestBlogImage()."'";
                         echo "<img src=$url class='gallery-image' alt='Blog ID#'>"
                         ?>
                         <!-- Likes and Comments -->
                         <div class="gallery-item-info">
                             <ul>
-                                <li class="gallery-item-body"><span class="visually-hidden">Body:</span><i class="fas fa-heart" aria-hidden="true"></i><?php echo $blog1->getLatestBlogTitle() ?></li>
+                                <li class="gallery-item-body"><span class="visually-hidden">Body:</span><i class="fas fa-heart" aria-hidden="true"></i><?php echo $blog1title ?></li>
                                 <!-- likes -->
                                 <li class="HP-catagories-gallery-item-likes">
                                     <span class="visually-hidden">Likes:</span>
@@ -412,57 +389,57 @@ include_once "Footer.php";
     <script  type='text/javascript'>
     $(document).ready(function(){
     $(".HPCategories").hover(
-        function() {$(this).attr("src","../images/HP_images/kitchen_h.png");},
-        function() {$(this).attr("src","../images/HP_images/kitchen.png");
+        function() {$(this).attr("src","views/images/HP_images/kitchen_h.png");},
+        function() {$(this).attr("src","views/images/HP_images/kitchen.png");
         });
     });
     
         $(document).ready(function(){
         $(".HPCategories2").hover(
-        function() {$(this).attr("src","../images/HP_images/dining_h.png");},
-        function() {$(this).attr("src","../images/HP_images/dining.png");
+        function() {$(this).attr("src","views/images/HP_images/dining_h.png");},
+        function() {$(this).attr("src","views/images/HP_images/dining.png");
         });
         });
         
         $(document).ready(function(){
         $(".HPCategories3").hover(
-        function() {$(this).attr("src","../images/HP_images/office_h.png");},
-        function() {$(this).attr("src","../images/HP_images/office.png");
+        function() {$(this).attr("src","views/images/HP_images/office_h.png");},
+        function() {$(this).attr("src","views/images/HP_images/office.png");
         });
         });
         
         $(document).ready(function(){
         $(".HPCategories4").hover(
-        function() {$(this).attr("src","../images/HP_images/living_h.png");},
-        function() {$(this).attr("src","../images/HP_images/living.png");
+        function() {$(this).attr("src","views/images/HP_images/living_h.png");},
+        function() {$(this).attr("src","views/images/HP_images/living.png");
         });
         });
         
         $(document).ready(function(){
         $(".HPCategories5").hover(
-        function() {$(this).attr("src","../images/HP_images/bedroom_h.png");},
-        function() {$(this).attr("src","../images/HP_images/bedroom.png");
+        function() {$(this).attr("src","views/images/HP_images/bedroom_h.png");},
+        function() {$(this).attr("src","views/images/HP_images/bedroom.png");
         });
         });
         
         $(document).ready(function(){
         $(".HPCategories6").hover(
-        function() {$(this).attr("src","../images/HP_images/bathroom_h.png");},
-        function() {$(this).attr("src","../images/HP_images/bathroom.png");
+        function() {$(this).attr("src","views/images/HP_images/bathroom_h.png");},
+        function() {$(this).attr("src","views/images/HP_images/bathroom.png");
         });
         });
         
         $(document).ready(function(){
         $(".HPCategories7").hover(
-        function() {$(this).attr("src","../images/HP_images/garden_h.png");},
-        function() {$(this).attr("src","../images/HP_images/garden.png");
+        function() {$(this).attr("src","views/images/HP_images/garden_h.png");},
+        function() {$(this).attr("src","views/images/HP_images/garden.png");
         });
         });
         
         $(document).ready(function(){
         $(".HPCategories8").hover(
-        function() {$(this).attr("src","../images/HP_images/lifestyle_h.png");},
-        function() {$(this).attr("src","../images/HP_images/lifestyle.png");
+        function() {$(this).attr("src","views/images/HP_images/lifestyle_h.png");},
+        function() {$(this).attr("src","views/images/HP_images/lifestyle.png");
         });
         });
     </script>
