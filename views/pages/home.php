@@ -1,5 +1,6 @@
 <?php
-include "../../models/Homepage.php";
+//include "../../models/Homepage.php";
+include "../../controllers/home_controller.php";
 ?>
 
 <!DOCTYPE html>
@@ -20,26 +21,25 @@ include "../../models/Homepage.php";
 </head>
 
 <body>
+    
+    
 <center>
     <br>
     <br>
     
     <!-- LATEST BLOGS -->
     
-    <?php //This will need to go in a controller?
-    $blog1 = new BlogHP; //Create Object from Model Class
-    ?>
     
-            <div class="HP-carousel-caption" style="position: absolute; z-index: 10; color: BLACK; padding-right: 400px; opacity: 0.7; left:20px">
-                    <h3 style="padding: 10px; text-indent: 30px; font-size: 60px">LATEST POSTS</h3>
+            <div class="HP-carousel-caption" style="z-index: 10; color: grey; opacity: 0.7;">
+                <h3 style="padding: 10px; text-indent: 30px; font-size: 35px; font-family: 'Open Sans', sans-serif;">The <span style="color: #FCA15F">home</span> of DIY</h3>
             </div>
     
         <br>
-        <br>
-        <br>
+
     
-             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="height:700px !important; padding-left: 80px; padding-right: 80px">
-        
+             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="height:700px !important; padding-left: 80px; padding-right: 80px; background-color: #fafafa">
+                 <br>
+                 <br>
                 <!-- CAROUSEL -->     
                 <div class="carousel-inner" style="height:650px !important">
                     
@@ -47,19 +47,18 @@ include "../../models/Homepage.php";
                     <div class="carousel-item active">
                         <!--CAPTION-->
                         <div style="position: absolute; z-index: 10; color: black; background-color: white; top:350px; right:150px; opacity: .55; width: 450px; border-radius: 15px">
-                            <h3 style="font-size: 32px"><?php echo $blog1->getLatestBlogTitle() ?></h3>
+                            <h3 style="font-size: 32px; font-family: 'Open Sans', sans-serif;"><?php echo $blog1title ?></h3>
                         </div> 
                         
                          <!--BLOG TEXT-->
                         <div style="position: absolute; z-index: 10; color: black; background-color: white; top:400px; right:150px; opacity: .55;width: 450px; height: 200px; border-radius: 15px ">
                             <p style="font-size: 14px; padding: 5px"><br>
-                                    <?php echo $blog1->getLatestBlogText() ?>
+                                    <?php echo $blog1text ?>
                                 <a href="https://www.google.com"><br>Read more....</a></p>
                         </div> 
                         
                         <!--IMAGE-->
                         <?php
-                        $url = "'".$blog1->getLatestBlogImage()."'";
                         echo "<img class='d-block w-100' src=$url alt='First slide' style='width: 100%'>"
                         ?>
                         
@@ -98,6 +97,9 @@ include "../../models/Homepage.php";
                         </div>
 
                     </div>
+                
+
+                
         
                     <!-- CONTROLS -->
 
@@ -110,21 +112,21 @@ include "../../models/Homepage.php";
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="sr-only">Next</span>
                     </a>
+                    
+                    
             </div>
     
 
     <!-- CATEGORIES--> 
-    
-    <div class="HP-categories-caption" style="position: absolute; z-index: 10; color: BLACK; padding-right: 400px; opacity: 0.7; left:20px">
-        <h3 style="padding: 10px; text-indent: 30px; font-size: 60px">VIEW CATEGORIES</h3>
+    <br>
+    <br>
+    <div class="HP-categories-caption" style="z-index: 10; color: grey; opacity: 0.7">
+        <h3 style="padding: 10px; text-indent: 30px; font-size: 35px; font-family: 'Open Sans', sans-serif; background-color: #FDFDFD">browse by <span style="color: #70d6ff">category</span></h3>
     </div>
             <br>
             <br>
             <br>
-            <br>
-            <br>
-            <br>
-            <br>
+
     
     <!-- IMAGES-->
   
@@ -149,17 +151,12 @@ include "../../models/Homepage.php";
   <!-- All blog posts-->
   
   <main>
-      
-        <div class="HP-all-caption" style="position: absolute; z-index: 10; color: BLACK; padding-right: 400px; opacity: 0.7; left:20px">
-        <h3 style="padding: 10px; text-indent: 30px; font-size: 60px">VIEW ALL POSTS</h3>
+      <br>
+        <div class="HP-all-caption" style="z-index: 10; color: grey; opacity: 0.7;">
+            <h3 style="padding: 10px; text-indent: 30px; font-size: 35px; font-family: 'Open Sans', sans-serif;">be <span style="color: #3f7cac">inspired</span></h3>
         </div>
       
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
+
       <br>
       <br>
 
@@ -403,9 +400,6 @@ include "../../models/Homepage.php";
     <br>
     <br>
     <br>
-    <br>
-    <br>
-    <br>
     
  
 </center>
@@ -414,7 +408,7 @@ include "../../models/Homepage.php";
 include_once "Footer.php";
 ?>
 
-    <!-- For Image on Hover - re-do when updating main styles sheet -->   
+    <!-- For Image on Hover - probably need to move to a JS file -->   
     <script  type='text/javascript'>
     $(document).ready(function(){
     $(".HPCategories").hover(
