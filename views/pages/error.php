@@ -1,5 +1,7 @@
-<div class="w3-container w3-red">
-<p>Oops, this is the error page.</p>
-<img src="views/images/standard/_errorimage.jpg" width="150" />
-<p>It looks like something went wrong :(</p>
-</div>
+                <section class="main-section">
+                        <h5>Oops, something went wrong.</h5>
+                        <img src="./Images/error.jpg" width="500" />
+                        
+                    <p> Click <a href="?controller=home&action=home">here </a> to return to the home page.</p>
+                    </div>
+                </section>
