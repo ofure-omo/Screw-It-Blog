@@ -1,14 +1,14 @@
 </head>
-    <!-- Stylesheet internal
-    <link rel="stylesheet" type="text/css" href="BlogStyles.css">-->
-    
+<!-- Stylesheet internal
+<link rel="stylesheet" type="text/css" href="BlogStyles.css">-->
+
 <!-- NAVIGATION -->
 <body>     
-  
+
     <nav class="navbar justify-content-between" id="navbar">
         <ul class="nav mr-auto">     
             <li>
-                <a class="nav-link" href='?controller=product&action=readAll'>SIGN UP</a>
+                <a class="nav-link" href='?controller=blog&action=readAll'>SIGN UP</a>
             </li>
             <form class="form-inline">
                 <button class="btn btn-outline-light" type="button" onclick="window.location.href = 'Screw-it/Login.php';" >Log in</button>
@@ -22,11 +22,11 @@
         </ul>
 
     </div>
-    </nav>
+</nav>
 <div class="header">
-    <a href="?controller=pages&action=home"><img src="views/images/screwit2.png" alt="Screw it"></a>
+    <a href="?controller=home&action=home"><img src="views/images/screwit2.png" alt="Screw it"></a>
 </div>
-    
+
 <nav class="navbar navbar-expand-lg flex-column flex-md-row d-flex sticky-top navbar-light" id="navbar">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -34,10 +34,13 @@
     <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav mr-auto">      
             <li class="nav-item">
-                <a class="nav-link" href="?controller=pages&action=home">HOME</a>
+                <a class="nav-link" href="?controller=home&action=home">HOME</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="?controller=pages&action=about">ABOUT</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="?controller=blog&action=create">CREATE BLOG</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">CATEGORIES
@@ -52,28 +55,41 @@
                     <a class="dropdown-item" href="#">LIFESTYLE </a>
                 </div>
             </li>
+            <?php
+            $security = filter_input(INPUT_COOKIE, 'security', FILTER_SANITIZE_STRING);
+            if ($security === 'writer') {
+                echo "<li><a href='?controller=blog&action=create'>Blogger's Area</a></li>";
+            }
+            ?>
+            <?php
+            $security = filter_input(INPUT_COOKIE, 'security', FILTER_SANITIZE_STRING);
+            if ($security === 'writer') {
+                echo "<li><a href='?controller=blog&action=create'>Blogger's Area</a></li>";
+            }
+            ?>
         </ul>
 
-            
-            
-    <div id="myOverlay" class="overlay">
-        <span class="closebtn" onclick="closeSearch()" title="Close Overlay">x</span>
-        <div class="overlay-content">
-            <form action="?controller=search&action=search" method="POST">
-                <input type="text" placeholder="" name="search">
-                <button type="submit" name="submit-search"><i class="fa fa-search"></i></button>
-            </form>
+
+
+        <div id="myOverlay" class="overlay">
+            <span class="closebtn" onclick="closeSearch()" title="Close Overlay">x</span>
+            <div class="overlay-content">
+                <form action="?controller=search&action=search" method="POST">
+                    <input type="text" placeholder="" name="search">
+                    <button type="submit" name="submit-search"><i class="fa fa-search"></i></button>
+                </form>
+            </div>
         </div>
-    </div>
         <ul class="navbar-nav ml-auto"> 
-    <div class="openbtn" onclick="openSearch()">
-        <i class="fa fa-search"></i>
-    </div>
+            <div class="openbtn" onclick="openSearch()">
+                <i class="fa fa-search"></i>
+            </div>
+
         </ul>
-   </div>
+    </div>
 </nav>
 
-  <!-- Required meta tags 
+<!-- Required meta tags 
 <script>
 window.onscroll = function() {myFunction()};
 
@@ -81,11 +97,11 @@ var navbar = document.getElementById("navbar");
 var sticky = navbar.offsetTop;
 
 function myFunction() {
-  if (window.pageYOffset >= sticky) {
-    navbar.classList.add("sticky")
-  } else {
-    navbar.classList.remove("sticky");
-  }
+if (window.pageYOffset >= sticky) {
+  navbar.classList.add("sticky")
+} else {
+  navbar.classList.remove("sticky");
+}
 }
 </script>
 -->
@@ -93,20 +109,16 @@ function myFunction() {
 
 
 </div>
-<div class="content">
-    <?php require_once('routes.php'); ?>
-    
-</div>
 
 
 <script>
-function openSearch() {
-  document.getElementById("myOverlay").style.display = "block";
-}
+    function openSearch() {
+        document.getElementById("myOverlay").style.display = "block";
+    }
 
-function closeSearch() {
-  document.getElementById("myOverlay").style.display = "none";
-}
+    function closeSearch() {
+        document.getElementById("myOverlay").style.display = "none";
+    }
 </script>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->

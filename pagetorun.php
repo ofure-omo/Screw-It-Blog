@@ -12,7 +12,7 @@
         $controller = $_GET['controller'];
         $action     = $_GET['action'];
   } else {
-        $controller = 'pages';
+        $controller = 'home';
         $action     = 'home';
   }
 

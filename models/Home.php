@@ -1,7 +1,7 @@
 <?php
-include "../../connection.php";
+//include "../../connection.php";
 
-class BlogHP extends Screw_it {
+class BlogHP {
     
     protected $blog_id;
     protected $title;
