@@ -2,6 +2,7 @@
 
 abstract class Users {
     
+ protected $user_ID;
  protected $username;
  protected $password;
  protected $user_fn;
@@ -9,6 +10,10 @@ abstract class Users {
  protected $email;
  protected $dob;
  protected $answer_1;
+ 
+ function getUser_ID() {
+ return $this->user_ID;
+ }
  
  function getUsername() {
  return $this->username;
@@ -37,7 +42,9 @@ abstract class Users {
   function getAnswer_1() {
         return $this->answer_1;
     }
-
+function setUser_ID($user_ID) {
+ $this->user_ID = $user_ID;
+ }
  function setUsername($username) {
  $this->username = $username;
  }
@@ -69,7 +76,8 @@ abstract class Users {
     }
 
  public function __construct($username, $user_fn, $user_ln, $email, $dob) {
- $this->username = $username;
+     $this->user_ID = $user_ID;
+     $this->username = $username;
  $this->password = "";
  $this->user_fn = $user_fn;
  $this->user_ln = $user_ln;
