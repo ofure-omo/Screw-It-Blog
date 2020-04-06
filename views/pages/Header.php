@@ -69,6 +69,7 @@
     <div class="openbtn" onclick="openSearch()">
         <i class="fa fa-search"></i>
     </div>
+            
         </ul>
    </div>
 </nav>
