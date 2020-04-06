@@ -55,6 +55,14 @@ CREATE TABLE `blog_posts` (
   `views` int(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `blog_posts`
+--
+
+INSERT INTO `blog_posts` (`blog_id`, `user_id`, `title`, `date_posted`, `published`, `slug`, `body`, `main_image`, `second_image`, `third_image`, `category`, `views`) VALUES
+(0, 3, 'Create Wire Artwork', '2020-04-06 09:55:23', 'Y', '', 'Hi guys, I was looking for some artwork for my living room but they were all too expensive, so I thought why not make my own!', 'https://images.unsplash.com/photo-1512331283953-19967202267a?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80', NULL, NULL, 'Living Room', NULL);
+
+
 -- --------------------------------------------------------
 
 --
