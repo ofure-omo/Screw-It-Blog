@@ -10,7 +10,7 @@
     <div>
         <h2>Register your details</h2>
         <p>Please fill this form to create an account</p>
-        <form action="" method="post">
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
             <div>
                 <label>Username</label>
                 <input type="text" name="username" autocomplete='off' required value="">
@@ -36,9 +36,13 @@
                 <input type="date" name="dob" autocomplete='off' required value="">
             </div> 
             <div>
-                <input type="submit">
+                <label>Security Question: Who is your favourite Ryan?</label>
+                <input type="text" name="answer_1" autocomplete="off" required value="">
             </div>
-            <p>Already have an account? </br><a href="login.php">Login here</a>.</p>
+            <div>
+                <input type="submit" value="Register Now">
+            </div>
+            <p>Already have an account? </br><a href="placeholder">Login here</a>.</p>
         </form>
     </div>    
 </body>

@@ -1,8 +1,9 @@
 <?php
 
-class Register extends Users {
+class Register { //extends Users {
 
     public function sanitiseInput() {
+        
         
         $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_SPECIAL_CHARS);
         $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -19,6 +20,10 @@ class Register extends Users {
 
     public function addUser($userArray) {
         //getInstance for db connection?
+        
+        $db = Screw_it::getInstance();
+        
+
         $sql = "INSERT INTO Users (username, password, user_fn, user_ln, email, dob, answer_1)"
                 . " VALUES (:username, :password, :user_fn, :user_ln, :email, :dob, :answer_1)";
         // Set parameters
@@ -30,7 +35,7 @@ class Register extends Users {
         $param_dob = $userArray['dob'];
         $param_answer_1 = $userArray['answer_1'];
 
-        if ($stmt = $pdo->prepare($sql)) {
+        if ($stmt = $db->prepare($sql)) {
             // Bind variables to the prepared statement as parameters
             $stmt->bindParam(":username", $param_username, PDO::PARAM_STR);
             $stmt->bindParam(":password", $param_password, PDO::PARAM_STR);
@@ -42,7 +47,7 @@ class Register extends Users {
             // Attempt to execute the prepared statement
             if ($stmt->execute()) {
                 // Redirect to login page
-                header("location: login.php");//change this
+                header("location: ../views/pages/login_page.php");//change this
             } else {
                 echo "Something went wrong. Please try again later.";
             }

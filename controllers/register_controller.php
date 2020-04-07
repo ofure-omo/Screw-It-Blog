@@ -1,24 +1,24 @@
 <?php
 
-
 /**
  * Description of register_controller
  *
  * @author linzicarlin
  */
-class register_controller extends Register {
-    
-    public function registerUser(){
-        
-    if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-        $userArray = Register::sanitiseInput();
-        $newUser = Register::addUser($userArray);
+class register_controller { // extends Register {
 
-        require_once('views/pages/register_page.php');
+    public function registerUser() {
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $userArray = Register::sanitiseInput();
+            $newUser = Register::addUser($userArray);
+
+            require_once('views/pages/register_page.php');
+        }
     }
-    
- }    
+
 }
+
 /*if (isset($_POST['submit'])){
     
 $user = new Users();
