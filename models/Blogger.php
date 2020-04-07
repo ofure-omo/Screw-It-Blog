@@ -1,6 +1,6 @@
 <?php
 
-class Blogger extends Users{
+class Blogger{
 
     protected $bio;
     protected $url;

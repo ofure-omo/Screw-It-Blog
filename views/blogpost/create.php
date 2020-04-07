@@ -140,19 +140,16 @@
                     <div class="form-group">
                         <label for="exampleFormControlSelect1">Category</label>
                         <select class="form-control" name ="category" id="exampleFormControlSelect1">
-                            <option>Kitchen</option>
-                            <option>Dining Room</option>
-                            <option>Living Room</option>
-                            <option>Bedroom</option>
-                            <option>Office</option>
-                            <option>Garden</option>
-                            <option>Lifestyle</option>
+                            <option value="1">renovate</option>
+                            <option value="2">create</option>
+                            <option value="3">decorate</option>
+                                              
                         </select>
                     </div>
                     <div id="tags" name="tags"><p>Tags</p>
                    <div class="form-group">
                             <label class="sr-only" for="tag">Hashtags</label>
-                            <input type="text" name="tag" id="tag" class="form-control" placeholder="#recycle #diy #garden" required />
+                            <input type="text" name="tag[]" id="tag" class="form-control" placeholder="#recycle #diy #garden" required />
                         </div>
                 </div>
                     <div id='img_container'>

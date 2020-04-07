@@ -91,11 +91,11 @@
         <!--text to be replaced with data from the blog_post table -->
         <div class='blog-container'>
             <div id='title'>
-                <h1><?php echo $blog->title; ?></h1> <!--header section to retrieve data from db -->
+                <h1><?php echo $blogs['title']; ?></h1> <!--header section to retrieve data from db -->
 
-                <p class='header-info'>Author: <?php echo $blog->user_id; ?></p>
-                <p class='header-info'>Date: <?php echo $blog->date_posted; ?></p>
-                <p class='header-info'>Category: <?php echo $blog->category; ?></p> 
+                <p class='header-info'>Author: <?php echo $blogs['usernmame']; ?></p>
+                <p class='header-info'>Date: <?php echo $blogs['date_posted']; ?></p>
+                <p class='header-info'>Category: <?php echo $blogs['category']; ?></p> 
 
             </div>
 
