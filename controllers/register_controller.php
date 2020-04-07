@@ -13,8 +13,7 @@ class register_controller extends Register {
     if ($_SERVER['REQUEST_METHOD'] == 'POST'){
         $userArray = Register::sanitiseInput();
         $newUser = Register::addUser($userArray);
-        $username = $userArray['username'];
-        echo "Welcome " . $username;
+
         require_once('views/pages/register_page.php');
     }
     
