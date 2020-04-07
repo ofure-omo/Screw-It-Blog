@@ -1,24 +1,29 @@
 <?php
 
-
 /**
  * Description of register_controller
  *
  * @author linzicarlin
  */
-class register_controller extends Register {
-    
-    public function registerUser(){
-        
-    if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-        $userArray = Register::sanitiseInput();
-        $newUser = Register::addUser($userArray);
+class RegisterController { //ive renaed this to RegisterController so it follows the naming style 
 
-        require_once('views/pages/register_page.php');
+    public function register_page() {
+
+        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+            //$userArray = Register::sanitiseInput();
+
+            require_once('views/pages/register_page.php');
+        } else {
+            
+            Register::addUser(); 
+            echo"you have successfully registered!"; //this will need to be removed place holder for redirect link to mem dashboard
+            //when mem dashboard is created it should be called here so when the user has registered they'll be redirected to the
+            //members page which will show their details based on their user_id and also start a session!
+        }
     }
-    
- }    
+
 }
+
 /*if (isset($_POST['submit'])){
     
 $user = new Users();
