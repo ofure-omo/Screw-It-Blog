@@ -2,7 +2,7 @@
 
 class Register{
     
-        public $username;
+    public $username;
     public $password;
     public $user_fn;
     public $user_ln;
