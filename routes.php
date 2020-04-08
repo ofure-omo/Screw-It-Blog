@@ -29,8 +29,8 @@ $controllers = array('pages' => ['home', 'error', 'about'],
     'blog' => ['readAll', 'read', 'create', 'update', 'delete'],
     'search' => ['search'],
     'home' => ['home'],
-    'register' => ['registerUser'],
-    'login' => ['login'],
+    'register' => ['registerUser'], 
+    'login' => ['loginUser'],
     'comments' => ['add']
 );
 

@@ -6,7 +6,8 @@
                 <a class="nav-link" href='?controller=register&action=registerUser'>SIGN UP</a>
             </li>
             <form class="form-inline">
-                <button class="btn btn-outline-light" type="button" onclick="window.location.href = '?controller=login&action=login';" >Log in</button>
+                <button class="btn btn-outline-light" type="button" onclick="window.location.href='?controller=login&action=loginUser'">Log in</button>
+
             </form>
             
         </ul>
