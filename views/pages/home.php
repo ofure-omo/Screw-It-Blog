@@ -36,8 +36,8 @@
                         </div> 
                         
                         <!--IMAGE-->
-                        <?php
-                        echo "<img class='d-block w-100' src=$url alt='First slide' style='width: 100%'>"
+                        <?php echo $blogimage
+                        //echo "<img class='d-block w-100' src=$blogimage alt='First slide' style='width: 100%'>" //replace with file path 
                         ?>
                         
 

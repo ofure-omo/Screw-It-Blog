@@ -140,13 +140,10 @@
                     <div class="form-group">
                         <label for="exampleFormControlSelect1">Category</label>
                         <select class="form-control" name ="category" id="exampleFormControlSelect1">
-                            <option>Kitchen</option>
-                            <option>Dining Room</option>
-                            <option>Living Room</option>
-                            <option>Bedroom</option>
-                            <option>Office</option>
-                            <option>Garden</option>
-                            <option>Lifestyle</option>
+                            <option value="1">renovate</option>
+                            <option value="2">create</option>
+                            <option value="3">decorate</option>
+                                              
                         </select>
                     </div>
                     <div id="tags" name="tags"><p>Tags</p>
@@ -167,13 +164,13 @@
                             <label for="exampleFormControlFile1">Image 1</label>
                             <input type="file" name="myfile" class="form-control-file" id="exampleFormControlFile1">
                         </div>
-                        <!-- <div class="form-group">
+                        <!--<div class="form-group">
                              <label for="exampleFormControlFile1">Image 2</label>
-                             <input type="file" name="myUploader" class="form-control-file" id="exampleFormControlFile1">
+                             <input type="file" name="myfile[]" class="form-control-file" id="exampleFormControlFile1">
                          </div>
                          <div class="form-group">
                              <label for="exampleFormControlFile1">Image 3</label>
-                             <input type="file" name="myUploader" class="form-control-file" id="exampleFormControlFile1">
+                             <input type="file" name="myfile[]" class="form-control-file" id="exampleFormControlFile1">
                          </div>
                         <!-- image uploads- need to find a way to validate the uploads without refreshing the page -->
 
