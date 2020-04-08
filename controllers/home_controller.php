@@ -8,6 +8,7 @@ class HomeController {
        $blog1text = BlogHP::getLatestBlogText();
        $blog1title = BlogHP::getLatestBlogTitle();
        $blogimage = BlogHP::getLatestBlogImage();
+       $blogid = BlogHP::getBlogId();
         require_once('views/pages/home.php');
 
  }

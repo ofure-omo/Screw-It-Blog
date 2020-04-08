@@ -32,14 +32,18 @@
                         <div style="position: absolute; z-index: 10; color: black; background-color: white; top:400px; right:150px; opacity: .55;width: 450px; height: 200px; border-radius: 15px ">
                             <p style="font-size: 14px; padding: 5px"><br>
                                     <?php echo $blog1text ?>
-                                <a href="https://www.google.com"><br>Read more....</a></p>
+                                 <a href='?controller=blog&action=read&blog_id=<?php echo $blogid?>'> <br>Read more....</a></p>
                         </div> 
                         
                         <!--IMAGE-->
-                        <?php echo $blogimage
-                        //echo "<img class='d-block w-100' src=$blogimage alt='First slide' style='width: 100%'>" //replace with file path 
-                        ?>
-                        
+                        <?php 
+                       $img = "<img class='d-block w-100' src=$blogimage alt='First slide' style='width:100%'/>";
+                       echo $img; 
+                       
+                               ?>
+              
+                    
+                   
 
                     </div>
 
@@ -53,7 +57,7 @@
                                     PLACEHOLDER: blog text 2<br>
                                     PLACEHOLDER: blog text 2<br>
                                     PLACEHOLDER: blog text 2<br>
-                                <a href="https://www.google.com">Read more....</a></p>
+                                 <a href='?controller=blog&action=read&id=<?php echo $blogid; ?>'>Read more....</a></p>
                         </div> 
                         <img class="d-block w-100" src="https://images-na.ssl-images-amazon.com/images/I/71V-COkrJcL._SL1500_.jpg" alt="Second slide" style="heigh">
                     </div>
@@ -146,9 +150,11 @@
 			<div class="gallery-item" tabindex="0">
                         <!-- image -->
                         <!--IMAGE-->
-                        <?php
-                        echo "<img src=$url class='gallery-image' alt='Blog ID#'>"
-                        ?>
+                        <?php 
+                       $img = "<img class='d-block w-100' src=$blogimage alt='First slide' style='width:100%'/>";
+                       echo $img; 
+                       ?> 
+                         <a href='?controller=blog&action=read&blog_id=<?php echo $blogid; ?>'>
                         <!-- Likes and Comments -->
                         <div class="gallery-item-info">
                             <ul>
@@ -163,6 +169,7 @@
                                     <i class="fas fa-comment" aria-hidden="true"></i> 2</li>
                             </ul>
                         </div>
+                         </a>
 			</div>
 
                 <!-- 1:2 -->
