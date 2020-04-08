@@ -29,14 +29,9 @@ $controllers = array('pages' => ['home', 'error', 'about'],
     'blog' => ['readAll', 'read', 'create', 'update', 'delete'],
     'search' => ['search'],
     'home' => ['home'],
-<<<<<<< HEAD
     'register' => ['registerUser'], 
-    'login' => ['loginUser']
-=======
-    'register' => ['registerUser'],
-    'login' => ['login'],
+    'login' => ['loginUser'],
     'comments' => ['add']
->>>>>>> 04ab4c09ae42d1ab6fdfca86366559f3752825fb
 );
 
 // check that the requested controller and action are both allowed

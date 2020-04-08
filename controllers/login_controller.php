@@ -20,7 +20,7 @@ class LoginController {
         if (isset($_SESSION['loggedin'])){
             return call('pages', 'error'); //placeholder - will send to dashboard once that's ready!
         } else {
-            
+            require_once('views/pages/login_page.php');
             Login::login();
             echo "Welcome " . $this->username;
             
