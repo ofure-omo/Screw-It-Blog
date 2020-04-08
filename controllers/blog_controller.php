@@ -4,7 +4,7 @@
 class BlogController {
     public function readAll() {
       // we store all the posts in a variable
-      $blog = Blog::all();
+      $blogs = Blog::all();
       require_once('views/blogpost/readAll.php');
     }
 
@@ -29,13 +29,15 @@ class BlogController {
       // if it's a GET request display a blank form for creating a new product
       // else it's a POST so add to the database and redirect to readAll action
       if($_SERVER['REQUEST_METHOD'] == 'GET'){
-          require_once('views/blogpost/create.php');
+          
+          require_once('views/blogpost/create.php');  
       }
       else { 
             Blog::add();
              
-            $blog= Blog::all(); //$products is used within the view
-            require_once('views/blogpost/readAll.php');
+            //$blog= Blog::all(); //$products is used within the view
+            //require_once('views/blogpost/readAll.php');  *SHOULD REDIRECT TO THE BLOGGER DASHBOARD WITH THE BLOG POST IN THE ACCORDIAN FOR BLOGS POSTED*
+            echo "You have posted your blog!";
       }
       
     }

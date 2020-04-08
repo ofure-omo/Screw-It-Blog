@@ -90,6 +90,10 @@
                 margin-bottom: 20px;
             }
 
+            small {
+                font-size: 0.6em;
+                font-style: italic;
+            }
 
         </style>
         <!--<form action="" method="POST" class="w3-container" enctype="multipart/form-data">
@@ -140,6 +144,7 @@
                     <div class="form-group">
                         <label for="exampleFormControlSelect1">Category</label>
                         <select class="form-control" name ="category" id="exampleFormControlSelect1">
+                            <option selected="selected">Choose a category</option>
                             <option value="1">renovate</option>
                             <option value="2">create</option>
                             <option value="3">decorate</option>
@@ -149,12 +154,13 @@
                     <div id="tags" name="tags"><p>Tags</p>
                    <div class="form-group">
                             <label class="sr-only" for="tag">Hashtags</label>
-                            <input type="text" name="tag" id="tag" class="form-control" placeholder="#recycle #diy #garden" required />
+                            <input type="text" name="tag" id="tag" class="form-control" placeholder="recycle diy garden" required />
+                            <small> separate tags with a comma</small>
                         </div>
                 </div>
                     <div id='img_container'>
                         <p class="img-title"> Images </p> 
-                        <small class="file-type">Format accepted jpg/jpeg</small> 
+                        <small class="file-type">Formats accepted: jpg/jpeg/png</small> 
 
                         <input type="hidden" 
                                name="MAX_FILE_SIZE" 

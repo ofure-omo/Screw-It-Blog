@@ -103,3 +103,8 @@ main {
     height: 100%;
     object-fit: cover;
 }
+
+.newlink {
+    text-decoration: none;
+    color: white;
+}
