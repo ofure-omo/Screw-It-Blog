@@ -30,7 +30,7 @@ $controllers = array('pages' => ['home', 'error', 'about'],
     'search' => ['search'],
     'home' => ['home'],
     'register' => ['registerUser'], 
-    'login' => ['login']
+    'login' => ['loginUser']
 );
 
 // check that the requested controller and action are both allowed

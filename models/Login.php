@@ -1,11 +1,5 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  * Description of Login
  *
@@ -22,7 +16,7 @@ class Login {
         $this->password = $password;
     }
 
-    public static function checkPassword() {
+    public static function login() {
 
         $db = Screw_it::getInstance();
 
@@ -33,16 +27,24 @@ class Login {
             $filteredPassword = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_SPECIAL_CHARS);
             //$hashedPassword = password_hash($filteredPassword, PASSWORD_BCRYPT); //creates a password hash 
         }
-        
+
         $username = $filteredUsername;
         $password = $filteredPassword;
-        
-        $stmt = $db->prepare("SELECT username, password FROM Users WHERE username = :username");
 
-        $stmt->bindParam(":username", $username);
-        $stmt->bindParam(":password", $password);
+        $stmt = $db->prepare("SELECT * FROM Users WHERE username = :username");
 
+        $stmt->execute(array(':username' => $username));
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($stmt->rowCount() > 0) {
+            if (password_verify($password, $user['password'])) {
+                session_start();
+                $_SESSION['loggedin'] = TRUE;
+                $_SESSION['username'] = $user['username'];
+                $_SESSION["id"] = $user['id'];
+            }
 
+            //verify password
+        }
     }
 
 }

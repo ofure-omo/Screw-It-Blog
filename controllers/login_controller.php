@@ -11,9 +11,26 @@
  *
  * @author linzicarlin
  */
-class login_controller {
+class LoginController {
     
-    public static function login () {
+    public function loginUser () {
         
+        require_once('views/pages/login_page.php');
+        //check if session is set. If set redirect
+        if (isset($_SESSION['loggedin'])){
+            return call('pages', 'error'); //placeholder - will send to dashboard once that's ready!
+        } else {
+            
+            Login::login();
+            echo "Welcome " . $this->username;
+            
+            
+            
+        }
+        //if not set run checkPassword
+        
+        //require login page
+       
+        //start session
     }
 }
