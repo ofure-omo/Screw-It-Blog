@@ -1,4 +1,13 @@
-
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <title> comments </title>
+    </head>
 <body>
 
     <style>
@@ -8,6 +17,13 @@
             border: 0.2px solid black;
             padding: 20px;
             margin-top: 100px;
+            margin-bottom: 50px;
+        }
+        
+        .comment-container{
+            margin: auto;
+            width: 60%;
+            margin-top: 50px;
             margin-bottom: 50px;
         }
 
@@ -118,7 +134,7 @@
             </div>
             <div id='second_image ' class="column">
                 <?php
-                $blogimg = $blog['main_image'];
+                $blogimg = $blog['second_image'];
                 $img = "<img class='d-block w-100' src=$blogimg alt='First slide' style='width:100%'/>";
                 echo $img;
                 ?>
@@ -129,7 +145,7 @@
         </div>
         <div class='third_image'>
             <?php
-            $blogimg = $blog['main_image'];
+            $blogimg = $blog['third_image'];
             $img = "<img class='d-block w-100' src=$blogimg alt='First slide' style='width:100%'/>";
             echo $img;
             ?>
@@ -149,13 +165,48 @@
             </script>
         </div>
     </div>
-    <div id="comment-container">
-        <h4>COMMENTS</h4>
-        <p>comment section</p>
-    </div>
+    <div class='comment-container'>
+        <form method="POST" id="comment_form">
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">Comment</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1 comment" rows="3" placeholder="write your comment here" name="comment"></textarea>
+            </div>
+            <div class="pure-form pure-form-aligned container-btn">
+                            <input type="submit" value="submit" name= "submit" id="button" class="button" >
+                        </div> 
+        
+        </form>
+        <span id="comment_message"></span>
+        <br/>
+        <div id=" "display_comment></div>
+        </div>
 
 </body>
+</html>
 
+<script> 
+    $(document).ready(function() {
+        $('#comment_form').on('submit', function(event){
+          event.preventDefault();
+          var form_data = $(this).serialize();
+          $.ajax({
+              url:"?controller=comments&action=add",
+              method: "POST",
+              data: form_data,
+              dataType: "JSON",
+              success:function (data)
+              {
+                  if(data.error !='')
+                  {
+                      $('#comment_form')[0].reset();
+                      $('#comment_message').html(data.error);
+                  }
+              }
+          })
+        });
+        });
+    </script>
+   
 
 
 

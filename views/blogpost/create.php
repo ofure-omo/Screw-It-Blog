@@ -167,8 +167,8 @@
                                value="10000000" />
 
                         <div class="form-group">
-                            <label for="exampleFormControlFile1">Image 1</label>
-                            <input type="file" name="myfile" class="form-control-file" id="exampleFormControlFile1">
+                            <label for="exampleFormControlFile1">Upload 3 images</label>
+                            <input type="file" name="myfile[]" class="form-control-file" id="exampleFormControlFile1" multiple>
                         </div>
                         <!--<div class="form-group">
                              <label for="exampleFormControlFile1">Image 2</label>
