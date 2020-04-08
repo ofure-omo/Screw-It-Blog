@@ -1,12 +1,78 @@
-:root {
-    font-size: 20px;
+/* NEW STYLING */
+
+/* CAROUSEL */
+
+#carouselExampleIndicators {
+   height:700px !important; 
+   padding-left: 80px !important; 
+   padding-right: 80px !important; 
+   background-color: #fafafa !important; 
 }
 
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
+#HP-carousel-inner {
+    height:650px !important;
 }
+
+        /* Title*/
+
+.HPCarousel-item-title {
+    position: absolute; 
+    z-index: 10; /*makes it on top of the carousel*/
+    color: black; 
+    background-color: white; 
+    top:350px; 
+    right:150px; 
+    opacity: .55; 
+    width: 450px; 
+    border-radius: 15px
+}
+
+.HPCarousel-item-title > h3 {
+    font-size: 32px; 
+    font-family: 'Open Sans', sans-serif;
+}
+
+        /* Blog Text */
+
+.HPCarousel-item-text {
+    position: absolute; 
+    z-index: 10; 
+    color: black; 
+    background-color: white; 
+    top:400px; 
+    right:150px; 
+    opacity: .55;
+    width: 450px; 
+    height: 200px; 
+    border-radius: 15px;
+    text-align: center;
+}
+.HPCarousel-item-text> p {
+    font-size: 14px; 
+    padding: 5px;
+}
+
+        
+
+/* CATEGORIES */
+
+.categories-container {
+  width: calc(100% / 3);
+  height: 100px;
+  padding-left: 30px;
+  padding-right: 30px;
+  margin: 0;
+  float: left;
+}
+
+.categories-img {
+  display: inline;
+}
+
+
+/* ALL BLOGS GRID*/
+
+/* LAYOUT */
 
 main {
     font-family: "Open Sans", Arial, sans-serif;
@@ -14,30 +80,18 @@ main {
     background-color: #fafafa;
     color: #262626;
     padding-bottom: 3rem;
-    
 }
 
+.gallery-item img {
+    display: block;
+}
 
-
-.container {
+.blog-container {
     max-width: 93.5rem;
     margin: 0 auto;
     padding: 0 2rem;
 }
 
-.btn {
-    display: inline-block;
-    font: inherit;
-    background: none;
-    border: none;
-    color: inherit;
-    padding: 0;
-    cursor: pointer;
-}
-
-.btn:focus {
-    outline: 0.5rem auto #4d90fe;
-}
 
 .visually-hidden {
     position: absolute !important;
@@ -46,6 +100,7 @@ main {
     overflow: hidden;
     clip: rect(1px, 1px, 1px, 1px);
 }
+
 
 /* Gallery Section */
 
@@ -98,13 +153,13 @@ main {
     text-shadow: 0.2rem 0.2rem 0.2rem rgba(0, 0, 0, 0.1);
 }
 
+.fa-clone,
+.fa-comment {
+    transform: rotateY(180deg);
+}
+
 .gallery-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
-}
-
-.newlink {
-    text-decoration: none;
-    color: white;
 }
