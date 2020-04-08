@@ -8,7 +8,7 @@
     <nav class="navbar justify-content-between" id="navbar">
         <ul class="nav mr-auto">     
             <li>
-                <a class="nav-link" href='?controller=register&action=register_page'>SIGN UP</a>
+                <a class="nav-link" href='?controller=register&action=registerUser'>SIGN UP</a>
             </li>
             <form class="form-inline">
                 <button class="btn btn-outline-light" type="button" onclick="window.location.href = 'Screw-it/Login.php';" >Log in</button>
