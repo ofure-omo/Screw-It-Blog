@@ -1,11 +1,3 @@
-<style>
-    .results {
-         font-size: 14px;
-         font-family: 'Open Sans', sans-serif;
-         text-align: center;
-         postion: relative;
-    }
-</style>
 <?php 
 if (count($results) == 1) {
 echo "<span class='results'><br><br><h4>There is " . count($results) . " search result for: " . $_POST['search'] . "</h4></span>";
@@ -14,7 +6,21 @@ echo "<span class='results'><br><br><h4>There are " . count($results) . " search
 } else { echo "<center><span class='results'><h4><br>Sorry, there are no results matching your search.<br><h4></span></center>"; }
 ?>
 <br>
-           
+      
+   <?php       
+foreach ($results as $blogpost) : ?>
+<div class="card-deck">
+<div class="card" style="width: 18rem;">
+  <img class="card-img-top" src="..." alt="Card image">
+  <div class="card-body">
+    <h5 class="card-title"><?php echo $blogpost['title'] ?></h5>
+    <p class="card-text"><?php $blogpostshort = substr($blogpost['body'], 0, 150); echo $blogpostshort . "..."  ?></p>  
+    <a href='?controller=blogpost&action=read&id=<?php echo $blogpost['blog_id']; ?>' class="btn btn-primary">Read More</a>
+  </div>
+</div>
+</div>
+<?php endforeach; ?>
+
    <?php       
 foreach ($results as $blogpost) : ?>
     <span class='results'><h5>
@@ -24,3 +30,37 @@ foreach ($results as $blogpost) : ?>
     ?> &nbsp; &nbsp;</p></span>
 <?php endforeach; ?>
 </html>
+
+
+<div class="card-deck">
+  <div class="card">
+    <img class="card-img-top" src="..." alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">Last updated 3 mins ago</small>
+    </div>
+  </div>
+  <div class="card">
+    <img class="card-img-top" src="..." alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">Last updated 3 mins ago</small>
+    </div>
+  </div>
+  <div class="card">
+    <img class="card-img-top" src="..." alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">Last updated 3 mins ago</small>
+    </div>
+  </div>
+</div>
