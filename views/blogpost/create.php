@@ -149,7 +149,7 @@
                     <div id="tags" name="tags"><p>Tags</p>
                    <div class="form-group">
                             <label class="sr-only" for="tag">Hashtags</label>
-                            <input type="text" name="tag[]" id="tag" class="form-control" placeholder="#recycle #diy #garden" required />
+                            <input type="text" name="tag" id="tag" class="form-control" placeholder="#recycle #diy #garden" required />
                         </div>
                 </div>
                     <div id='img_container'>
@@ -164,13 +164,13 @@
                             <label for="exampleFormControlFile1">Image 1</label>
                             <input type="file" name="myfile" class="form-control-file" id="exampleFormControlFile1">
                         </div>
-                        <!-- <div class="form-group">
+                        <!--<div class="form-group">
                              <label for="exampleFormControlFile1">Image 2</label>
-                             <input type="file" name="myUploader" class="form-control-file" id="exampleFormControlFile1">
+                             <input type="file" name="myfile[]" class="form-control-file" id="exampleFormControlFile1">
                          </div>
                          <div class="form-group">
                              <label for="exampleFormControlFile1">Image 3</label>
-                             <input type="file" name="myUploader" class="form-control-file" id="exampleFormControlFile1">
+                             <input type="file" name="myfile[]" class="form-control-file" id="exampleFormControlFile1">
                          </div>
                         <!-- image uploads- need to find a way to validate the uploads without refreshing the page -->
 

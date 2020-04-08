@@ -40,8 +40,11 @@ class BlogHP {
             $stmt = Screw_it::getInstance()->query($sql);
             while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
                 return $row['body'];
+                
                 }
         }
+        
+        
   
 
 
