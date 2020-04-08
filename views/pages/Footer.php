@@ -1,14 +1,9 @@
-
-<footer class="section footer">
-    <div class="content">
+  <footer class="navbar fixed-bottom">
+    <div class="container text-center">
         <ul id="info">
             <li>contact us</li>
             <li>privacy policy</li>
-            <li class='sm'>Twitter</li>
-            <li class='sm'>Facebook</li>
-            <li class='sm'>Instagram</li>
-            <li class='sm'>Pintrest</li>
         </ul>
+      <div class='copyright'><p>&copy; Screw It Crew <?= date('Y'); ?> | Amrita, Alex, Linzi, Steph, Tese </p></div>
     </div>
-    <div class='copyright'><p>&copy; Screw It Crew <?= date('Y'); ?> | Amrita, Alex, Linzi, Steph, Tese </p></div>
-</footer>
+  </footer>
