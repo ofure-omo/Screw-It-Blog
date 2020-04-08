@@ -1,18 +1,14 @@
-</head>
-<!-- Stylesheet internal
-<link rel="stylesheet" type="text/css" href="BlogStyles.css">-->
-
-<!-- NAVIGATION -->
 <body>     
 
     <nav class="navbar justify-content-between" id="navbar">
-        <ul class="nav mr-auto">     
+       <ul class="nav mr-auto">     
             <li>
                 <a class="nav-link" href='?controller=register&action=registerUser'>SIGN UP</a>
             </li>
             <form class="form-inline">
                 <button class="btn btn-outline-light" type="button" onclick="window.location.href='?controller=login&action=loginUser'">Log in</button>
             </form>
+            
         </ul>
         <ul class="nav ml-auto">  
             <li><a href="http://facebook.com/"><i class="fa fa-facebook"></i></a></li>
@@ -40,6 +36,15 @@
                 <a class="nav-link" href="?controller=pages&action=about">ABOUT</a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="?controller=pages&action=about">CREATE</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="?controller=pages&action=about">DECORATE</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="?controller=pages&action=about">RENOVATE</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="?controller=blog&action=create">CREATE BLOG</a>
             </li>
             <li class="nav-item dropdown">
@@ -55,18 +60,6 @@
                     <a class="dropdown-item" href="#">LIFESTYLE </a>
                 </div>
             </li>
-            <?php
-            $security = filter_input(INPUT_COOKIE, 'security', FILTER_SANITIZE_STRING);
-            if ($security === 'writer') {
-                echo "<li><a href='?controller=blog&action=create'>Blogger's Area</a></li>";
-            }
-            ?>
-            <?php
-            $security = filter_input(INPUT_COOKIE, 'security', FILTER_SANITIZE_STRING);
-            if ($security === 'writer') {
-                echo "<li><a href='?controller=blog&action=create'>Blogger's Area</a></li>";
-            }
-            ?>
         </ul>
 
 

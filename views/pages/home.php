@@ -7,57 +7,59 @@
     
     <!-- LATEST BLOGS -->
     
-    
-            <div class="HP-carousel-caption" style="z-index: 10; color: grey; opacity: 0.7;">
-                <h3 style="padding: 10px; text-indent: 30px; font-size: 35px; font-family: 'Open Sans', sans-serif;">The <span style="color: #FCA15F">home</span> of DIY</h3>
+            <!-- HEADER -->  
+            <div class="HP-carousel-caption" style="">
+                <h3 style="">The <span style="color: #FCA15F">home</span> of DIY</h3>
             </div>
     
-        <br>
+            <br>
 
-    
-             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="height:700px !important; padding-left: 80px; padding-right: 80px; background-color: #fafafa">
-                 <br>
-                 <br>
-                <!-- CAROUSEL -->     
-                <div class="carousel-inner" style="height:650px !important">
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="height:700px !important; padding-left: 80px; padding-right: 80px; background-color: #fafafa"> <!-- keep inline to override bootstap using the # -->
+            <br>
+            <br>
+            
+            <!-- CAROUSEL -->     
+                <div id="HP-carousel-inner" class="carousel-inner" style="height:650px !important">
                     
                     <!-- BLOG 1 --> 
                     <div class="carousel-item active">
-                        <!--CAPTION-->
-                        <div style="position: absolute; z-index: 10; color: black; background-color: white; top:350px; right:150px; opacity: .55; width: 450px; border-radius: 15px">
-                            <h3 style="font-size: 32px; font-family: 'Open Sans', sans-serif;"><?php echo $blog1title ?></h3>
+                        
+                        <!--TITLE-->
+                        <div class="HPCarousel-item-title" style="">
+                            <h3 style=""><?php echo $blog1title ?></h3>
                         </div> 
                         
                          <!--BLOG TEXT-->
-                        <div style="position: absolute; z-index: 10; color: black; background-color: white; top:400px; right:150px; opacity: .55;width: 450px; height: 200px; border-radius: 15px ">
-                            <p style="font-size: 14px; padding: 5px"><br>
+                        <div class="HPCarousel-item-text" style="">
+                            <p style=""><br>
                                     <?php echo $blog1text ?>
                                  <a href='?controller=blog&action=read&blog_id=<?php echo $blogid?>'> <br>Read more....</a></p>
                         </div> 
                         
                         <!--IMAGE-->
                         <?php 
-                       $img = "<img class='d-block w-100' src=$blogimage alt='First slide' style='width:100%'/>";
+                       $img = "<img class='d-block w-100' src=$blogimage alt='First slide' style=''/>";
                        echo $img; 
                        
                                ?>
               
-                    
-                   
-
                     </div>
 
                     <!-- BLOG 2 --> 
                     <div class="carousel-item">
-                        <div style="position: absolute; z-index: 10; color: black; background-color: white; top:350px; right:150px; opacity: .6; width: 450px; border-radius: 15px">
-                            <h3 style="font-size: 32px">PLACEHOLDER: blog title 2</h3>
+                        
+                        <!--TITLE-->
+                        <div class="HPCarousel-item-title" style="">
+                            <h3 style="">PLACEHOLDER: blog title 2</h3>
                         </div> 
-                        <div style="position: absolute; z-index: 10; color: black; background-color: white; top:400px; right:150px; opacity: .6;width: 450px; height: 200px; border-radius: 15px; text-align: center">
-                                 <p style="font-size: 14px; padding: 5px"><br>
-                                    PLACEHOLDER: blog text 2<br>
-                                    PLACEHOLDER: blog text 2<br>
-                                    PLACEHOLDER: blog text 2<br>
-                                 <a href='?controller=blog&action=read&id=<?php echo $blogid; ?>'>Read more....</a></p>
+                        
+                        <!--BLOG TEXT-->
+                        <div class="HPCarousel-item-text" style="">
+                            <p style=""><br>
+                                PLACEHOLDER: blog text 2<br>
+                                PLACEHOLDER: blog text 2<br>
+                                PLACEHOLDER: blog text 2<br>
+                                <a href='?controller=blog&action=read&id=<?php echo $blogid; ?>'>Read more....</a></p>
                         </div> 
                         <img class="d-block w-100" src="https://images-na.ssl-images-amazon.com/images/I/71V-COkrJcL._SL1500_.jpg" alt="Second slide" style="heigh">
                     </div>
@@ -99,59 +101,73 @@
             </div>
     
 
-    <!-- CATEGORIES--> 
-    <br>
-    <br>
-    <div class="HP-categories-caption" style="z-index: 10; color: grey; opacity: 0.7">
-        <h3 style="padding: 10px; text-indent: 30px; font-size: 35px; font-family: 'Open Sans', sans-serif; background-color: #FDFDFD">browse by <span style="color: #70d6ff">category</span></h3>
+   <!-- CATEGORIES--> 
+    <br><br>
+    <div class="HP-caption" style="">
+        <h3 style="background-color: #FDFDFD">browse by <span style="color: #70d6ff">category</span></h3>
     </div>
-            <br>
-            <br>
-            <br>
-
+     <br><br><br>
     
-    <!-- IMAGES-->
-  
-    <div class = "categories-div">
-        <img class="HPCategories" src="views/images/HP_images/kitchen.png" style="width:10%; padding: 5px;" alt="kitchen">
-        <img class="HPCategories2" src="views/images/HP_images/dining.png" style="width:10%; padding: 5px" alt="dining">
-        <img class="HPCategories3" src="views/images/HP_images/office.png" style="width:10%; padding: 5px" alt="office">
-        <img class="HPCategories4" src="views/images/HP_images/living.png" style="width:10%; padding: 5px" alt="living room">
-        <img class="HPCategories5" src="views/images/HP_images/bedroom.png" style="width:10%; padding: 5px" alt="bedroom">
-        <img class="HPCategories6" src="views/images/HP_images/bathroom.png" style="width:10%; padding: 5px" alt="bathroom">
-        <img class="HPCategories7" src="views/images/HP_images/garden.png" style="width:10%; padding: 5px" alt="garden">
-        <img class="HPCategories8" src="views/images/HP_images/lifestyle.png" style="width:10%; padding: 5px" alt="lifestyle">
+    
+     
+    <div class="categories">
+    <!-- Category 1 --> 
+    
+        <div class="categories-container" style="">
+            <div class = "categories-img">
+            <a href="?controller=categories&action=readAll&category=<?php echo $category[0] ?>"><img class="cat-1" src="views/images/HP_images/<?php echo $category[0] ?>.png" alt="<?php echo $category[0] ?>"></a>
+            </div>
+            <div class = "categories-text">
+                
+            </div>
+        </div>
+        
+    <!-- Category 2 --> 
+        <div class="categories-container" style="">
+            <div class = "categories-img">
+            <a href="?controller=categories&action=readAll&category=<?php echo $category[1] ?>"><img class="cat-2" src="views/images/HP_images/<?php echo $category[1] ?>.png" alt="<?php echo $category[1] ?>"></a>
+            </div>
+            <div class = "categories-text">
+                
+            </div>
+        </div>
+    
+    <!-- Category 3 --> 
+        <div class="categories-container" style="">
+            <div class = "categories-img">
+            <a href="?controller=categories&action=readAll&category=<?php echo $category[2] ?>"><img class="cat-3" src="views/images/HP_images/<?php echo $category[2] ?>.png" alt="<?php echo $category[2] ?>"></a>
+            </div>
+            <div class = "categories-text">
+                
+            </div>
+        </div>
+    
     </div>
-    
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-    
+        
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
             
   <!-- All blog posts-->
   
-  <main>
-      <br>
-        <div class="HP-all-caption" style="z-index: 10; color: grey; opacity: 0.7;">
-            <h3 style="padding: 10px; text-indent: 30px; font-size: 35px; font-family: 'Open Sans', sans-serif;">be <span style="color: #3f7cac">inspired</span></h3>
-        </div>
+    <main>
+    <br>
+    
+    <!-- HEADING -->
+    <div class="HP-all-caption" style="z-index: 10; color: grey; opacity: 0.7;">
+        <h3 style="padding: 10px; text-indent: 30px; font-size: 35px; font-family: 'Open Sans', sans-serif;">be <span style="color: #3f7cac">inspired</span></h3>
+    </div>
       
+    <br><br>
 
-      <br>
-      <br>
-
-	<div class="container">
+	<div class="blog-container">
 
 		<div class="gallery">
 
                 <!-- 1:1 -->
-			<div class="gallery-item" tabindex="0">
+                <div class="gallery-item" tabindex="0" style="overflow: hidden;; background-size: cover; background-position: center;">
                         <!-- image -->
                         <!--IMAGE-->
                         <?php 
-                       $img = "<img class='d-block w-100' src=$blogimage alt='First slide' style='width:100%'/>";
+                       $img = "<img class='d-block w-100' src=$blogimage alt='First slide' style='background-size: cover;'/>";
                        echo $img; 
                        ?> 
                          <a href='?controller=blog&action=read&blog_id=<?php echo $blogid; ?>'>
@@ -392,63 +408,30 @@
 include_once "Footer.php";
 ?>
 
-    <!-- For Image on Hover - probably need to move to a JS file -->   
+      <!-- For Image on Hover - probably need to move to a JS file -->   
     <script  type='text/javascript'>
-    $(document).ready(function(){
-    $(".HPCategories").hover(
-        function() {$(this).attr("src","views/images/HP_images/kitchen_h.png");},
-        function() {$(this).attr("src","views/images/HP_images/kitchen.png");
+        $(document).ready(function(){
+            $(".cat-1").hover(
+            function() {$(this).attr("style","filter: grayscale(100%);");},
+            function() {$(this).attr("style","");
+            });
         });
-    });
     
         $(document).ready(function(){
-        $(".HPCategories2").hover(
-        function() {$(this).attr("src","views/images/HP_images/dining_h.png");},
-        function() {$(this).attr("src","views/images/HP_images/dining.png");
-        });
-        });
-        
-        $(document).ready(function(){
-        $(".HPCategories3").hover(
-        function() {$(this).attr("src","views/images/HP_images/office_h.png");},
-        function() {$(this).attr("src","views/images/HP_images/office.png");
-        });
+            $(".cat-2").hover(
+            function() {$(this).attr("style","filter: grayscale(100%);");},
+            function() {$(this).attr("style","");
+            });
         });
         
         $(document).ready(function(){
-        $(".HPCategories4").hover(
-        function() {$(this).attr("src","views/images/HP_images/living_h.png");},
-        function() {$(this).attr("src","views/images/HP_images/living.png");
-        });
-        });
-        
-        $(document).ready(function(){
-        $(".HPCategories5").hover(
-        function() {$(this).attr("src","views/images/HP_images/bedroom_h.png");},
-        function() {$(this).attr("src","views/images/HP_images/bedroom.png");
-        });
+            $(".cat-3").hover(
+            function() {$(this).attr("style","filter: grayscale(100%);");},
+            function() {$(this).attr("style","");
+            });
         });
         
-        $(document).ready(function(){
-        $(".HPCategories6").hover(
-        function() {$(this).attr("src","views/images/HP_images/bathroom_h.png");},
-        function() {$(this).attr("src","views/images/HP_images/bathroom.png");
-        });
-        });
-        
-        $(document).ready(function(){
-        $(".HPCategories7").hover(
-        function() {$(this).attr("src","views/images/HP_images/garden_h.png");},
-        function() {$(this).attr("src","views/images/HP_images/garden.png");
-        });
-        });
-        
-        $(document).ready(function(){
-        $(".HPCategories8").hover(
-        function() {$(this).attr("src","views/images/HP_images/lifestyle_h.png");},
-        function() {$(this).attr("src","views/images/HP_images/lifestyle.png");
-        });
-        });
+      
     </script>
 </body>
 </html>
