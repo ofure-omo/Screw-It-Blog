@@ -42,7 +42,7 @@
             <div>
                 <input type="submit" name="submit" value="submit">
             </div>
-            <p>Already have an account? </br><a href="login.php">Login here</a>.</p>
+            <p>Already have an account? </br><a href='?controller=login&action=login'>Login here</a>.</p>
         </form>
     </div>    
 </body>

@@ -7,7 +7,7 @@
  */
 class RegisterController { //ive renamed this to RegisterController so it follows the naming style 
 
-    public function register_page() {
+    public function registerUser() {
 
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             //$userArray = Register::sanitiseInput();
