@@ -162,44 +162,53 @@ class Blog {
           
          $temp = $_FILES["myfile"]["tmp_name"][$key];
          $imagename = $_FILES["myfile"]["name"][$key];   //save this in the db!!
-         $error = $_FILES["myfile"]["error"][$key];
+
          //echo $imagename;
-                
+       }
              
-        if (empty($_FILES["myfile"]["tmp_name"][$key])) {
+        if (empty($imagename)) {
             //die("File Missing!");
-            trigger_error("File Missing!");
+            echo "File Missing! <br>";
+        } else {
+            echo "";
         }
 
-        if ($_FILES["myfile"]["tmp_name"] > 2) {
-            trigger_error("You have tried to upload too many files, please only upload 3");
-        }
+        if ($imagename > 3) {
+            echo"You have tried to upload too many images, please only upload 3 <br>" ;
+        } else {
+            echo "";
+        }      
+        
+        /*if ($imagename < 3) {
+            echo "You haven't uploaded enough images, please upload 3 <br>";
+        } else {
+            echo "";
+        }*/
 
         /*if (!in_array($_FILES["myfile"]["tmp_name"], self::AllowedTypes)) {
-            trigger_error("File Type Not Allowed: " . $_FILES["myfile"]["name"][$key]);
+           echo"File Type Not Allowed: " . $_FILES["myfile"]["name"][$key] . PHP_EOL;
+        } else {
+            echo "";
         }*/
    
         //$tempFile = $_FILES[self::InputKey]['tmp_name']; 
-        $path = "/Applications/XAMPP/xamppfiles/htdocs/Screw-it/views/images/";
+        $path = DIRECTORY_SEPARATOR .'Applications' . DIRECTORY_SEPARATOR . 'XAMPP' . DIRECTORY_SEPARATOR . 'xamppfiles' . DIRECTORY_SEPARATOR . 'htdocs'.DIRECTORY_SEPARATOR . 'Screw-it' . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR;
         $destinationFile = $path . $imagename;
         
-            move_uploaded_file($temp, $destinationFile);
+        move_uploaded_file($temp, $destinationFile);
            //(move_uploaded_file($_FILES[self::InputKey]['tmp_name'], $destinationFile));
-        }
-       
-        
-        //$image = $_FILES[self::InputKey]['name'];
-
-        /* if (!move_uploaded_file($_FILES[self::InputKey]['tmp_name'], $destinationFile)) { //file does upload not usre why throwing error?
-          trigger_error("File not uploaded");
+        if (!move_uploaded_file($_FILES["myfile"]["tmp_name"][$key], $destinationFile)) { //file does upload not usre why throwing error?
+          echo "your images have uploaded! <br>";
           } else {
-          echo "you have uploaded successfully!";
-          } */
+            echo "";
+          } 
 
         //Clean up the temp file
         if (file_exists($temp)) {
             unlink($temp);
         }
+        
+            
     }
 
     public static function remove($blog_id) {
