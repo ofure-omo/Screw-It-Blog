@@ -7,19 +7,32 @@ echo "<span class='results'><br><br><h4>There are " . count($results) . " search
 ?>
 <br>
       
-   <?php       
-foreach ($results as $blogpost) : ?>
-<div class="card-deck">
-<div class="card" style="width: 18rem;">
-  <img class="card-img-top" src="..." alt="Card image">
-  <div class="card-body">
-    <h5 class="card-title"><?php echo $blogpost['title'] ?></h5>
-    <p class="card-text"><?php $blogpostshort = substr($blogpost['body'], 0, 150); echo $blogpostshort . "..."  ?></p>  
-    <a href='?controller=blogpost&action=read&id=<?php echo $blogpost['blog_id']; ?>' class="btn btn-primary">Read More</a>
-  </div>
-</div>
-</div>
+<?php foreach ($results as $blogpost) : ?>
+  
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="card text-center" style="width: 18rem;">
+                <img class="card-img-top" src="..." alt="Card image">
+                <div class="card-body">
+                    <h5 class="card-title"><?php echo $blogpost['title'] ?></h5>
+                    <p class="card-text"><?php $blogpostshort = substr($blogpost['body'], 0, 150);
+    echo $blogpostshort . "..." ?></p>  
+                    <a href='?controller=blogpost&action=read&id=<?php echo $blogpost['blog_id']; ?>' class="btn btn-primary">Read More</a>
+                </div>
+                <div class="card-footer">
+                    <p class="text-muted"><?php
+                        $d = strtotime($blogpost['date_posted']);
+                        echo "Posted on " . date("jS F Y", $d) . "<br>";
+                        ?></p>
+                </div>
+            </div>
+           </div>
+    </div>
+            <br>
+          
 <?php endforeach; ?>
+
+
 
    <?php       
 foreach ($results as $blogpost) : ?>
@@ -31,6 +44,11 @@ foreach ($results as $blogpost) : ?>
 <?php endforeach; ?>
 </html>
 
+ 
+    
+
+
+</div>
 
 <div class="card-deck">
   <div class="card">

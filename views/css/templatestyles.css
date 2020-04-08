@@ -331,4 +331,7 @@ div with the an id main and style this with overflow: auto;*/
     .card {
         
         text-overflow: ellipsis;
+        display: inline-block;
+
     }
+    
