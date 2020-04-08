@@ -10,4 +10,8 @@ class PagesController {
       require_once('views/pages/error.php');
     }
     
+    public function about() {
+      require_once('views/pages/about.php');
+    }
+    
 }
