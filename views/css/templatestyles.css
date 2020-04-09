@@ -329,4 +329,7 @@ footer li{
     .card {
         
         text-overflow: ellipsis;
+        display: inline-block;
+
     }
+    
