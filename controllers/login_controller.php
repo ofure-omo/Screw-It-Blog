@@ -23,7 +23,7 @@ class LoginController {
         if (!isset($_SESSION['loggedin'])){
 
            Login::login();
-            echo "Welcome " . $this->username . "!";
+            echo "Welcome!";
             
         } else {
 

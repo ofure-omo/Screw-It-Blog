@@ -41,7 +41,7 @@ class Login {
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($stmt->rowCount() > 0) {
             if (password_verify($password, $user['password'])) {
-                session_regenerate_id();
+                
                 $_SESSION['loggedin'] = TRUE;
                 $_SESSION['username'] = $user['username'];
                 $_SESSION["user_id"] = $user['user_id'];
