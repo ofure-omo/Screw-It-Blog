@@ -26,7 +26,7 @@
                         
                         <!--TITLE-->
                         <div class="HPCarousel-item-title" style="">
-                            <h3 style=""><?php echo $blog1title ?></h3>
+                            <h3 style=""><?php echo $blog1->title ?></h3>
                         </div> 
                         
                          <!--BLOG TEXT-->
@@ -38,7 +38,7 @@
                         
                         <!--IMAGE-->
                         <?php 
-                       $img = "<img class='d-block w-100' src=$blogimage alt='First slide' style=''/>";
+                       $img = "<img class='d-block w-100' src=$blogimage alt='$blog1->title' style=''/>";
                        echo $img; 
                        
                                ?>
@@ -50,7 +50,7 @@
                         
                         <!--TITLE-->
                         <div class="HPCarousel-item-title" style="">
-                            <h3 style="">PLACEHOLDER: blog title 2</h3>
+                            <h3 style=""><?php echo $blog2->title ?></h3>
                         </div> 
                         
                         <!--BLOG TEXT-->
@@ -61,7 +61,7 @@
                                 PLACEHOLDER: blog text 2<br>
                                 <a href='?controller=blog&action=read&id=<?php echo $blogid; ?>'>Read more....</a></p>
                         </div> 
-                        <img class="d-block w-100" src="https://images-na.ssl-images-amazon.com/images/I/71V-COkrJcL._SL1500_.jpg" alt="Second slide" style="heigh">
+                        <img class="d-block w-100" src="https://images-na.ssl-images-amazon.com/images/I/71V-COkrJcL._SL1500_.jpg" alt="<?php echo $blog2->title?>" style="heigh">
                     </div>
 
                     <!-- BLOG 3--> 
@@ -115,7 +115,7 @@
     
         <div class="categories-container" style="">
             <div class = "categories-img">
-            <a href="?controller=categories&action=readAll&category=<?php echo $category[0] ?>"><img class="cat-1" src="views/images/HP_images/<?php echo $category[0] ?>.png" alt="<?php echo $category[0] ?>"></a>
+            <a href="?controller=categories&action=searchCategory&category=<?php echo $category[0] ?>"><img class="cat-1" src="views/images/HP_images/<?php echo $category[0] ?>.png" alt="<?php echo $category[0] ?>"></a>
             </div>
             <div class = "categories-text">
                 
@@ -125,7 +125,7 @@
     <!-- Category 2 --> 
         <div class="categories-container" style="">
             <div class = "categories-img">
-            <a href="?controller=categories&action=readAll&category=<?php echo $category[1] ?>"><img class="cat-2" src="views/images/HP_images/<?php echo $category[1] ?>.png" alt="<?php echo $category[1] ?>"></a>
+            <a href="?controller=categories&action=searchCategory&category=<?php echo $category[1] ?>"><img class="cat-2" src="views/images/HP_images/<?php echo $category[1] ?>.png" alt="<?php echo $category[1] ?>"></a>
             </div>
             <div class = "categories-text">
                 
@@ -135,7 +135,7 @@
     <!-- Category 3 --> 
         <div class="categories-container" style="">
             <div class = "categories-img">
-            <a href="?controller=categories&action=readAll&category=<?php echo $category[2] ?>"><img class="cat-3" src="views/images/HP_images/<?php echo $category[2] ?>.png" alt="<?php echo $category[2] ?>"></a>
+            <a href="?controller=categories&action=searchCategory&category=<?php echo $category[2] ?>"><img class="cat-3" src="views/images/HP_images/<?php echo $category[2] ?>.png" alt="<?php echo $category[2] ?>"></a>
             </div>
             <div class = "categories-text">
                 
@@ -174,7 +174,8 @@
                         <!-- Likes and Comments -->
                         <div class="gallery-item-info">
                             <ul>
-                                <li class="gallery-item-body"><span class="visually-hidden">Body:</span><i class="fas fa-heart" aria-hidden="true"></i><?php echo $blog1title ?></li>
+                                <!-- title -->
+                                <li class="gallery-item-body"><span class="visually-hidden">Body:</span><i class="fas fa-heart" aria-hidden="true"></i><?php echo $blog1->title ?></li>
                                 <!-- likes -->
                                 <li class="HP-catagories-gallery-item-likes">
                                     <span class="visually-hidden">Likes:</span>
@@ -194,6 +195,8 @@
 			<img src="https://images.unsplash.com/photo-1496678518751-46244eef08c4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80" class="gallery-image" alt="">
                         <div class="gallery-item-info">
                             <ul>
+                                <!-- title -->
+                                <li class="gallery-item-body"><span class="visually-hidden">Body:</span><i class="fas fa-heart" aria-hidden="true"></i><?php echo $blog2->title ?></li>
                                 <!-- likes -->
                                 <li class="gallery-item-likes">
                                     <span class="visually-hidden">Likes:</span>
@@ -389,7 +392,7 @@
 		</div>
 		<!-- End of gallery -->
 
-		<div class="loader"></div>
+		<a href="?controller=categories&action=showAll">View All</a>
 
 	</div>
 	<!-- End of container -->
@@ -400,6 +403,17 @@
     <br>
     <br>
     <br>
+    
+    <a href="#">Back to Top</a>
+    
+   <!-- <script>
+    window.onscroll = function(ev) {
+    if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) {
+        alert("you're at the bottom of the page");
+    }
+    };
+    </script> -->
+    
     
  
 </center>

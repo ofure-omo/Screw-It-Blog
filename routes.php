@@ -31,7 +31,8 @@ $controllers = array('pages' => ['home', 'error', 'about'],
     'home' => ['home'],
     'register' => ['registerUser'], 
     'login' => ['loginUser'],
-    'comments' => ['add']
+    'comments' => ['add'],
+    'categories' => ['showAll','searchCategory']
 );
 
 // check that the requested controller and action are both allowed
