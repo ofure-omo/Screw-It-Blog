@@ -231,8 +231,6 @@ footer li{
     float: left;
     padding: 5px 0;
 }
-/* for future reference create a div around the whole body of the page and another
-div with the an id main and style this with overflow: auto;*/
 
    .form-container{
                 width: 40%;
