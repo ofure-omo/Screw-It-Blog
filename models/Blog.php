@@ -32,25 +32,25 @@ class Blog {
         //$this->twitter_url= $twitter_url;
     }
 
-    public static function allCreate() {
+    public static function all() {
         $list = [];
         $db = Screw_it::getInstance();
         $req = $db->query("SELECT * FROM blog_posts WHERE category = 'create'; 
                           "); //order by most recent *ASK MARTINA*
         // we create a list of blog_post objects from the database results
         foreach ($req->fetch(PDO::FETCH_ASSOC) as $blog) {
-            $list[] = new Blog($blog['user_id'], $blog['title'], $blog['body'], $blog['body2'], $blog['date_posted'], $blog['main_image']);
+            $list[] = new Blog($blog['user_id'], $blog['title'], $blog['body'], $blog['date_posted'], $blog['main_image']);
         }
         return $list;
+
     }
 
     public static function find($blog_id) {
 
         $db = Screw_it::getInstance();
         $blog_id = intval($blog_id);
-        $req = $db->prepare('SELECT * FROM blog_posts WHERE blog_id = :blog_id;');
-
-
+        $req = $db->prepare('SELECT * FROM blog_posts 
+                             WHERE blog_id = :blog_id;');
         if (!$req) {
             echo "error, pls handle";
         }
@@ -59,6 +59,9 @@ class Blog {
         $blog = $req->fetch();
 
         return $blog;
+        
+        
+        }
 
         /*
           $req = $db->prepare("SELECT * FROM blog_post WHERE blog_id = :blog_id;
@@ -73,7 +76,7 @@ class Blog {
           throw new Exception('Blog not found, please search again');
           }
           } */
-    }
+    
 
     public static function add() {
 
@@ -99,8 +102,13 @@ class Blog {
                 $filteredTag = filter_input(INPUT_POST, 'tag', FILTER_SANITIZE_STRING);
             }
 
-            $filteredImage = filter_input(INPUT_POST, 'myfile[]', FILTER_SANITIZE_SPECIAL_CHARS);
+            //$filteredImage = filter_input(INPUT_POST, 'myfile[]', FILTER_SANITIZE_SPECIAL_CHARS);
             //$filteredImage = $_FILES['myfile']['name'];
+            
+            if (empty($_FILES["myfile"]["tmp_name"])){
+                die("please upload 3 files");
+            }
+                
             foreach ($_FILES["myfile"]["tmp_name"] as $key => $tmp_name){
                 
             $temp = $_FILES["myfile"]["tmp_name"][$key];
@@ -111,7 +119,7 @@ class Blog {
             $img3 = $_FILES["myfile"]["name"][2];
 
             }
-             $location = "views/images/";
+            $location = "views/images/";
              
             $file_path1 = $location . $img1;
             $file_path2 = $location . $img2;
@@ -119,7 +127,7 @@ class Blog {
 
             
             //for user_id once sessions is done it will need to be the session(user_id) that would go into the values for user_id!!
-            $req = $db->prepare("INSERT INTO blog_posts(user_id, title, body, body2, category, main_image, second_image, third_image) VALUES ('9', :title, :body, :body2, :category, :main_image, :second_image,  :third_image);
+            $req = $db->prepare("INSERT INTO blog_posts(user_id, title, body, body2, category, main_image, second_image, third_image) VALUES ('1', :title, :body, :body2, :category, :main_image, :second_image,  :third_image);
                 INSERT INTO tags (tag_id) VALUES (:tag);
                 ");
 
@@ -219,5 +227,21 @@ class Blog {
         // the query was prepared, now replace :id with the actual $id value
         $req->execute(array('blog_id' => $blog_id));
     }
+    
+     public static function getSocial($blog_id) {
+         $db = Screw_it::getInstance();
+        $blog_id = intval($blog_id);
+        $req = $db->prepare('SELECT * FROM users u
+                             JOIN blog_posts b ON b.user_id = u.user_id
+                             WHERE b.blog_id = :blog_id;');
+        if (!$req) {
+            echo "cannot find urls";
+        }
 
+        $req->execute(array('blog_id' => $blog_id));
+        $blog = $req->fetch();
+
+        return $blog;
+    }
 }
+

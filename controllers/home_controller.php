@@ -9,10 +9,17 @@ class HomeController {
        $blog1title = BlogHP::getLatestBlogTitle();
        $blogimage = BlogHP::getLatestBlogImage();
        $blogid = BlogHP::getBlogId();
-        require_once('views/pages/home.php');
+       $url = "'".BlogHP::getLatestBlogImage()."'";
+        
 
- }
+
+       $category[] = "create";
+       $category[] = "decorate";
+       $category[] = "renovate";
     
+       require_once('views/pages/home.php');
+       
+   }
 
  /*   
 include "../../models/Homepage.php";

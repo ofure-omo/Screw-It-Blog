@@ -67,7 +67,7 @@
             }
 
             #template-container {
-                float:right;
+               
                 margin-top: 50px;
             }
 
@@ -75,6 +75,7 @@
                 margin-left: 170px;
                 text-transform: uppercase;
                 margin-bottom: 0;
+
 
             }
 
@@ -201,6 +202,7 @@
                 </form>
 
             </div>
+                   
         </span>
     </body>
 </html>

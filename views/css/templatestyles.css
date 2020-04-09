@@ -58,14 +58,10 @@ ul li a i:hover {
 
 img {max-width:100%}
 
+
 .header {
     text-align: center;
 }
-
-* {
-  box-sizing: border-box;
-}
-
 
 
 /* Style the search button */
@@ -116,7 +112,7 @@ i.fa {
   margin: auto;
 }
 
-/* Close button */
+/* Search close button */
 .overlay .closebtn {
   position: absolute;
   top: 20px;
@@ -144,7 +140,7 @@ i.fa {
   background: #f1f1f1;
 }
 
-/* Style the submit button */
+/* Style the search submit button */
 .overlay button {
   float: left;
   width: 20%;
@@ -175,3 +171,165 @@ i.fa {
 .sticky + .content {
   padding-top: 60px;
 }*/
+
+
+/*FOOTER STYLING*/
+
+#page-content {
+  flex: 1 0 auto;
+}
+
+
+.footer {
+    background: #3F7CAC;
+    color: white;
+    text-align: center;
+    postion: relative;
+    margin-top: 70px;
+    flex-shrink: none;
+
+}
+
+.copyright {
+    padding-top: 20px;
+    padding-bottom: 15px;
+    font-size: 12px;
+}
+
+#info {
+    color: #70D6FF;
+    text-decoration: none;
+    text-align: center;
+    text-transform: uppercase;
+    padding-top: 10px;
+    
+}
+
+#info a {
+    color: #70D6FF;
+    text-decoration: none;
+    text-align: center;
+    text-transform: uppercase;
+    padding-top: 10px;
+    
+}
+
+#info li {
+    padding: 5px;
+}
+
+.sm {
+    display: inline-block;
+    font-size: 10px;
+    margin-top: 10px;
+        
+}
+
+
+footer li{
+    width: 33.3333%;
+    float: left;
+    padding: 5px 0;
+}
+
+   .form-container{
+                width: 40%;
+                margin-left: 150px;
+                margin-top: 50px;
+            }
+
+            h1 {
+                margin-left: 150px;
+                margin-top: 50px;
+            }
+
+            #customFile{
+                cursor: pointer;
+            }
+
+
+            .button {
+
+                border: none;
+                color: white;
+                padding: 10px 30px;
+                text-align: center;
+                text-decoration: none;
+                text-transform: uppercase;
+                display: inline-block;
+                font-size: 16px;
+                margin-top: 30px;
+                margin-bottom: 30px;
+                margin-left: 200px;
+                cursor: pointer;
+                background-color: black;
+                border-radius: 7px;
+                font-weight: bolder;
+            }       
+
+            .button:hover {
+                color: white;
+                background-color: #3f7cac;
+                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            }
+
+            .container-btn {
+
+            }
+
+            .img-upload {
+                margin-bottom: 10px;
+            }
+
+            .blog-template {
+                float: right; 
+                height: 800px;
+                margin-right: 150px;
+            }
+
+            #template-container {
+                float:right;
+                margin-top: 50px;
+            }
+
+            .blog-container {
+                margin-left: 170px;
+                text-transform: uppercase;
+                margin-bottom: 0;
+
+            }
+
+            .img-title {
+                margin-bottom: 0;
+            }
+
+            .file-type {
+                padding-top: 20px;
+            }
+            
+            #tags {
+                margin-bottom: 20px;
+            }
+
+            small {
+                font-size: 0.6em;
+                font-style: italic;
+            }
+
+            
+     /* Search Results*/     
+            
+    .results {
+         font-size: 14px;
+         font-family: 'Open Sans', sans-serif;
+         text-align: center;
+         postion: relative;
+    }
+
+    .card {
+        
+        text-overflow: ellipsis;
+        display: inline-block;
+
+    }
+    
