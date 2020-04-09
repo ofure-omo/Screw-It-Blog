@@ -5,8 +5,8 @@
 class BlogHP {
 
     protected $blog_id;
-    protected $title;
-    protected $body;
+    public $title;
+    public $body;
     protected $main_image;
 
     public function getTitle() {
@@ -49,4 +49,30 @@ class BlogHP {
             return $row['blog_id'];
         }
     }
+
+    // New code ----- 
+    public function getAllTitles(){
+        $sql = "select title from blog_posts order by date_posted desc";
+        $stmt = Screw_it::getInstance()->query($sql);
+        $result = $stmt->fetchAll();
+
+        foreach( $result as $row ) {
+        $title[] = $row['title'];
+        }
+
+        return $title;
+    }
+    
+    public function getAllBody(){
+        $sql = "select body from blog_posts order by date_posted desc";
+        $stmt = Screw_it::getInstance()->query($sql);
+        $result = $stmt->fetchAll();
+
+        foreach( $result as $row ) {
+        $title[] = $row['body'];
+        }
+
+        return $title;
+    }
+
 }
