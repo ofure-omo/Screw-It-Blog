@@ -21,7 +21,7 @@
                     <input type="password" name="password" required>
                 </div>
                 <div>
-                    <input type="submit" value="Login">
+                    <input type="submit" name="submit" value="Login">
                 </div>
                 <div>
                     <a href='?controller=forgot_password&action=security'>Forgotten your password?</a>
