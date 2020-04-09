@@ -45,8 +45,10 @@ class Login {
                 $_SESSION['loggedin'] = TRUE;
                 $_SESSION['username'] = $user['username'];
                 $_SESSION["user_id"] = $user['user_id'];
+                 echo "Welcome!";// will send to member dashboard
+            } else {
+                echo "Something went wrong. Please try again";
             }
-
             //verify password
         }
     }}
