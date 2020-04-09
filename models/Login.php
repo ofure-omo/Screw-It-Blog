@@ -19,6 +19,8 @@ class Login {
     public static function login() {
 
         $db = Screw_it::getInstance();
+        
+      
 
         if (isset($_POST['username']) && $_POST['username'] != "") {
             $filteredUsername = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -32,19 +34,21 @@ class Login {
         $password = $filteredPassword;
 
         $stmt = $db->prepare("SELECT * FROM Users WHERE username = :username");
+        
+        $stmt->bindParam(":username", $username);
 
         $stmt->execute(array(':username' => $username));
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($stmt->rowCount() > 0) {
             if (password_verify($password, $user['password'])) {
-                session_start();
+                
                 $_SESSION['loggedin'] = TRUE;
                 $_SESSION['username'] = $user['username'];
-                $_SESSION["id"] = $user['id'];
+                $_SESSION["user_id"] = $user['user_id'];
             }
 
             //verify password
         }
-    }
+    }}
 
-}
+

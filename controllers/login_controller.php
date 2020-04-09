@@ -14,23 +14,25 @@
 class LoginController {
     
     public function loginUser () {
-        
-        require_once('views/pages/login_page.php');
-        //check if session is set. If set redirect
-        if (isset($_SESSION['loggedin'])){
-            return call('pages', 'error'); //placeholder - will send to dashboard once that's ready!
+                
+              require_once('views/pages/login_page.php');      
+         if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+             
+         
+            //check if session is set. If set redirect
+        if (!isset($_SESSION['loggedin'])){
+
+           Login::login();
+            echo "Welcome!";
+            
         } else {
-            require_once('views/pages/login_page.php');
-            Login::login();
-            echo "Welcome " . $this->username;
-            
-            
+
+              return call('pages', 'error');//placeholder - will send to dashboard once that's ready!
             
         }
-        //if not set run checkPassword
-        
+
         //require login page
-       
+         }
         //start session
     }
 }

@@ -5,16 +5,15 @@
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>       
         <title> comments </title>
     </head>
 <body>
 
     <style>
-        .blog-container{
+        .read-blog-container{
             margin: auto;
             width: 60%;
-            border: 0.2px solid black;
             padding: 20px;
             margin-top: 100px;
             margin-bottom: 50px;
@@ -27,30 +26,54 @@
             margin-bottom: 50px;
         }
 
-        #title {
+        .read-header {
             text-align: center;
+            font-size: 1.5em;
             
+        }
+        
+        #read-title {
+             font-family: 'Francois One', sans-serif;
         }
 
         .header-info {
-            display: inline-block;
+            display: flex;
+            display: inline;
+            justify-content: space-around;
             margin-left: 20px;
-            font-size: 0.9em;
+            font-size: 0.7em;
             margin-top: 20px;
         }
 
         .body {
             margin-top: 20px;
             line-height: 1.8em;
+            font-size: 0.95em;
+        }
+        
+        #body1 {
+            margin-top: 60px;
             
         }
-
-
-        .blog_tags {
+        
+        .tag {
+            display: inline;
+            margin-top: 20px;
+            margin: 20px 20px;
+            font-size: 0.65em;
+            text-transform: uppercase;
+        }
+        
+        .tag-btn {
             text-align: center;
-            margin-top: 10px;
-            
-            font-size: 0.8em;
+            background: #f3f3f3;
+            border-radius: 5px;
+            margin-top: 30px;
+        }
+        
+        
+        .tags{
+            text-align: center;
         }
 
         #comment-container {
@@ -63,7 +86,7 @@
 
         }
 
-        #social-media{
+        #socialmedia{
             
             margin-top: 50px;
             font-size: 1.3em;
@@ -73,6 +96,7 @@
         .fa {
             padding: 10px;
             cursor: pointer;
+            font-size: 0.3em;
         }
 
         .fa-heart-o {
@@ -97,6 +121,34 @@
         }
         
         .third_image {   
+        margin-bottom: 40px;
+        }
+        
+        @media only screen and (max-width: 1000px) {
+             .blog-container{
+            
+            width: 70%;
+
+        }
+         #read-title{
+            font-size: 1.3em;   
+        }
+        
+        .read-blog-container {
+            margin-top: 30px;
+            width: 85%;
+        }
+        
+        .body {
+            margin-top: 10px;
+            line-height: 1.4em;
+            font-size: 0.6em;
+        }
+        
+        
+        #body1 {
+            margin-top: 30px;  
+        }
         
         }
 
@@ -104,24 +156,18 @@
     </style> 
 
     <!--text to be replaced with data from the blog_post table -->
-    <div class='blog-container'>
-        <div id='title'>
-            <h1><?php echo $blog['title']; ?></h1> <!--header section to retrieve data from db -->
+    <div class='read-blog-container'>
+        <div class='read-header'>
+            <h1 id="read-title"><?php echo $blog['title']; ?></h1> <!--header section to retrieve data from db -->
 
-            <p class='header-info'>Author: <?php echo $blog['user_id']; ?></p>
-            <p class='header-info'>Date: <?php echo $blog['date_posted']; ?></p>
+            <p class='header-info'>Written by: <?php echo $blog['username']; ?></p> <!--should be replaced with username based on the session id-->
+            <p class='header-info'>Posted on: <?php $d = strtotime($blog['date_posted']); echo date('jS F Y', $d); ?></p>
             <p class='header-info'>Category: <?php echo $blog['category']; ?></p> 
 
         </div>
 
-        <div id="tags">
-            <p class="blog_tags"><i class="fa fa-tags" aria-hidden="true">diy</i> <!-- will use a foreach function that will show the tag icon foreach tag-->
-                <i class="fa fa-tags" aria-hidden="true">kitchen</i> 
-                <i class="fa fa-tags" aria-hidden="true">dining</i></p> <!-- will be populated with tags retrieved from the db-->
-        </div>
-
         <div id='body-container'> <!--main body section -->
-            <p class='body'> <?php echo $blog['body']; ?></p>
+            <p class='body' id="body1"> <?php echo $blog['body']; ?></p>
 
         </div>
         <div id='img_container r' class="row"> <!--grid for 2 images, that will be positioned side by side at at the same size, when viewing on phone they will lay on top of each other -->
@@ -149,13 +195,20 @@
             $img = "<img class='d-block w-100' src=$blogimg alt='First slide' style='width:100%'/>";
             echo $img;
             ?>
-        </div>
+
+        </div> 
         <div id="social-media"> <!--retrieve url links from user table-->
-            <i class="fa fa-facebook" aria-hidden="true"></i>
+            <a href="<?php echo $socials['facebook_url'] ?>"><i class="fa fa-facebook" aria-hidden="true"></i></a>
             <i class="fa fa-instagram" aria-hidden="true"></i>
             <i class="fa fa-twitter" aria-hidden="true"></i>
             <i class="fa fa-pinterest"></i>
             <a href='#'><i class="fa fa-heart-o" onclick="myFunction(this)"></i> </a>
+            
+                    <div class="tags">
+           <button class='tag-btn'><p class='tag'> diy</p></button><!-- will use a foreach function that will show the tag icon foreach tag-->
+            <button class='tag-btn'><p class='tag'>kitchen</p></button>
+            <button class='tag-btn'><p class='tag'>dining</p></button> <!-- will be populated with tags retrieved from the db-->
+        </div>
 
 
             <script>

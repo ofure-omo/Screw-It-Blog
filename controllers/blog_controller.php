@@ -41,6 +41,14 @@ class BlogController {
       }
       
     }
+    
+     public function socials() {
+      // we store all the posts in a variable
+      $socials= Blog::getSocial($_GET['blog_id']);
+      require_once('views/blogpost/read.php');
+    }
+    
+    
     public function update() {
         
       if($_SERVER['REQUEST_METHOD'] == 'GET'){

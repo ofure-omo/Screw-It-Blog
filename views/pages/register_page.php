@@ -10,6 +10,7 @@
                 width: 40%;
                 margin-left: 150px;
                 margin-top: 50px;
+                margin-bottom: 150px;
             }
 
             h1 {
