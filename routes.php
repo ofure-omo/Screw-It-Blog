@@ -25,7 +25,7 @@ function call($controller, $action) {
 
 // for validation we list the allowed controllers and their actions
 // Add an entry for each new controller and its actions
-$controllers = array('pages' => ['home', 'error', 'about', 'cookies', 'privacy'],
+$controllers = array('pages' => ['home', 'error', 'cookies', 'privacy'],
     'blog' => ['readAll', 'read', 'create', 'update', 'delete'],
     'search' => ['search'],
     'home' => ['home'],
@@ -35,7 +35,8 @@ $controllers = array('pages' => ['home', 'error', 'about', 'cookies', 'privacy']
     'categories' => ['showAll','searchCategory'],
     'dashboard' => ['mem_dash'], 
     'delete' => ['delete'],
-    'update' => ['update']
+    'update' => ['update'],
+    'blogger' => ['about'],
 );
 
 // check that the requested controller and action are both allowed

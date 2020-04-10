@@ -9,10 +9,6 @@ class PagesController {
     public function error() {
       require_once('views/pages/error.php');
     }
-    
-    public function about() {
-      require_once('views/pages/about.php');
-    }
      
     public function cookies() {
       require_once('views/pages/cookies.php');

@@ -23,13 +23,20 @@
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
+        <div class="nav navbar-brand" onclick="openSearch()">
+                <li>
+                <a><i class="fa search-fa fa-search"></i></a>
+                </li>
+        </div>
+    
     <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav mx-auto">      
             <li class="nav-item">
                 <a class="nav-link" href="?controller=home&action=home">HOME</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="?controller=pages&action=about">ABOUT</a>
+                <a class="nav-link <?php if (!isset($_GET['controller=blogger&action=about'])){
+                echo "active";} ?>" href="?controller=blogger&action=about">ABOUT</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="?controller=categories&action=searchCategory&category=create">CREATE</a>
@@ -40,7 +47,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="?controller=categories&action=searchCategory&category=renovate">RENOVATE</a>
             </li>
-            &nbsp;&nbsp;
+                        &nbsp;&nbsp;
             <li onclick="openSearch()"> 
                 <i class="fa search-fa fa-search"></i>
             </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -48,8 +55,9 @@
                 <a class="nav-link" href="?controller=blog&action=create">post blog</a>
             </li>
         </ul>
-
-
+  </div>
+      
+</nav>
 
         <div id="myOverlay" class="overlay">
             <span class="closebtn" onclick="closeSearch()" title="Close Overlay">x</span>
@@ -59,9 +67,6 @@
                     <button type="submit" name="submit-search"><i class="fa fa-search"></i></button>
                 </form>
             </div>
-
-      
-</nav>
 
 </div>
 
