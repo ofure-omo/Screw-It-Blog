@@ -13,5 +13,13 @@ class PagesController {
     public function about() {
       require_once('views/pages/about.php');
     }
+     
+    public function cookies() {
+      require_once('views/pages/cookies.php');
+    }
+    
+    public function privacy() {
+      require_once('views/pages/privacy.php');
+    }
     
 }

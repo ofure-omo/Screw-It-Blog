@@ -24,7 +24,7 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
-        <ul class="navbar-nav mr-auto">      
+        <ul class="navbar-nav mx-auto">      
             <li class="nav-item">
                 <a class="nav-link" href="?controller=home&action=home">HOME</a>
             </li>
@@ -32,16 +32,20 @@
                 <a class="nav-link" href="?controller=pages&action=about">ABOUT</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="?controller=pages&action=about">CREATE</a>
+                <a class="nav-link" href="?controller=categories&action=searchCategory&category=create">CREATE</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="?controller=pages&action=about">DECORATE</a>
+                <a class="nav-link" href="?controller=categories&action=searchCategory&category=decorate">DECORATE</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="?controller=pages&action=about">RENOVATE</a>
+                <a class="nav-link" href="?controller=categories&action=searchCategory&category=renovate">RENOVATE</a>
             </li>
+            &nbsp;&nbsp;
+            <li onclick="openSearch()"> 
+                <i class="fa search-fa fa-search"></i>
+            </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <li class="nav-item">
-                <a class="nav-link" href="?controller=blog&action=create">CREATE BLOG</a>
+                <a class="nav-link" href="?controller=blog&action=create">post blog</a>
             </li>
         </ul>
 
@@ -51,18 +55,12 @@
             <span class="closebtn" onclick="closeSearch()" title="Close Overlay">x</span>
             <div class="overlay-content">
                 <form action="?controller=search&action=search" method="POST">
-                    <input type="text" placeholder="" name="search">
+                    <input type="text" placeholder="" name="search" required >
                     <button type="submit" name="submit-search"><i class="fa fa-search"></i></button>
                 </form>
             </div>
-        </div>
-        <ul class="navbar-nav ml-auto"> 
-            <button class="openbtn" onclick="openSearch()">
-                <i class="fa fa-search"></i>
-            </button>
 
-        </ul>
-    </div>
+      
 </nav>
 
 </div>

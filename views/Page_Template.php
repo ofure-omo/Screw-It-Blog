@@ -27,7 +27,7 @@
 </script>
 </head>
         
-   
+<div id="container">
             
 <!---Header------------------------------------------------------------------>    
 <?php
@@ -42,6 +42,7 @@ include_once "views/pages/Header.php";
 
 <!---FOOTER------------------------------------------------------------------>   
 
+</div>
 <?php
 include_once "views/pages/Footer.php";
 ?>

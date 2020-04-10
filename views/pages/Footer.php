@@ -11,7 +11,7 @@
       <!-- Grid column -->
       <div class="footertext col-md-2">
         <h6>
-          <a href="#">About</a>
+          <a href="?controller=pages&action=about">About</a>
         </h6>
       </div>
       <!-- Grid column -->
@@ -27,7 +27,7 @@
       <!-- Grid column -->
       <div class="footertext col-md-2">
         <h6>
-          <a href="#">Register</a>
+          <a href="?controller=register&action=registerUser">Register</a>
         </h6>
       </div>
       <!-- Grid column -->
@@ -35,7 +35,7 @@
       <!-- Grid column -->
       <div class="footertext col-md-2">
         <h6>
-          <a href="#">Privacy</a>
+          <a href="?controller=pages&action=privacy">Privacy</a>
         </h6>
       </div>
       <!-- Grid column -->
@@ -43,7 +43,7 @@
       <!-- Grid column -->
       <div class="footertext col-md-2">
         <h6>
-          <a href="#">Cookies</a>
+          <a href="?controller=pages&action=cookies">Cookies</a>
         </h6>
       </div>
       <!-- Grid column -->
