@@ -32,7 +32,10 @@ $controllers = array('pages' => ['home', 'error', 'about'],
     'register' => ['registerUser'], 
     'login' => ['loginUser'],
     'comments' => ['add'],
-    'categories' => ['showAll','searchCategory']
+    'categories' => ['showAll','searchCategory'],
+    'dashboard' => ['mem_dash'], 
+    'delete' => ['delete'],
+    'update' => ['update']
 );
 
 // check that the requested controller and action are both allowed
