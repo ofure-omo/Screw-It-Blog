@@ -57,23 +57,32 @@
         }
         
         .tag {
-            display: inline;
-            margin-top: 20px;
-            margin: 20px 20px;
+            display: inline;           
+            margin: 10px 10px;
             font-size: 0.65em;
             text-transform: uppercase;
         }
         
         .tag-btn {
             text-align: center;
-            background: #f3f3f3;
+            background: #ebebeb;
             border-radius: 5px;
+            margin: 5px;
             margin-top: 30px;
+            font-weight: bold;
+            border-style: none;
+            
+        }
+        
+        .tag-btn:hover {
+            background-color: #fca15f;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.12), 0 6px 20px 0 rgba(0, 0, 0, 0.05);
         }
         
         
         .tags{
             text-align: center;
+             display: inline;
         }
 
         #comment-container {
@@ -148,6 +157,8 @@
         
         #body1 {
             margin-top: 30px;  
+            text-align: center;
+            
         }
         
         }
@@ -160,7 +171,7 @@
         <div class='read-header'>
             <h1 id="read-title"><?php echo $blog['title']; ?></h1> <!--header section to retrieve data from db -->
 
-            <p class='header-info'>Written by: <?php echo $blog['username']; ?></p> <!--should be replaced with username based on the session id-->
+            <p class='header-info'>Written by: <?php echo $blog['user_fn'] . PHP_EOL . $blog['user_ln']; ?></p> <!--should be replaced with username based on the session id-->
             <p class='header-info'>Posted on: <?php $d = strtotime($blog['date_posted']); echo date('jS F Y', $d); ?></p>
             <p class='header-info'>Category: <?php echo $blog['category']; ?></p> 
 
@@ -195,20 +206,21 @@
             $img = "<img class='d-block w-100' src=$blogimg alt='First slide' style='width:100%'/>";
             echo $img;
             ?>
-
+         
         </div> 
         <div id="social-media"> <!--retrieve url links from user table-->
-            <a href="<?php echo $socials['facebook_url'] ?>"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-            <i class="fa fa-instagram" aria-hidden="true"></i>
-            <i class="fa fa-twitter" aria-hidden="true"></i>
-            <i class="fa fa-pinterest"></i>
+            <a href="<?php echo 'www.'. $blog['facebook_url']; ?>"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+            <a href="<?php echo 'www.'. $blog['insta_url']; ?>"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+            <a href="<?php echo 'www.'. $blog['twitter_url']; ?>"><i class="fa fa-twitter" aria-hidden="true"></i></a>
             <a href='#'><i class="fa fa-heart-o" onclick="myFunction(this)"></i> </a>
-            
-                    <div class="tags">
-           <button class='tag-btn'><p class='tag'> diy</p></button><!-- will use a foreach function that will show the tag icon foreach tag-->
-            <button class='tag-btn'><p class='tag'>kitchen</p></button>
-            <button class='tag-btn'><p class='tag'>dining</p></button> <!-- will be populated with tags retrieved from the db-->
+            </div>
+               <?php foreach ($tag as $newtag)
+               {?>
+            <div class="tags"> 
+           <button class='tag-btn'><p class='tag'> <?php echo $newtag ?></p></button> <!-- will use a foreach function that will show the tag icon foreach tag-->
+           <!-- will be populated with tags retrieved from the db-->
         </div>
+          <?php } ?>
 
 
             <script>
@@ -216,7 +228,7 @@
                     x.classList.toggle("fa-heart");
                 }
             </script>
-        </div>
+        
     </div>
     <div class='comment-container'>
         <form method="POST" id="comment_form">

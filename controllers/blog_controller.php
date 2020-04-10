@@ -17,12 +17,15 @@ class BlogController {
       try{
       // we use the given id to get the correct post
       $blog = Blog::find($_GET['blog_id']);
+      $tag = Blog::findTag($_GET['blog_id']); 
       require_once('views/blogpost/read.php');
       }
  catch (Exception $ex){
      return call('pages','error');
  }
     }
+    
+    
     public function create() {
 
       //// we expect a url of form ?controller=blog&action=create
@@ -30,14 +33,15 @@ class BlogController {
       // else it's a POST so add to the database and redirect to readAll action
       if($_SERVER['REQUEST_METHOD'] == 'GET'){
           
+          $tag = Blog::getTag();
           require_once('views/blogpost/create.php');  
       }
       else { 
-            Blog::add();
+            Blog::add(); //function for: insert into tags values (tag) where tag = :tag AND where blog_id = lastinserted blog_id
              
             //$blog= Blog::all(); //$products is used within the view
             //require_once('views/blogpost/readAll.php');  *SHOULD REDIRECT TO THE BLOGGER DASHBOARD WITH THE BLOG POST IN THE ACCORDIAN FOR BLOGS POSTED*
-            echo "You have posted your blog!";
+            
       }
       
     }

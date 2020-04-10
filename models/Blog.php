@@ -6,51 +6,51 @@ class Blog {
     public $body;
     public $body2;
     public $date_posted;
-    // public $tag;
-    //private $main_image;
-    //private $second_image;
-    //private $third_image;
+    //public $tag;
+    public $main_image;
+    public $second_image;
+    public $third_image;
     public $category;
+    public $facebook_url;
+    public $insta_url;
+    public $twitter_url;
 
-    //private $facebook_url;
-    //private $insta_url;
-    //private $twitter_url;
-
-    function __construct($title, $body, $body2, $date_posted, $category) {
+    function __construct($title, $body, $body2, $date_posted, $category, $main_image, $second_image, $third_image, $facebook_url, $insta_url, $twitter_url) {
 
         $this->title = $title;
         $this->body = $body;
         $this->body2 = $body2;
         $this->date_posted = $date_posted;
-        // $this->main_image = $main_image;
-        //$this->second_image = $second_image;
-        //$this->third_image = $third_image;
+        $this->main_image = $main_image;
+        $this->second_image = $second_image;
+        $this->third_image = $third_image;
         $this->category = $category;
         //$this->tag= $tag;
-        //$this->facebook_url = $facebook_url;
-        //$this->insta_url = $insta_url;
-        //$this->twitter_url= $twitter_url;
+        $this->facebook_url = $facebook_url;
+        $this->insta_url = $insta_url;
+        $this->twitter_url = $twitter_url;
     }
 
     public static function all() {
         $list = [];
         $db = Screw_it::getInstance();
-        $req = $db->query("SELECT * FROM blog_posts WHERE category = 'create'; 
-                          "); //order by most recent *ASK MARTINA*
+        $req = $db->query("SELECT * FROM blog_posts; 
+                          INNER JOIN Users ON blog_posts.user_id = Users.user_id WHERE blog_id = :blog_id;"); //order by most recent *ASK MARTINA*
         // we create a list of blog_post objects from the database results
         foreach ($req->fetch(PDO::FETCH_ASSOC) as $blog) {
-            $list[] = new Blog($blog['user_id'], $blog['title'], $blog['body'], $blog['date_posted'], $blog['main_image']);
+            $list[] = new Blog($blog['user_id'], $blog['title'], $blog['body'], $blog['date_posted'], $blog['category'], $blog['main_image'], $blog['second_image'], $blog['third_image']);
         }
         return $list;
-
     }
 
     public static function find($blog_id) {
 
         $db = Screw_it::getInstance();
         $blog_id = intval($blog_id);
-        $req = $db->prepare('SELECT * FROM blog_posts 
-                             WHERE blog_id = :blog_id;');
+        $req = $db->prepare('SELECT * FROM blog_posts
+                             INNER JOIN Users ON blog_posts.user_id = Users.user_id WHERE blog_id = :blog_id;'); //get t
+
+
         if (!$req) {
             echo "error, pls handle";
         }
@@ -59,101 +59,135 @@ class Blog {
         $blog = $req->fetch();
 
         return $blog;
-        
-        
+    }
+    
+     public function findTag($blog_id){
+        $db = Screw_it::getInstance();
+        $blog_id = intval($blog_id);
+        $req = $db->prepare('SELECT * FROM blog_tags 
+                             WHERE blog_id = :blog_id;'); 
+
+       /* while ($row = $req->fetchAll) {
+        $tag = $row['tag'];
+        echo $tag;
+        }*/
+        if (!$req) {
+            echo "error, pls handle";
         }
 
-        /*
-          $req = $db->prepare("SELECT * FROM blog_post WHERE blog_id = :blog_id;
-          ");
-          //query has been prepared replace :blog_id with actual value
-          $req->execute(array('blog_id' => $blog_id));
-          $blog = $req->fetch();
+        $req->execute(array('blog_id' => $blog_id));
+        $tag = $req->fetchAll(PDO::FETCH_COLUMN,1);
 
-          if ($blog) {
-          return new Blog($blog['user_id'], $blog['title'], $blog['body'], $blog['body2'], $blog['date_posted'], $blog['main_image']);
-          } else {
-          throw new Exception('Blog not found, please search again');
-          }
-          } */
+        return $tag;  
+    }
     
+    public function getTag(){
+        $db = Screw_it::getInstance();       
+        
+        $req = $db->query("SELECT * FROM tags;")->fetchAll(PDO::FETCH_COLUMN); //get tags
+        $tag = $req;   
+        return $tag;   
+    }
 
     public static function add() {
 
         $db = Screw_it::getInstance();
 
-        if (isset($_POST['submit'])) {
+        if (isset($_POST['title']) && $_POST['title'] != "") {
+            $filteredTitle = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_SPECIAL_CHARS);
+        }
+        if (isset($_POST['body']) && $_POST['body'] != "") {
+            $filteredBody = filter_input(INPUT_POST, 'body', FILTER_SANITIZE_SPECIAL_CHARS);
+        }
+        if (isset($_POST['body2']) && $_POST['body2'] != "") {
+            $filteredBody2 = filter_input(INPUT_POST, 'body2', FILTER_SANITIZE_SPECIAL_CHARS);
+        }
+        if (isset($_POST['category']) && $_POST['category'] != "") {
+            $filteredCategory = filter_input(INPUT_POST, 'category', FILTER_SANITIZE_SPECIAL_CHARS);
+        }
 
-// set parameters and execute
-            if (isset($_POST['title']) && $_POST['title'] != "") {
-                $filteredTitle = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_SPECIAL_CHARS);
-            }
-            if (isset($_POST['body']) && $_POST['body'] != "") {
-                $filteredBody = filter_input(INPUT_POST, 'body', FILTER_SANITIZE_SPECIAL_CHARS);
-            }
-            if (isset($_POST['body2']) && $_POST['body2'] != "") {
-                $filteredBody2 = filter_input(INPUT_POST, 'body2', FILTER_SANITIZE_SPECIAL_CHARS);
-            }
-            if (isset($_POST['category']) && $_POST['category'] != "") {
-                $filteredCategory = filter_input(INPUT_POST, 'category', FILTER_SANITIZE_SPECIAL_CHARS);
-            }
+            $filteredTag = $_POST['tag'];
+            $newtag = $filteredTag;
+            //$explodetag = explode('# ', $newtag);
+            //echo $explodetag;
 
-            if (isset($_POST['tag']) && $_POST['tag'] != "") {
-                $filteredTag = filter_input(INPUT_POST, 'tag', FILTER_SANITIZE_STRING);
-            }
+        /*if (isset($_FILES["myfile"]["tmp_name"][2])) {
+            echo"";
+        } else {
+            die("Please upload 3 images<br>");
+        }
+        /* if (empty($_FILES["myfile"]["tmp_name"])) {
+          //die("File Missing!");
+          die ("File Missing! <br>");
+          } else {
+          echo "";
+          } */
 
-            //$filteredImage = filter_input(INPUT_POST, 'myfile[]', FILTER_SANITIZE_SPECIAL_CHARS);
-            //$filteredImage = $_FILES['myfile']['name'];
-            
-            if (empty($_FILES["myfile"]["tmp_name"])){
-                die("please upload 3 files");
-            }
-                
-            foreach ($_FILES["myfile"]["tmp_name"] as $key => $tmp_name){
-                
+        $filteredImage = filter_input(INPUT_POST, 'myfile', FILTER_SANITIZE_SPECIAL_CHARS);
+        
+        //$filteredImage = $_FILES['myfile']['name'];
+        foreach ($_FILES["myfile"]["tmp_name"] as $key => $tmp_name) {
+
             $temp = $_FILES["myfile"]["tmp_name"][$key];
             $imagename = $_FILES["myfile"]["name"][$key];   //save this in the db!!
-            
+
             $img1 = $_FILES["myfile"]["name"][0];
             $img2 = $_FILES["myfile"]["name"][1];
             $img3 = $_FILES["myfile"]["name"][2];
+        }
+        $location = "views/images/";
+        //creates a file path for each image uploaded
+        $file_path1 = $location . $img1;
+        $file_path2 = $location . $img2;
+        $file_path3 = $location . $img3;
 
-            }
-            $location = "views/images/";
-             
-            $file_path1 = $location . $img1;
-            $file_path2 = $location . $img2;
-            $file_path3 = $location . $img3;
+        //insert exploded tags into the tags table 
+        //foreach ($Tag as $key => $newtag) {
+            //$explodeTag = $newtag;
 
             
-            //for user_id once sessions is done it will need to be the session(user_id) that would go into the values for user_id!!
-            $req = $db->prepare("INSERT INTO blog_posts(user_id, title, body, body2, category, main_image, second_image, third_image) VALUES ('1', :title, :body, :body2, :category, :main_image, :second_image,  :third_image);
-                INSERT INTO tags (tag_id) VALUES (:tag);
-                ");
+        
+        //for user_id once sessions is done it will need to be the session(user_id) that would go into the values for user_id!!
+        $req = $db->prepare("INSERT INTO blog_posts(user_id, title, body, body2, category, main_image, second_image, third_image) 
+                                VALUES ('1', :title, :body, :body2, :category, :main_image, :second_image, :third_image);
+                               ");
 
-            $req->bindParam(':title', $title);
-            $req->bindParam(':body', $body);
-            $req->bindParam(':body2', $body2);
-            $req->bindParam(':category', $category);
-            $req->bindParam(':main_image', $main_image);
-            $req->bindParam(':second_image', $second_image);
-            $req->bindParam(':third_image', $third_image);
-            $req->bindParam(':tag', $tag);
 
-            $title = $filteredTitle;
-            $body = $filteredBody;
-            $body2 = $filteredBody2;
-            $category = $filteredCategory;
-            $main_image = $file_path1;
-            $second_image = $file_path2;
-            $third_image = $file_path3;
-            $tag = $filteredTag;
+        $req->bindParam(':title', $title);
+        $req->bindParam(':body', $body);
+        $req->bindParam(':body2', $body2);
+        $req->bindParam(':category', $category);
+        $req->bindParam(':main_image', $main_image);
+        $req->bindParam(':second_image', $second_image);
+        $req->bindParam(':third_image', $third_image);
 
+
+        $title = $filteredTitle;
+        $body = $filteredBody;
+        $body2 = $filteredBody2;
+        $category = $filteredCategory;
+        $main_image = $file_path1;
+        $second_image = $file_path2;
+        $third_image = $file_path3;
+        
+        $req->execute();
+        $id = $db->lastInsertId();
+
+        foreach ($newtag as $key => $tags) {
+            $tag2 = $tags;
+ 
+          $req = $db->prepare("INSERT INTO blog_tags(blog_id, tag) VALUES (:blog_id, :tag);");
+
+            $req->bindParam('tag', $tag);
+            $req->bindParam('blog_id', $last_id);
+            
+            $tag = $tag2;
+            $last_id = $id;
+            
             $req->execute();
-
-//upload product image:  
-            Blog::uploadFiles($imagename);
         }
+        //upload product image:  
+        Blog::uploadFiles($imagename);
     }
     
 
@@ -166,57 +200,54 @@ class Blog {
 
         $db = Screw_it::getInstance();
 
-       foreach ($_FILES["myfile"]["tmp_name"] as $key => $tmp_name) {
-          
-         $temp = $_FILES["myfile"]["tmp_name"][$key];
-         $imagename = $_FILES["myfile"]["name"][$key];   //save this in the db!!
+        foreach ($_FILES["myfile"]["tmp_name"] as $key => $tmp_name) {
 
-         //echo $imagename;
-       }
-             
-        if (empty($imagename)) {
+            $temp = $_FILES["myfile"]["tmp_name"][$key];
+            $imagename = $_FILES["myfile"]["name"][$key];   //save this in the db!!
+            //echo $imagename;
+        }
+
+        if (empty($_FILES["myfile"]["tmp_name"])) {
             //die("File Missing!");
-            echo "File Missing! <br>";
+            die("File Missing! <br>");
         } else {
             echo "";
         }
 
-        if ($imagename > 3) {
-            echo"You have tried to upload too many images, please only upload 3 <br>" ;
+        if (isset($_FILES["myfile"]["tmp_name"][2])) {
+            echo"";
         } else {
-            echo "";
-        }      
-        
-        /*if ($imagename < 3) {
-            echo "You haven't uploaded enough images, please upload 3 <br>";
-        } else {
-            echo "";
-        }*/
+            echo ("Please upload 3 images<br>");
+        }
 
-        /*if (!in_array($_FILES["myfile"]["tmp_name"], self::AllowedTypes)) {
-           echo"File Type Not Allowed: " . $_FILES["myfile"]["name"][$key] . PHP_EOL;
+        /* if ($imagename < 3) {
+          echo "You haven't uploaded enough images, please upload 3 <br>";
+          } else {
+          echo "";
+          } */
+
+        /* if (!in_array($_FILES["myfile"]["tmp_name"], self::AllowedTypes)) {
+          echo"File Type Not Allowed: " . $_FILES["myfile"]["name"][$key] . PHP_EOL;
+          } else {
+          echo "";
+          } */
+
+        //$tempFile = $_FILES[self::InputKey]['tmp_name']; 
+        $path = DIRECTORY_SEPARATOR . 'Applications' . DIRECTORY_SEPARATOR . 'XAMPP' . DIRECTORY_SEPARATOR . 'xamppfiles' . DIRECTORY_SEPARATOR . 'htdocs' . DIRECTORY_SEPARATOR . 'Screw-it' . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR;
+        $destinationFile = $path . $imagename;
+
+        move_uploaded_file($temp, $destinationFile);
+        //(move_uploaded_file($_FILES[self::InputKey]['tmp_name'], $destinationFile));
+        if (!move_uploaded_file($_FILES["myfile"]["tmp_name"][$key], $destinationFile)) { //file does upload not usre why throwing error?
+            echo "your images have not uploaded! <br>";
         } else {
             echo "";
-        }*/
-   
-        //$tempFile = $_FILES[self::InputKey]['tmp_name']; 
-        $path = DIRECTORY_SEPARATOR .'Applications' . DIRECTORY_SEPARATOR . 'XAMPP' . DIRECTORY_SEPARATOR . 'xamppfiles' . DIRECTORY_SEPARATOR . 'htdocs'.DIRECTORY_SEPARATOR . 'Screw-it' . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR;
-        $destinationFile = $path . $imagename;
-        
-        move_uploaded_file($temp, $destinationFile);
-           //(move_uploaded_file($_FILES[self::InputKey]['tmp_name'], $destinationFile));
-        if (!move_uploaded_file($_FILES["myfile"]["tmp_name"][$key], $destinationFile)) { //file does upload not usre why throwing error?
-          echo "your images have uploaded! <br>";
-          } else {
-            echo "";
-          } 
+        }
 
         //Clean up the temp file
         if (file_exists($temp)) {
             unlink($temp);
         }
-        
-            
     }
 
     public static function remove($blog_id) {
@@ -227,21 +258,28 @@ class Blog {
         // the query was prepared, now replace :id with the actual $id value
         $req->execute(array('blog_id' => $blog_id));
     }
-    
-     public static function getSocial($blog_id) {
-         $db = Screw_it::getInstance();
-        $blog_id = intval($blog_id);
-        $req = $db->prepare('SELECT * FROM users u
-                             JOIN blog_posts b ON b.user_id = u.user_id
-                             WHERE b.blog_id = :blog_id;');
+
+    /* public function addError($key, $val) { //This is an associative array that stores the errors that are generated by the individual 
+      $this->error[$key] = $val;         //functions for each field as above. $key is data name eg 'password, $val is error message
+      //to be displayed.
+      } */
+
+    public static function getSocial($user_id) {
+        $db = Screw_it::getInstance();
+        //make sure $id is an integer
+        $user_id = intval($user_id);
+        $req = $db->prepare('SELECT * FROM blog_posts b
+                             JOIN Users u ON u.user_id = b.user_id
+                             WHERE b.user_id = :user_id;');
+        // the query was prepared, now replace :id with the actual $id value
         if (!$req) {
-            echo "cannot find urls";
+            echo "error cannot find socials";
         }
 
-        $req->execute(array('blog_id' => $blog_id));
-        $blog = $req->fetch();
+        $req->execute(array('user_id' => $user_id));
+        $socials = $req->fetch();
 
-        return $blog;
+        return $socials;
     }
-}
 
+}

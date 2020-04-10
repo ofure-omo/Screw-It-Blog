@@ -67,7 +67,7 @@
             }
 
             #template-container {
-               
+
                 margin-top: 50px;
             }
 
@@ -86,7 +86,7 @@
             .file-type {
                 padding-top: 20px;
             }
-            
+
             #tags {
                 margin-bottom: 20px;
             }
@@ -144,21 +144,60 @@
 
                     <div class="form-group">
                         <label for="exampleFormControlSelect1">Category</label>
-                        <select class="form-control" name ="category" id="exampleFormControlSelect1">
+                        <select class="form-control" name ="category" id="exampleFormControlSelect1" >
                             <option selected="selected">Choose a category</option>
                             <option value="CREATE">CREATE</option>
                             <option value="RENOVATE">RENOVATE</option>
                             <option value="DECORATE">DECORATE</option>
-                                              
+
                         </select>
                     </div>
-                    <div id="tags" name="tags"><p>Tags</p>
-                   <div class="form-group">
-                            <label class="sr-only" for="tag">Hashtags</label>
-                            <input type="text" name="tag" id="tag" class="form-control" placeholder="recycle diy garden" required />
-                            <small> separate tags with a comma</small>
+
+                        <p> Tags </p>
+                        <div class='checkbox-container'>
+                           
+                        <div class="form-group form-check-inline" required>
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1" name ="tag[]" value="<?php echo $tag[0]; ?>">
+                            <label class="form-check-label" for="exampleCheck1"><?php echo $tag[0]; ?></label>
                         </div>
-                </div>
+                        <div class="form-group form-check-inline">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1" name ="tag[]" value="<?php echo $tag[1]; ?>">
+                            <label class="form-check-label" for="exampleCheck1"><?php echo $tag[1]; ?></label>
+                        </div>
+                        <div class="form-group form-check-inline">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1" name ="tag[]" value="<?php echo $tag[2]; ?>">
+                            <label class="form-check-label" for="exampleCheck1"><?php echo $tag[2]; ?></label>
+                        </div>
+                        <div class="form-group form-check-inline">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1" name ="tag[]" value="<?php echo $tag[3]; ?>">
+                            <label class="form-check-label" for="exampleCheck1"><?php echo $tag[3]; ?></label>
+                        </div>
+                        <div class="form-group form-check-inline">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1" name ="tag[]" value="<?php echo $tag[4]; ?>">
+                            <label class="form-check-label" for="exampleCheck1"><?php echo $tag[4]; ?></label>
+                        </div>
+                        <div class="form-group form-check-inline">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1" name ="tag[]" value="<?php echo $tag[5]; ?>">
+                            <label class="form-check-label" for="exampleCheck1"><?php echo $tag[5]; ?></label>
+                        </div>
+                        <div class="form-group form-check-inline">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1" name ="tag[]" value="<?php echo $tag[6]; ?>">
+                            <label class="form-check-label" for="exampleCheck1"><?php echo $tag[6]; ?></label>
+                        </div>
+                        <div class="form-group form-check-inline">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1" name ="tag[]" value="<?php echo $tag[7]; ?>">
+                            <label class="form-check-label" for="exampleCheck1"><?php echo $tag[7]; ?></label>
+                        </div>
+                        <div class="form-group form-check-inline">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1" name ="tag[]" value="<?php echo $tag[8]; ?>">
+                            <label class="form-check-label" for="exampleCheck1"><?php echo $tag[8]; ?></label>
+                        </div>
+                        <div class="form-group form-check-inline">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1" name ="tag[]" value="<?php echo $tag[9]; ?>">
+                            <label class="form-check-label" for="exampleCheck1"><?php echo $tag[9]; ?></label>
+                        </div>
+                           
+                    </div>
                     <div id='img_container'>
                         <p class="img-title"> Images </p> 
                         <small class="file-type">Formats accepted: jpg/jpeg/png</small> 
@@ -169,40 +208,25 @@
 
                         <div class="form-group">
                             <label for="exampleFormControlFile1">Upload 3 images</label>
-                            <input type="file" name="myfile[]" class="form-control-file" id="exampleFormControlFile1" multiple>
+                            <input type="file" name="myfile[]" class="form-control-file" id="exampleFormControlFile1" multiple >
                         </div>
-                        <!--<div class="form-group">
-                             <label for="exampleFormControlFile1">Image 2</label>
-                             <input type="file" name="myfile[]" class="form-control-file" id="exampleFormControlFile1">
-                         </div>
-                         <div class="form-group">
-                             <label for="exampleFormControlFile1">Image 3</label>
-                             <input type="file" name="myfile[]" class="form-control-file" id="exampleFormControlFile1">
-                         </div>
-                        <!-- image uploads- need to find a way to validate the uploads without refreshing the page -->
-
 
                         <div class="pure-form pure-form-aligned container-btn">
                             <input type="submit" value="SUBMIT" name= "submit" class="button" >
-                        </div>        
-                        <!-- <div class="custom-file">
-                             <input type="file" class="custom-file-input" id="customFile">
-                             <label class="custom-file-label" for="customFile">Choose a file</label> <small> Formats accepted png/jpeg/jpg/pdf </small>
-                         </div>
-                         <div class="custom-file">
-                             <input type="file" class="custom-file-input" id="customFile">
-                             <label class="custom-file-label" for="customFile">Choose a file</label> <small> Formats accepted png/jpeg/jpg/pdf </small>
-                         </div>
-                         <div class="custom-file">
-                             <input type="file" class="custom-file-input" id="customFile">
-                             <label class="custom-file-label" for="customFile">Choose a file</label> <small> Formats accepted png/jpeg/jpg/pdf </small>
-                         </div>
-                        -->
+                        </div>  
+                    </div>
 
+                        <script>
+
+                            function onSelect(e) {
+                                if (e.files.length > 3) {
+                                    alert("Please select max 3 files.");
+                                    e.preventDefault();
+                                }
+                            }
+                        </script>
                 </form>
-
             </div>
-                   
         </span>
     </body>
 </html>
