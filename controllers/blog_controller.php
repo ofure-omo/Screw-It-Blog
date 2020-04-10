@@ -46,12 +46,6 @@ class BlogController {
       
     }
     
-     public function socials() {
-      // we store all the posts in a variable
-      $socials= Blog::getSocial($_GET['blog_id']);
-      require_once('views/blogpost/read.php');
-    }
-    
     
     public function update() {
         
@@ -76,9 +70,9 @@ class BlogController {
     }
     public function delete() {
             Blog::remove($_GET['blog_id']);
-            
-            $blog = Blog::all();
-            require_once('views/blogpost/readAll.php');
+           
+            //$blog = Blog::all();
+            //require_once('views/blogpost/readAll.php');
       }
       
     }

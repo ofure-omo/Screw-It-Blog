@@ -102,7 +102,7 @@
 
         }
 
-        .fa {
+        .read-fa {
             padding: 10px;
             cursor: pointer;
             font-size: 0.3em;
@@ -209,9 +209,9 @@
          
         </div> 
         <div id="social-media"> <!--retrieve url links from user table-->
-            <a href="<?php echo 'www.'. $blog['facebook_url']; ?>"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-            <a href="<?php echo 'www.'. $blog['insta_url']; ?>"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-            <a href="<?php echo 'www.'. $blog['twitter_url']; ?>"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+            <a href="<?php echo 'www.'. $blog['facebook_url']; ?>"><i class="fa read-fa fa-facebook" aria-hidden="true"></i></a>
+            <a href="<?php echo 'www.'. $blog['insta_url']; ?>"><i class="fa read-fa fa-instagram" aria-hidden="true"></i></a>
+            <a href="<?php echo 'www.'. $blog['twitter_url']; ?>"><i class="fa read-fa fa-twitter" aria-hidden="true"></i></a>
             <a href='#'><i class="fa fa-heart-o" onclick="myFunction(this)"></i> </a>
             </div>
                <?php foreach ($tag as $newtag)

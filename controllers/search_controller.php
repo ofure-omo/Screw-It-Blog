@@ -11,6 +11,7 @@ class SearchController {
       
       //try{
       // we use the given entry to get the correct post
+      $userentry = filter_input(INPUT_POST,'search', FILTER_SANITIZE_SPECIAL_CHARS);
       $results = Search::find($_POST['search']);
       require_once('views/pages/SearchResults.php');
       //}

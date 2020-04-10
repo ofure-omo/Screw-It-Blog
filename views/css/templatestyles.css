@@ -1,15 +1,20 @@
 p {
     font-family: 'Open Sans', sans-serif;
     }
+    
+/* NAVBAR STYLING */
+
+.header {
+        background-color: #3F7CAC;
+    } 
 
 ul {
-    /*overflow: auto;*/
-    font-family: 'Francois One', sans-serif;
+    font-family: 'Open Sans';
+    font-weight: bold;
 }
  
 ul li {
     list-style-type: none;
-    /*float: left;*/
 }
 ul li a:hover {
     opacity: .7;
@@ -17,51 +22,36 @@ ul li a:hover {
  
 ul li a i {
     background: #3F7CAC;
-    color: #70D6FF;
     width: 35px;
-    /*height: -20px;*/
-   /*border-radius: 20px;*/
-    /*font-size: 70px;
-    /*text-align: center;*/
-    /*margin-right: 10px;*/
-    /*padding-top: 50%
-    /*transition: all 0.2s ease-in-out;*/
 }
+
 ul li a i:hover {
     opacity: .7;
 }
 
 /* Style the navbar */
 #navbar {
-  /*overflow: hidden;*/
   background-color: #3F7CAC;
 }
 
-/* Navbar links */
+/* Navbar links in responsive mode */
 #navbar a {
-  float: left;
-  /*display: block;*/
   color: #70D6FF;
-  /*text-align: center;*/
-  /*padding: 14px; - increases height of the nav */
-  /*text-decoration: none;*/
+  
 }
-
 
 .nav-item {
         font-size: 20px;
 }
 
+
 .navbar-toggler {
-    background-color: #FFFFFF; 
+    border: none;
+    /*background-color: #FFFFFF;*/
 }
 
+/* navbar image*/
 img {max-width:100%}
-
-
-.header {
-    text-align: center;
-}
 
 
 /* Style the search button */
@@ -77,17 +67,10 @@ img {max-width:100%}
   background: #70D6FF;
 }
 
-/* Clear floats 
-example::after {
-  content: "";
-  clear: both;
-  display: table;
-}*/
 
 i.fa {
     font-size: 20px;
 }
-
 
 /* The overlay effect with black background */
 .overlay {
@@ -155,82 +138,40 @@ i.fa {
   background: #bbb;
 }
 
-/* Page content 
-.content {
-  padding: 16px;
-}*/
-
-/* The sticky class is added to the navbar with JS when it reaches its scroll position
-.sticky {
-  position: fixed;
-  top: 0;
-  width: 100%;
-}
-
-/* Add some top padding to the page content to prevent sudden quick movement (as the navigation bar gets a new position at the top of the page (position:fixed and top:0)
-.sticky + .content {
-  padding-top: 60px;
-}*/
 
 
-/*FOOTER STYLING*/
+/* FOOTER STYLING */
 
-#page-content {
-  flex: 1 0 auto;
+#footer {
+   background-color: #3F7CAC;
+
 }
 
 
-.footer {
-    background: #3F7CAC;
-    color: white;
+.footertext h6 a {
+    font-family: 'Open Sans';
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #70D6FF;
+    text-decoration: none;
+}
+
+.footertext h6 a:hover {
+    opacity: .7;
+}
+
+
+#copyright {
+    font-family: 'Open Sans', san-serif;
+    background-color: #3F7CAC;
     text-align: center;
-    postion: relative;
-    margin-top: 70px;
-    flex-shrink: none;
-
-}
-
-.copyright {
-    padding-top: 20px;
+    color: #70D6FF;
     padding-bottom: 15px;
     font-size: 12px;
 }
 
-#info {
-    color: #70D6FF;
-    text-decoration: none;
-    text-align: center;
-    text-transform: uppercase;
-    padding-top: 10px;
-    
-}
 
-#info a {
-    color: #70D6FF;
-    text-decoration: none;
-    text-align: center;
-    text-transform: uppercase;
-    padding-top: 10px;
-    
-}
-
-#info li {
-    padding: 5px;
-}
-
-.sm {
-    display: inline-block;
-    font-size: 10px;
-    margin-top: 10px;
-        
-}
-
-
-footer li{
-    width: 33.3333%;
-    float: left;
-    padding: 5px 0;
-}
+/* FORM STYLING */
 
    .form-container{
                 width: 40%;
@@ -241,6 +182,8 @@ footer li{
             h1 {
                 margin-left: 150px;
                 margin-top: 50px;
+                font-family: 'Open Sans', san-serif ;
+                
             }
 
             #customFile{
@@ -317,19 +260,18 @@ footer li{
             }
 
             
-     /* Search Results*/     
+     /* SEARCH RESULTS STYLING */     
             
     .results {
          font-size: 14px;
-         font-family: 'Open Sans', sans-serif;
+         font-family: 'Open Sans', san-serif;
          text-align: center;
-         postion: relative;
+         position: relative;
     }
 
     .card {
         
         text-overflow: ellipsis;
         display: inline-block;
-
     }
     
