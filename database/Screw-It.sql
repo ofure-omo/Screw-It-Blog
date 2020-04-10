@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 08, 2020 at 05:55 PM
+-- Generation Time: Apr 10, 2020 at 04:22 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -25,44 +25,61 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Blogs_Tags_Link`
---
-
-CREATE TABLE `Blogs_Tags_Link` (
-  `btl_id` int(11) NOT NULL,
-  `tag_ID` int(11) NOT NULL,
-  `blog_ID` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `blog_posts`
 --
 
 CREATE TABLE `blog_posts` (
   `blog_id` int(10) NOT NULL,
-  `user_id` int(10) NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
   `title` varchar(255) NOT NULL,
-  `date_posted` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `slug` varchar(100) DEFAULT NULL,
   `body` mediumtext NOT NULL,
   `body2` text NOT NULL,
-  `views` int(10) DEFAULT NULL,
+  `date_posted` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `category` varchar(100) NOT NULL,
   `main_image` tinytext DEFAULT NULL,
   `second_image` tinytext DEFAULT NULL,
-  `third_image` tinytext DEFAULT NULL
+  `third_image` tinytext DEFAULT NULL,
+  `views` int(10) DEFAULT NULL,
+  `slug` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `blog_posts`
 --
 
-INSERT INTO `blog_posts` (`blog_id`, `user_id`, `title`, `date_posted`, `slug`, `body`, `body2`, `views`, `category`, `main_image`, `second_image`, `third_image`) VALUES
-(1, 9, 'i hope this works hahha', '2020-04-08 15:40:35', NULL, 'ahahhahha', 'pleaseee work hahaha', NULL, 'RENOVATE', 'views/images/diyimage.jpg', 'views/images/ETHNC - Wallpaper 2.jpg', 'views/images/ETHNC - Wallpaper.jpg'),
-(2, 9, 'hello hi ', '2020-04-08 15:44:54', NULL, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release ', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', NULL, 'DECORATE', 'views/images/evenmorefireworks.jpg', 'views/images/fireworks.jpeg', 'views/images/morefireworks.jpeg'),
-(3, 9, 'sdcdc', '2020-04-08 15:49:15', NULL, 'sdcdcdc', 'sdcdsc', NULL, 'RENOVATE', 'views/images/ETHNC Main Logo.png', 'views/images/ETHNC Submark Logo.png', 'views/images/');
+INSERT INTO `blog_posts` (`blog_id`, `user_id`, `title`, `body`, `body2`, `date_posted`, `category`, `main_image`, `second_image`, `third_image`, `views`, `slug`) VALUES
+(46, 1, 'how to train a dragon', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don&#39;t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn&#39;t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.', '2020-04-08 20:11:31', 'CREATE', 'views/images/diyimage.jpg', 'views/images/evenmorefireworks.jpg', 'views/images/fireworks.jpeg', NULL, NULL),
+(110, 1, 'latest blog ', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don&#39;t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn&#39;t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentenc', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don&#39;t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn&#39;t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.', '2020-04-10 01:26:56', 'RENOVATE', 'views/images/evenmorefireworks.jpg', 'views/images/fireworks.jpeg', 'views/images/morefireworks.jpeg', NULL, NULL),
+(134, 1, 'how to make a webiste part 2', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don&#39;t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn&#39;t ', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don&#39;t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn&#39;t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don&#39;t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn&#39;t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as ', '2020-04-10 01:57:57', 'RENOVATE', 'views/images/ETHNC - Wallpaper 2.jpg', 'views/images/ETHNC - Wallpaper.jpg', 'views/images/ETHNC Main Logo.png', NULL, NULL),
+(172, 1, 'lets see if the tags work!!', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don&#39;t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn&#39;t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, ', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don&#39;t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn&#39;t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don&#39;t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn&#39;t anything embarrassing hidden in the middle of text. All the Lorem Ipsum ', '2020-04-10 02:50:09', 'DECORATE', 'views/images/ETHNC T-Shirt Design.png', 'views/images/evenmorefireworks.jpg', 'views/images/fireworks.jpeg', NULL, NULL),
+(173, 1, 'do the tags really really work???', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don&#39;t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn&#39;t anything embarrassing hidden in the middle of text. All the Lorem Ipsum ', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don&#39;t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn&#39;t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.', '2020-04-10 03:58:38', 'DECORATE', 'views/images/ETHNC T-Shirt Design.png', 'views/images/evenmorefireworks.jpg', 'views/images/fireworks.jpeg', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `blog_tags`
+--
+
+CREATE TABLE `blog_tags` (
+  `blog_id` int(11) NOT NULL,
+  `tag` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `blog_tags`
+--
+
+INSERT INTO `blog_tags` (`blog_id`, `tag`) VALUES
+(172, '#bedroom'),
+(172, '#buildit'),
+(172, '#crafts'),
+(173, '#buildit'),
+(173, '#crafts'),
+(173, '#garden'),
+(173, '#home'),
+(173, '#painting'),
+(173, '#recycle'),
+(173, '#wood');
 
 -- --------------------------------------------------------
 
@@ -93,13 +110,28 @@ CREATE TABLE `favourites` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Tags`
+-- Table structure for table `tags`
 --
 
-CREATE TABLE `Tags` (
-  `tag_id` int(11) NOT NULL,
+CREATE TABLE `tags` (
   `tag` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tags`
+--
+
+INSERT INTO `tags` (`tag`) VALUES
+('#bedroom'),
+('#buildit'),
+('#crafts'),
+('#garden'),
+('#home'),
+('#kitchen'),
+('#painting'),
+('#recycle'),
+('#upcycle'),
+('#wood');
 
 -- --------------------------------------------------------
 
@@ -115,7 +147,7 @@ CREATE TABLE `Users` (
   `user_ln` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
   `dob` date NOT NULL,
-  `user_type` enum('Moderator','Blogger','Member') NOT NULL,
+  `user_type` enum('Member','Blogger','Moderator') NOT NULL DEFAULT 'Member',
   `security_1` varchar(255) DEFAULT 'Who is your favourite Ryan',
   `answer_1` varchar(50) NOT NULL,
   `signature` varchar(100) DEFAULT NULL,
@@ -135,31 +167,28 @@ INSERT INTO `Users` (`user_id`, `username`, `password`, `user_fn`, `user_ln`, `e
 (1, 'sweet_tee', '', 'Tese', 'Ogbeifun', 'tese@hotmail.com', '1997-09-04', 'Blogger', 'Who is your favourite Ryan', 'reynolds', 'sweet_tee', NULL, 'Hi, i\'m sweet_tee or Tese, i\'m a digital designer by day and a DIY-er by night!', 'twitter.com', 'instagram.com', 'facebook.com', '2020-03-31 13:59:24'),
 (2, NULL, '', 'Amrita', 'Bains', 'amrita@gmail.co.uk', '1990-05-25', 'Moderator', 'Who is your favourite Ryan', 'gosling', NULL, NULL, NULL, 'twitter.com', 'instagram.com', 'facebook.com', '2020-03-31 13:59:24'),
 (3, 'saucy_steph', '', 'Stephanie', 'Foster', 'steph@gmail.com', '1989-02-12', 'Member', 'Who is your favourite Ryan', 'gallagher', NULL, NULL, NULL, 'twitter.com', 'instagram.com', 'facebook.com', '2020-03-31 13:59:24'),
-(4, 'sdcsd', 'cdscd', 'Omotese', 'Ogbeifun', 'tese.og@hotmail.com', '2009-02-11', 'Moderator', 'Who is your favourite Ryan', 'tese', NULL, NULL, NULL, NULL, NULL, NULL, '2020-04-07 12:44:34'),
-(6, 'sdfdsddhdf', 'sfsdf', 'ss', 'sdfsf', 'tese.og@hotmail.com', '2016-02-03', 'Moderator', 'Who is your favourite Ryan', 'hello', NULL, NULL, NULL, NULL, NULL, NULL, '2020-04-07 12:49:23'),
-(7, 'sdfsdfsdddd', 'wwwww', 'sdsdfsdf', 'Ogbeifun', 'tese.og@hotmail.com', '2020-04-01', 'Moderator', 'Who is your favourite Ryan', 'teerer', NULL, NULL, NULL, NULL, NULL, NULL, '2020-04-07 12:51:18'),
-(8, NULL, 'ddd', 'ddd', 'ddd', 'tese.og@hotmail.com', '2011-02-09', 'Moderator', 'Who is your favourite Ryan', 'dddd', NULL, NULL, NULL, NULL, NULL, NULL, '2020-04-07 12:54:24'),
-(9, 'wwwww', '$2y$10$kfrUVhXqa5HnUwR4XfjJ2eJBE.fbNg/jbu9/7IG34bUVKiPeRHWI6', 'Omotese', 'Omotese', 'tese.og@hotmail.com', '2020-04-05', 'Moderator', 'Who is your favourite Ryan', 'lloool', NULL, NULL, NULL, NULL, NULL, NULL, '2020-04-07 13:13:20'),
-(10, 'tese', '$2y$10$vdoR18mo7q.T3fqMnyB3guOOKPZ6L4HlBVzM6J2Ea3.1lOAajM2oq', 'Omotese', 'Omotese', 'tese.og@hotmail.com', '2020-04-04', 'Moderator', 'Who is your favourite Ryan', 'hello', NULL, NULL, NULL, NULL, NULL, NULL, '2020-04-07 14:05:50');
+(11, 'tese', '$2y$10$mZtCfWGcWIWCVOPl3cSJWubg2zDvXW0pP7qlKDBPSAKmJKc5Xfmsy', 'tese', 'tese', 'tese.og@hotmail.com', '2020-04-18', 'Moderator', 'Who is your favourite Ryan', 'gosling', NULL, NULL, NULL, NULL, NULL, NULL, '2020-04-09 01:31:13'),
+(12, 'tese', '$2y$10$DTT8YPNfsNEcGvuh24.Ezua6KwL.N0eMTbUyvlHRMNN0P1sIfkpSC', 'Omotese', 'Omotese', 'tese.og@hotmail.com', '2015-06-04', 'Moderator', 'Who is your favourite Ryan', 'gosling', NULL, NULL, NULL, NULL, NULL, NULL, '2020-04-09 11:50:35'),
+(13, 'hello', '$2y$10$jFdK8fOuv/l/dcs6tOjnV.lKZNRtdJgWJPLLyxQhxzvkczfTX00ge', 'Omotese', 'Omotese', 'tese.og@hotmail.com', '2019-07-11', 'Member', 'Who is your favourite Ryan', 'gosling', NULL, NULL, NULL, NULL, NULL, NULL, '2020-04-09 11:59:10'),
+(14, 'teseog', '$2y$10$rBjfCwevk34TQe3iSXyoa.qS12Zll/RsOqmYMltLRYE2.nSHQiUvm', 'Omotese', 'Omotese', 'tese.og@hotmail.com', '2014-02-05', 'Member', 'Who is your favourite Ryan', 'gosling', NULL, NULL, NULL, NULL, NULL, NULL, '2020-04-09 19:28:57');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `Blogs_Tags_Link`
---
-ALTER TABLE `Blogs_Tags_Link`
-  ADD PRIMARY KEY (`btl_id`),
-  ADD KEY `tag_ID` (`tag_ID`),
-  ADD KEY `blog_ID` (`blog_ID`);
-
---
 -- Indexes for table `blog_posts`
 --
 ALTER TABLE `blog_posts`
   ADD PRIMARY KEY (`blog_id`),
-  ADD KEY `user_id` (`user_id`) USING BTREE;
+  ADD KEY `user_id` (`user_id`);
+
+--
+-- Indexes for table `blog_tags`
+--
+ALTER TABLE `blog_tags`
+  ADD PRIMARY KEY (`blog_id`,`tag`),
+  ADD KEY `tag` (`tag`);
 
 --
 -- Indexes for table `Comments`
@@ -177,10 +206,10 @@ ALTER TABLE `favourites`
   ADD KEY `user_id` (`user_id`);
 
 --
--- Indexes for table `Tags`
+-- Indexes for table `tags`
 --
-ALTER TABLE `Tags`
-  ADD PRIMARY KEY (`tag_id`);
+ALTER TABLE `tags`
+  ADD PRIMARY KEY (`tag`);
 
 --
 -- Indexes for table `Users`
@@ -193,16 +222,10 @@ ALTER TABLE `Users`
 --
 
 --
--- AUTO_INCREMENT for table `Blogs_Tags_Link`
---
-ALTER TABLE `Blogs_Tags_Link`
-  MODIFY `btl_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `blog_posts`
 --
 ALTER TABLE `blog_posts`
-  MODIFY `blog_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `blog_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=174;
 
 --
 -- AUTO_INCREMENT for table `Comments`
@@ -211,27 +234,27 @@ ALTER TABLE `Comments`
   MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `Tags`
---
-ALTER TABLE `Tags`
-  MODIFY `tag_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `Users`
 --
 ALTER TABLE `Users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- Constraints for dumped tables
 --
 
 --
--- Constraints for table `Blogs_Tags_Link`
+-- Constraints for table `blog_posts`
 --
-ALTER TABLE `Blogs_Tags_Link`
-  ADD CONSTRAINT `blogs_tags_link_ibfk_1` FOREIGN KEY (`tag_ID`) REFERENCES `Tags` (`tag_id`),
-  ADD CONSTRAINT `blogs_tags_link_ibfk_2` FOREIGN KEY (`blog_ID`) REFERENCES `Blog_Posts` (`blog_id`);
+ALTER TABLE `blog_posts`
+  ADD CONSTRAINT `blog_posts_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `Users` (`user_id`);
+
+--
+-- Constraints for table `blog_tags`
+--
+ALTER TABLE `blog_tags`
+  ADD CONSTRAINT `blog_tags_ibfk_1` FOREIGN KEY (`blog_id`) REFERENCES `blog_posts` (`blog_id`),
+  ADD CONSTRAINT `blog_tags_ibfk_2` FOREIGN KEY (`tag`) REFERENCES `tags` (`tag`);
 
 --
 -- Constraints for table `Comments`
