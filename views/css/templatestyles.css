@@ -1,18 +1,4 @@
 
-
-html, body {
-    height: 100%;
-}
-
-#container {
-    min-height: 100%;
-}
-
-#main {
-    overflow: auto;
-
-}
-
 p {
     font-family: 'Open Sans', sans-serif;
     }
@@ -173,11 +159,7 @@ i.fa {
 
 #footer {
    background-color: #3F7CAC;
-   position: relative;
    
-   height: 100px;
-   margin-top: -100px;
-   clear: both;
 }
 
 
