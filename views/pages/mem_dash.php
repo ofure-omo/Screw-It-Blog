@@ -32,6 +32,7 @@
                         <th>Last Name</th> 
                         <th>Date of Birth</th>
                         <th>Email</th>
+                        <th>User type</th>
 
 
                         <th></th>
@@ -46,13 +47,16 @@
                         <td><?= $details['user_ln'] ?></td>
                         <td><?= $details['dob'] ?></td>
                         <td><?= $details['email'] ?></td>
+                        <td><?= $details['user_type'] ?></td>
 
                             <td class="actions">
                                 <a href="userUpdate.php?user_ID=<?= $user['user_ID'] ?>" class="edit"><i class="fas fa-pen fa-xs"></i></a>
                       <!--click button to delete controller, can it be deleted without a view as its just a button???-->
                                 <a href="delete_controller.php?user_ID=<?= $user['user_ID'] ?>" class="trash"><i class="fas fa-trash fa-xs"></i></a>
                             </td>
-                   
+                            </tbody>
+            </table>
+                            </div>
 
                     </tbody>
                     <!---favourite blog posts--->
@@ -81,10 +85,12 @@
                                 <td>Unfavourite button </td>
                             </tr>
 
+                           
 
                         </tbody>
-                    </table>  
+                    </table>   
                 </div>
+                
 
                 <!------------comments accordion block ----------->  
 
@@ -117,7 +123,7 @@
                         </tbody>
                     </table>
                 </div>
-
+                
 
 
                 <!--- following list-->

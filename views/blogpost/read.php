@@ -23,7 +23,7 @@
     <!--text to be replaced with data from the blog_post table -->
     <div class='read-blog-container'>
         <div class='read-header'>
-            <h1 id="read-title"><?php echo $blog['title']; ?></h1> <!--header section to retrieve data from db -->
+            <h1 id="read-title"><?php echo $blog['title'];?></h1> <!--header section to retrieve data from db -->
 
             <p class='header-info'>Written by: <?php echo $blog['user_fn'] . PHP_EOL . $blog['user_ln']; ?></p> <!--should be replaced with username based on the session id-->
             <p class='header-info'>Posted on: <?php
@@ -35,7 +35,7 @@
         </div>
 
         <div id='body-container'> <!--main body section -->
-            <p class='body' id="body1"> <?php echo $blog['body']; ?></p>
+            <p class='body' id="body1"> <?php echo $body = nl2br($blog['body']); //echo nl2br($body);  ?></p>
 
         </div>
         <div id='img_container r' class="row"> <!--grid for 2 images, that will be positioned side by side at at the same size, when viewing on phone they will lay on top of each other -->
@@ -213,6 +213,7 @@ crossorigin="anonymous"></script>
 
     #read-title {
         font-family: 'Francois One', sans-serif;
+        text-transform: uppercase;
     }
 
     .header-info {
