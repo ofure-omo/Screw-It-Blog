@@ -48,7 +48,7 @@
                     </div> 
                         
                     <!--IMAGE-->
-                    <a href='?controller=posts&action=show&id=<?php echo $blog1->blog_id;?>'>
+                    <a href='?controller=blog&action=read&blog_id=<?php echo $blog1->blog_id;?>'>
                         <?php 
                         $img = "<img class='d-block w-100' src=$blog1->main_image alt='$blog1->title' style=''/>";
                         echo $img; 
