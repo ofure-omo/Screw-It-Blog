@@ -15,17 +15,18 @@ class LoginController {
 
     public function loginUser() {
 
-        require_once('views/pages/login_page.php');
+        
         //check if session is set. If set redirect
         if (!isset($_SESSION['loggedin'])) {
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 Login::login();
-                return call('home', 'home');
+             return call('home', 'home');
             }
         } else {
 
             echo 'You are already logged in!';
         }
+        require_once('views/pages/login_page.php');
     }
 
 }

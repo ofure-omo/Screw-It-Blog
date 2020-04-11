@@ -17,6 +17,6 @@ class signoutController {
         } else {
             echo "no";
         }
-        
     }
 }
+

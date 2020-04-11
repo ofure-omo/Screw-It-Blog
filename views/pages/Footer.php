@@ -11,7 +11,7 @@
       <!-- Grid column -->
       <div class="footertext col-md-2">
         <h6>
-          <a href="?controller=pages&action=about">About</a>
+          <a href="?controller=blogger&action=about">About</a>
         </h6>
       </div>
       <!-- Grid column -->

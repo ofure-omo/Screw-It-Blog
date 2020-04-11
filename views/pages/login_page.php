@@ -6,13 +6,12 @@
         <title>Login</title>
     </head>
     <body>
-        
-        <div>
+
+        <section class="main-section">
             <h2>Login</h2>
-            <p>Please enter your username and password</p>
+
             <form action="" method="post">
-                <div>
-                    
+                <div> 
                     <label>Username</label>
                     <input type="text" name="username" autocomplete='off' required>
                 </div>    
@@ -24,12 +23,12 @@
                     <input type="submit" name="submit" value="Login">
                 </div>
                 <div>
-                    <a href='?controller=security&action=loginUserSecurity'>Forgotten your password?</a>
+                    <br><a href='?controller=security&action=loginUserSecurity'>Forgotten your password?</a>
                 </div>
                 <div>
-            <p>Don't have an account? </br><a href='?controller=register&action=registerUser'>Sign up now</a>.</p>
+                    <p>Don't have an account? <a href='?controller=register&action=registerUser'>Sign up now</a></p>
                 </div>
-              </form>
-        </div>
+            </form>
+        </section>
     </body>
 </html>
