@@ -36,6 +36,12 @@ public function getAllBody(){
     return $body;
 }
 
-    
+    public function countBlogs(){
+        $sql = "select count(blog_id) from blog_posts";
+        $stmt = Screw_it::getInstance()->query($sql);
+        $result = $stmt->fetch();
+
+        return $result;
+    }    
 }
 

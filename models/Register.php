@@ -68,6 +68,7 @@ class Register {
         }
         if (isset($_POST['answer_1']) && $_POST['answer_1'] != "") {
             $filteredAnswer_1 = filter_input(INPUT_POST, 'answer_1', FILTER_SANITIZE_SPECIAL_CHARS);
+            $hashedAnswer_1 = password_hash($filteredAnswer_1, PASSWORD_BCRYPT);
         }      
 
         //$username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -99,7 +100,7 @@ class Register {
         $user_ln = $filteredUser_fn;
         $email = $filteredEmail;
         $dob = $filteredDob;
-        $answer_1 = $filteredAnswer_1;
+        $answer_1 = $hashedAnswer_1;
 
         $stmt->execute();
         // Attempt to execute the prepared statement

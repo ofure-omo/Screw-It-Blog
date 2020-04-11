@@ -36,7 +36,8 @@ $controllers = array('pages' => ['home', 'error', 'cookies', 'privacy'],
     'delete' => ['delete'],
     'update' => ['update'],
     'signout' => ['signout'],
-    'blogger' => ['about']
+    'blogger' => ['about'],
+    'security' => ['loginUserSecurity']
 );
 
 // check that the requested controller and action are both allowed

@@ -7,7 +7,10 @@ class CategoriesController {
     
     $title = Categories::getAllTitles();
     $body = Categories::getAllBody();
+    $count = Categories::countBlogs();
     
+    
+   
     // OOP 
         $blog1 = new Categories();
         $position = 0;
@@ -26,7 +29,14 @@ class CategoriesController {
     //print_r($results);
         
     // HTML
-        $header = "Showing all blogs";
+    $header = "Showing all blogs";
+        if ($count = 0) {
+            $results = "Sorry, $count results found. Please check back later!";
+        } else if ($cunt = 1) {
+           $results = "$count result found";
+        } else {
+            $results = "$count results found";
+        }
     
        
 

@@ -29,8 +29,7 @@
 
 .HPCarousel-item-title > h3 {
     font-size: 32px; 
-    font-family: 'Open Sans', sans-serif;
-}
+    }
 
         /* Blog Text */
 
@@ -75,7 +74,6 @@
 /* LAYOUT */
 
 main {
-    font-family: "Open Sans", Arial, sans-serif;
     min-height: 100vh;
     background-color: #fafafa;
     color: #262626;
@@ -115,7 +113,7 @@ main {
     position: relative;
     flex: 1 0 22rem;
     margin: 1rem;
-    color: #fff;
+    color: white;
     cursor: pointer;
 }
 
@@ -133,30 +131,16 @@ main {
 
 .gallery-item-info {
     display: none;
+    
 }
 
 .gallery-item-info li {
-    display: inline-block;
-    font-size: 1.7rem;
-    font-weight: 600;
+    font-size: 25px;
+    color: white;
 }
 
-.gallery-item-likes {
-    margin-right: 2.2rem;
-}
 
-.gallery-item-type {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    font-size: 2.5rem;
-    text-shadow: 0.2rem 0.2rem 0.2rem rgba(0, 0, 0, 0.1);
-}
 
-.fa-clone,
-.fa-comment {
-    transform: rotateY(180deg);
-}
 
 .gallery-image {
     width: 100%;

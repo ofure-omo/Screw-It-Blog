@@ -12,27 +12,20 @@
  * @author linzicarlin
  */
 class LoginController {
-    
-    public function loginUser () {
-                
-              require_once('views/pages/login_page.php');      
-         if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-             
-         
-            //check if session is set. If set redirect
-        if (!isset($_SESSION['loggedin'])){
 
-           Login::login();
-           
-            
+    public function loginUser() {
+
+        require_once('views/pages/login_page.php');
+        //check if session is set. If set redirect
+        if (!isset($_SESSION['loggedin'])) {
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                Login::login();
+                return call('home', 'home');
+            }
         } else {
 
-              return call('pages', 'error');//placeholder - will send to dashboard once that's ready!
-            
+            echo 'You are already logged in!';
         }
-
-        //require login page
-         }
-        //start session
     }
+
 }
