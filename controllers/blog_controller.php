@@ -29,7 +29,7 @@ class BlogController {
     
     public function create() {
 
-        if($_SERVER['REQUEST_METHOD'] == 'GET'){
+        if($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_SESSION['loggedin'])){
           
           $tag = Blog::getTag();
           require_once('views/blogpost/create.php');  
@@ -57,7 +57,7 @@ class BlogController {
       else
           {  
            
-            $blog_id = $_GET['blog_id'];
+            //$blog_id = $_GET['blog_id'];
             Blog::update($blog_id); 
             //$blog = Blog::all();
             //require_once('views/blogpost/readAll.php');

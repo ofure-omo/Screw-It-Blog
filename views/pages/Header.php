@@ -23,6 +23,7 @@
                 }
                 if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSION ['user_type']=== "Blogger"){
                     echo '<a class="nav-link" href="?controller=blog&action=create" style="font-size: 16px;">Post Blog</a>';
+                    echo '<a class="nav-link" href="?controller=blogger&action=dashboard">Dashboard</a>';
                 };
                 ?>
         </li>

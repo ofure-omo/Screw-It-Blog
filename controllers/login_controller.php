@@ -20,7 +20,7 @@ class LoginController {
         if (!isset($_SESSION['loggedin'])) {
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 Login::login();
-             return call('home', 'home');
+             //return call('home', 'home');
             }
         } else {
 

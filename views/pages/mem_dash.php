@@ -14,6 +14,7 @@
             $('.toogle').click(function () {
                 $('ul').toogleClass('active');
             })
+<<<<<<< HEAD
         })
     </script>
     <!------------accordion block ----------->  
@@ -159,6 +160,158 @@
 </div>
 
 </tbody>
+=======
+        </script>
+        <!------------accordion block ----------->  
+        <!-- Members details list --->
+        <button class="accordion">View/Edit Your Details</button>
+        <div class="panel"> 
+            <table class="table table-striped">
+                <tbody>    
+                <thead>
+
+                    <tr>
+                        <th>User ID</th>
+                        <th>Username</th>
+                         <!--<th>Password</th>  not showing password??--> 
+                        <th>First Name</th>
+                        <th>Last Name</th> 
+                        <th>Date of Birth</th>
+                        <th>Email</th>
+                        <th>User type</th>
+
+
+                        <th></th>
+                    </tr>
+                </thead>
+
+               
+                    <tr>
+                        <td><?= $details['user_id'] ?></td>
+                        <td><?= $details['username'] ?></td>
+                        <td><?= $details['user_fn'] ?></td>
+                        <td><?= $details['user_ln'] ?></td>
+                        <td><?= $details['dob'] ?></td>
+                        <td><?= $details['email'] ?></td>
+                        <td><?= $details['user_type'] ?></td>
+
+                            <td class="actions">
+                                <a href="userUpdate.php?user_ID=<?= $user['user_ID'] ?>" class="edit"><i class="fas fa-pen fa-xs"></i></a>
+                      <!--click button to delete controller, can it be deleted without a view as its just a button???-->
+                                <a href="delete_controller.php?user_ID=<?= $user['user_ID'] ?>" class="trash"><i class="fas fa-trash fa-xs"></i></a>
+                            </td>
+                            </tbody>
+            </table>
+                            </div>
+
+                    </tbody>
+                    <!---favourite blog posts--->
+                <button class="accordion">Your Favourite Posts</button>
+                <div class="panel">
+                    <table class="table table-striped">
+                        <tbody>
+                            <tr>
+                                <td>Post 1 <!--date that post favourited could go here--> </td>
+                                <td><?php //blogpost favourite 1 echo $favpost->getpost   ?></td>
+                                <td>Unfavourite button </td>
+                            </tr>
+                            <tr>
+                                <td>Post 2</td>
+                                <td><?php //blogpost favourite 2  ?></td>
+                                <td>Unfavourite button</td>
+                            </tr>
+                            <tr>
+                                <td>Post 3</td>
+                                <td><?php //  ?></td>
+                                <td>Unfavourite button</td>
+                            </tr>
+                            <tr>
+                                <td>Post 4</td>
+                                <td><?php //  ?></td>
+                                <td>Unfavourite button </td>
+                            </tr>
+
+                           
+
+                        </tbody>
+                    </table>   
+                </div>
+                
+
+                <!------------comments accordion block ----------->  
+
+                <button class="accordion">View / Edit  Comments </button>
+                <div class="panel">     
+                    <table class="table table-striped">
+                        <tbody>
+                            <tr>
+                                <td>Comment 1 <!--date that post favourited could go here--> </td>
+                                <td><?php //blogpost favourite 1 echo $favpost->getpost   ?></td>
+                                <td>Delete button </td>
+                            </tr>
+                            <tr>
+                                <td>Comment 2</td>
+                                <td><?php //blogpost favourite 2  ?></td>
+                                <td>Delete button</td>
+                            </tr>
+                            <tr>
+                                <td>Comment 3</td>
+                                <td><?php //  ?></td>
+                                <td>Delete button</td>
+                            </tr>
+                            <tr>
+                                <td>Comment 4</td>
+                                <td><?php //  ?></td>
+                                <td>Delete button</td>
+                            </tr>
+
+
+                        </tbody>
+                    </table>
+                </div>
+                
+
+
+                <!--- following list-->
+                <!-- removed as there are only 5 bloggers who can post
+                <button class="accordion">Bloggers you are following </button>
+                <div class="panel">     
+             
+                    <table class="table table-striped">
+                        <tbody>
+                            <tr>
+                                <td>Blogger 1 <!--pull through blogger's name could go here--> <!--</td>
+                                <td><?php //echo bloggers URL   ?></td>
+                                <td>Unfavourite button </td>
+                            </tr>
+                            <tr>
+                                <td>Blogger 2</td>
+                                <td><?php //echo bloggers URL  ?></td>
+                                <td>Unfavourite button</td>
+                            </tr>
+                            <tr>
+                                <td>Blogger 3</td>
+                                <td><?php //echo bloggers URL  ?></td>
+                                <td>Unfavourite button</td>
+                            </tr>
+                            <tr>
+                                <td>Blogger 4 </td>
+                                <td><?php //echo bloggers URL  ?></td>
+                                <td>Edit</td>
+                            </tr>
+    
+    
+                        </tbody>
+                    </table>
+                </div> -->
+
+
+
+            </table>
+        </div>
+
+    </tbody>
+>>>>>>> 0d37221abb412913c4915d4ad2bd5236cc5f43c6
 </table>
 </div>
 
