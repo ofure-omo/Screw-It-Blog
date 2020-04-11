@@ -7,17 +7,18 @@ echo "<span class='results'><br><br><h4>There are " . count($results) . " search
 ?>
 <br>
 
-
-   <?php       
+<!----------------------------------------------------------------
+  <?php        /*
 foreach ($results as $blogpost) : ?>
     <span class='results'><h5>
             <a href='?controller=blog&action=read&blog_id=<?php echo $blogpost['blog_id']; ?>'><?php echo $blogpost['title'] ?></a><br></h5><p> &nbsp; &nbsp;
         <?php $d = strtotime($blogpost['date_posted']);
     echo "Posted on " . date("jS F Y", $d) . "<br>";
     ?> &nbsp; &nbsp;</p></span>
-<?php endforeach; ?>
-</html>
+<?php endforeach; */?>
+</html> ------------------------------------------------------------------>   
 
+ 
  
 
 
