@@ -5,14 +5,19 @@
     <br>
     <br>
     
-    <!-- LATEST BLOGS -->
-    <?php  if (isset($_SESSION['loggedin'])) {
-        echo "<h3>Welcome</h3>" . $_SESSION['username'];
-    } else {
+    <!-- LATEST BLOGS ---------------------------------------------------------->
+    
+            <?php //echo $count; ?>
+            <?php //echo $test0->blog_id; ?>
+            <?php  if (isset($_SESSION['loggedin'])) {
+                echo "<h3>Welcome</h3>" . $_SESSION['username'];
+            } else {
       
-        echo "<h3>See you soon</h3>";
-    }
-?>
+                echo "<h3>See you soon</h3>";
+            }
+            ?>
+
+    
             <!-- HEADER -->  
             <div class="HP-carousel-caption" style="">
                 <h3 style="">The <span style="color: #FCA15F">home</span> of DIY</h3>
@@ -25,72 +30,83 @@
             <br>
             
             <!-- CAROUSEL -->     
-                <div id="HP-carousel-inner" class="carousel-inner" style="height:650px !important">
+            <div id="HP-carousel-inner" class="carousel-inner" style="height:650px !important">
                     
-                    <!-- BLOG 1 --> 
+            <!-- blog 1 ----------------------------------------------------------->        
+                    <!--TITLE-->
                     <div class="carousel-item active">
                         
-                        <!--TITLE-->
-                        <div class="HPCarousel-item-title" style="">
+                    <div class="HPCarousel-item-title" style="">
                             <h3 style=""><?php echo $blog1->title ?></h3>
-                        </div> 
+                    </div> 
                         
-                         <!--BLOG TEXT-->
-                        <div class="HPCarousel-item-text" style="">
-                            <p style=""><br>
-                                    <?php echo $blog1text ?>
-                                 <a href='?controller=blog&action=read&blog_id=<?php echo $blogid?>'> <br>Read more....</a></p>
-                        </div> 
+                    <!--BLOG TEXT/BODY-->
+                    <div class="HPCarousel-item-text" style="">
+                        <p style=""><br>
+                        <?php echo $blog1->bodyLong ?>
+                        </p>
+                    </div> 
                         
-                        <!--IMAGE-->
+                    <!--IMAGE-->
+                    <a href='?controller=posts&action=show&id=<?php echo $blog1->blog_id;?>'>
                         <?php 
-                       $img = "<img class='d-block w-100' src=$blogimage alt='$blog1->title' style=''/>";
-                       echo $img; 
-                       
-                               ?>
-              
+                        $img = "<img class='d-block w-100' src=$blog1->main_image alt='$blog1->title' style=''/>";
+                        echo $img; 
+                        ?>
+                    </a>
                     </div>
+                    
+            <!-- blog 2 ----------------------------------------------------------->         
 
-                    <!-- BLOG 2 --> 
+                   <!--TITLE-->
                     <div class="carousel-item">
                         
-                        <!--TITLE-->
-                        <div class="HPCarousel-item-title" style="">
+                    <div class="HPCarousel-item-title" style="">
                             <h3 style=""><?php echo $blog2->title ?></h3>
-                        </div> 
+                    </div> 
                         
-                        <!--BLOG TEXT-->
-                        <div class="HPCarousel-item-text" style="">
-                            <p style=""><br>
-                                PLACEHOLDER: blog text 2<br>
-                                PLACEHOLDER: blog text 2<br>
-                                PLACEHOLDER: blog text 2<br>
-                                <a href='?controller=blog&action=read&id=<?php echo $blogid; ?>'>Read more....</a></p>
-                        </div> 
-                        <img class="d-block w-100" src="https://images-na.ssl-images-amazon.com/images/I/71V-COkrJcL._SL1500_.jpg" alt="<?php echo $blog2->title?>" style="heigh">
+                    <!--BLOG TEXT/BODY-->
+                    <div class="HPCarousel-item-text" style="">
+                        <p style=""><br>
+                        <?php echo $blog2->body ?>
+                        </p>
+                    </div> 
+                        
+                    <!--IMAGE-->
+                    <a href='?controller=blog&action=read&blog_id=<?php echo $blog2->blog_id;?>'>
+                        <?php 
+                        $img = "<img class='d-block w-100' src=$blog2->main_image alt='$blog2->title' style=''/>";
+                        echo $img; 
+                        ?>
+                    </a>
                     </div>
 
-                    <!-- BLOG 3--> 
+            <!-- blog 3 -----------------------------------------------------------> 
+                    <!--TITLE-->
                     <div class="carousel-item">
-                        <div style="position: absolute; z-index: 10; color: black; background-color: white; top:350px; right:150px; opacity: .6; width: 450px; border-radius: 15px">
-                            <h3 style="font-size: 32px">PLACEHOLDER: blog title 3</h3>
-                        </div> 
-                        <div style="position: absolute; z-index: 10; color: black; background-color: white; top:400px; right:150px; opacity: .6;width: 450px; height: 200px; border-radius: 15px ">
-                                <p style="font-size: 14px; padding: 5px"><br>
-                                    PLACEHOLDER: blog text 3<br>
-                                    PLACEHOLDER: blog text 3<br>
-                                    PLACEHOLDER: blog text 3<br>
-                                <a href="https://www.google.com">Read more....</a></p>
-                        </div> 
-                            <img class="d-block w-100" src="https://www.organicauthority.com/.image/t_share/MTU5MzMwNjM3NzM1MDExNTQy/staircase-ideas.jpg" alt="Third slide" style="">
-
-                        </div>
-
+                        
+                    <div class="HPCarousel-item-title" style="">
+                            <h3 style=""><?php echo $blog3->title ?></h3>
+                    </div> 
+                        
+                    <!--BLOG TEXT/BODY-->
+                    <div class="HPCarousel-item-text" style="">
+                        <p style=""><br>
+                        <?php echo $blog3->body ?>
+                        </p>
+                    </div> 
+                        
+                    <!--IMAGE-->
+                    <a href='?controller=blog&action=read&blog_id=<?php echo $blog3->blog_id;?>'>
+                        <?php 
+                        $img = "<img class='d-block w-100' src=$blog3->main_image alt='$blog3->title' style=''/>";
+                        echo $img; 
+                        ?>
+                    </a>
                     </div>
-                
 
+            </div>
                 
-        
                     <!-- CONTROLS -->
 
                     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -107,15 +123,13 @@
             </div>
     
 
-   <!-- CATEGORIES--> 
-    <br><br>
+    <!-- CATEGORIES  -------------------------------------------------------------->
+            <br><br>
     <div class="HP-caption" style="">
-        <h3 style="background-color: #FDFDFD">browse by <span style="color: #70d6ff">category</span></h3>
+        <h3 style="">browse by <span style="color: #70d6ff">category</span></h3>
     </div>
-     <br><br><br>
+            <br><br><br>
     
-    
-     
     <div class="categories">
     <!-- Category 1 --> 
     
@@ -152,14 +166,14 @@
         
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
             
-  <!-- All blog posts-->
+ <!-- ALL BLOGS TILE GRID ---------------------------------------------------------->
   
     <main>
     <br>
     
     <!-- HEADING -->
-    <div class="HP-all-caption" style="z-index: 10; color: grey; opacity: 0.7;">
-        <h3 style="padding: 10px; text-indent: 30px; font-size: 35px; font-family: 'Open Sans', sans-serif;">be <span style="color: #3f7cac">inspired</span></h3>
+    <div class="HP-caption" style="">
+        <h3 style="">be <span style="color: #3f7cac">inspired</span></h3>
     </div>
       
     <br><br>
@@ -168,231 +182,403 @@
 
 		<div class="gallery">
 
-                <!-- 1:1 -->
+                 <!-- 1:1 -->
                 <div class="gallery-item" tabindex="0" style="overflow: hidden;; background-size: cover; background-position: center;">
                         <!-- image -->
                         <!--IMAGE-->
-                        <?php 
-                       $img = "<img class='d-block w-100' src=$blogimage alt='First slide' style='background-size: cover;'/>";
-                       echo $img; 
+                       <?php
+                       if ($count<1){
+                            $img = "<img class='d-block w-100' src='views/images/HP_images/comingsoon.JPG' alt=$blog1->title style='background-size: cover;'/>";
+                       } else {
+                            $img = "<img class='d-block w-100' src=$blog1->main_image alt=$blog1->title style='background-size: cover;'/>";
+                       }
+                       echo $img;
+                       
                        ?> 
-                         <a href='?controller=blog&action=read&blog_id=<?php echo $blogid; ?>'>
+                         <a href='?controller=blog&action=read&blog_id=<?php echo $blog1->blog_id; ?>'>
                         <!-- Likes and Comments -->
-                        <div class="gallery-item-info">
+                        <div class="gallery-item-info" style="padding-right: 30px;">
                             <ul>
                                 <!-- title -->
-                                <li class="gallery-item-body"><span class="visually-hidden">Body:</span><i class="fas fa-heart" aria-hidden="true"></i><?php echo $blog1->title ?></li>
+                                <li class="gallery-item-body" style="color:white; font-size: 16px"><span class="visually-hidden">Body:</span><?php echo $blog1->title?><br></li>
+                                <li><br></li>
+                                <!-- body -->
+                                <li class="gallery-item-body" style="color:white;"><span class="visually-hidden">Body:</span><?php echo $blog1->bodyShort?><br></li>
                                 <!-- likes -->
-                                <li class="HP-catagories-gallery-item-likes">
-                                    <span class="visually-hidden">Likes:</span>
-                                        <i class="fas fa-heart" aria-hidden="true"></i> 56</li>
-                                <!-- comments-->
-                                <li class="HP-catagories-gallery-item-comments">
-                                    <span class="visually-hidden">Comments:</span>
-                                    <i class="fas fa-comment" aria-hidden="true"></i> 2</li>
+                                <li><br></li>
+                                <li style="color:white; font-size: 16px"><?php echo $blog1->viewHTML; ?></li>
+                                <li><br></li>
+                                <li class="HP-catagories-gallery-item-likes" style="color:white; font-size: 16px">
+                                    <i class="fa fa-heart-o"></i><?php //echo $blog1->likes?>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <i class="fa fa-comment-o"></i><?php //echo $blog1->comments?></li>
+                                
                             </ul>
                         </div>
-                         </a>
+                        </a>
 			</div>
 
                 <!-- 1:2 -->
-			<div class="gallery-item" tabindex="0">
+                <div class="gallery-item" tabindex="0" style="overflow: hidden;; background-size: cover; background-position: center;">
                         <!-- image -->
-			<img src="https://images.unsplash.com/photo-1496678518751-46244eef08c4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80" class="gallery-image" alt="">
-                        <div class="gallery-item-info">
+                        <!--IMAGE-->
+                       <?php
+                       if ($count<2){
+                            $img = "<img class='d-block w-100' src='views/images/HP_images/comingsoon.JPG' alt=$blog2->title style='background-size: cover;'/>";
+                       } else {
+                            $img = "<img class='d-block w-100' src=$blog2->main_image alt=$blog2->title style='background-size: cover;'/>";
+                       }
+                       echo $img; 
+                       ?> 
+                         <a href='?controller=blog&action=read&blog_id=<?php echo $blog2->blog_id; ?>'>
+                        <!-- Likes and Comments -->
+                        <div class="gallery-item-info" style="padding-right: 30px;">
                             <ul>
                                 <!-- title -->
-                                <li class="gallery-item-body"><span class="visually-hidden">Body:</span><i class="fas fa-heart" aria-hidden="true"></i><?php echo $blog2->title ?></li>
+                                <li class="gallery-item-body" style="color:white; font-size: 16px"><span class="visually-hidden">Body:</span><?php echo $blog2->title?><br></li>
+                                <li><br></li>
+                                <!-- body -->
+                                <li class="gallery-item-body" style="color:white;"><span class="visually-hidden">Body:</span><?php echo $blog2->bodyShort?><br></li>
                                 <!-- likes -->
-                                <li class="gallery-item-likes">
-                                    <span class="visually-hidden">Likes:</span>
-                                    <i class="fas fa-heart" aria-hidden="true"></i> 89</li>
-                                <!-- comments-->
-				<li class="gallery-item-comments">
-                                    <span class="visually-hidden">Comments:</span>
-                                    <i class="fas fa-comment" aria-hidden="true"></i> 5</li>
+                                <li><br></li>
+                                <li style="color:white; font-size: 16px"><?php echo $blog2->viewHTML; ?></li>
+                                <li><br></li>
+                                <li class="HP-catagories-gallery-item-likes" style="color:white; font-size: 16px">
+                                    <i class="fa fa-heart-o"></i> 56&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-comment-o"></i> 2 </li>
+                                
                             </ul>
                         </div>
-                        </div>
+                        </a>
+			</div>
 
                 
                 <!-- 1:3 -->
-			<div class="gallery-item" tabindex="0">
+                <div class="gallery-item" tabindex="0" style="overflow: hidden;; background-size: cover; background-position: center;">
                         <!-- image -->
-                        <img src="https://images.unsplash.com/photo-1512331283953-19967202267a?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" class="gallery-image" alt="">
-                        <div class="gallery-item-info">
+                        <!--IMAGE-->
+                       <?php
+                       if ($count<3){
+                            $img = "<img class='d-block w-100' src='views/images/HP_images/comingsoon.JPG' alt=$blog3->title style='background-size: cover;'/>";
+                       } else {
+                            $img = "<img class='d-block w-100' src=$blog3->main_image alt=$blog3->title style='background-size: cover;'/>";
+                       }
+                       echo $img; 
+                       ?> 
+                         <a href='?controller=blog&action=read&blog_id=<?php echo $blog3->blog_id; ?>'>
+                        <!-- Likes and Comments -->
+                        <div class="gallery-item-info" style="padding-right: 30px;">
                             <ul>
+                                <!-- title -->
+                                <li class="gallery-item-body" style="color:white; font-size: 16px"><span class="visually-hidden">Body:</span><?php echo $blog3->title?><br></li>
+                                <li><br></li>
+                                <!-- body -->
+                                <li class="gallery-item-body" style="color:white;"><span class="visually-hidden">Body:</span><?php echo $blog3->bodyShort?><br></li>
                                 <!-- likes -->
-				<li class="gallery-item-likes">
-                                    <span class="visually-hidden">Likes:</span>
-                                    <i class="fas fa-heart" aria-hidden="true"></i> 42</li>
-                                <!-- comments-->
-				<li class="gallery-item-comments">
-                                    <span class="visually-hidden">Comments:</span>
-                                    <i class="fas fa-comment" aria-hidden="true"></i> 1</li>
+                                <li><br></li>
+                                <li style="color:white; font-size: 16px"><?php echo $blog3->viewHTML; ?></li>
+                                <li><br></li>
+                                <li class="HP-catagories-gallery-item-likes" style="color:white; font-size: 16px">
+                                    <i class="fa fa-heart-o"></i> 56&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-comment-o"></i> 2 </li>
+                                
                             </ul>
                         </div>
-                        </div>
-
-                <!-- 1:4 -->
-			<div class="gallery-item" tabindex="0">
+                        </a>
+			</div>
+                
+                <!-- 2:1 -->
+                <div class="gallery-item" tabindex="0" style="overflow: hidden;; background-size: cover; background-position: center;">
                         <!-- image -->
-			<img src="https://images.unsplash.com/photo-1584143257261-e16224e2c9df?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80" class="gallery-image" alt="">
-                        <div class="gallery-item-info">
-			<ul>
-                            <!-- likes -->
-                            <li class="gallery-item-likes">
-                                <span class="visually-hidden">Likes:</span>
-                                <i class="fas fa-heart" aria-hidden="true"></i> 38</li>
-                            <!-- comments-->
-                            <li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 0</li>
-                        </ul>
+                        <!--IMAGE-->
+                       <?php
+                       if ($count<3){
+                            $img = "<img class='d-block w-100' src='views/images/HP_images/comingsoon.JPG' alt=$blog4->title style='background-size: cover;'/>";
+                       } else {
+                            $img = "<img class='d-block w-100' src=$blog4->main_image alt=$blog4->title style='background-size: cover;'/>";
+                       }
+                       echo $img; 
+                       ?> 
+                         <a href='?controller=blog&action=read&blog_id=<?php echo $blog4->blog_id; ?>'>
+                        <!-- Likes and Comments -->
+                        <div class="gallery-item-info" style="padding-right: 30px;">
+                            <ul>
+                                <!-- title -->
+                                <li class="gallery-item-body" style="color:white; font-size: 16px"><span class="visually-hidden">Body:</span><?php echo $blog4->title?><br></li>
+                                <li><br></li>
+                                <!-- body -->
+                                <li class="gallery-item-body" style="color:white;"><span class="visually-hidden">Body:</span><?php echo $blog4->bodyShort?><br></li>
+                                <!-- likes -->
+                                <li><br></li>
+                                <li style="color:white; font-size: 16px"><?php echo $blog4->viewHTML; ?></li>
+                                <li><br></li>
+                                <li class="HP-catagories-gallery-item-likes" style="color:white; font-size: 16px">
+                                    <i class="fa fa-heart-o"></i> 56&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-comment-o"></i> 2 </li>
+                                
+                            </ul>
                         </div>
+                        </a>
+			</div>
+
+		<!-- 2:2 -->
+                <div class="gallery-item" tabindex="0" style="overflow: hidden;; background-size: cover; background-position: center;">
+                        <!-- image -->
+                        <!--IMAGE-->
+                       <?php
+                       if ($count<3){
+                            $img = "<img class='d-block w-100' src='views/images/HP_images/comingsoon.JPG' alt=$blog5->title style='background-size: cover;'/>";
+                       } else {
+                            $img = "<img class='d-block w-100' src=$blog5->main_image alt=$blog5->title style='background-size: cover;'/>";
+                       }
+                       echo $img; 
+                       ?> 
+                         <a href='?controller=blog&action=read&blog_id=<?php echo $blog5->blog_id; ?>'>
+                        <!-- Likes and Comments -->
+                        <div class="gallery-item-info" style="padding-right: 30px;">
+                            <ul>
+                                <!-- title -->
+                                <li class="gallery-item-body" style="color:white; font-size: 16px"><span class="visually-hidden">Body:</span><?php echo $blog5->title?><br></li>
+                                <li><br></li>
+                                <!-- body -->
+                                <li class="gallery-item-body" style="color:white;"><span class="visually-hidden">Body:</span><?php echo $blog5->bodyShort?><br></li>
+                                <!-- likes -->
+                                <li><br></li>
+                                <li style="color:white; font-size: 16px"><?php echo $blog5->viewHTML; ?></li>
+                                <li><br></li>
+                                <li class="HP-catagories-gallery-item-likes" style="color:white; font-size: 16px">
+                                    <i class="fa fa-heart-o"></i> 56&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-comment-o"></i> 2 </li>
+                                
+                            </ul>
                         </div>
-
-			<div class="gallery-item" tabindex="0">
-
-				<img src="https://images.unsplash.com/photo-1505394033641-40c6ad1178d7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=806&q=80" class="gallery-image" alt="">
-
-				<div class="gallery-item-type">
-
-					<span class="visually-hidden">Gallery</span><i class="fas fa-clone" aria-hidden="true"></i>
-
-				</div>
-
-				<div class="gallery-item-info">
-
-					<ul>
-						<li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 47</li>
-						<li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 1</li>
-					</ul>
-
-				</div>
-
+                        </a>
 			</div>
 
-			<div class="gallery-item" tabindex="0">
-
-				<img src="https://images.unsplash.com/photo-1536236155319-1edab471917c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1351&q=80" class="gallery-image" alt="">
-
-				<div class="gallery-item-info">
-
-					<ul>
-                                                <li class="gallery-item-body"><span class="visually-hidden">Body:</span><i class="fas fa-heart" aria-hidden="true"></i> Some Blog Text here</li>
-						<li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 94</li>
-						<li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 3</li>
-					</ul>
-
-				</div>
-
+		<!-- 2:3 -->
+                <div class="gallery-item" tabindex="0" style="overflow: hidden;; background-size: cover; background-position: center;">
+                        <!-- image -->
+                        <!--IMAGE-->
+                       <?php
+                       if ($count<3){
+                            $img = "<img class='d-block w-100' src='views/images/HP_images/comingsoon.JPG' alt=$blog5->title style='background-size: cover;'/>";
+                       } else {
+                            $img = "<img class='d-block w-100' src=$blog6->main_image alt=$blog6->title style='background-size: cover;'/>";
+                       }
+                       echo $img; 
+                       ?> 
+                         <a href='?controller=blog&action=read&blog_id=<?php echo $blog6->blog_id; ?>'>
+                        <!-- Likes and Comments -->
+                        <div class="gallery-item-info" style="padding-right: 30px;">
+                            <ul>
+                                <!-- title -->
+                                <li class="gallery-item-body" style="color:white; font-size: 16px"><span class="visually-hidden">Body:</span><?php echo $blog6->title?><br></li>
+                                <li><br></li>
+                                <!-- body -->
+                                <li class="gallery-item-body" style="color:white;"><span class="visually-hidden">Body:</span><?php echo $blog6->bodyShort?><br></li>
+                                <!-- likes -->
+                                <li><br></li>
+                                <li style="color:white; font-size: 16px"><?php echo $blog6->viewHTML; ?></li>
+                                <li><br></li>
+                                <li class="HP-catagories-gallery-item-likes" style="color:white; font-size: 16px">
+                                    <i class="fa fa-heart-o"></i> 56&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-comment-o"></i> 2 </li>
+                                
+                            </ul>
+                        </div>
+                        </a>
 			</div>
 
-			<div class="gallery-item" tabindex="0">
-
-				<img src="https://images.unsplash.com/photo-1512917733829-196bc8ea404a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80" class="gallery-image" alt="">
-
-				<div class="gallery-item-type">
-
-					<span class="visually-hidden">Gallery</span><i class="fas fa-clone" aria-hidden="true"></i>
-
-				</div>
-
-				<div class="gallery-item-info">
-
-					<ul>
-						<li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 52</li>
-						<li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 4</li>
-					</ul>
-
-				</div>
-
+		<!-- 3:1 -->
+                <div class="gallery-item" tabindex="0" style="overflow: hidden;; background-size: cover; background-position: center;">
+                        <!-- image -->
+                        <!--IMAGE-->
+                       <?php
+                       if ($count<3){
+                            $img = "<img class='d-block w-100' src='views/images/HP_images/comingsoon.JPG' alt=$blog5->title style='background-size: cover;'/>";
+                       } else {
+                            $img = "<img class='d-block w-100' src=$blog7->main_image alt=$blog7->title style='background-size: cover;'/>";
+                       }
+                       echo $img; 
+                       ?> 
+                         <a href='?controller=blog&action=read&blog_id=<?php echo $blog7->blog_id; ?>'>
+                        <!-- Likes and Comments -->
+                        <div class="gallery-item-info" style="padding-right: 30px;">
+                            <ul>
+                                <!-- title -->
+                                <li class="gallery-item-body" style="color:white; font-size: 16px"><span class="visually-hidden">Body:</span><?php echo $blog7->title?><br></li>
+                                <li><br></li>
+                                <!-- body -->
+                                <li class="gallery-item-body" style="color:white;"><span class="visually-hidden">Body:</span><?php echo $blog7->bodyShort?><br></li>
+                                <!-- likes -->
+                                <li><br></li>
+                                <li style="color:white; font-size: 16px"><?php echo $blog7->viewHTML; ?></li>
+                                <li><br></li>
+                                <li class="HP-catagories-gallery-item-likes" style="color:white; font-size: 16px">
+                                    <i class="fa fa-heart-o"></i> 56&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-comment-o"></i> 2 </li>
+                                
+                            </ul>
+                        </div>
+                        </a>
 			</div>
 
-			<div class="gallery-item" tabindex="0">
-
-				<img src="https://images.unsplash.com/photo-1521334884684-d80222895322?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" class="gallery-image" alt="">
-
-				<div class="gallery-item-info">
-
-					<ul>
-						<li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 66</li>
-						<li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 2</li>
-					</ul>
-
-				</div>
-
+		<!-- 3:2 -->
+                <div class="gallery-item" tabindex="0" style="overflow: hidden;; background-size: cover; background-position: center;">
+                        <!-- image -->
+                        <!--IMAGE-->
+                       <?php
+                       if ($count<3){
+                            $img = "<img class='d-block w-100' src='views/images/HP_images/comingsoon.JPG' alt=$blog5->title style='background-size: cover;'/>";
+                       } else {
+                            $img = "<img class='d-block w-100' src=$blog8->main_image alt=$blog8->title style='background-size: cover;'/>";
+                       }
+                       echo $img; 
+                       ?> 
+                         <a href='?controller=blog&action=read&blog_id=<?php echo $blog8->blog_id; ?>'>
+                        <!-- Likes and Comments -->
+                        <div class="gallery-item-info" style="padding-right: 30px;">
+                            <ul>
+                                <!-- title -->
+                                <li class="gallery-item-body" style="color:white; font-size: 16px"><span class="visually-hidden">Body:</span><?php echo $blog8->title?><br></li>
+                                <li><br></li>
+                                <!-- body -->
+                                <li class="gallery-item-body" style="color:white;"><span class="visually-hidden">Body:</span><?php echo $blog8->bodyShort?><br></li>
+                                <!-- likes -->
+                                <li><br></li>
+                                <li style="color:white; font-size: 16px"><?php echo $blog8->viewHTML; ?></li>
+                                <li><br></li>
+                                <li class="HP-catagories-gallery-item-likes" style="color:white; font-size: 16px">
+                                    <i class="fa fa-heart-o"></i> 56&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-comment-o"></i> 2 </li>
+                                
+                            </ul>
+                        </div>
+                        </a>
 			</div>
 
-			<div class="gallery-item" tabindex="0">
-
-				<img src="https://images.unsplash.com/photo-1496449903678-68ddcb189a24?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80" class="gallery-image" alt="">
-
-				<div class="gallery-item-type">
-
-					<span class="visually-hidden">Gallery</span><i class="fas fa-clone" aria-hidden="true"></i>
-
-				</div>
-
-				<div class="gallery-item-info">
-
-					<ul>
-						<li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 45</li>
-						<li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 0</li>
-					</ul>
-
-				</div>
-
+		<!-- 3:3 -->
+                <div class="gallery-item" tabindex="0" style="overflow: hidden;; background-size: cover; background-position: center;">
+                        <!-- image -->
+                        <!--IMAGE-->
+                       <?php
+                       if ($count<3){
+                            $img = "<img class='d-block w-100' src='views/images/HP_images/comingsoon.JPG' alt=$blog5->title style='background-size: cover;'/>";
+                       } else {
+                            $img = "<img class='d-block w-100' src=$blog9->main_image alt=$blog9->title style='background-size: cover;'/>";
+                       }
+                       echo $img; 
+                       ?> 
+                         <a href='?controller=blog&action=read&blog_id=<?php echo $blog9->blog_id; ?>'>
+                        <!-- Likes and Comments -->
+                        <div class="gallery-item-info" style="padding-right: 30px;">
+                            <ul>
+                                <!-- title -->
+                                <li class="gallery-item-body" style="color:white; font-size: 16px"><span class="visually-hidden">Body:</span><?php echo $blog9->title?><br></li>
+                                <li><br></li>
+                                <!-- body -->
+                                <li class="gallery-item-body" style="color:white;"><span class="visually-hidden">Body:</span><?php echo $blog9->bodyShort?><br></li>
+                                <!-- likes -->
+                                <li><br></li>
+                                <li style="color:white; font-size: 16px"><?php echo $blog9->viewHTML; ?></li>
+                                <li><br></li>
+                                <li class="HP-catagories-gallery-item-likes" style="color:white; font-size: 16px">
+                                    <i class="fa fa-heart-o"></i> 56&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-comment-o"></i> 2 </li>
+                                
+                            </ul>
+                        </div>
+                        </a>
 			</div>
 
-			<div class="gallery-item" tabindex="0">
-
-				<img src="https://images.unsplash.com/photo-1518481612222-68bbe828ecd1?w=500&h=500&fit=crop" class="gallery-image" alt="">
-
-				<div class="gallery-item-info">
-
-					<ul>
-						<li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 34</li>
-						<li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 1</li>
-					</ul>
-
-				</div>
-
+		<!-- 4:1 -->
+                <div class="gallery-item" tabindex="0" style="overflow: hidden;; background-size: cover; background-position: center;">
+                        <!-- image -->
+                        <!--IMAGE-->
+                       <?php
+                       if ($count<3){
+                            $img = "<img class='d-block w-100' src='views/images/HP_images/comingsoon.JPG' alt=$blog10->title style='background-size: cover;'/>";
+                       } else {
+                            $img = "<img class='d-block w-100' src=$blog10->main_image alt=$blog10->title style='background-size: cover;'/>";
+                       }
+                       echo $img; 
+                       ?> 
+                         <a href='?controller=blog&action=read&blog_id=<?php echo $blog10->blog_id; ?>'>
+                        <!-- Likes and Comments -->
+                        <div class="gallery-item-info" style="padding-right: 30px;">
+                            <ul>
+                                <!-- title -->
+                                <li class="gallery-item-body" style="color:white; font-size: 16px"><span class="visually-hidden">Body:</span><?php echo $blog10->title?><br></li>
+                                <li><br></li>
+                                <!-- body -->
+                                <li class="gallery-item-body" style="color:white;"><span class="visually-hidden">Body:</span><?php echo $blog10->bodyShort?><br></li>
+                                <!-- likes -->
+                                <li><br></li>
+                                <li style="color:white; font-size: 16px"><?php echo $blog10->viewHTML; ?></li>
+                                <li><br></li>
+                                <li class="HP-catagories-gallery-item-likes" style="color:white; font-size: 16px">
+                                    <i class="fa fa-heart-o"></i> 56&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-comment-o"></i> 2 </li>
+                                
+                            </ul>
+                        </div>
+                        </a>
 			</div>
 
-			<div class="gallery-item" tabindex="0">
-
-				<img src="https://images.unsplash.com/photo-1518226203301-8e7f833c6a94?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80" class="gallery-image" alt="">
-
-				<div class="gallery-item-info">
-
-					<ul>
-						<li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 41</li>
-						<li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 0</li>
-					</ul>
-
-				</div>
-
+		<!-- 4:2 -->
+                <div class="gallery-item" tabindex="0" style="overflow: hidden;; background-size: cover; background-position: center;">
+                        <!-- image -->
+                        <!--IMAGE-->
+                       <?php
+                       if ($count<3){
+                            $img = "<img class='d-block w-100' src='views/images/HP_images/comingsoon.JPG' alt=$blog11->title style='background-size: cover;'/>";
+                       } else {
+                            $img = "<img class='d-block w-100' src=$blog11->main_image alt=$blog11->title style='background-size: cover;'/>";
+                       }
+                       echo $img; 
+                       ?> 
+                         <a href='?controller=blog&action=read&blog_id=<?php echo $blog11->blog_id; ?>'>
+                        <!-- Likes and Comments -->
+                        <div class="gallery-item-info" style="padding-right: 30px;">
+                            <ul>
+                                <!-- title -->
+                                <li class="gallery-item-body" style="color:white; font-size: 16px"><span class="visually-hidden">Body:</span><?php echo $blog11->title?><br></li>
+                                <li><br></li>
+                                <!-- body -->
+                                <li class="gallery-item-body" style="color:white;"><span class="visually-hidden">Body:</span><?php echo $blog11->bodyShort?><br></li>
+                                <!-- likes -->
+                                <li><br></li>
+                                <li style="color:white; font-size: 16px"><?php echo $blog11->viewHTML; ?></li>
+                                <li><br></li>
+                                <li class="HP-catagories-gallery-item-likes" style="color:white; font-size: 16px">
+                                    <i class="fa fa-heart-o"></i> 56&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-comment-o"></i> 2 </li>
+                                
+                            </ul>
+                        </div>
+                        </a>
 			</div>
 
-			<div class="gallery-item" tabindex="0">
-
-				<img src="https://images.unsplash.com/photo-1503278501277-e50457741130?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" class="gallery-image" alt="">
-
-				<div class="gallery-item-type">
-
-					<span class="visually-hidden">Video</span><i class="fas fa-video" aria-hidden="true"></i>
-
-				</div>
-
-				<div class="gallery-item-info">
-
-					<ul>
-						<li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 30</li>
-						<li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 2</li>
-					</ul>
-
-				</div>
-
+		<!-- 4:3 -->
+                <div class="gallery-item" tabindex="0" style="overflow: hidden;; background-size: cover; background-position: center;">
+                        <!-- image -->
+                        <!--IMAGE-->
+                       <?php
+                       if ($count<3){
+                            $img = "<img class='d-block w-100' src='views/images/HP_images/comingsoon.JPG' alt=$blog12->title style='background-size: cover;'/>";
+                       } else {
+                            $img = "<img class='d-block w-100' src=$blog12->main_image alt=$blog12->title style='background-size: cover;'/>";
+                       }
+                       echo $img; 
+                       ?> 
+                         <a href='?controller=blog&action=read&blog_id=<?php echo $blog12->blog_id; ?>'>
+                        <!-- Likes and Comments -->
+                        <div class="gallery-item-info" style="padding-right: 30px;">
+                            <ul>
+                                <!-- title -->
+                                <li class="gallery-item-body" style="color:white; font-size: 16px"><span class="visually-hidden">Body:</span><?php echo $blog12->title?><br></li>
+                                <li><br></li>
+                                <!-- body -->
+                                <li class="gallery-item-body" style="color:white;"><span class="visually-hidden">Body:</span><?php echo $blog12->bodyShort?><br></li>
+                                <!-- likes -->
+                                <li><br></li>
+                                <li style="color:white; font-size: 16px"><?php echo $blog12->viewHTML; ?></li>
+                                <li><br></li>
+                                <li class="HP-catagories-gallery-item-likes" style="color:white; font-size: 16px">
+                                    <i class="fa fa-heart-o"></i> 56&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-comment-o"></i> 2 </li>
+                                
+                            </ul>
+                        </div>
+                        </a>
 			</div>
 
 		</div>
