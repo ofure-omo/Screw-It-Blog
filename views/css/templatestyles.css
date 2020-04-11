@@ -1,11 +1,10 @@
+html, body, h1, h2, h3, h4, h5, h6 {
+ font-family: 'Open Sans', sans-serif;
+}
 
-p {
-    font-family: 'Open Sans', sans-serif;
-    }
-    
 .main-section {
             margin: auto;
-            width: 80%;
+            width: 90%;
             padding: 20px;
             margin-top: 50px;
             margin-bottom: 50px;
@@ -37,7 +36,7 @@ ul li a i {
 ul li a i:hover {
     opacity: .7;
 }
-
+/* removed as effected centre of other nav elements
 .search-fa {
     font-size: 16px;
     color: #FCB078;
@@ -50,6 +49,17 @@ ul li a i:hover {
     color: #70D6FF;
     cursor: pointer;
 }
+*/
+
+.searchfa {
+    font-size: 16px;
+    color: #FCB078;
+}
+
+.searchfa:hover {
+    color: #70D6FF;
+    cursor: pointer;
+}
 
 /* Style the navbar */
 #navbar {
@@ -59,6 +69,7 @@ ul li a i:hover {
 /* Navbar links in responsive mode */
 #navbar a {
   color: #70D6FF;
+
   
 }
 
@@ -70,7 +81,6 @@ ul li a i:hover {
   font-size: 16px;
 }
 
-
 .navbar-toggler {
     border: none;
     /*background-color: #FFFFFF;*/
@@ -79,8 +89,17 @@ ul li a i:hover {
 .collapse.navbar-collapse {
 }
 
+div.sticky {
+        position: -webkit-sticky; 
+        position: sticky;
+        top: 0;
+        z-index: 2;
+    }
+
 /* navbar image*/
 img {max-width:100%}
+
+
 
 
 /* Style the search button */
