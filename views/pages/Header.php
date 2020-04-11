@@ -1,9 +1,11 @@
 
 <nav class="navbar justify-content-between" id="navbar" id="navbarNavDropdown">
         <ul class="nav mr-auto">     
-            <li>
-                <a class="nav-link" href='?controller=register&action=registerUser'>SIGN UP</a>
-            </li>
+            <?php  if (!isset($_SESSION["loggedin"])) { echo "<li>
+                <a class=nav-link' href='?controller=register&action=registerUser'>SIGN UP</a>
+            </li>"; } else {
+                echo " ";
+            } ?>
             
             <li class="nav-item">
                 <a class="nav-link" href="?controller=blog&action=create">Post blog</a>
@@ -16,7 +18,7 @@
                             <?php
                            // display menu options if user is not logged in
                             if (!isset($_SESSION["loggedin"])){  
-                                echo '<a class="nav-link" href="?controller=register&action=registerUser" style="font-size: 16px;">Sign up</a>';
+                                //echo '<a class="nav-link" href="?controller=register&action=registerUser" style="font-size: 16px;">Sign up</a>';
                                 echo '<a class="nav-link" href="?controller=login&action=loginUser" style="font-size: 16px;">Log in</a>';
                             }  
                             // only display menu options if user is logged in
