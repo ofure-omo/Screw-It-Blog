@@ -4,10 +4,17 @@
             <li>
                 <a class="nav-link" href='?controller=register&action=registerUser'>SIGN UP</a>
             </li>
-            <form class="form-inline">
+            <?php if(!isset($_SESSION['user_id'])) { echo "
+                <a href='?controller=login&action=loginUser'>LOG IN</a>"
+               ; } elseif(isset($_SESSION['user_id'])) { echo "
+                    <a href='?controller=signout&action=signout'>SIGN OUT</a>"
+                ;}
+            
+?>
+<!--            <form class="form-inline">
                 <button class="btn btn-outline-light" type="button" onclick="window.location.href='?controller=login&action=loginUser'">Log in</button>
             </form>
-        </ul>
+        </ul>-->
         <ul class="nav ml-auto">  
             <li><a href="http://facebook.com/"><i class="fa fa-facebook"></i></a></li>
             <li><a href="http://instagram.com/"><i class="fa fa-instagram"></i></a></li>
@@ -46,6 +53,9 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="?controller=categories&action=searchCategory&category=renovate">RENOVATE</a>
+            </li>
+                        <li class="nav-item">
+                <a class="nav-link" href="?controller=dashboard&action=mem_details">dashboard</a>
             </li>
                         &nbsp;&nbsp;
             <li onclick="openSearch()"> 

@@ -1,5 +1,25 @@
 <body>
-<?php echo $_SESSION["user_type"]; ?>
+    <?php
+    $db = Db::getInstance();
+//if (isset($_POST['add_comment'])){
+//    $filteredComment = filter_input(INPUT_POST, 'add_comment', FILTER_SANITIZE_SPECIAL_CHARS);
+//    $req = $db->prepare("INSERT INTO comments (user_id, blog_id, comment, comment_date) 
+//                             VALUES ('".$_SESSION["user_id"]."', '".$blog['blog_id']."', ':comment', '".NOW()."');");
+//    
+//     $req->bindParam(':comment', $comment);
+//     $comment = $filteredComment;
+//    
+//     $comment->execute();
+    //exit('success');
+//}
+//    if(isset($_POST['add_comment'])) {
+//        $comment = $db->real_escape_string($_POST['comment']);
+//        
+//        $db->query("INSERT INTO comments (user_id, blog_id, comment, comment_date)
+//                             VALUES ('".$_SESSION["user_id"]."', '".$blog['blog_id']."', '$comment', '".NOW()."');");
+//        exit('success');
+//    }
+    ?>
     <!--text to be replaced with data from the blog_post table -->
     <div class='read-blog-container'>
         <div class='read-header'>
@@ -7,9 +27,9 @@
 
             <p class='header-info'>Written by: <?php echo $blog['user_fn'] . PHP_EOL . $blog['user_ln']; ?></p> <!--should be replaced with username based on the session id-->
             <p class='header-info'>Posted on: <?php
-                $d = strtotime($blog['date_posted']);
-                echo date('jS F Y', $d);
-                ?></p>
+    $d = strtotime($blog['date_posted']);
+    echo date('jS F Y', $d);
+    ?></p>
             <p class='header-info'>Category: <?php echo $blog['category']; ?></p> 
 
         </div>
@@ -58,8 +78,8 @@
                 <!-- will be populated with tags retrieved from the db-->
             </div>
         <?php } ?>
-        
-        <a href='?controller=blog&action=update&blog_id=<?php echo $blog['blog_id']?>'>edit blogpost</a>
+
+        <a href='?controller=blog&action=update&blog_id=<?php echo $blog['blog_id'] ?>'>edit blogpost</a>
 
 
         <script>
@@ -91,8 +111,8 @@
         <div class="comment-row">
             <div class="col-md-12">
                 <label for="exampleFormControlTextarea1">Comment</label>
-                <textarea class="form-control comment-form-control" id="exampleFormControlTextarea1 comment" rows="3" placeholder="write your comment here" ></textarea><br>
-                <button style="float:right;"class="btn-primary btn">Add comment </button><br>
+                <textarea class="form-control comment-form-control" id="exampleFormControlTextarea1 main_comment" rows="3" placeholder="write your comment here" ></textarea><br>
+                <button style="float:right;"class="btn-primary btn" id="add_comment" name='add_comment'>Add comment </button><br>
             </div>
         </div>
         <div class="comment-row">
@@ -116,28 +136,34 @@
 
 </body>
 </html>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script
+    src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+crossorigin="anonymous"></script>
+<script type="text/javascript">
 
-<script>
-    $(document).ready(function () {
-        $('#comment_form').on('submit', function (event) {
-            event.preventDefault();
-            var form_data = $(this).serialize();
-            $.ajax({
-                url: "?controller=comments&action=add",
-                method: "POST",
-                data: form_data,
-                dataType: "JSON",
-                success: function (data)
-                {
-                    if (data.error != '')
-                    {
-                        $('#comment_form')[0].reset();
-                        $('#comment_message').html(data.error);
-                    }
-                }
-            })
-        });
-    });
+            $(document).ready(function () {
+                $('#add_comment').on('click', function () {
+                    var comment = $('#main_comment').val();
+                    if (comment !== " ") {
+                        $.ajax({
+                            url: 'pagetorun.php?controller=blog&action=read&blog_id=110',
+                            method: 'POST',
+                            dataType: 'text',
+                            data: {
+                                add_comment: 1,
+                                comment: comment
+                            }, sucesss: function (response) {
+                                console.log(response);
+                            }
+                        });
+                    } else
+                        alert('check your inputs please');
+
+                });
+            });
 </script>
 
 <style>
