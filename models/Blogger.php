@@ -51,11 +51,25 @@ class Blogger {
             $query = "SELECT count(*) FROM blog_posts WHERE user_id = :user_id;";
             $stmt = $db->prepare($query);
             $stmt->bindParam(':user_id',$user_id,PDO::PARAM_INT);
-            $blogs = $stmt->execute();
+            $stmt->execute();
+            $blogs = $stmt->fetch();
         
-        
-            return  $blogs;
+            return  $blogs['count(*)'];
 
+    }
+    
+        public function getCountComments($user_id) {
+      $db = Screw_it::getInstance();
+      
+            $user_id = intval($user_id);
+      
+            $query = "SELECT count(*) FROM comments WHERE user_id = :user_id;";
+            $stmt = $db->prepare($query);
+            $stmt->bindParam(':user_id',$user_id,PDO::PARAM_INT);
+            $stmt->execute();
+            $comments = $stmt->fetch();
+        
+            return  $comments['count(*)'];
     }
 
         public function getProfile($user_id) {
@@ -73,4 +87,48 @@ class Blogger {
         
     }
 
-}
+    
+    public static function updateProfile() {
+        $db = Db::getInstance(); 
+        
+        $req = $db->prepare("Update Users set username=:username, bio=:bio, user_fn=:user_fn, user_ln=:user_ln, email=:email where user_id=:user_id;");
+        
+ 
+                $user_id = intval($user_id);
+        if (isset($_POST['username']) && $_POST['username'] != "") {
+            $filteredUsername = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_SPECIAL_CHARS);
+        }
+        if (isset($_POST['bio']) && $_POST['bio'] != "") {
+            $filteredBio = filter_input(INPUT_POST, 'bio', FILTER_SANITIZE_SPECIAL_CHARS);
+        }
+        if (isset($_POST['user_fn']) && $_POST['user_fn'] != "") {
+            $filteredfn = filter_input(INPUT_POST, 'user_fn', FILTER_SANITIZE_SPECIAL_CHARS);
+        }
+        if (isset($_POST['user_ln']) && $_POST['user_ln'] != "") {
+            $filteredln = filter_input(INPUT_POST, 'user_ln', FILTER_SANITIZE_SPECIAL_CHARS);
+        }
+        if (isset($_POST['email']) && $_POST['email'] != "") {
+            $filteredemail = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_SPECIAL_CHARS);
+        }
+       
+        $username = $filteredUsername;
+        $bio = $filteredBio;
+        $fn = $filteredfn;
+        $ln = $filteredln;
+        $email = $filteredemail;
+
+        $req->bindParam(':username', $username);
+        $req->bindParam(':bio', $bio);
+        $req->bindParam(':fn', $fn);
+        $req->bindParam(':ln', $ln);
+        $req->bindParam(':email', $email);
+        
+        
+        $req->execute();
+        
+        /*upload profile image if it exists
+        if (!empty($_FILES[self::InputKey]['name'])) {
+		Product::uploadFile($name);
+	}*/
+    }
+    }

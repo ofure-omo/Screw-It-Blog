@@ -16,12 +16,33 @@ class BloggerController {
       
             $blogger = Blogger::getProfile(($_SESSION['user_id']));
             $blogs = Blogger::getCountBlogs(($_SESSION['user_id']));
+            $comments = Blogger::getCountComments(($_SESSION['user_id']));
             require_once('views/pages/Bloggerdashboard.php');
 
     } else { return call('pages', 'error');
         
     }
 }
+
+    public function update() {
+        
+      if($_SERVER['REQUEST_METHOD'] == 'GET'){
+          if (!isset($_GET['user_id']))
+        return call('pages', 'error');
+
+        // we use the given id to get the correct user
+        $product = Blogger::getProfile($_GET['user_id']);
+      
+        require_once('views/pages/bloggerupdate.php');
+        }
+      else
+          { 
+            $id = $_GET['user_id'];
+            Blogger::updateProfile($id);
+      }
+      
+    }
+    
 }
 
 /*    

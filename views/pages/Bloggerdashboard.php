@@ -8,58 +8,52 @@
                         
                         <div class="flex-row-intro-dashboard" id="blogger-name" role="cell"> 
                         <h1>Hello, <?php echo $blogger['user_fn'];?></h1>
-                        <p><?php echo $blogs;?> blogs posted</p>
+                        <p><?php echo $blogs;?> blogs posted<br>
+                        <?php echo $comments;?> comments sent</p>
                         </div> 
-                        
 
-                        
                   </div>
                 </div>
             
+            <div class="container">
+            <div id="about" class="right">
+                <h2>Profile Info</h2>
+                <p>ID: <?= $blogger['user_id'] ?><br>
+                First name: <?= $blogger['user_fn'] ?><br>
+                Surname: <?= $blogger['user_ln'] ?><br>
+                Username: <?= $blogger['username'] ?><br>
+                Email: <?= $blogger['email'] ?><br>
+                Date of Birth: <?php
+                    $d = strtotime($blogger['dob']);
+                    echo date("jS F Y", $d);
+                    ?><br>
+                Profile description: <?= $blogger['bio'] ?></p>
+                <a href="" class="" id="edit_details">Edit details</a>
+            </div>
 
+            <div id="blogPosts" class="left">
+                <div class="container" id="own_posts">
+                    Your Blogs<!-- if writer: own posts -->
+                </div>
 
+                <div class="container" id="favourites">
+                    Blogs you've favourited<!-- favourite posts -->
+                </div>
 
+                <div class="container" id="followers">
+                    Bloggers you follow<!-- followers -->
+                </div>
 
-                <div class="table-container-dashboard" role="table" aria-label="">
-                    <div class="flex-table-dashboard row" role="rowgroup">  
+                <div class="container" id="followed">
+                    <!-- followed members -->
+                </div>
 
-                        
-                        <div class="flex-row-dashboard" role="cell">
-                            <div class="card" style="width: 22rem;"><a class="acc-link" href="?controller=blog&action=create">
-                                <div class="card-body-dashboard">
-                                    <img class="acc-icon" src="Views/images/plus2.png"style="width: 70px;height: 70px;"/>
-                                    <h2 class="card-title">Create a blog</h2>
-                              </div>
-                            </a>
-                        </div></div>
+            </div>
 
-                        
-                        
-                        
-                         <div class="flex-row" role="cell">
-                            <div class="card" style="width: 22rem;"><a class="acc-link" href="?controller=blog&action=myblogs" >
-                                <div class="card-body-dashboard">
-                                    <img class="acc-icon" src="Views/images/edit.png"style="width: 70px;height: 70px;"/>   
-                                    <h2 class="card-title">My blogs</h2>
-                                </div></a>
-                            </div>
-                        </div>
-
-                        
-                        
-                        
-                        <div class="flex-row" role="cell">
-                            <div class="card" style="width: 22rem;"><a class="acc-link" href="#" >
-                                <div class="card-body-dashboard">
-                                      <img class="acc-icon"src="Views/images/settings.png"style="width: 70px;height: 70px;"/> 
-                                    <h2 class="card-title">My profile</h2>
-                                </div></a>
-                            </div>
-                        </div>
-
-
-
- </div>      <button class="accordion">View/Edit Your Details</button>
+ </div>      
+                
+                
+            
         <div class="panel"> 
             <table class="table table-striped">
                 <tbody>    
@@ -68,15 +62,11 @@
                     <tr>
                         <th>User ID</th>
                         <th>Username</th>
-                         <!--<th>Password</th>  not showing password??--> 
                         <th>First Name</th>
                         <th>Last Name</th> 
                         <th>Date of Birth</th>
                         <th>Email</th>
                         <th>User type</th>
-
-
-                        <th></th>
                     </tr>
                 </thead>
 
@@ -89,13 +79,10 @@
                         <td><?= $blogger['dob'] ?></td>
                         <td><?= $blogger['email'] ?></td>
                         <td><?= $blogger['user_type'] ?></td>
-                        <td><?= $blogger['profile_pic'] ?></td>
 
-                         
                             </tbody>
             </table>
                             </div>
 
                     </tbody>
                    
-</div>

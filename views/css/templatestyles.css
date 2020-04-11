@@ -323,5 +323,17 @@ img.dashboard-img{
 
 }
 #blogger-name h1{
-    padding-top:40px;
+    padding-top:20px;
+}
+
+
+.right { float: right; }
+.left { float: left; }
+.clear { clear: both; }
+
+
+.container {
+  width: 80%;
+  max-width: 1100px;
+  padding: 0;
 }

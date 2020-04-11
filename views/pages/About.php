@@ -38,7 +38,7 @@
 
 <section class="main-section">
     <br>
-    <h5>Hi, we are the Screw-it Bloggers! </h5>
+    <h1>Meet the Screw it bloggers </h1>
 
 
     <?php foreach ($bloggers as $profile) : ?>
@@ -63,6 +63,34 @@
 
 
 </section>
+
+
+
+
+<div class="container">
+    <div class="row">
+
+        <?php foreach ($bloggers as $profile) : ?>
+            <div class="col-sm-4">
+                <div class="card h-100">
+                    <img class="card-img-top" src="<?php echo $profile['profile_pic'] ?>" height="250" width="100%" >
+                    <div class="card-body">
+                        <h5 class="card-title"><?php echo $profile['user_fn'] . " " . $profile['user_ln'] ?></h5>
+                        <p class="card-text"><?php echo $profile['bio'] ?></p>  
+                        <p class="text-muted"><?php
+                            $d = strtotime($profile['date_joined']);
+                            echo "Blogging since " . date("F Y", $d) . "<br>";
+                            ?></p>
+                    </div>
+
+                </div>
+                <br>
+            </div>
+        <?php endforeach; ?>
+
+
+    </div>
+</div>
 
 
 
