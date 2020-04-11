@@ -89,9 +89,9 @@ class Blog {
         return $tag;
     }
 
-    public static function update($blog_id) {
+    public static function update() {
         $db = Db::getInstance(); 
-        
+        $blog_id = intval($blog_id);
         if (isset($_POST['title']) && $_POST['title'] != "") {
             $filteredTitle = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_SPECIAL_CHARS);
         }
@@ -155,8 +155,6 @@ class Blog {
             $filteredCategory = filter_input(INPUT_POST, 'category', FILTER_SANITIZE_SPECIAL_CHARS);
         }
 
-        $filteredTag = $_POST['tag'];
-        $newtag = $filteredTag;
         //$explodetag = explode('# ', $newtag);
         //echo $explodetag;
 
@@ -172,7 +170,7 @@ class Blog {
           echo "";
           } */
 
-        $filteredImage = filter_input(INPUT_POST, 'myfile', FILTER_SANITIZE_SPECIAL_CHARS);
+        $filteredImage = filter_input(INPUT_POST, 'myfile[]', FILTER_SANITIZE_SPECIAL_CHARS);
 
         //$filteredImage = $_FILES['myfile']['name'];
         foreach ($_FILES["myfile"]["tmp_name"] as $key => $tmp_name) {
@@ -218,6 +216,12 @@ class Blog {
 
         $req->execute();
         $id = $db->lastInsertId();
+        
+         if (isset($_POST['tag']) && $_POST['tag'] != "") {
+            $filteredTag = filter_input(INPUT_POST, 'tag', FILTER_SANITIZE_SPECIAL_CHARS);  
+            $newtag = $filteredTag;
+            
+        
 
         foreach ($newtag as $key => $tags) {
             $tag2 = $tags;
@@ -232,6 +236,7 @@ class Blog {
 
             $req->execute();
         }
+         }
         //upload product image:  
         Blog::uploadFiles($imagename);
     }
@@ -244,14 +249,16 @@ class Blog {
     public static function uploadFiles($imagename) {
 
         $db = Screw_it::getInstance();
+        
+        $filea=$_FILES["myfile"]["type"];
 
         foreach ($_FILES["myfile"]["tmp_name"] as $key => $tmp_name) {
 
             $temp = $_FILES["myfile"]["tmp_name"][$key];
-            $imagename = $_FILES["myfile"]["name"][$key];   //save this in the db!!
-            //echo $imagename;
-        }
-
+            $imagename = $_FILES["myfile"]["name"][$key];  
+            $file_type = $_FILES["myfile"]["type"][$key];
+            //save this in the db!!
+        
         if (empty($_FILES["myfile"]["tmp_name"])) {
             //die("File Missing!");
             die("File Missing! <br>");
@@ -269,29 +276,34 @@ class Blog {
           echo "You haven't uploaded enough images, please upload 3 <br>";
           } else {
           echo "";
-          } */
+          } */     
 
-        /* if (!in_array($_FILES["myfile"]["tmp_name"], self::AllowedTypes)) {
-          echo"File Type Not Allowed: " . $_FILES["myfile"]["name"][$key] . PHP_EOL;
-          } else {
-          echo "";
-          } */
+//         if (!in_array($_FILES["myfile"]["tmp_name"], self::AllowedTypes)) {
+//          echo"File Type Not Allowed: " . $_FILES["myfile"]["name"][$key] . PHP_EOL;
+//          } else {
+//          echo "";
+//          } 
+          if (!in_array($file_type, self::AllowedTypes)) {
+            echo ("Handle File Type Not Allowed: ");
+        }
 
         //$tempFile = $_FILES[self::InputKey]['tmp_name']; 
         $path = DIRECTORY_SEPARATOR . 'Applications' . DIRECTORY_SEPARATOR . 'XAMPP' . DIRECTORY_SEPARATOR . 'xamppfiles' . DIRECTORY_SEPARATOR . 'htdocs' . DIRECTORY_SEPARATOR . 'Screw-it' . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR;
         $destinationFile = $path . $imagename;
+        
 
         move_uploaded_file($temp, $destinationFile);
         //(move_uploaded_file($_FILES[self::InputKey]['tmp_name'], $destinationFile));
         if (!move_uploaded_file($_FILES["myfile"]["tmp_name"][$key], $destinationFile)) { //file does upload not usre why throwing error?
             echo "your images have not uploaded! <br>";
         } else {
-            echo "";
+            echo "your files have uploaded";
         }
 
         //Clean up the temp file
         if (file_exists($temp)) {
             unlink($temp);
+        }
         }
     }
 

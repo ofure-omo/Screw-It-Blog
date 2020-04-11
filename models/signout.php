@@ -12,7 +12,6 @@ unset($_SESSION['loggedin']);
 unset($_SESSION['username']);
 session_destroy();
 
- 
-exit;
+
 }
 }
