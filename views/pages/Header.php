@@ -64,7 +64,7 @@
             <li class="nav-item mx-4">
                 <a class="nav-link" href="?controller=categories&action=searchCategory&category=renovate">RENOVATE</a>
             </li>
-<<<<<<< HEAD
+
                         <li class="nav-item">
                 <a class="nav-link" href="?controller=dashboard&action=mem_details">dashboard</a>
             </li>
@@ -76,9 +76,9 @@
                 <a class="nav-link" href="?controller=blog&action=create">post blog</a>
             </li>
         </ul>
-=======
+
     </ul>
->>>>>>> 4b9a14690d1d4054744ea5429c498678f142216f
+
   </div>
       
 </nav>
