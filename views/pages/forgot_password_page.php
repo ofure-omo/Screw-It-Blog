@@ -12,8 +12,13 @@
             <form action="" method="post">
                 <div>
                     
+                    <label>Username</label>
+                    <input type='text' name='username' autocomplete="off" required>
+                </div>
+                <div>
+                    
                     <label>Favourite Ryan</label>
-                    <input type="text" name="ryan" autocomplete='off' required>
+                    <input type="text" name="answer_1" autocomplete='off' required>
                 </div>  
                     <div>
                 <br>
