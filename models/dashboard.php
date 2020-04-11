@@ -2,12 +2,28 @@
 
 class dashboard {
 
-    public function getDetails() {
-        $stmt = $pdo->prepare("SELECT * FROM users;");
-        $stmt->execute(array(":id" => $_SESSION["id"]));
+    public function getDetails($user_id) {
+        $db = Screw_it::getInstance();
+        
+        $user_id = intval($user_id);
+        
+        $req = $db->prepare('SELECT * FROM users WHERE user_id = :user_id;');
+        
+        if (!$req) {
+            echo "error, pls handle";
+        }
+
+        $req->execute(array('user_id' => $user_id));
+        $mem_details = $req->fetch();
+        $details = $mem_details;
+        
+
+        return $details;
+        
+        /*$stmt->execute(array(":id" => $_SESSION["id"]));
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
         $user_object = new User($user["user_id"], htmlentities($user["user_UN"]), htmlentities($user["user_FN"]), htmlentities($user["user_SN"]),
-                htmlentities($user["user_EMAIL"], htmlentities($user["user_DOB"]), htmlentities($user["TEL"])));
+                htmlentities($user["user_EMAIL"], htmlentities($user["user_DOB"]), htmlentities($user["TEL"])));*/
     }
 
     public function getFavourites() {

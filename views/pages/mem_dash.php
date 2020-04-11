@@ -1,23 +1,4 @@
 
-
-
-
-<!DOCTYPE html>
-
-<html>
-
-    <head>
-        <title> Members' Dashboard </title>      
-        <meta charset="UTF-8">
-        <!--<link rel=stylesheet href=".css"> -->
-        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"  crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"  crossorigin="anonymous"></script>
-        <link href="https://fonts.googleapis.com/css?family=Sen&display=swap" rel="stylesheet">
-        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"  crossorigin="anonymous">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
     </head>
 
 
@@ -46,7 +27,7 @@
                     <tr>
                         <th>User ID</th>
                         <th>Username</th>
-                        <th>Password</th>
+                         <!--<th>Password</th>  not showing password??--> 
                         <th>First Name</th>
                         <th>Last Name</th> 
                         <th>Date of Birth</th>
@@ -57,21 +38,21 @@
                     </tr>
                 </thead>
 
-                <?php foreach ($userDetails as $user): ?>
+               
                     <tr>
-                        <td><?= $user['user_ID'] ?></td>
-                        <td><?= $user['user_UN'] ?></td>
-                        <td><?= $user['user_FN'] ?></td>
-                        <td><?= $user['user_SN'] ?></td>
-                        <td><?= $user['user_DOB'] ?></td>
-                        <td><?= $user['user_email'] ?></td>
+                        <td><?= $details['user_id'] ?></td>
+                        <td><?= $details['username'] ?></td>
+                        <td><?= $details['user_fn'] ?></td>
+                        <td><?= $details['user_ln'] ?></td>
+                        <td><?= $details['dob'] ?></td>
+                        <td><?= $details['email'] ?></td>
 
                             <td class="actions">
                                 <a href="userUpdate.php?user_ID=<?= $user['user_ID'] ?>" class="edit"><i class="fas fa-pen fa-xs"></i></a>
                       <!--click button to delete controller, can it be deleted without a view as its just a button???-->
                                 <a href="delete_controller.php?user_ID=<?= $user['user_ID'] ?>" class="trash"><i class="fas fa-trash fa-xs"></i></a>
                             </td>
-                    <?php endforeach; ?>
+                   
 
                     </tbody>
                     <!---favourite blog posts--->
@@ -198,4 +179,4 @@
     }
 </script>
 </body>
-</html>
+

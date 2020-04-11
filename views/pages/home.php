@@ -6,7 +6,13 @@
     <br>
     
     <!-- LATEST BLOGS -->
-    
+    <?php  if (isset($_SESSION['loggedin'])) {
+        echo "<h3>Welcome</h3>" . $_SESSION['username'];
+    } else {
+      
+        echo "<h3>See you soon</h3>";
+    }
+?>
             <!-- HEADER -->  
             <div class="HP-carousel-caption" style="">
                 <h3 style="">The <span style="color: #FCA15F">home</span> of DIY</h3>
