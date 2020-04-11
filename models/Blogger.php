@@ -43,15 +43,18 @@ class Blogger {
 
     }
 
-    public function getBloggersBlogs() {
+    public function getCountBlogs($user_id) {
       $db = Screw_it::getInstance();
       
-            $query = "SELECT user_fn, user_ln, profile_pic, bio, twitter_url, insta_url, facebook_url, date_joined  FROM Users WHERE user_type = 'Blogger' ORDER BY date_joined ASC";
+            $user_id = intval($user_id);
+      
+            $query = "SELECT count(*) FROM blog_posts WHERE user_id = :user_id;";
             $stmt = $db->prepare($query);
-            $stmt->execute();
-            $bloggerprofiles = $stmt->fetchall(PDO::FETCH_ASSOC);
+            $stmt->bindParam(':user_id',$user_id,PDO::PARAM_INT);
+            $blogs = $stmt->execute();
         
-            return  $bloggerprofiles;
+        
+            return  $blogs;
 
     }
 
@@ -63,8 +66,8 @@ class Blogger {
         $query = "SELECT * FROM users WHERE user_id = :user_id;";
         $stmt = $db->prepare($query);
         $stmt->execute(array('user_id' => $user_id));
-        $blogger_profile = $req->fetch();
-        $profile= $blogger_profile;
+        $blogger_profile = $stmt->fetch();
+        $profile = $blogger_profile;
         
         return $profile;
         

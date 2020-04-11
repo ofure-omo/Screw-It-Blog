@@ -12,12 +12,11 @@ class BloggerController {
           
 
     public function dashboard() {
-        echo "hello";
-        if(!isset($_SESSION['user_id'])) {
+        if(isset($_SESSION['user_id'])) {
       
-            $details = Blogger::getProfile(($_SESSION['user_id']));
+            $blogger = Blogger::getProfile(($_SESSION['user_id']));
+            $blogs = Blogger::getCountBlogs(($_SESSION['user_id']));
             require_once('views/pages/Bloggerdashboard.php');
-            echo $_SESSION["user_type"];
 
     } else { return call('pages', 'error');
         

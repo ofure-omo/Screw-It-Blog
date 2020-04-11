@@ -258,3 +258,70 @@ i.fa {
   padding: 20px; /* Some padding */
 }
 
+
+
+/*******BLOGGER DASHBOARD*********/
+
+.intro-section-dashboard{
+    padding-top: 50px;
+    width:100%;
+    padding-bottom:50px;
+}
+.row-dashboard{
+    justify-content: center;
+}
+
+img.dashboard-img{
+    width:150px;
+    height:150px;
+    border-radius: 50%;
+}
+
+.table-container-intro-dashboard{
+    width:100%;
+    padding:0;
+    justify-content: center;
+    padding-top:50px;
+    margin-bottom: 70px;
+
+}
+
+.table-container-dashboard{
+    width:100%;
+    padding:0;
+    justify-content: center;
+
+}
+
+.flex-table-dashboard {width:100%;
+             display: flex;
+             flex-flow: row wrap;
+             transition: 0.5s;
+             justify-content: center;
+}   
+
+.flex-row-dashboard{ 
+    width:400px;
+    height:440px;  
+    padding:10px;  
+    justify-content: center;
+}  
+
+.flex-row-intro-dashboard{ 
+    justify-content: center;
+    padding-right:60px;
+}  
+
+.card-body-dashboard{
+    color: black;
+    padding:20px;
+    border-color: black;
+    
+    height:300px;
+    text-align: center;
+    border-width: 4px;
+
+}
+#blogger-name h1{
+    padding-top:40px;
+}
