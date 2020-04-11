@@ -49,20 +49,20 @@
     </button>    
     <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav mx-auto">
-            <li class="nav-item">
+            <li class="nav-item mx-4">
                 <a class="nav-link" href="?controller=home&action=home">HOME</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item mx-4">
                 <a class="nav-link <?php if (!isset($_GET['controller=blogger&action=about'])){
                 echo "active";} ?>" href="?controller=blogger&action=about">ABOUT</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item mx-4">
                 <a class="nav-link" href="?controller=categories&action=searchCategory&category=create">CREATE</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item mx-4">
                 <a class="nav-link" href="?controller=categories&action=searchCategory&category=decorate">DECORATE</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item mx-4">
                 <a class="nav-link" href="?controller=categories&action=searchCategory&category=renovate">RENOVATE</a>
             </li>
     </ul>
