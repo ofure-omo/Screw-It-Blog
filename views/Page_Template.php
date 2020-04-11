@@ -1,54 +1,52 @@
 <!DOCTYPE html>
 <html lang="en"> 
-<head>
-      
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <head>
+
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+        <!-- Bootstrap, CSS styles and fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:800&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="views/css/templatestyles.css">
+        <link rel="stylesheet" href="views/css/stylesHome.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <link rel="shortcut icon" type="image/png" href="views/images/favicon.png" />
+        <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+            WebFont.load({
+                google: {
+                    families: ['Open Sans']
+                }
+            });
+        </script>
+    </head>
+
+    <div id="container">
+
+        <!---Header------------------------------------------------------------------>    
+        <?php
+        include_once "views/pages/Header.php";
+        ?> 
+
+        <!---MAIN BODY--------------------------------------------------------------->
+        <div id="main">
+            <?php require_once('routes.php'); ?>
+        </div>
+
+
+        <!---FOOTER------------------------------------------------------------------>   
+
+    </div>
+    <?php
+    include_once "views/pages/Footer.php";
+    ?>
+
     
-    
-    <!-- Bootstrap, CSS styles and fonts-->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="views/css/templatestyles.css">
-    <link rel="stylesheet" href="views/css/stylesHome.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <link rel="shortcut icon" type="image/png" href="views/images/favicon.png" />
-<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
-<script>
-  WebFont.load({
-    google: {
-      families: ['Open Sans']
-    }
-  });
-</script>
-</head>
-        
-<div id="container">
-            
-<!---Header------------------------------------------------------------------>    
-<?php
-include_once "views/pages/Header.php";
-?> 
-
-<!---MAIN BODY--------------------------------------------------------------->
-<div id="main">
-    <?php require_once('routes.php'); ?>
-</div>
-
-
-<!---FOOTER------------------------------------------------------------------>   
-
-</div>
-<?php
-include_once "views/pages/Footer.php";
-?>
-
-
-
 
 
 </body>

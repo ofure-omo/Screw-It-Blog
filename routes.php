@@ -1,5 +1,4 @@
 <?php
-
 function call($controller, $action) {
     // require the file that matches the controller name
     require_once('controllers/' . $controller . '_controller.php');
@@ -33,9 +32,10 @@ $controllers = array('pages' => ['home', 'error', 'about', 'cookies', 'privacy']
     'login' => ['loginUser'],
     'comments' => ['add'],
     'categories' => ['showAll','searchCategory'],
-    'dashboard' => ['mem_dash'], 
+    'dashboard' => ['mem_details'], 
     'delete' => ['delete'],
-    'update' => ['update']
+    'update' => ['update'],
+    'signout' => ['signout']
 );
 
 // check that the requested controller and action are both allowed

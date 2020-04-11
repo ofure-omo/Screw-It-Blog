@@ -1,44 +1,218 @@
-<p>Fill in the following form to update an existing blog post:</p>
-<form action="" method="POST" class="w3-container" enctype="multipart/form-data">
-    <h2>Update Item</h2>
-    <p>
-        <input class="w3-input" type="texst" name="name" value="<?= $blog->title; ?>">
-        <label>Title</label>
-    </p>
-    <p>
-        <input class="w3-input" type="text" name="price" value="<?= $blog->Body; ?>" >
-        <label>Body</label>
-    </p>
 
-    <input type="hidden" name="MAX_FILE_SIZE" value="10000000" />
-    <?php
-    $file = 'views/images/' .$blog->main_image . '.jpeg';
-    if (file_exists($file)) {
-        $img = "<img src='$file' width='150' />";
-        echo $img;
-    } else {
-        echo "<img src='views/images/standard/_noproductimage.png' width='150' />";
-    }
+<body>
+<style>
+            .form-container{
+                width: 40%;
+                margin-left: 150px;
+                margin-top: 50px;
+            }
 
-    $file = 'views/images/' . $blog->second_image . '.jpeg';
-    if (file_exists($file)) {
-        $img = "<img src='$file' width='150' />";
-        echo $img;
-    } else {
-        echo "<img src='views/images/standard/_noproductimage.png' width='150' />";
-    }
+            h1 {
+                margin-left: 150px;
+                margin-top: 50px;
+            }
 
-    $file = 'views/images/' . $blog->third_image . '.jpeg';
-    if (file_exists($file)) {
-        $img = "<img src='$file' width='150' />";
-        echo $img;
-    } else {
-        echo "<img src='views/images/standard/_noproductimage.png' width='150' />";
-    }
-    ?>
-    <br/>
-    <input type="file" name="myUploader" class="w3-btn w3-pink" />
-    <p>
-        <input class="w3-btn w3-gray" type="submit" value="Update Product">
-    </p>
-</form>
+            #customFile{
+                cursor: pointer;
+            }
+
+            .button {
+
+                border: none;
+                color: white;
+                padding: 10px 30px;
+                text-align: center;
+                text-decoration: none;
+                text-transform: uppercase;
+                display: inline-block;
+                font-size: 16px;
+                margin-top: 30px;
+                margin-bottom: 30px;
+                margin-left: 200px;
+                cursor: pointer;
+                background-color: black;
+                border-radius: 7px;
+                font-weight: bolder;
+            }       
+
+            .button:hover {
+                color: white;
+                background-color: #3f7cac;
+                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            }
+
+            .container-btn {
+
+            }
+
+            .img-upload {
+                margin-bottom: 10px;
+            }
+
+            .blog-template {
+                float: right; 
+                height: 800px;
+                margin-right: 150px;
+            }
+
+            #template-container {
+
+                margin-top: 50px;
+            }
+
+            .blog-container {
+                margin-left: 170px;
+                text-transform: uppercase;
+                margin-bottom: 0;
+
+
+            }
+
+            .img-title {
+                margin-bottom: 0;
+            }
+
+            .file-type {
+                padding-top: 20px;
+            }
+
+            #tags {
+                margin-bottom: 20px;
+            }
+
+            small {
+                font-size: 0.6em;
+                font-style: italic;
+            }
+
+        </style>
+        <!--<form action="" method="POST" class="w3-container" enctype="multipart/form-data">
+           
+          <h2>Add New Item</h2>
+       </div>
+           <p>
+               <input class="w3-input" type="text" name="name" required autofocus>
+               <label>Name</label>
+           </p>
+               <p>
+               <input class="w3-input" type="text" name="price" required>
+               <label>Price</label>
+           </p>
+                   
+         <input type="hidden" 
+                  name="MAX_FILE_SIZE" 
+                value="10000000"
+                />
+       
+         <input type="file" name="myUploader" class="w3-btn w3-pink" required />
+         <p>
+           <input class="w3-btn w3-pink" type="submit" value="Add Product">
+         </p>
+       </form>-->
+        <h1>Update your blog post</h1>
+
+        <span>
+            <div id="template-container">
+                <p class="blog-container"> blog template </p>
+                <img src="views/images/blogtemplate.png" alt="blog template" class="blog-template" >
+            </div>
+            <div class=' form-container'>
+                <form action="" method="POST" class="w3-container" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="formGroupExampleInput">Title</label>
+                        <input type="text" class="form-control" id="formGroupExampleInput" name="title" value="<?= $blog['title'];?>" autofocus>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Body</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1 textarea" name="body" rows="10"><?= $blog['body']; ?></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Body 2</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1 textarea" name="body2" rows="10"> <?= $blog['body2']; ?></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Category</label>
+                        <select class="form-control" name ="category" id="exampleFormControlSelect1" >
+                            <option selected="selected">Choose a category</option>
+                            <option value="CREATE">CREATE</option>
+                            <option value="RENOVATE">RENOVATE</option>
+                            <option value="DECORATE">DECORATE</option>
+
+                        </select>
+                    </div>
+
+                        <p> Tags </p>
+                        <p>Tags previously used</p>
+                        <p><?php foreach ($tag as $newtag) echo $newtag . "\n " . "\n "; ?></p><br>
+                        <div class='checkbox-container'>
+                           
+                        <div class="form-group form-check-inline" >
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1" name ="tag[]" value="<?php echo $tag[0]; ?>">
+                            <label class="form-check-label" for="exampleCheck1"><?php echo $tag[0]; ?></label>
+                        </div>
+                        <div class="form-group form-check-inline">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1" name ="tag[]" value="<?php echo $tag[1]; ?>">
+                            <label class="form-check-label" for="exampleCheck1"><?php echo $tag[1]; ?></label>
+                        </div>
+                        <div class="form-group form-check-inline">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1" name ="tag[]" value="<?php echo $tag[2]; ?>">
+                            <label class="form-check-label" for="exampleCheck1"><?php echo $tag[2]; ?></label>
+                        </div>
+                        <div class="form-group form-check-inline">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1" name ="tag[]" value="<?php echo $tag[3]; ?>">
+                            <label class="form-check-label" for="exampleCheck1"><?php echo $tag[3]; ?></label>
+                        </div>
+                        <div class="form-group form-check-inline">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1" name ="tag[]" value="<?php echo $tag[4]; ?>">
+                            <label class="form-check-label" for="exampleCheck1"><?php echo $tag[4]; ?></label>
+                        </div>
+                        <div class="form-group form-check-inline">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1" name ="tag[]" value="<?php echo $tag[5]; ?>">
+                            <label class="form-check-label" for="exampleCheck1"><?php echo $tag[5]; ?></label>
+                        </div>
+                        <div class="form-group form-check-inline">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1" name ="tag[]" value="<?php echo $tag[6]; ?>">
+                            <label class="form-check-label" for="exampleCheck1"><?php echo $tag[6]; ?></label>
+                        </div>
+                        <div class="form-group form-check-inline">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1" name ="tag[]" value="<?php echo $tag[7]; ?>">
+                            <label class="form-check-label" for="exampleCheck1"><?php echo $tag[7]; ?></label>
+                        </div>
+                        <div class="form-group form-check-inline">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1" name ="tag[]" value="<?php echo $tag[8]; ?>">
+                            <label class="form-check-label" for="exampleCheck1"><?php echo $tag[8]; ?></label>
+                        </div>
+                        <div class="form-group form-check-inline">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1" name ="tag[]" value="<?php echo $tag[9]; ?>">
+                            <label class="form-check-label" for="exampleCheck1"><?php echo $tag[9]; ?></label>
+                        </div>
+                           
+                    </div>
+                    <div id='img_container'>
+                        <p class="img-title"> Images </p> 
+                        <small class="file-type">Formats accepted: jpg/jpeg/png</small> 
+
+                        <input type="hidden" 
+                               name="MAX_FILE_SIZE" 
+                               value="10000000" />
+
+                        <div class="form-group">
+                            <label for="exampleFormControlFile1">Upload 3 images</label>
+                            <input type="file" name="myfile[]" class="form-control-file" id="exampleFormControlFile1" multiple >
+                        </div>
+
+                        <div class="pure-form pure-form-aligned container-btn">
+                            <input type="submit" value="UPDATE" name= "submit" class="button" >
+                        </div>  
+                    </div>
+                </form>
+            </div>
+        </span>
+    </body>
+    
+<!--    <script>
+function myFunction() {
+  document.getElementById("textarea").value = <?= $blog['body']; ?>;
+}
+</script>-->
