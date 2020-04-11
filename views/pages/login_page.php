@@ -24,7 +24,7 @@
                     <input type="submit" name="submit" value="Login">
                 </div>
                 <div>
-                    <a href='?controller=forgot_password&action=security'>Forgotten your password?</a>
+                    <a href='?controller=security&action=loginUserSecurity'>Forgotten your password?</a>
                 </div>
                 <div>
             <p>Don't have an account? </br><a href='?controller=register&action=registerUser'>Sign up now</a>.</p>

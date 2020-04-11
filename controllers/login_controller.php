@@ -21,13 +21,11 @@ class LoginController {
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 Login::login();
                 return call('home', 'home');
-            } 
+            }
+        } else {
 
-
-}else {
-        
-        echo 'You are already logged in!';
+            echo 'You are already logged in!';
+        }
     }
 
-
-            }}
+}

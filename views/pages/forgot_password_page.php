@@ -14,7 +14,11 @@
                     
                     <label>Favourite Ryan</label>
                     <input type="text" name="ryan" autocomplete='off' required>
-                </div>    
+                </div>  
+                    <div>
+                <br>
+                <input type="submit" name="submit" value="Submit Answer">
+            </div>
                
                 <div>
             <p>Don't have an account? </br><a href='?controller=register&action=registerUser'>Sign up now</a>.</p>

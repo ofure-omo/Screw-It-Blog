@@ -1,39 +1,35 @@
 <?php
 
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
 /**
- * Description of Login
+ * Description of Security
  *
  * @author linzicarlin
  */
-class Login {
-
+class Security {
+    
     public $username;
-    public $password;
     public $answer_1;
 
-    function __construct($username, $password, $answer_1) {
-
-        $this->username = $username;
-        $this->password = $password;
-        $this->answer_1 = $answer_1;
-    }
-
-    public static function login() {
-
-        $db = Screw_it::getInstance();
+    public static function securityQuestionLogin(){
         
-      
+        $db = Screw_it::getInstance();
 
         if (isset($_POST['username']) && $_POST['username'] != "") {
             $filteredUsername = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_SPECIAL_CHARS);
         }
-        if (isset($_POST['password']) && $_POST['password'] != "") {
-            $filteredPassword = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_SPECIAL_CHARS);
+        if (isset($_POST['answer_1']) && $_POST['answer_1'] != "") {
+            $filteredAnswer_1 = filter_input(INPUT_POST, 'answer_1', FILTER_SANITIZE_SPECIAL_CHARS);
             //$hashedPassword = password_hash($filteredPassword, PASSWORD_BCRYPT); //creates a password hash 
         }
 
         $username = $filteredUsername;
-        $password = $filteredPassword;
+        $answer_1 = $filteredAnswer_1;
 
         $stmt = $db->prepare("SELECT * FROM Users WHERE username = :username");
         
@@ -42,7 +38,7 @@ class Login {
         $stmt->execute(array(':username' => $username));
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($stmt->rowCount() > 0) {
-            if (password_verify($password, $user['password'])) {
+            if (password_verify($answer_1, $user['answer_1'])) {
                 
                 $_SESSION['loggedin'] = TRUE;
                 $_SESSION['username'] = $user['username'];
@@ -54,9 +50,8 @@ class Login {
             }
             //verify password
         }
+        
+        
     }
     
-    
-            }
-
-
+}
