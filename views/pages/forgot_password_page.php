@@ -17,7 +17,7 @@
                 </div>    
                
                 <div>
-            <p>Don't have an account? </br><a href="register.php">Sign up now</a>.</p>
+            <p>Don't have an account? </br><a href='?controller=register&action=registerUser'>Sign up now</a>.</p>
                 </div>
               </form>
         </div>
