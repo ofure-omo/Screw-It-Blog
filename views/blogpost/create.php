@@ -1,6 +1,4 @@
-<?php
-$db = Screw_it::getInstance();
-echo $_SESSION['user_id']; ?>
+
     <body>
 
         <style>

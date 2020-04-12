@@ -13,7 +13,6 @@ class signoutController {
         if (isset($_SESSION['loggedin'])) {
             
             signout::signout_user();
-            return call('home', 'home');
         } else {
             echo "no";
         }

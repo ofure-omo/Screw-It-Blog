@@ -90,8 +90,9 @@ class Blog {
     }
 
     public static function update($blog_id) {
-        $db = Db::getInstance(); 
+        $db = Screw_it::getInstance(); 
         
+        $blog_id = intval($blog_id);
         if (isset($_POST['title']) && $_POST['title'] != "") {
             $filteredTitle = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_SPECIAL_CHARS);
         }
@@ -102,14 +103,14 @@ class Blog {
             $filteredBody2 = filter_input(INPUT_POST, 'body2', FILTER_SANITIZE_SPECIAL_CHARS);
         }
         if (isset($_POST['category']) && $_POST['category'] != "") {
-            $filteredCategory = filter_input(INPUT_POST, 'body', FILTER_SANITIZE_SPECIAL_CHARS);
+            $filteredCategory = filter_input(INPUT_POST, 'category', FILTER_SANITIZE_SPECIAL_CHARS);
         }
         $filteredTag = $_POST['tag'];
         $newtag = $filteredTag;
         
-        $req = $db->prepare("Update blog_posts set title=:title, body=:body, body2=:body2, category=:category where blog_id=:blog_id;");
+        $req = $db->prepare("Update blog_posts set title=:title, body=:body, body2=:body2, category=:category where blog_id= '".$blog_id."';");
         
-        $req->bindParam(':blog_id', $blog_id);
+        
         $req->bindParam(':title', $title);
         $req->bindParam(':body', $body);
         $req->bindParam(':body2', $body2);
@@ -125,10 +126,9 @@ class Blog {
         foreach ($newtag as $key => $tags) {
             $tag2 = $tags;
 
-            $req = $db->prepare("UPDATE blog_tags set tag=:tag WHERE blog_id = :blog_id);");
-            $req->bindParam(':blog_id', $blog_id);
+            $req = $db->prepare("UPDATE blog_tags set tag=:tag WHERE blog_id = '".$blog_id."');");
             $req->bindParam('tag', $tag);
-            $tag = $tag2;
+            $tag = $tag2; //tags doesnt work, how to check if tag already in db and if input tag not == to db tag then delete 
             $req->execute();
         }
 
@@ -137,7 +137,7 @@ class Blog {
             Product::uploadFile($name);
         }*/
     }
-
+    
     public static function add() {
 
         $db = Screw_it::getInstance();
@@ -155,8 +155,6 @@ class Blog {
             $filteredCategory = filter_input(INPUT_POST, 'category', FILTER_SANITIZE_SPECIAL_CHARS);
         }
 
-        $filteredTag = $_POST['tag'];
-        $newtag = $filteredTag;
         //$explodetag = explode('# ', $newtag);
         //echo $explodetag;
 
@@ -172,7 +170,7 @@ class Blog {
           echo "";
           } */
 
-        $filteredImage = filter_input(INPUT_POST, 'myfile', FILTER_SANITIZE_SPECIAL_CHARS);
+        $filteredImage = filter_input(INPUT_POST, 'myfile[]', FILTER_SANITIZE_SPECIAL_CHARS);
 
         //$filteredImage = $_FILES['myfile']['name'];
         foreach ($_FILES["myfile"]["tmp_name"] as $key => $tmp_name) {
@@ -189,7 +187,6 @@ class Blog {
         $file_path1 = $location . $img1;
         $file_path2 = $location . $img2;
         $file_path3 = $location . $img3;
-
         //insert exploded tags into the tags table 
         //foreach ($Tag as $key => $newtag) {
         //$explodeTag = $newtag;
@@ -198,7 +195,6 @@ class Blog {
                                 VALUES ('".$_SESSION['user_id']."', :title, :body, :body2, :category, :main_image, :second_image, :third_image);
                                ");
 
-
         $req->bindParam(':title', $title);
         $req->bindParam(':body', $body);
         $req->bindParam(':body2', $body2);
@@ -206,7 +202,6 @@ class Blog {
         $req->bindParam(':main_image', $main_image);
         $req->bindParam(':second_image', $second_image);
         $req->bindParam(':third_image', $third_image);
-
 
         $title = $filteredTitle;
         $body = $filteredBody;
@@ -218,6 +213,15 @@ class Blog {
 
         $req->execute();
         $id = $db->lastInsertId();
+        
+//         if (isset($_POST['tag']) && $_POST['tag'] !== "") {
+           if(empty($_POST['tag'])){ 
+               echo"";
+           } else {
+           $filteredTag = $_POST['tag'];
+        
+           $newtag = $filteredTag;
+            
 
         foreach ($newtag as $key => $tags) {
             $tag2 = $tags;
@@ -232,6 +236,9 @@ class Blog {
 
             $req->execute();
         }
+           }
+        //} else {"no tags selected" ;}
+         
         //upload product image:  
         Blog::uploadFiles($imagename);
     }
@@ -244,14 +251,16 @@ class Blog {
     public static function uploadFiles($imagename) {
 
         $db = Screw_it::getInstance();
+        
+        $filea=$_FILES["myfile"]["type"];
 
         foreach ($_FILES["myfile"]["tmp_name"] as $key => $tmp_name) {
 
             $temp = $_FILES["myfile"]["tmp_name"][$key];
-            $imagename = $_FILES["myfile"]["name"][$key];   //save this in the db!!
-            //echo $imagename;
-        }
-
+            $imagename = $_FILES["myfile"]["name"][$key];  
+            $file_type = $_FILES["myfile"]["type"][$key];
+            //save this in the db!!
+        
         if (empty($_FILES["myfile"]["tmp_name"])) {
             //die("File Missing!");
             die("File Missing! <br>");
@@ -269,29 +278,34 @@ class Blog {
           echo "You haven't uploaded enough images, please upload 3 <br>";
           } else {
           echo "";
-          } */
+          } */     
 
-        /* if (!in_array($_FILES["myfile"]["tmp_name"], self::AllowedTypes)) {
-          echo"File Type Not Allowed: " . $_FILES["myfile"]["name"][$key] . PHP_EOL;
-          } else {
-          echo "";
-          } */
+//         if (!in_array($_FILES["myfile"]["tmp_name"], self::AllowedTypes)) {
+//          echo"File Type Not Allowed: " . $_FILES["myfile"]["name"][$key] . PHP_EOL;
+//          } else {
+//          echo "";
+//          } 
+          if (!in_array($file_type, self::AllowedTypes)) {
+            echo ("Handle File Type Not Allowed: ");
+        }
 
         //$tempFile = $_FILES[self::InputKey]['tmp_name']; 
         $path = DIRECTORY_SEPARATOR . 'Applications' . DIRECTORY_SEPARATOR . 'XAMPP' . DIRECTORY_SEPARATOR . 'xamppfiles' . DIRECTORY_SEPARATOR . 'htdocs' . DIRECTORY_SEPARATOR . 'Screw-it' . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR;
         $destinationFile = $path . $imagename;
+        
 
         move_uploaded_file($temp, $destinationFile);
         //(move_uploaded_file($_FILES[self::InputKey]['tmp_name'], $destinationFile));
-        if (!move_uploaded_file($_FILES["myfile"]["tmp_name"][$key], $destinationFile)) { //file does upload not usre why throwing error?
-            echo "your images have not uploaded! <br>";
+        if (!move_uploaded_file($temp, $destinationFile)) { //file does upload not usre why throwing error?
+            echo "file not uploaded or images already exist! <br>";
         } else {
-            echo "";
+            echo "your files have uploaded";
         }
 
         //Clean up the temp file
         if (file_exists($temp)) {
             unlink($temp);
+        }
         }
     }
 

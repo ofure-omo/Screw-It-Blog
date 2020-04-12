@@ -9,6 +9,7 @@ class Users {
     public $email;
     public $dob;
     public $answer_1;
+    public $profile_pic;
 
     function __construct($username, $password, $user_fn, $user_ln, $email, $dob, $answer_1) {
 

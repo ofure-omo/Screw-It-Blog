@@ -1,4 +1,4 @@
- <?php
+ <?php 
 
 
 class BlogController {
@@ -19,17 +19,18 @@ class BlogController {
       // we use the given id to get the correct post
       $blog = Blog::find($_GET['blog_id']);
       $tag = Blog::findTag($_GET['blog_id']); 
-      require_once('views/blogpost/read.php');
+      require_once('views/blogpost/read.php'); 
       }
  catch (Exception $ex){
      return call('pages','error');
  }
+
     }
     
     
     public function create() {
 
-        if($_SERVER['REQUEST_METHOD'] == 'GET'){
+        if($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_SESSION['loggedin'])){
           
           $tag = Blog::getTag();
           require_once('views/blogpost/create.php');  
@@ -49,7 +50,7 @@ class BlogController {
         return call('pages', 'error');
 
         $tag = Blog::findTag($_GET['blog_id']);// we use the given id to get the correct product
-        $tag = Blog::getTag();
+        $tags = Blog::getTag(($_GET['blog_id']));
         $blog = Blog::find($_GET['blog_id']);
       
         require_once('views/blogpost/update.php');
@@ -57,8 +58,8 @@ class BlogController {
       else
           {  
            
-            $blog_id = $_GET['blog_id'];
-            Blog::update($blog_id); 
+            //$blog_id = $_GET['blog_id'];
+            Blog::update($_GET['blog_id']); 
             //$blog = Blog::all();
             //require_once('views/blogpost/readAll.php');
       }
@@ -70,6 +71,8 @@ class BlogController {
             //$blog = Blog::all();
             //require_once('views/blogpost/readAll.php');
       }
+      
+      
       
     }
   

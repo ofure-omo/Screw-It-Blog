@@ -30,14 +30,15 @@ $controllers = array('pages' => ['home', 'error', 'cookies', 'privacy'],
     'home' => ['home'],
     'register' => ['registerUser'], 
     'login' => ['loginUser'],
-    'comments' => ['add'],
+    //'comments' => ['add'],
     'categories' => ['showAll','searchCategory'],
-    'dashboard' => ['mem_details'], 
+    'dashboard' => ['mem_details', 'fav_blog', 'comments', 'deleteUser', 'unfavourite', 'deleteComment' ], 
     'delete' => ['delete'],
     'update' => ['update'],
     'signout' => ['signout'],
-    'blogger' => ['about'],
-    'security' => ['loginUserSecurity']
+    'blogger' => ['about', 'dashboard'],
+    'security' => ['loginUserSecurity'],
+    'favourites' => ['getfav', 'setfav']
 );
 
 // check that the requested controller and action are both allowed
