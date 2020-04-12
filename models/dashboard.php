@@ -31,7 +31,7 @@ class dashboard {
                              INNER JOIN Blog_id ON favourites.blog_id = Blog_posts.blog_id WHERE blog_id = :blog_id ORDER BY date_posted DESC;' );
    
         $fav_blog = $member_object->getFavourites($req);
-        $user["favourites"] = [];
+       // $user["favourites"] = [];
 
         if (!$req) {
             echo "error, pls handle";

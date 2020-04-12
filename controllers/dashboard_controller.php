@@ -35,7 +35,7 @@ class dashboardcontroller {
             require_once('views/pages/mem_dash.php');
          echo $_SESSION["user_type"];
     } else { return call('pages', 'error');
-        
+     
     }
 }
 
@@ -55,9 +55,8 @@ class dashboardcontroller {
 	echo "<div class='msg'>
         <h2 class='del'>Favourite has been deleted</h2>
         </div>";
-
+       }
 }
-   }
   public function deleteComment(){
        if (isset($_GET['user_ID'])) {
 	$id = $_GET['user_ID'];
@@ -67,4 +66,4 @@ class dashboardcontroller {
         </div>";
        }
   }
-   }
+}
