@@ -223,7 +223,7 @@
                         <!--IMAGE-->
                        <?php
                        if ($count<2){
-                            $img = "<img class='d-block w-100' src='views/images/HP_images/comingsoon.JPG' alt=$blog2->title style='background-size: cover;'/>";
+                            $img = "<img class='d-block w-100' src='views/images/HP_images/comingsoon.JPG' alt=$blog2->title style=' height: 10px;'/>";
                        } else {
                             $img = "<img class='d-block w-100' src=$blog2->main_image alt=$blog2->title style='background-size: cover;'/>";
                        }

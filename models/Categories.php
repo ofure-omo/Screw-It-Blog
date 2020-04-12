@@ -7,6 +7,7 @@ class Categories {
     public $date_posted;
     public $body;
     public $blog_id;
+    public $main_image;
     public $likes;
     public $comments;
 
@@ -36,6 +37,7 @@ public function getAllBody(){
     return $body;
 }
 
+// Counts
     public function countBlogs(){
         $sql = "select count(blog_id) from blog_posts";
         $stmt = Screw_it::getInstance()->query($sql);
@@ -43,5 +45,29 @@ public function getAllBody(){
 
         return $result;
     }    
-}
+    
+     public function countBlogsCat($category){
+        $db = Screw_it::getInstance();
+        $req = $db->prepare('SELECT count(blog_id) as count from blog_posts
+                             WHERE category = :category;'); 
+        $req->execute(array('category' => $category));
+        $result = $req->fetch();
+
+        return $result[0];
+    }   
+    
+    // Data
+    
+    public function getAllBlogs($category){
+        $db = Screw_it::getInstance();
+        $sql = "select * from blog_posts WHERE category = :category;";
+        $stmt = $db->prepare($sql);
+        $stmt->execute(array('category' => $category));
+        $result = $stmt->fetchAll();
+
+        return $result;
+    }
+       
+    }
+
 

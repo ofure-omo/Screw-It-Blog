@@ -48,6 +48,7 @@ class Login {
                 $_SESSION['username'] = $user['username'];
                 $_SESSION["user_id"] = $user['user_id']; 
                 $_SESSION["user_type"] = $user['user_type'];
+                echo "<script type='text/javascript'>location.href = '?controller=home&action=home';</script>";
                  //echo "Welcome!";// will send to member dashboard
             } else {
                 echo "Something went wrong. Please try again";
