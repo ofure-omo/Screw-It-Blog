@@ -2,7 +2,7 @@
 
 
 class dashboardcontroller {
-    //insert IF statement to direct to either member dashboard or blogger dashboard
+  
      
     public function mem_details (){
 

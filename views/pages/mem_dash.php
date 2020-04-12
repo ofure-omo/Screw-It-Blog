@@ -63,23 +63,23 @@
     <table class="table table-striped">
         <tbody>
             <tr>
-                <td><?php= $fave['date_posted']?></td>
-                <td><?php= $fave['title'] ?></td>
+                <td><?php $fave['date_posted']?></td>
+                <td><?php $fave['title'] ?></td>
                 <td><button here <?=$unfavourite ?> </td>
             </tr>
             <tr>
-                <td><?php= $fave['date_posted'] ?></td>
-                <td><?php= $fave['title'] ?></td>
+                <td><?php $fave['date_posted'] ?></td>
+                <td><?php $fave['title'] ?></td>
                 <td><button here <?=$unfavourite ?> </td>
             </tr>
             <tr>
-                <td><?php= $fave['date_posted'] ?></td>
-                <td><?php= $fave['title'] ?></td>
+                <td><?php $fave['date_posted'] ?></td>
+                <td><?php $fave['title'] ?></td>
                 <td><button here <?=$unfavourite ?> </td>
             </tr>
             <tr>
-                <td><?php= $fave['date_posted'] ?></td>
-                <td><?php= $fave['title'] ?></td>
+                <td><?php $fave['date_posted'] ?></td>
+                <td><?php $fave['title'] ?></td>
                 <td><button here <?=$unfavourite ?> </td>
             </tr>
 
@@ -95,27 +95,27 @@
     <table class="table table-striped">
         <tbody>
             <tr>
-                <td><?php= $comms['comment_date'] ?></td>
-                <td><?php= $comms['comment'] ?></td>
-                <td><?php= $comms['title'] ?></td>
+                <td><?php $comms['comment_date'] ?></td>
+                <td><?php $comms['comment'] ?></td>
+                <td><?php $comms['title'] ?></td>
                 <td><button here <?=$deleteComment ?> </td>
             </tr>
             <tr>
-                <td><?php= $comms['comment_date'] ?></td>
-                <td><?php= $comms['comment'] ?></td>
-                <td><?php= $comms['title'] ?></td>
+                <td><?php $comms['comment_date'] ?></td>
+                <td><?php $comms['comment'] ?></td>
+                <td><?php $comms['title'] ?></td>
                 <td><button here <?=$deleteComment ?> </td>
             </tr>
             <tr>
-                <td><?php= $comms['comment_date'] ?></td>
-                <td><?php= $comms['comment'] ?></td>
-                <td><?php= $comms['title'] ?></td>
+                <td><?php $comms['comment_date'] ?></td>
+                <td><?php $comms['comment'] ?></td>
+                <td><?php $comms['title'] ?></td>
                 <td><button here <?=$deleteComment ?> </td>
             </tr>
             <tr>
-                <td><?php= $comms['comment_date'] ?></td>
-                <td><?php= $comms['comment'] ?></td>
-                <td><?php= $comms['title'] ?></td>
+                <td><?php $comms['comment_date'] ?></td>
+                <td><?php $comms['comment'] ?></td>
+                <td><?php $comms['title'] ?></td>
                 <td><button here <?=$deleteComment ?> </td>
             </tr>
 
@@ -210,70 +210,6 @@
 </div>
 
 </tbody>
-<!---favourite blog posts--->
-<button class="accordion">Your Favourite Posts</button>
-<div class="panel">
-    <table class="table table-striped">
-        <tbody>
-            <tr>
-                <td>Post 1 <!--date that post favourited could go here--> </td>
-                <td><?php //blogpost favourite 1 echo $favpost->getpost    ?></td>
-                <td>Unfavourite button </td>
-            </tr>
-            <tr>
-                <td>Post 2</td>
-                <td><?php //blogpost favourite 2   ?></td>
-                <td>Unfavourite button</td>
-            </tr>
-            <tr>
-                <td>Post 3</td>
-                <td><?php //   ?></td>
-                <td>Unfavourite button</td>
-            </tr>
-            <tr>
-                <td>Post 4</td>
-                <td><?php //   ?></td>
-                <td>Unfavourite button </td>
-            </tr>
-
-
-
-        </tbody>
-    </table>   
-</div>
-
-
-<!------------comments accordion block ----------->  
-
-<button class="accordion">View / Edit  Comments </button>
-<div class="panel">     
-    <table class="table table-striped">
-        <tbody>
-            <tr>
-                <td>Comment 1 <!--date that post favourited could go here--> </td>
-                <td><?php //blogpost favourite 1 echo $favpost->getpost    ?></td>
-                <td>Delete button </td>
-            </tr>
-            <tr>
-                <td>Comment 2</td>
-                <td><?php //blogpost favourite 2   ?></td>
-                <td>Delete button</td>
-            </tr>
-            <tr>
-                <td>Comment 3</td>
-                <td><?php //   ?></td>
-                <td>Delete button</td>
-            </tr>
-            <tr>
-                <td>Comment 4</td>
-                <td><?php //   ?></td>
-                <td>Delete button</td>
-            </tr>
-
-
-        </tbody>
-    </table>
-</div>
 
 
 
@@ -316,7 +252,7 @@
 </div>
 
 </tbody>
->>>>>>> 0d37221abb412913c4915d4ad2bd5236cc5f43c6
+
 </table>
 </div>
 
