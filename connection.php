@@ -25,7 +25,7 @@ class Db {
        $server = "localhost";
     $username = "root";
     $password = "";
-    $dbname = "screw-it";
+    $dbname = "Screw-it";
         self::$instance = new mysqli($server,$username, $password, $dbname);
       }
       return self::$instance;

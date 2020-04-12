@@ -187,7 +187,6 @@ class Blog {
         $file_path1 = $location . $img1;
         $file_path2 = $location . $img2;
         $file_path3 = $location . $img3;
-
         //insert exploded tags into the tags table 
         //foreach ($Tag as $key => $newtag) {
         //$explodeTag = $newtag;
@@ -196,7 +195,6 @@ class Blog {
                                 VALUES ('".$_SESSION['user_id']."', :title, :body, :body2, :category, :main_image, :second_image, :third_image);
                                ");
 
-
         $req->bindParam(':title', $title);
         $req->bindParam(':body', $body);
         $req->bindParam(':body2', $body2);
@@ -204,7 +202,6 @@ class Blog {
         $req->bindParam(':main_image', $main_image);
         $req->bindParam(':second_image', $second_image);
         $req->bindParam(':third_image', $third_image);
-
 
         $title = $filteredTitle;
         $body = $filteredBody;
@@ -217,12 +214,14 @@ class Blog {
         $req->execute();
         $id = $db->lastInsertId();
         
-         if (isset($_POST['tag']) && $_POST['tag'] != "") {
-            $filteredTag = filter_input(INPUT_POST, 'tag', FILTER_SANITIZE_SPECIAL_CHARS);  
-            $newtag = $filteredTag;
-            
+//         if (isset($_POST['tag']) && $_POST['tag'] !== "") {
+           if(empty($_POST['tag'])){ 
+               echo"";
+           } else {
+           $filteredTag = $_POST['tag'];
         
-
+           $newtag = $filteredTag;
+            
         foreach ($newtag as $key => $tags) {
             $tag2 = $tags;
 
@@ -236,7 +235,9 @@ class Blog {
 
             $req->execute();
         }
-         }
+           }
+        //} else {"no tags selected" ;}
+         
         //upload product image:  
         Blog::uploadFiles($imagename);
     }
@@ -294,8 +295,8 @@ class Blog {
 
         move_uploaded_file($temp, $destinationFile);
         //(move_uploaded_file($_FILES[self::InputKey]['tmp_name'], $destinationFile));
-        if (!move_uploaded_file($_FILES["myfile"]["tmp_name"][$key], $destinationFile)) { //file does upload not usre why throwing error?
-            echo "your images have not uploaded! <br>";
+        if (!move_uploaded_file($temp, $destinationFile)) { //file does upload not usre why throwing error?
+            echo "file not uploaded or images already exist! <br>";
         } else {
             echo "your files have uploaded";
         }

@@ -49,7 +49,7 @@ class BlogController {
         return call('pages', 'error');
 
         $tag = Blog::findTag($_GET['blog_id']);// we use the given id to get the correct product
-        $tag = Blog::getTag();
+        //$tag = Blog::getTag(($_GET['blog_id']));
         $blog = Blog::find($_GET['blog_id']);
       
         require_once('views/blogpost/update.php');

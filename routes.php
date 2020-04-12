@@ -37,7 +37,8 @@ $controllers = array('pages' => ['home', 'error', 'cookies', 'privacy'],
     'update' => ['update'],
     'signout' => ['signout'],
     'blogger' => ['about'], ['dashboard'],
-    'security' => ['loginUserSecurity']
+    'security' => ['loginUserSecurity'],
+    'favourites' => ['getfav'], ['setfav']
 );
 
 // check that the requested controller and action are both allowed
