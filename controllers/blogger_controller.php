@@ -12,17 +12,37 @@ class BloggerController {
           
 
     public function dashboard() {
-        echo "hello";
-        if(!isset($_SESSION['user_id'])) {
+        if(isset($_SESSION['user_id'])) {
       
-            $details = Blogger::getProfile(($_SESSION['user_id']));
+            $blogger = Blogger::getProfile(($_SESSION['user_id']));
+            $blogs = Blogger::getCountBlogs(($_SESSION['user_id']));
+            $comments = Blogger::getCountComments(($_SESSION['user_id']));
             require_once('views/pages/Bloggerdashboard.php');
-            echo $_SESSION["user_type"];
 
     } else { return call('pages', 'error');
         
     }
 }
+
+    public function update() {
+        
+      if($_SERVER['REQUEST_METHOD'] == 'GET'){
+          if (!isset($_GET['user_id']))
+        return call('pages', 'error');
+
+        // we use the given id to get the correct user
+        $product = Blogger::getProfile($_GET['user_id']);
+      
+        require_once('views/pages/bloggerupdate.php');
+        }
+      else
+          { 
+            $id = $_GET['user_id'];
+            Blogger::updateProfile($id);
+      }
+      
+    }
+    
 }
 
 /*    
