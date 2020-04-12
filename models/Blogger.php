@@ -151,7 +151,7 @@ class Blogger extends Users {
         
         $req->execute();
         
-        
+        echo "<script type='text/javascript'>location.href = '?controller=blogger&action=dashboard';</script>";
         /*upload profile image if it exists
         if (!empty($_FILES[self::InputKey]['profile_pic'])) {
 		Blogger::uploadImage($profilepic);*/

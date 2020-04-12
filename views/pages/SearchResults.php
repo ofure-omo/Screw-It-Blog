@@ -18,7 +18,7 @@ echo "<span class='results'><br><br><h4>There are " . count($results) . " search
      <!--  <div class="col-sm-4">-->   
      <div class="flex-row-about">
             <div class="card text-center">
-                <a href='?controller=blog&action=read&id=<?php echo $blogpost['blog_id']; ?>' class="whole-card-link">
+                <a href='?controller=blog&action=read&blog_id=<?php echo $blogpost['blog_id']; ?>' class="whole-card-link">
                 <img class="card-img-top" src="<?php echo $blogpost['main_image'] ?>" height="250" width="50%" >
                 <div class="card-body">
                     <h5 class="card-title"><?php echo $blogpost['title'] ?></h5>
