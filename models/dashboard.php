@@ -27,9 +27,9 @@ class dashboard {
         $db = Screw_it::getInstance();
         $user_id = intval($user_id);
         $req = $db->prepare('SELECT * FROM favourites
-                             INNER JOIN Users ON favourites.user_id = Users.user_id WHERE user_id = :user_id;
-                             INNER JOIN ');
-                //do it in descending order);
+                             INNER JOIN Users ON favourites.user_id = Users.user_id WHERE user_id = :user_id,
+                             INNER JOIN Blog_id ON favourites.blog_id = Blog_posts.blog_id WHERE blog_id = :blog_id ORDER BY date_posted DESC;' );
+   
         $fav_blog = $member_object->getFavourites($req);
         $user["favourites"] = [];
 
@@ -45,8 +45,8 @@ class dashboard {
         $db = Screw_it::getInstance();
         $user_id = intval($user_id);
         $req = $db->prepare('SELECT * FROM comments
-                             INNER JOIN Users ON comments.user_id = Users.user_id WHERE user_id = :user_id;');
-        do it in descending order
+                             INNER JOIN Users ON comments.user_id = Users.user_id WHERE user_id = :user_id,
+                             INNER JOIN Blog_id ON comments.blog_id = Blog_posts.blog_id WHERE blog_id = :blog_id ORDER BY date_posted DESC;');
         $comments = $comms;
 
         if (!$req) {
