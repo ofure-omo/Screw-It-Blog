@@ -101,7 +101,6 @@ ul li a i:hover {
 #navbar a {
   color: #70D6FF;
 
-  
 }
 
 .navbar.navbar-brand {
@@ -119,6 +118,8 @@ ul li a i:hover {
 
 .collapse.navbar-collapse {
 }
+
+
 
 div.sticky {
         position: -webkit-sticky; 
