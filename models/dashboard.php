@@ -57,7 +57,6 @@ class dashboard {
         $comms = $req->fetch();
 
         return $comms;
-        echo $comms['comment'] . "<br>";
     }
 
 }
