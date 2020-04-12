@@ -23,7 +23,7 @@ echo "<span class='results'><br><br><h4>There are " . count($results) . " search
                 <div class="card-body">
                     <h5 class="card-title"><?php echo $blogpost['title'] ?></h5>
                     <p class="card-text"><?php $blogexcerpt = substr($blogpost['body'], 0, 90);
-    echo $blogexcerpt . "..." ?>
+                    echo $blogexcerpt . "..." ?><br>
                     <a href='?controller=blog&action=read&blog_id=<?php echo $blogpost['blog_id']; ?>'>Read More</a></p> 
                 </div>
                 <div class="card-footer">
