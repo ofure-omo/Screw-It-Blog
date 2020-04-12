@@ -5,6 +5,9 @@
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>
+            Screw it Blog
+        </title>
 
 
         <!-- Bootstrap, CSS styles and fonts-->

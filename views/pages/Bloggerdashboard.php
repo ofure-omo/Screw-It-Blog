@@ -132,18 +132,18 @@
   <form action="" method="POST" enctype="multipart/form-data">
     <div class="row">
       <div class="col-25">
-        <label for="fname">First Name</label>
+        <label for="user_fn">First Name</label>
       </div>
       <div class="col-75">
-        <input type="text" id="fname" name="firstname" placeholder="Your name.." value="<?= $blogger['user_fn'] ?>" >
+        <input type="text" id="user_fn" name="user_fn" placeholder="First Name" value="<?= $blogger['user_fn'] ?>" >
       </div>
     </div>
     <div class="row">
       <div class="col-25">
-        <label for="lname">Last Name</label>
+        <label for="user_ln">Last Name</label>
       </div>
       <div class="col-75">
-        <input type="text" id="lname" name="lastname" placeholder="Your last name.." value="<?= $blogger['user_ln'] ?>" >
+        <input type="text" id="user_ln" name=user_ln placeholder="Last Name" value="<?= $blogger['user_ln'] ?>" >
       </div>
     </div>
       <div class="row">
@@ -151,7 +151,7 @@
         <label for="username">Username</label>
       </div>
       <div class="col-75">
-        <input type="text" id="uname" name="lastname" placeholder="Your username.." value="<?= $blogger['username'] ?>">
+        <input type="text" id="username" name="username" placeholder="Username" value="<?= $blogger['username'] ?>">
       </div>
     </div>
      <div class="row">
@@ -159,7 +159,7 @@
         <label for="email">Email</label>
       </div>
       <div class="col-75">
-        <input type="email" id="email" name="lastname" value="<?= $blogger['email'] ?>">
+        <input type="email" id="email" name="email" value="<?= $blogger['email'] ?>">
       </div>
     </div>
        <div class="row">
@@ -188,7 +188,7 @@
     </div>
        <div class="row">
       <div class="col-25">
-    <label for="instagram">Instagram</label>
+    <label for="insta">Instagram</label>
       </div>
       <div class="col-75">
        <input type="text" id="insta" name="insta" placeholder="e.g. instagram.com/example" value="<?= $blogger['insta_url'] ?>">
@@ -204,7 +204,7 @@
     </div>
       <div class="row">
       <div class="col-25">
-           <label for="profile_pic">Profile Picture</label>
+           <label for="profile_pic" >Profile Picture</label>
       </div>
           <div class="col-75">
        <input type="hidden" name="MAX_FILE_SIZE" value="10000000" />
@@ -214,12 +214,14 @@ if(file_exists($file)){
     $img = "<img src='$file' width='150' />"; 
     echo $img;
 }
+
 else
 {
 echo "<img src='views/images/profileplaceholderimage.png' width='150' />";
 }
 ?>
   <input type="file" name="myUploader" class="w3-btn w3-pink" />
+ 
           </div></div>
           <br>
     <div class="row">
