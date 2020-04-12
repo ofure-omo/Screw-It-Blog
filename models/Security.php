@@ -15,6 +15,11 @@ class Security {
     
     public $username;
     public $answer_1;
+    
+    public function __construct() {
+        $this->username = $username;
+        $this->answer_1 = $answer_1;
+    }
 
     public static function securityQuestionLogin(){
         

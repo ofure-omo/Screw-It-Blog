@@ -149,7 +149,7 @@ CREATE TABLE `Users` (
   `dob` date NOT NULL,
   `user_type` enum('Member','Blogger','Moderator') NOT NULL DEFAULT 'Member',
   `security_1` varchar(255) DEFAULT 'Who is your favourite Ryan',
-  `answer_1` varchar(50) NOT NULL,
+  `answer_1` varchar(255) NOT NULL,
   `signature` varchar(100) DEFAULT NULL,
   `profile_pic` varchar(100) DEFAULT NULL,
   `bio` text DEFAULT NULL,
