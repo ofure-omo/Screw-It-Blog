@@ -1,7 +1,11 @@
 /*---------- ACROSS THE SITE -----------*/
 
-html, body, h1, h2, h3, h4, h5, h6 {
- font-family: 'Open Sans', sans-serif;
+html, h1, h2, h3, h4, h5, h6 {
+ font-family: 'Playfair Display', serif;
+}
+
+p, i, a {
+  font-family: 'Open Sans', sans-serif;  
 }
 
 #webpage-container{

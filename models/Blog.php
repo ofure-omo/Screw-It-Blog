@@ -30,6 +30,7 @@ class Blog {
         $this->insta_url = $insta_url;
         $this->twitter_url = $twitter_url;
     }
+    
 
     public static function all() {
         $list = [];
@@ -105,8 +106,7 @@ class Blog {
         if (isset($_POST['category']) && $_POST['category'] != "") {
             $filteredCategory = filter_input(INPUT_POST, 'category', FILTER_SANITIZE_SPECIAL_CHARS);
         }
-        $filteredTag = $_POST['tag'];
-        $newtag = $filteredTag;
+    
         
         $req = $db->prepare("Update blog_posts set title=:title, body=:body, body2=:body2, category=:category where blog_id= '".$blog_id."';");
         
@@ -123,6 +123,9 @@ class Blog {
 
         $req->execute();
         
+        if(isset($_POST['tag'])) {
+            $filteredTag = $_POST['tag'];
+        $newtag = $filteredTag;
         foreach ($newtag as $key => $tags) {
             $tag2 = $tags;
 
@@ -131,7 +134,7 @@ class Blog {
             $tag = $tag2; //tags doesnt work, how to check if tag already in db and if input tag not == to db tag then delete 
             $req->execute();
         }
-
+        }
 //upload product image if it exists
         /*if (!empty($_FILES[self::InputKey]['name'])) {
             Product::uploadFile($name);

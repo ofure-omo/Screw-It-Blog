@@ -1,4 +1,3 @@
-
 <body>
 
     <!--text to be replaced with data from the blog_post table -->
@@ -17,7 +16,8 @@
 
         <div id='body-container'> <!--main body section -->
             <p class='body' id="body1"> <?php $body = $blog['body'];
-                echo $body; //echo nl2br($body);   ?></p>
+                echo $body; //echo nl2br($body);   
+                ?></p>
 
         </div>
         <div id='img_container r' class="row"> <!--grid for 2 images, that will be positioned side by side at at the same size, when viewing on phone they will lay on top of each other -->
@@ -45,15 +45,16 @@
             $img = "<img class='d-block w-100' src=$blogimg alt='First slide' style='width:100%'/>";
             echo $img;
             ?>
+<?php echo $blog['blog_id']; ?>
 
         </div> 
         <div id="social-media"> <!--retrieve url links from user table-->
             <a href="<?php echo 'www.' . $blog['facebook_url']; ?>"><i class="fa read-fa fa-facebook" aria-hidden="true"></i></a>
             <a href="<?php echo 'www.' . $blog['insta_url']; ?>"><i class="fa read-fa fa-instagram" aria-hidden="true"></i></a>
             <a href="<?php echo 'www.' . $blog['twitter_url']; ?>"><i class="fa read-fa fa-twitter" aria-hidden="true"></i></a>
-            
+
             <a href="#" style="float:right; margin-left:20px;" id="like-btn">Like</a>
-            
+
             <a href='#'"><i class="fa fa-heart-o" onclick="myFunction()"></i> </a>
         </div>
         <?php foreach ($tag as $newtag) {
@@ -67,14 +68,14 @@
         <a href='?controller=blog&action=update&blog_id=<?php echo $blog['blog_id'] ?>'>edit blogpost</a>
 
 
-       
+
 
     </div>
 
-    <?php      include_once "comments.php";?>
-    
-    
-   
+    <?php include_once "comments.php";
+    ?>
+
+
 
     <!--    COMMENTS-->
 
@@ -88,7 +89,7 @@
     src="https://code.jquery.com/jquery-3.4.1.min.js"
     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
 crossorigin="anonymous"></script>
- <script type="text/javascript">
+<script type="text/javascript">
 //            $(document).ready(function () {
 //                $("#like-btn").click(function () {
 //                    $("#like-btn").css("color", "red");
@@ -96,28 +97,48 @@ crossorigin="anonymous"></script>
 //            });
 
 
-        </script>
-        <script scr='text/javascript'>
-$(document).ready(function() {
-    
-    $('#comment_form').on('submit', function(event){
-        event.preventDefault();
-        var form_data = $(this).serialize();
-        $.ajax({
-            url: 'models/comments.php',
-            method: 'POST',
-            data: form_data,
-            dataType: 'JSON',
-            success: function(data){
-                if(data.error != '') {
-                    $('#comment_form')[0].reset();
-                    $('#comment_message').html(data.error);
+</script>
+<script scr='text/javascript'>
+    $(document).ready(function () {
+
+        $('#comment_form').on('submit', function (event) {
+            event.preventDefault();
+            var form_data = $(this).serialize();
+            $.ajax({
+                url: 'models/add_comment.php',
+                method: 'POST',
+                data: form_data,
+                dataType: 'JSON',
+                success: function (data) {
+                    if (data.error != '') {
+                        $('#comment_form')[0].reset();
+                        $('#comment_message').html(data.error);
+                    }
                 }
-            }
-        })
+            });
+        });
+        
+        load_comment();
+
+        function load_comment() {
+
+            $.ajax({
+                url: 'models/post_comment.php',
+                method: 'POST',
+                success: function (data) {
+                    $('#display_comment').html(data);
+                }
+            });
+        };
+        
+        $(document).on('click', '.reply', function(){
+            var comment_id = $(this).attr("id");
+            $('#comment_id').val(comment_id);
+            $('#comment_form').focus();
+        });
     });
-    
-});
+
+
 
 </script>
 
@@ -167,7 +188,7 @@ $(document).ready(function() {
     }
 
     #read-title {
-        font-family: 'Francois One', sans-serif;
+        font-family: 'Playfair Display', serif;
         text-transform: uppercase;
     }
 
