@@ -17,10 +17,14 @@ class BloggerController {
             $blogger = Blogger::getProfile(($_SESSION['user_id']));
             $blogs = Blogger::getCountBlogs(($_SESSION['user_id']));
             $comments = Blogger::getCountComments(($_SESSION['user_id']));
+            $blogsfavscomments = Blogger::getBlogsFavsComments(($_SESSION['user_id'])); 
+           // $blogcontents = Blogger::getUserBlogs($_SESSION['user_id']);
             require_once('views/pages/Bloggerdashboard.php');
 
-    } else { return call('pages', 'error');
-        
+    } else { $id = $_GET['user_id'];
+            Blogger::updateProfile($id);
+            
+            require_once('views/pages/Bloggerdashboard.php');        
     }
 }
 
@@ -33,7 +37,7 @@ class BloggerController {
         // we use the given id to get the correct user
         $product = Blogger::getProfile($_GET['user_id']);
       
-        require_once('views/pages/bloggerupdate.php');
+        require_once('views/pages/Bloggerdashboard.php');
         }
       else
           { 
@@ -44,6 +48,10 @@ class BloggerController {
     }
     
 }
+
+
+
+
 
 /*    
    public function bloggerdashboard() {

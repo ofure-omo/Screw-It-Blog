@@ -1,14 +1,45 @@
+/*---------- ACROSS THE SITE -----------*/
+
 html, body, h1, h2, h3, h4, h5, h6 {
  font-family: 'Open Sans', sans-serif;
 }
 
-.main-section {
+#webpage-container{
+    position: relative;
+    min-height: 100vh;
+}
+
+.main-section-dashboard {
             margin: auto;
             width: 90%;
             padding: 20px;
-            margin-top: 50px;
-            margin-bottom: 50px;
-    }
+            padding-left: 20px;
+            padding-right: 20px;
+           /* margin-top: 50px;
+            margin-bottom: 50px;*/
+ }
+ 
+ 
+ .main-section{
+    padding-top:50px;
+    padding-left:84px;
+    padding-right:84px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    overflow: hidden;
+ }
+ 
+@media screen and (min-width: 60em){
+    .main-section{ 
+        padding-top:20px;
+        width:100%;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        overflow: hidden;
+    }    
+}
     
 /* NAVBAR STYLING */
 
@@ -222,8 +253,7 @@ i.fa {
 
 /* FORM STYLING */
 
-  
-            
+
      /* SEARCH RESULTS STYLING */     
             
     .results {
@@ -239,28 +269,72 @@ i.fa {
         display: inline-block;
     }
     
+.whole-card-link {
+    text-decoration:none;
+    color:black;
+}
+
+.whole-card-link:hover{
+    text-decoration:none;
+    color:black;
+}
   
-     /* ABOUT STYLING */ 
 
-.about-container {
-  position: relative;
-  max-width: 800px; /* Maximum width */
-  margin: 0 auto; /* Center it */
-}
 
-.about-container .content {
-  position: absolute; /* Position the background text */
-  bottom: 0; /* At the bottom. Use top:0 to append it to the top */
-  background: rgb(0, 0, 0); /* Fallback color */
-  background: rgba(0, 0, 0, 0.5); /* Black background with 0.5 opacity */
-  color: #f1f1f1; /* Grey text */
-  width: 100%; /* Full width */
-  padding: 20px; /* Some padding */
+.table-container-search{
+    width:100%;
+    padding:0;
+    justify-content: flex-start;
+    margin-left:10px;
 }
 
 
+ .flex-table-search {width:100%;
+  display: flex;
+  flex-flow: row wrap;
+  transition: 0.5s;
+  justify-content: flex-start;
+}   
+    
+.flex-row-search{ width:440px;height:480px;  padding:10px;
+}  
 
-/*******BLOGGER DASHBOARD*********/
+
+/* ------- ABOUT PAGE ------ */ 
+     
+.intro-section-about{
+    padding-top: 50px;
+    width:100%;
+    padding-bottom:50px;
+    padding-left:80px;
+    padding-right:84px;
+    background-color: white;
+}
+
+
+.table-container-about{
+    width:100%;
+    padding:0;
+    justify-content: flex-start;
+    margin-left:10px;
+}
+
+
+.flex-table-about {width:100%;
+                    display: flex;
+                    flex-flow: row wrap;
+                    transition: 0.5s;
+                    justify-content: flex-start;
+}   
+
+.flex-row-about{ width:440px;height:480px;  padding:10px;
+}  
+
+
+
+
+
+/*-------BLOGGER DASHBOARD------------*/
 
 .intro-section-dashboard{
     padding-top: 50px;
@@ -332,7 +406,7 @@ img.dashboard-img{
 .clear { clear: both; }
 
 
-.container {
+.container-dashboard {
   width: 80%;
   max-width: 1100px;
   padding: 0;

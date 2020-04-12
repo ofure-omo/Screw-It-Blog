@@ -12,7 +12,26 @@
  * @author linzicarlin
  */
 class LoginController {
+    
+  /*      function loginUser() {
+            
+        if (!isset($_SESSION['loggedin'])) {
+            
+        if($_SERVER['REQUEST_METHOD'] == 'GET'){
+       require_once('views/pages/login_page.php');
+      
+        } elseif ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $product = Login::login();
+      
+        require_once('views/pages/home.php');
+        }
+      else
+          { echo "error";
+      }
 
+    }*/
+    
+   
     public function loginUser() {
 
         
@@ -28,5 +47,6 @@ class LoginController {
         }
         require_once('views/pages/login_page.php');
     }
+
 
 }
