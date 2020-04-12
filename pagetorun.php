@@ -1,11 +1,5 @@
 <?php session_start(); ?>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Screw it Blog</title>
-    </head>
-    <body>
+
         <?php
     require_once('connection.php');
         
@@ -19,5 +13,3 @@
 
     require_once('views/Page_Template.php');
         ?>
-    </body>
-</html>

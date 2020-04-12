@@ -89,8 +89,9 @@ class Blog {
         return $tag;
     }
 
-    public static function update() {
-        $db = Db::getInstance(); 
+    public static function update($blog_id) {
+        $db = Screw_it::getInstance(); 
+        
         $blog_id = intval($blog_id);
         if (isset($_POST['title']) && $_POST['title'] != "") {
             $filteredTitle = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -102,14 +103,14 @@ class Blog {
             $filteredBody2 = filter_input(INPUT_POST, 'body2', FILTER_SANITIZE_SPECIAL_CHARS);
         }
         if (isset($_POST['category']) && $_POST['category'] != "") {
-            $filteredCategory = filter_input(INPUT_POST, 'body', FILTER_SANITIZE_SPECIAL_CHARS);
+            $filteredCategory = filter_input(INPUT_POST, 'category', FILTER_SANITIZE_SPECIAL_CHARS);
         }
         $filteredTag = $_POST['tag'];
         $newtag = $filteredTag;
         
-        $req = $db->prepare("Update blog_posts set title=:title, body=:body, body2=:body2, category=:category where blog_id=:blog_id;");
+        $req = $db->prepare("Update blog_posts set title=:title, body=:body, body2=:body2, category=:category where blog_id= '".$blog_id."';");
         
-        $req->bindParam(':blog_id', $blog_id);
+        
         $req->bindParam(':title', $title);
         $req->bindParam(':body', $body);
         $req->bindParam(':body2', $body2);
@@ -125,10 +126,9 @@ class Blog {
         foreach ($newtag as $key => $tags) {
             $tag2 = $tags;
 
-            $req = $db->prepare("UPDATE blog_tags set tag=:tag WHERE blog_id = :blog_id);");
-            $req->bindParam(':blog_id', $blog_id);
+            $req = $db->prepare("UPDATE blog_tags set tag=:tag WHERE blog_id = '".$blog_id."');");
             $req->bindParam('tag', $tag);
-            $tag = $tag2;
+            $tag = $tag2; //tags doesnt work, how to check if tag already in db and if input tag not == to db tag then delete 
             $req->execute();
         }
 
@@ -137,7 +137,7 @@ class Blog {
             Product::uploadFile($name);
         }*/
     }
-
+    
     public static function add() {
 
         $db = Screw_it::getInstance();
@@ -222,6 +222,7 @@ class Blog {
         
            $newtag = $filteredTag;
             
+
         foreach ($newtag as $key => $tags) {
             $tag2 = $tags;
 

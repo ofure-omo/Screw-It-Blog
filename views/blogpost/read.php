@@ -1,3 +1,4 @@
+
 <body>
 
     <!--text to be replaced with data from the blog_post table -->
@@ -51,11 +52,7 @@
             <a href="<?php echo 'www.' . $blog['insta_url']; ?>"><i class="fa read-fa fa-instagram" aria-hidden="true"></i></a>
             <a href="<?php echo 'www.' . $blog['twitter_url']; ?>"><i class="fa read-fa fa-twitter" aria-hidden="true"></i></a>
             
-            <?php if (mysql_num_rows($stmt) == 1) {
-            <a href='#' style='float:right; margin-left:20px;' id='like-btn'>unlike</a>
-            } else {      
-                    <a href='#' style='float:right; margin-left:20px;' id='like-btn'>Like</a>
-            }
+            <a href="#" style="float:right; margin-left:20px;" id="like-btn">Like</a>
             
             <a href='#'"><i class="fa fa-heart-o" onclick="myFunction()"></i> </a>
         </div>
@@ -73,24 +70,13 @@
        
 
     </div>
-    <!--    <div class='comment-container'>
-            <form method="POST" id="comment_form">
-                <div class="form-group">
-                    <label for="exampleFormControlTextarea1">Comment</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1 comment" rows="3" placeholder="write your comment here" name="comment"></textarea>
-                </div>
-                <div class="pure-form pure-form-aligned container-btn">
-                    <input type="submit" value="submit" name= "submit" id="button" class="button" >
-                </div>         
+
+    <?php      include_once "comments.php";?>
     
-            </form>
-            <span id="comment_message"></span>
-            <br/>
-            <div id=" "display_comment></div>
-        </div>-->
+    
+   
 
     <!--    COMMENTS-->
-
 
 
 </body>
@@ -111,7 +97,29 @@ crossorigin="anonymous"></script>
 
 
         </script>
+        <script scr='text/javascript'>
+$(document).ready(function() {
+    
+    $('#comment_form').on('submit', function(event){
+        event.preventDefault();
+        var form_data = $(this).serialize();
+        $.ajax({
+            url: 'models/comments.php',
+            method: 'POST',
+            data: form_data,
+            dataType: 'JSON',
+            success: function(data){
+                if(data.error != '') {
+                    $('#comment_form')[0].reset();
+                    $('#comment_message').html(data.error);
+                }
+            }
+        })
+    });
+    
+});
 
+</script>
 
 <style>
 

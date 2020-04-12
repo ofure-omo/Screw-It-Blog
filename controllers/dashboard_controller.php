@@ -33,7 +33,7 @@ class dashboardcontroller {
         if(isset($_SESSION['user_id'])) {
             $details = dashboard::getDetails(($_SESSION['user_id']));
             require_once('views/pages/mem_dash.php');
-         echo $_SESSION["user_type"]
+         echo $_SESSION["user_type"];
     } else { return call('pages', 'error');
         
     }
@@ -57,6 +57,7 @@ class dashboardcontroller {
         </div>";
 
 }
+   }
   public function deleteComment(){
        if (isset($_GET['user_ID'])) {
 	$id = $_GET['user_ID'];
@@ -64,5 +65,6 @@ class dashboardcontroller {
 	echo "<div class='msg'>
         <h2 class='del'>Comment has been deleted</h2>
         </div>";
-
-
+       }
+  }
+   }
