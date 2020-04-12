@@ -28,6 +28,7 @@
                 }
             });
         </script>
+        <link href="https://fonts.googleapis.com/css?family=Playfair+Display&display=swap" rel="stylesheet">
     </head>
 
     <div id="webpage-container">

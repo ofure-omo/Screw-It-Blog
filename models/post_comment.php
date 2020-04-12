@@ -52,6 +52,7 @@ echo $output;
 function get_reply_comment($db, $parent_id = 0, $marginleft = 0) {
 
     $db = Screw_it::getInstance();
+    $output='';
 
     $query = "SELECT * FROM comments 
              INNER JOIN Users ON comments.user_id = users.user_id 
@@ -72,6 +73,9 @@ function get_reply_comment($db, $parent_id = 0, $marginleft = 0) {
 
     if ($count > 0) {
         foreach ($result as $row) {
+            
+            $output='';
+            
             $output .= '
                     <div class="panel panel-default" stlye="margin-left:' . $marginleft . 'px">
                 <div class="panel-heading"> By ' . $row["username"] . ' </b> on <i> ' . $row["comment_date"] . '</i> </div>

@@ -14,6 +14,9 @@
                     <input type="submit" value="COMMENT" name= "submit" id="button" class="btn btn-info" style="float:right;" >
                 </div>         
     
+ ' ;}  else {
+     echo "<p style='text-align: center; color: #3F7CAC; margin-bottom:70px;'>Want to comment? Why not<a href='?controller=register&action=registerUser' style='text-decoration: none; text-transform:bold;'> sign up </a>and become a member or <a href='?controller=login&action=loginUser' style='text-decoration: none; text-transform:bold;'> log in</a></p>";
+ } ?> 
             </form>
             <span id="comment_message"></span>
             <br/>
@@ -23,7 +26,4 @@
         </div>
         </div>
 
-
- ' ;}  else {
-     echo "<p style='text-align: center; color: #3F7CAC;'>Want to comment? Why not sign up and become a member!</p>";
- } ?>       
+      
