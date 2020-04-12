@@ -1,44 +1,85 @@
-<?php
 
-class Comments {
+<?php  session_start();
 
-    public function addComment() {
+ class Screw_it {
+    
+    private static $instance = NULL;
 
-        $db = Screw_it::getInstance();
+    //Singleton Design Pattern
+    public static function getInstance() {
+      if (!isset(self::$instance)) {
+        $pdo_options[PDO::ATTR_ERRMODE] = PDO::ERRMODE_EXCEPTION;
+        self::$instance = new PDO('mysql:host=localhost;dbname=Screw-It', 'root', '', $pdo_options);
+      }
+      return self::$instance;
+    }
+}
 
-        $error = '';
-        $comment = '';
+//        $db= Screw_it::getInstance();
+//        
+//        $error='';
+//        $comment_content='';
+//        $blog_id='';
+//        
+//        if(empty($_POST['comment_content'])){
+//            $error.= "<p class='text-danger'>A comment is required</p>";
+//        } else {
+//            $comment_content = filter_input(INPUT_POST, 'comment_content', FILTER_SANITIZE_SPECIAL_CHARS);
+//            $blog_id = $_POST['blog_id'];
+//            
+//        }
+//        
+//        if($error == '') {
+//            $query = "INSERT INTO comments (parent_comment_id, comment, user_id, blog_id)
+//                    VALUES (:parent_comment_id, :comment, '".$_SESSION['user_id']."', :blog_id);";
+//            $stmt = $db->prepare($query);
+//            
+//            $stmt->execute (
+//                    array(
+//                        ':parent_comment_id'  => '0',
+//                        ':comment'  =>  $comment_content,
+//                        ':blog_id'  =>  $blog_id
+//                    )
+//                    );
+//            $error = "<label class='text-success'>Comment added</label>";
+//        }
+//        $data = array(
+//            'error'  => $error
+//        );
+//        echo json_encode($data);
+//    
 
-        if (empty(filter_input(INPUT_POST, "comment", FILTER_SANITIZE_SPECIAL_CHARS))) {
+        $db= Screw_it::getInstance();
 
-            $error .= "<p class='text-danger'>Comment is required</p>";
-            
+        $error='';
+        $comment_content='';
+        $blog_id= '';
+        
+        if(empty($_POST['comment_content'])){
+            $error.= "<p class='text-danger'>Comment is required</p>";
         } else {
-
-            $comment .= filter_input(INPUT_POST, "comment", FILTER_SANITIZE_SPECIAL_CHARS);
+            $comment_content = filter_input(INPUT_POST, 'comment_content', FILTER_SANITIZE_SPECIAL_CHARS);
         }
-
-        /*if (empty($_SESSION["user_id"])) { //check if session is empty and show error message for user to log in or create an account 
-            $error = "<p class='text-danger'>You need to be logged in to post a comment, please <a href='#'>log in</a> or <a href='?controller=register&action=registerUser'>create an account!</a></p>";
-        }*/
-
-        if ($error == '') {
-            $query = "INSERT INTO comments (parent_comment_id, comment) VALUES (:parent_comment_id, :comment);";
+        
+        if($error == '') {
+            $query = "INSERT INTO comments (parent_comment_id, comment, user_id, blog_id)
+                    VALUES (:parent_comment_id, :comment, '".$_SESSION['user_id']."', '".$blog_id."' )";
             $stmt = $db->prepare($query);
-            $stmt->execute(
+            
+            $stmt->execute (
                     array(
-                        ':parent_comment_id' => '0',
-                        ':comment' => $comment
+                        ':parent_comment_id'  => '0',
+                        ':comment'  =>  $comment_content
                     )
-            );
-
+                    );
             $error = "<label class='text-success'>Comment added</label>";
         }
-
         $data = array(
-            'error' => $error
+            'error'  => $error
         );
         echo json_encode($data);
-    }
+        
 
-}
+
+
+?>

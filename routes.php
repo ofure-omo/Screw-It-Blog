@@ -30,13 +30,16 @@ $controllers = array('pages' => ['home', 'error', 'cookies', 'privacy'],
     'home' => ['home'],
     'register' => ['registerUser'], 
     'login' => ['loginUser'],
-    'comments' => ['add'],
+    //'comments' => ['add'],
     'categories' => ['showAll','searchCategory'],
     'dashboard' => ['mem_details'], 
     'delete' => ['delete'],
     'update' => ['update'],
     'signout' => ['signout'],
-    'blogger' => ['about', 'dashboard'],
+    'blogger' => ['about'], ['dashboard'],
+    'security' => ['loginUserSecurity'],
+    'favourites' => ['getfav', 'setfav'],
+    'blogger' => ['about'], ['dashboard'],
     'security' => ['loginUserSecurity']
 );
 

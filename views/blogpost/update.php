@@ -134,7 +134,7 @@
                     <div class="form-group">
                         <label for="exampleFormControlSelect1">Category</label>
                         <select class="form-control" name ="category" id="exampleFormControlSelect1" >
-                            <option selected="selected">Choose a category</option>
+                            <option selected="selected" value="">Choose a category</option>
                             <option value="CREATE">CREATE</option>
                             <option value="RENOVATE">RENOVATE</option>
                             <option value="DECORATE">DECORATE</option>
@@ -149,43 +149,43 @@
                            
                         <div class="form-group form-check-inline" >
                             <input type="checkbox" class="form-check-input" id="exampleCheck1" name ="tag[]" value="<?php echo $tag[0]; ?>">
-                            <label class="form-check-label" for="exampleCheck1"><?php echo $tag[0]; ?></label>
+                            <label class="form-check-label" for="exampleCheck1"><?php echo $tags[0]; ?></label>
                         </div>
                         <div class="form-group form-check-inline">
                             <input type="checkbox" class="form-check-input" id="exampleCheck1" name ="tag[]" value="<?php echo $tag[1]; ?>">
-                            <label class="form-check-label" for="exampleCheck1"><?php echo $tag[1]; ?></label>
+                            <label class="form-check-label" for="exampleCheck1"><?php echo $tags[1]; ?></label>
                         </div>
                         <div class="form-group form-check-inline">
                             <input type="checkbox" class="form-check-input" id="exampleCheck1" name ="tag[]" value="<?php echo $tag[2]; ?>">
-                            <label class="form-check-label" for="exampleCheck1"><?php echo $tag[2]; ?></label>
+                            <label class="form-check-label" for="exampleCheck1"><?php echo $tags[2]; ?></label>
                         </div>
                         <div class="form-group form-check-inline">
                             <input type="checkbox" class="form-check-input" id="exampleCheck1" name ="tag[]" value="<?php echo $tag[3]; ?>">
-                            <label class="form-check-label" for="exampleCheck1"><?php echo $tag[3]; ?></label>
+                            <label class="form-check-label" for="exampleCheck1"><?php echo $tags[3]; ?></label>
                         </div>
                         <div class="form-group form-check-inline">
                             <input type="checkbox" class="form-check-input" id="exampleCheck1" name ="tag[]" value="<?php echo $tag[4]; ?>">
-                            <label class="form-check-label" for="exampleCheck1"><?php echo $tag[4]; ?></label>
+                            <label class="form-check-label" for="exampleCheck1"><?php echo $tags[4]; ?></label>
                         </div>
                         <div class="form-group form-check-inline">
                             <input type="checkbox" class="form-check-input" id="exampleCheck1" name ="tag[]" value="<?php echo $tag[5]; ?>">
-                            <label class="form-check-label" for="exampleCheck1"><?php echo $tag[5]; ?></label>
+                            <label class="form-check-label" for="exampleCheck1"><?php echo $tags[5]; ?></label>
                         </div>
                         <div class="form-group form-check-inline">
                             <input type="checkbox" class="form-check-input" id="exampleCheck1" name ="tag[]" value="<?php echo $tag[6]; ?>">
-                            <label class="form-check-label" for="exampleCheck1"><?php echo $tag[6]; ?></label>
+                            <label class="form-check-label" for="exampleCheck1"><?php echo $tags[6]; ?></label>
                         </div>
                         <div class="form-group form-check-inline">
                             <input type="checkbox" class="form-check-input" id="exampleCheck1" name ="tag[]" value="<?php echo $tag[7]; ?>">
-                            <label class="form-check-label" for="exampleCheck1"><?php echo $tag[7]; ?></label>
+                            <label class="form-check-label" for="exampleCheck1"><?php echo $tags[7]; ?></label>
                         </div>
                         <div class="form-group form-check-inline">
                             <input type="checkbox" class="form-check-input" id="exampleCheck1" name ="tag[]" value="<?php echo $tag[8]; ?>">
-                            <label class="form-check-label" for="exampleCheck1"><?php echo $tag[8]; ?></label>
+                            <label class="form-check-label" for="exampleCheck1"><?php echo $tags[8]; ?></label>
                         </div>
                         <div class="form-group form-check-inline">
                             <input type="checkbox" class="form-check-input" id="exampleCheck1" name ="tag[]" value="<?php echo $tag[9]; ?>">
-                            <label class="form-check-label" for="exampleCheck1"><?php echo $tag[9]; ?></label>
+                            <label class="form-check-label" for="exampleCheck1"><?php echo $tags[9]; ?></label>
                         </div>
                            
                     </div>
