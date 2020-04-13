@@ -29,9 +29,10 @@ class BloggerController {
     
         public function delete() {
             Blogger::deleteAccount($_GET['user_id']);
+          //  require_once('Views/pages/home.php');
 
       }
-      
+     
    /*   
     public function update() {
         
