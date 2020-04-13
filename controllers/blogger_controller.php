@@ -20,17 +20,17 @@ class BloggerController {
             $blogsfavscomments = Blogger::getBlogsFavsComments(($_SESSION['user_id'])); 
            // $blogcontents = Blogger::getUserBlogs($_SESSION['user_id']);
             require_once('views/pages/Bloggerdashboard.php');
-
-    } else { $id = $_GET['user_id'];
-            Blogger::updateProfile($id);
             
-            require_once('views/pages/Bloggerdashboard.php');        
-    }
-}
-
+           if($_SERVER['REQUEST_METHOD'] == 'POST'){ $id = $blogger[0];
+           Blogger::updateProfile($id);
+ require_once('views/pages/Bloggerdashboard.php');
+    }}}
+   
+    
+    
     public function update() {
         
-      if($_SERVER['REQUEST_METHOD'] == 'GET'){
+      if($_SERVER['REQUEST_METHOD'] == 'POST'){
           if (!isset($_GET['user_id']))
         return call('pages', 'error');
 

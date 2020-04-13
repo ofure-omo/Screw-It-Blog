@@ -5,6 +5,9 @@
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>
+            Screw it Blog
+        </title>
 
 
         <!-- Bootstrap, CSS styles and fonts-->
@@ -25,6 +28,7 @@
                 }
             });
         </script>
+        <link href="https://fonts.googleapis.com/css?family=Playfair+Display&display=swap" rel="stylesheet">
     </head>
 
     <div id="webpage-container">

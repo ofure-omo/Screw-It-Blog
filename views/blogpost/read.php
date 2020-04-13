@@ -1,37 +1,49 @@
-
 <body>
 
     <!--text to be replaced with data from the blog_post table -->
-    <div class='read-blog-container'>
+
+    
         <div class='read-header'>
+            
+            
+            <div class= 'main-header'>
+            <div >
+                   <?php   
+                   $blogimg = $blog['profile_pic'];
+               $img = "<img src=$blogimg alt='profile picture' class='avatar'>";
+                     echo $img; 
+                     ?>
+        </div>
             <h1 id="read-title"><?php echo $blog['title']; ?></h1> <!--header section to retrieve data from db -->
 
-            <p class='header-info'>Written by: <?php echo $blog['user_fn'] . PHP_EOL . $blog['user_ln']; ?></p> <!--should be replaced with username based on the session id-->
+            <p class='header-info' id ='author'>Written by: <?php echo $blog['user_fn'] . PHP_EOL . $blog['user_ln']; ?></p> <!--should be replaced with username based on the session id-->
             <p class='header-info'>Posted on: <?php
                 $d = strtotime($blog['date_posted']);
                 echo date('jS F Y', $d);
                 ?></p>
             <p class='header-info'>Category: <?php echo $blog['category']; ?></p> 
+            </div>
 
         </div>
-
+<div class='read-blog-container'>
         <div id='body-container'> <!--main body section -->
             <p class='body' id="body1"> <?php $body = $blog['body'];
-                echo $body; //echo nl2br($body);   ?></p>
+                echo $body; //echo nl2br($body);   
+                ?></p>
 
         </div>
         <div id='img_container r' class="row"> <!--grid for 2 images, that will be positioned side by side at at the same size, when viewing on phone they will lay on top of each other -->
             <div id='main_image ' class="column">
                 <?php
                 $blogimg = $blog['main_image'];
-                $img = "<img class='d-block w-100' src=$blogimg alt='First slide' style='width:100%'/>";
+                $img = "<img class='d-block w-100' src=$blogimg alt='First slide' style='width:100%' alt='blog image1'/>";
                 echo $img;
                 ?>
             </div>
             <div id='second_image ' class="column">
                 <?php
                 $blogimg = $blog['second_image'];
-                $img = "<img class='d-block w-100' src=$blogimg alt='First slide' style='width:100%'/>";
+                $img = "<img class='d-block w-100' src=$blogimg alt='First slide' style='width:100%' alt='blog image1'/>";
                 echo $img;
                 ?>
             </div>
@@ -42,7 +54,7 @@
         <div class='third_image'>
             <?php
             $blogimg = $blog['third_image'];
-            $img = "<img class='d-block w-100' src=$blogimg alt='First slide' style='width:100%'/>";
+            $img = "<img class='d-block w-100' src=$blogimg alt='First slide' style='width:100%' alt='blog image1'/>";
             echo $img;
             ?>
 
@@ -51,9 +63,9 @@
             <a href="<?php echo 'www.' . $blog['facebook_url']; ?>"><i class="fa read-fa fa-facebook" aria-hidden="true"></i></a>
             <a href="<?php echo 'www.' . $blog['insta_url']; ?>"><i class="fa read-fa fa-instagram" aria-hidden="true"></i></a>
             <a href="<?php echo 'www.' . $blog['twitter_url']; ?>"><i class="fa read-fa fa-twitter" aria-hidden="true"></i></a>
-            
+
             <a href="#" style="float:right; margin-left:20px;" id="like-btn">Like</a>
-            
+
             <a href='#'"><i class="fa fa-heart-o" onclick="myFunction()"></i> </a>
         </div>
         <?php foreach ($tag as $newtag) {
@@ -62,19 +74,15 @@
                 <button class='tag-btn'><p class='tag'> <?php echo $newtag ?></p></button> <!-- will use a foreach function that will show the tag icon foreach tag-->
                 <!-- will be populated with tags retrieved from the db-->
             </div>
+
 <?php } ?>
-
-        <a href='?controller=blog&action=update&blog_id=<?php echo $blog['blog_id'] ?>'>edit blogpost</a>
-
-
-       
 
     </div>
 
-    <?php      include_once "comments.php";?>
-    
-    
-   
+    <?php include_once "comments.php";
+    ?>
+
+
 
     <!--    COMMENTS-->
 
@@ -88,7 +96,7 @@
     src="https://code.jquery.com/jquery-3.4.1.min.js"
     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
 crossorigin="anonymous"></script>
- <script type="text/javascript">
+<script type="text/javascript">
 //            $(document).ready(function () {
 //                $("#like-btn").click(function () {
 //                    $("#like-btn").css("color", "red");
@@ -96,28 +104,50 @@ crossorigin="anonymous"></script>
 //            });
 
 
-        </script>
-        <script scr='text/javascript'>
-$(document).ready(function() {
-    
-    $('#comment_form').on('submit', function(event){
-        event.preventDefault();
-        var form_data = $(this).serialize();
-        $.ajax({
-            url: 'models/comments.php',
-            method: 'POST',
-            data: form_data,
-            dataType: 'JSON',
-            success: function(data){
-                if(data.error != '') {
-                    $('#comment_form')[0].reset();
-                    $('#comment_message').html(data.error);
+</script>
+<script scr='text/javascript'>
+    $(document).ready(function () {
+
+        $('#comment_form').on('submit', function (event) {
+            event.preventDefault();
+            var form_data = $(this).serialize();
+            $.ajax({
+                url: 'models/add_comment.php',
+                method: 'POST',
+                data: form_data,
+                dataType: 'JSON',
+                success: function (data) {
+                    if (data.error != '') {
+                        $('#comment_form')[0].reset();
+                        $('#comment_message').html(data.error);
+                    }
                 }
-            }
-        })
+            });
+        });
+        
+        $('#comment_id').val('0');
+        load_comment();
+
+        function load_comment() {
+
+            $.ajax({
+                url: 'models/post_comment.php',
+                method: 'POST',
+                success: function (data) {
+                    $('#display_comment').html(data);
+                }
+            })
+        }
+        
+        $(document).on('click', '.reply', function(){
+            var comment_id = $(this).attr("id");
+            $('#comment_id').val(comment_id);
+            $('#comment_content').focus();
+        });
+        
     });
-    
-});
+
+
 
 </script>
 
@@ -147,10 +177,10 @@ $(document).ready(function() {
 
     .read-blog-container{
         margin: auto;
-        width: 60%;
+        width: 65%;
         padding: 20px;
-        margin-top: 100px;
-        margin-bottom: 50px;
+        margin-top: 10px;
+       
     }
 
     .comment-container{
@@ -163,38 +193,69 @@ $(document).ready(function() {
     .read-header {
         text-align: center;
         font-size: 1.5em;
-
+        margin: auto;
+        width: 90%;
+        
+        margin-top: 100px;
     }
+    
+    .avatar {
+  vertical-align: middle;
+  width: 145px;
+  height: 145px;
+  border-radius: 55%;
+  margin-top: 30px;
+  margin-right: 20px;
+  float: left
+      
+  
+}
 
     #read-title {
-        font-family: 'Francois One', sans-serif;
+        font-family: 'Playfair Display', serif;
         text-transform: uppercase;
+        font-size: 45px;
+      margin-left: 80px;
+/*         border: 1px solid red;*/
+        
     }
 
     .header-info {
         display: flex;
-        display: inline;
-        justify-content: space-around;
-        margin-left: 20px;
-        font-size: 0.7em;
-        margin-top: 20px;
-    }
+        display: inline-block;
+        justify-content: space-between;
+        margin-left: 35px;
+        margin-right: 35px;
+        font-size: 0.5em;
+        margin-top: 25px;
 
+    }
+    
+    #author {
+   
+    }
+    
+    .main-header{
+          margin: auto;
+        width: 72%;
+        padding: 20px;
+/*         border: 1px solid red;*/
+    }
     .body {
         margin-top: 20px;
-        line-height: 1.8em;
-        font-size: 0.95em;
+        line-height: 2.1em;
+        font-size: 1em;
     }
 
     #body1 {
-        margin-top: 60px;
+        margin-top: 30px;
 
     }
 
     .tag {
-        display: inline;           
+        display: inline-block;           
         margin: 10px 10px;
-        font-size: 0.65em;
+        font-size: 0.7em;
         text-transform: uppercase;
     }
 
@@ -204,8 +265,9 @@ $(document).ready(function() {
         border-radius: 5px;
         margin: 5px;
         margin-top: 30px;
-        font-weight: bold;
+        
         border-style: none;
+ 
 
     }
 
@@ -220,15 +282,6 @@ $(document).ready(function() {
         display: inline;
     }
 
-    #comment-container {
-        margin: auto;
-        width: 60%;
-
-        padding: 20px;
-        margin-top: 50px;
-        margin-bottom: 70px;
-
-    }
 
     #socialmedia{
 
@@ -265,7 +318,7 @@ $(document).ready(function() {
     }
 
     .third_image {   
-        margin-bottom: 40px;
+        margin-bottom: 20px;
     }
 
     @media only screen and (max-width: 1000px) {

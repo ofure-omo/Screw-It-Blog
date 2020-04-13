@@ -1,5 +1,19 @@
-
-<nav class="navbar justify-content-between" id="navbar" id="navbarNavDropdown">
+<style>
+    #drop {
+       background-color: #3F7CAC;
+       border-color: #70D6FF;
+    }
+    
+    #dropselect {
+        cursor: pointer;
+    }
+    
+    #droptext {
+        color: #70D6FF;
+        cursor: pointer;
+    }
+</style>
+<nav class="navbar justify-content-between" id="navbar" >
     <ul class="nav mr-auto">     
         <?php
         // display menu options if user is not logged in
@@ -13,17 +27,19 @@
                 <?php
                 // only display menu options if user is logged in
                 if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
-                    echo '<li class="nav-item dropdown">
+                    echo '<li class="nav-item dropdown" id="dropselect">
                         <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Members Area</a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">';
-                echo '<a class="nav-link" href="?controller=signout&action=signout" style="font-size: 16px;">Log out</a>';}
+            <div class="dropdown-menu" id="drop" aria-labelledby="navbarDropdownMenuLink">';
+                }
                 if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSION ['user_type']=== "Member") {
-                    echo '<a class="nav-link" href="?controller=dashboard&action=mem_details" style="font-size: 16px;">Your dashboard</a>';
+                    echo '<a class="nav-link" id="droptext" href="?controller=dashboard&action=mem_details" style="font-size: 16px;">Your dashboard</a>';
+                    echo '<a class="nav-link" href="?controller=signout&action=signout" style="font-size: 16px;">Log out</a>';
                 }
                 if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSION ['user_type']=== "Blogger"){
                     echo '<a class="nav-link" href="?controller=blog&action=create" style="font-size: 16px;">Post Blog</a>';
                     echo '<a class="nav-link" href="?controller=blogger&action=dashboard">Dashboard</a>';
+                    echo '<a class="nav-link" href="?controller=signout&action=signout" style="font-size: 16px;">Log out</a>';
                 };
                 ?>
         </li>

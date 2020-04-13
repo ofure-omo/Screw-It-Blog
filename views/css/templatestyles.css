@@ -1,7 +1,11 @@
 /*---------- ACROSS THE SITE -----------*/
 
-html, body, h1, h2, h3, h4, h5, h6 {
- font-family: 'Open Sans', sans-serif;
+html, h1, h2, h3, h4, h5, h6 {
+ font-family: 'Playfair Display', serif;
+}
+
+p, i, a {
+  font-family: 'Open Sans', sans-serif;  
 }
 
 #webpage-container{
@@ -101,7 +105,6 @@ ul li a i:hover {
 #navbar a {
   color: #70D6FF;
 
-  
 }
 
 .navbar.navbar-brand {
@@ -119,6 +122,8 @@ ul li a i:hover {
 
 .collapse.navbar-collapse {
 }
+
+
 
 div.sticky {
         position: -webkit-sticky; 
@@ -397,7 +402,7 @@ img.dashboard-img{
 
 }
 #blogger-name h1{
-    padding-top:20px;
+    padding-top:5px;
 }
 
 

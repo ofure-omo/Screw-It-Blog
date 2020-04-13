@@ -91,25 +91,15 @@ class Blogger extends Users {
     
     public static function updateProfile($user_id) {
         $db = Screw_it::getInstance(); 
-        $req = $db->prepare("Update Users set username=:username, bio=:bio, dob=:dob, user_fn=:user_fn, user_ln=:user_ln, email=:email, twitter_url=:twitter, instagram_url=:insta, facebook_url=:facebook, profile_pic=:profile_pic where user_id=:user_id;");
-        $req->bindParam(':user_id', $user_id);
-        $req->bindParam(':username', $username);
-        $req->bindParam(':bio', $bio);
-        $req->bindParam(':dob', $dob);
-        $req->bindParam(':user_fn', $fn);
-        $req->bindParam(':user_ln', $ln);
-        $req->bindParam(':email', $email);
-        $req->bindParam(':twitter', $twitter);
-        $req->bindParam(':insta', $insta);
-        $req->bindParam(':facebook', $facebook);
-        $req->bindParam(':profile_pic', $profilepic);
- 
 
+        if (isset($_POST['username']) && $_POST['username'] != "") {
+            $filteredUsername = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_SPECIAL_CHARS);
+        }
         if (isset($_POST['bio']) && $_POST['bio'] != "") {
             $filteredBio = filter_input(INPUT_POST, 'bio', FILTER_SANITIZE_SPECIAL_CHARS);
         }
         if (isset($_POST['dob']) && $_POST['dob'] != "") {
-            $filteredBio = filter_input(INPUT_POST, 'dob', FILTER_SANITIZE_SPECIAL_CHARS);
+            $filtereddob = filter_input(INPUT_POST, 'dob', FILTER_SANITIZE_SPECIAL_CHARS);
         }
         if (isset($_POST['user_fn']) && $_POST['user_fn'] != "") {
             $filteredfn = filter_input(INPUT_POST, 'user_fn', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -129,23 +119,51 @@ class Blogger extends Users {
         if (isset($_POST['insta']) && $_POST['insta'] != "") {
             $filteredinsta = filter_input(INPUT_POST, 'insta', FILTER_SANITIZE_SPECIAL_CHARS);
         }
-       
+       //if (isset($_POST['profile_pic']) && $_POST['profile_pic'] != "") {
+       //    $filteredimage = "Views/images/".filter_input(INPUT_POST,'profile_pic', FILTER_SANITIZE_SPECIAL_CHARS);
+       // }
+        
         $username = $filteredUsername;
         $bio = $filteredBio;
+        $dob = $filtereddob;
         $fn = $filteredfn;
         $ln = $filteredln;
         $email = $filteredemail;
+        $twitter = $filteredtwitter;
+        $insta = $filteredinsta;
+        $facebook = $filteredfacebook;
+        //$profilepic = $filteredimage;
+        
+        /* removed -- , profile_pic=:profile_pic  from query*/
+        
+        $req = $db->prepare("Update Users set username=:username, bio=:bio, dob=:dob, user_fn=:user_fn, user_ln=:user_ln, email=:email, twitter_url=:twitter, insta_url=:insta, facebook_url=:facebook WHERE user_id=:user_id;");
+        $req->bindParam(':user_id', $user_id);
+        $req->bindParam(':username', $username);
+        $req->bindParam(':bio', $bio);
+        $req->bindParam(':dob', $dob);
+        $req->bindParam(':user_fn', $fn);
+        $req->bindParam(':user_ln', $ln);
+        $req->bindParam(':email', $email);
+        $req->bindParam(':twitter', $twitter);
+        $req->bindParam(':insta', $insta);
+        $req->bindParam(':facebook', $facebook);
+        //$req->bindParam(':profile_pic', $profilepic);
+        
         $req->execute();
         
-        //upload profile image if it exists
+        echo "<script type='text/javascript'>location.href = '?controller=blogger&action=dashboard';</script>";
+        /*upload profile image if it exists
         if (!empty($_FILES[self::InputKey]['profile_pic'])) {
-		Blogger::uploadFile($profilepic);
+		Blogger::uploadImage($profilepic);*/
 	}
-    }
-    
-    public static function uploadFile(string $name) {
+    //}
+   
+    const AllowedTypes = ['image/jpeg', 'image/jpg', 'image/png'];
+    const InputKey = 'myfile';
+      
+    public static function uploadImage(string $image) {
 
-	if (empty($_FILES[self::InputKey])) {
+	/*if (empty($_FILES[self::InputKey])) {
 		//die("File Missing!");
                 trigger_error("File Missing!");
 	}
@@ -170,12 +188,24 @@ class Blogger extends Users {
 	//Clean up the temp file
 	if (file_exists($tempFile)) {
 		unlink($tempFile); 
-	}
-}
+	}*/
+        
+            $tempFile = $_FILES[self::InputKey]['tmp_name'];
+            $path = realpath(__DIR__ . '/..') . '/' .  $image;
+	       $destinationFile = $path ;
+            $error = $_FILES[self::InputKey]['error'];
 
-    const AllowedTypes = ['image/jpeg', 'image/jpg', 'image/png'];
-    const InputKey = 'myfile';
-    
+//        if($error === 0) {
+            
+	if (!move_uploaded_file($tempFile, $destinationFile)) {
+		echo "";            
+        } 
+        if (file_exists($tempFile)) {
+		unlink($tempFile); 
+        } 
+        }
+
+
     public static function deleteAccount($user_id) {
       $db = Screw_it::getInstance();
       //make sure $id is an integer

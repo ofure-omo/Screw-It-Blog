@@ -12,6 +12,6 @@ unset($_SESSION['loggedin']);
 unset($_SESSION['username']);
 session_destroy();
 
-
+ echo "<script type='text/javascript'>location.href = '?controller=home&action=home';</script>";
 }
 }

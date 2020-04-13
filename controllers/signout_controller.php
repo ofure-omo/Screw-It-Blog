@@ -13,6 +13,7 @@ class signoutController {
         if (isset($_SESSION['loggedin'])) {
             
             signout::signout_user();
+            echo "<script type='text/javascript'>location.href = '?controller=home&action=home';</script>";
         } else {
             echo "no";
         }
