@@ -78,7 +78,6 @@
 }
 </style>
 
-
 <div class="tab">
   <button class="tablinks" onclick="openTab(event, 'MBlogs')">Blogs</button>
   <button class="tablinks" onclick="openTab(event, 'MComments')">Comments</button>
