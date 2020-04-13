@@ -24,7 +24,7 @@ function call($controller, $action) {
 
 // for validation we list the allowed controllers and their actions
 // Add an entry for each new controller and its actions
-$controllers = array('pages' => ['home', 'error', 'cookies', 'privacy'],
+$controllers = array('pages' => ['home', 'error', 'cookies', 'privacy', 'FAQs'],
     'blog' => ['readAll', 'read', 'create', 'update', 'delete'],
     'search' => ['search'],
     'home' => ['home'],

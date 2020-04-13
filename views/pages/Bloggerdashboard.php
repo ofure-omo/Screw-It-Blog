@@ -25,13 +25,12 @@
                 </div>
                   
      <style>
-/*body {font-family: Arial;}
 
 /* Style the tab */
 .tab {
   overflow: hidden;
   border: 1px solid #ccc;
-  background-color: #f1f1f1;
+  background-color: #3F7CAC;
 }
 
 /* Style the buttons inside the tab */
@@ -43,17 +42,20 @@
   cursor: pointer;
   padding: 14px 16px;
   transition: 0.3s;
-  font-size: 17px;
+  font-size: 14px;
+  color: #FFFFFF;
 }
 
 /* Change background color of buttons on hover */
 .tab button:hover {
-  background-color: #ddd;
+  background-color: #70D6FF;
+  color: #000000;
 }
 
 /* Create an active/current tablink class */
 .tab button.active {
-  background-color: #ccc;
+  background-color: #FCB078;
+  color: #FFFFFF
 }
 
 /* Style the tab content */
@@ -79,14 +81,208 @@
 </style>
 
 <div class="tab">
-  <button class="tablinks" onclick="openTab(event, 'MBlogs')">Blogs</button>
-  <button class="tablinks" onclick="openTab(event, 'MComments')">Comments</button>
-  <button class="tablinks" onclick="openTab(event, 'MProfile')">Profile</button>
+    <button class="tablinks" onclick="openTab(event, 'MBlogs')"><b>BLOGS</b></button>
+    <button class="tablinks" onclick="openTab(event, 'MComments')"><b>COMMENTS</b></button>
+    <button class="tablinks" onclick="openTab(event, 'MProfile')"><b>PROFILE</b></button>
 </div>
 
 <div id="MBlogs" class="tabcontent">
   <p></p>
             <?php if (count($blogsfavscomments) > 0) { ?>
+  <table style="width:100%">     
+      <tr>
+          <th><h3>Blog</h3></th>
+          <th><h3>Date Posted</h3></th>
+          <th><h3>Favourite Count</h3></th>
+          <th><h4>Comment Count</h4></th>
+          <th><h4>Actions</h4></th>
+      </tr>
+      <?php foreach ($blogsfavscomments as $posts) { ?>
+      <tr>
+          <td><?php echo $posts['title'] ?></td>
+          <td> <?php
+                    $d = strtotime($posts['date_posted']);
+                    echo date("jS F Y", $d);?>
+          </td>
+          <td><?php echo $posts['favourite_count'] ?></td>
+          <td><?php echo $posts['comment_count'] ?> </td>
+          <td>  
+              <a  href='?controller=blog&action=read&blog_id=<?php echo $posts['blog_id']; ?>'>View</a>&nbsp; 
+              <a  href='?controller=blog&action=update&blog_id=<?php echo $posts['blog_id']; ?>'>Update</a>&nbsp;
+              <a  href='?controller=blog&action=delete&blog_id=<?php echo $posts['blog_id']; ?>'>Delete</a>&nbsp;
+          </td>
+      </tr>  
+                    <?php
+                }
+            } else {
+                echo '<p>You currently have no published blogs. </p><a href=""> Create a blog </a><p> now.</p>';
+            }
+            ?>
+  </table>
+        </div> 
+
+<div id="MComments" class="tabcontent">
+  <p>See all your comments below:</p> 
+
+  <p></p>
+            <?php if (count($blogsfavscomments) > 0) { ?>
+  <table style="width:100%">     
+      <tr>
+          <th><h3>Blog</h3></th>
+          <th><h3>Date Posted</h3></th>
+          <th><h3>Favourite Count</h3></th>
+          <th><h4>Comment Count</h4></th>
+          <th><h4>Actions</h4></th>
+      </tr>
+      <?php foreach ($blogsfavscomments as $posts) { ?>
+      <tr>
+          <td><?php echo $posts['title'] ?></td>
+          <td> <?php
+                    $d = strtotime($posts['date_posted']);
+                    echo date("jS F Y", $d);?>
+          </td>
+          <td><?php echo $posts['favourite_count'] ?></td>
+          <td><?php echo $posts['comment_count'] ?> </td>
+          <td>  
+              <a  href='?controller=blog&action=read&blog_id=<?php echo $posts['blog_id']; ?>'>View</a>&nbsp; 
+              <a  href='?controller=blog&action=update&blog_id=<?php echo $posts['blog_id']; ?>'>Update</a>&nbsp;
+              <a  href='?controller=blog&action=delete&blog_id=<?php echo $posts['blog_id']; ?>'>Delete</a>&nbsp;
+          </td>
+      </tr>  
+                    <?php
+                }
+            } else {
+                echo '<p>You currently have no published blogs. </p><a href=""> Create a blog </a><p> now.</p>';
+            }
+            ?>
+  </table>
+</div>
+
+
+<div id="MProfile" class="tabcontent">
+    <p></p>
+  
+<div class="container">
+  <form action="" method="POST" enctype="multipart/form-data">
+    <div class="row">
+      <div class="col-25">
+        <label for="user_fn">First Name</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="user_fn" name="user_fn" placeholder="First Name" value="<?= $blogger['user_fn'] ?>" >
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="user_ln">Last Name</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="user_ln" name=user_ln placeholder="Last Name" value="<?= $blogger['user_ln'] ?>" >
+      </div>
+    </div>
+      <div class="row">
+      <div class="col-25">
+        <label for="username">Username</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="username" name="username" placeholder="Username" value="<?= $blogger['username'] ?>">
+      </div>
+    </div>
+     <div class="row">
+      <div class="col-25">
+        <label for="email">Email</label>
+      </div>
+      <div class="col-75">
+        <input type="email" id="email" name="email" value="<?= $blogger['email'] ?>">
+      </div>
+    </div>
+       <div class="row">
+      <div class="col-25">
+        <label for="dob">Birth date</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="dob" name="dob"  value="<?= $blogger['dob'] ?>">
+      </div>
+    </div>
+      <div class="row">
+      <div class="col-25">
+    <label for="bio">Bio</label>
+      </div>
+      <div class="col-75">
+       <input type="text" id="bio" name="bio"  value="<?= $blogger['bio'] ?>">
+      </div>
+    </div>
+       <div class="row">
+      <div class="col-25">
+    <label for="twitter">Twitter</label>
+      </div>
+      <div class="col-75">
+       <input type="text" id="twitter" name="twitter" placeholder="e.g. twitter.com/example" value="<?= $blogger['twitter_url'] ?>">
+      </div>
+    </div>
+       <div class="row">
+      <div class="col-25">
+    <label for="insta">Instagram</label>
+      </div>
+      <div class="col-75">
+       <input type="text" id="insta" name="insta" placeholder="e.g. instagram.com/example" value="<?= $blogger['insta_url'] ?>">
+      </div>
+    </div>
+       <div class="row">
+      <div class="col-25">
+    <label for="facebook">Facebook</label>
+      </div>
+      <div class="col-75">
+       <input type="text" id="facebook" name="facebook" placeholder="e.g. facebook.com/example" value="<?= $blogger['facebook_url'] ?>">
+      </div>
+    </div>
+      <div class="row">
+      <div class="col-25">
+           <label for="profile_pic" >Profile Picture</label>
+      </div>
+          <div class="col-75">
+       <input type="hidden" name="MAX_FILE_SIZE" value="10000000" />
+<?php 
+$file = $blogger['profile_pic'];
+if(file_exists($file)){
+    $img = "<img src='$file' width='150' />"; 
+    echo $img;
+}
+
+else
+{
+echo "<img src='views/images/profileplaceholderimage.png' width='150' />";
+}
+?>
+  <input type="file" name="myUploader" class="w3-btn w3-pink" />
+ 
+          </div></div>
+          <br>
+    <div class="row">
+        <button id="delete-btn"<a  href='?controller=blogger&action=delete&user_id=<?php echo $blogger['user_id']; ?>'>Delete Account</a></button>
+      <input type="submit" value="Update">
+    </div>
+  </form>
+</div>   
+  
+</div>
+
+
+<br>
+<br>
+<div id="accordion">
+    
+      <div class="card">
+    <div class="card-header" id="headingTwo">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          Blog Activity
+        </button>
+      </h5>
+    </div>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+      <div class="card-body">
+                  <?php if (count($blogsfavscomments) > 0) { ?>
   <table style="width:100%">     
       <tr>
           <th>Blog</th>
@@ -118,14 +314,22 @@
             ?>
   </table>
         </div> 
+      </div>
+    </div>
+  </div>
 
-<div id="MComments" class="tabcontent">
-  <p>See all your comments below:</p> 
-</div>
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <h5 class="mb-0">
+        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+          Profile
+        </button>
+      </h5>
+    </div>
 
-<div id="MProfile" class="tabcontent">
-    <p></p>
-  
+    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+      <div class="card-body">
+
 <div class="container">
     <h2 style="text-align: center">Edit Profile</h2>
   <form action="" method="POST" enctype="multipart/form-data">
@@ -225,11 +429,33 @@ echo "<img src='views/images/profileplaceholderimage.png' width='150' />";
           <br>
     <div class="row">
       <input type="submit" value="Update">
+      <button id="delete-btn"<a  href='?controller=blogger&action=delete&user_id=<?php echo $blogger['user_id']; ?>'>Delete Account</a></button>
     </div>
+   
+        
   </form>
 </div>   
-  
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" id="headingThree">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          Comments
+        </button>
+      </h5>
+    </div>
+    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+      <div class="card-body">
+      See below a list of Blog's you've commented on
+      </div>
+    </div>
+  </div>
 </div>
+
+
 
 <script>
 function openTab(evt, Area) {
@@ -249,6 +475,22 @@ function openTab(evt, Area) {
    
 
 <style>
+  #delete-btn {
+       
+  background-color: #3F7CAC;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 0 auto;     
+    }
+    
+  #delete-btn:hover {
+       
+  background-color: #70D6FF;    
+    }
+    
 * {
   box-sizing: border-box;
 }
@@ -290,7 +532,7 @@ input[type=submit]:hover {
 
 .container {
   border-radius: 5px;
-  background-color: #f2f2f2;
+  background-color: #FFFFFF;
   padding: 20px;
 }
 
@@ -319,14 +561,9 @@ input[type=submit]:hover {
   .col-25, .col-75, input[type=submit] {
     width: 100%;
     margin-top: 0;
-    text-align: leftt;
+    text-align: left;
   }
 }
 </style>
-</head>
-<body>
 
-                    
-                    
-                    
-  
+

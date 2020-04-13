@@ -213,6 +213,7 @@ class Blogger extends Users {
       $req = $db->prepare('delete FROM Users WHERE user_id = :user_id');
       // the query was prepared, now replace :id with the actual $id value
       $req->execute(array('user_id' => $user_id));
+      echo "<script type='text/javascript'>location.href = '?controller=home&action=home';</script>";
   }
 
 

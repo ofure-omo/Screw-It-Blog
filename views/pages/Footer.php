@@ -15,7 +15,15 @@
         </h6>
       </div>
       <!-- Grid column -->
-
+      
+      <!-- Grid column -->
+      <div class="footertext col-md-2">
+        <h6>
+          <a href="?controller=pages&action=FAQs">FAQS</a>
+        </h6>
+      </div>
+      <!-- Grid column -->
+      
       <!-- Grid column -->
       <div class="footertext col-md-2">
         <h6>

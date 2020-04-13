@@ -27,7 +27,12 @@ class BloggerController {
     }}}
    
     
-    
+        public function delete() {
+            Blogger::deleteAccount($_GET['user_id']);
+
+      }
+      
+   /*   
     public function update() {
         
       if($_SERVER['REQUEST_METHOD'] == 'POST'){
@@ -43,12 +48,12 @@ class BloggerController {
           { 
             $id = $_GET['user_id'];
             Blogger::updateProfile($id);
+           // header("Location: index.php?controller=blogger&action=dashboard"); 
       }
       
-    }
+    }*/
     
 }
-
 
 
 
