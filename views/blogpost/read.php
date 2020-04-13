@@ -1,19 +1,31 @@
 <body>
 
     <!--text to be replaced with data from the blog_post table -->
-    <div class='read-blog-container'>
+
+    
         <div class='read-header'>
+            
+            
+            <div class= 'main-header'>
+            <div >
+                   <?php   
+                   $blogimg = $blog['profile_pic'];
+               $img = "<img src=$blogimg alt='profile picture' class='avatar'>";
+                     echo $img; 
+                     ?>
+        </div>
             <h1 id="read-title"><?php echo $blog['title']; ?></h1> <!--header section to retrieve data from db -->
 
-            <p class='header-info'>Written by: <?php echo $blog['user_fn'] . PHP_EOL . $blog['user_ln']; ?></p> <!--should be replaced with username based on the session id-->
+            <p class='header-info' id ='author'>Written by: <?php echo $blog['user_fn'] . PHP_EOL . $blog['user_ln']; ?></p> <!--should be replaced with username based on the session id-->
             <p class='header-info'>Posted on: <?php
                 $d = strtotime($blog['date_posted']);
                 echo date('jS F Y', $d);
                 ?></p>
             <p class='header-info'>Category: <?php echo $blog['category']; ?></p> 
+            </div>
 
         </div>
-
+<div class='read-blog-container'>
         <div id='body-container'> <!--main body section -->
             <p class='body' id="body1"> <?php $body = $blog['body'];
                 echo $body; //echo nl2br($body);   
@@ -24,14 +36,14 @@
             <div id='main_image ' class="column">
                 <?php
                 $blogimg = $blog['main_image'];
-                $img = "<img class='d-block w-100' src=$blogimg alt='First slide' style='width:100%'/>";
+                $img = "<img class='d-block w-100' src=$blogimg alt='First slide' style='width:100%' alt='blog image1'/>";
                 echo $img;
                 ?>
             </div>
             <div id='second_image ' class="column">
                 <?php
                 $blogimg = $blog['second_image'];
-                $img = "<img class='d-block w-100' src=$blogimg alt='First slide' style='width:100%'/>";
+                $img = "<img class='d-block w-100' src=$blogimg alt='First slide' style='width:100%' alt='blog image1'/>";
                 echo $img;
                 ?>
             </div>
@@ -42,10 +54,9 @@
         <div class='third_image'>
             <?php
             $blogimg = $blog['third_image'];
-            $img = "<img class='d-block w-100' src=$blogimg alt='First slide' style='width:100%'/>";
+            $img = "<img class='d-block w-100' src=$blogimg alt='First slide' style='width:100%' alt='blog image1'/>";
             echo $img;
             ?>
-<?php echo $blog['blog_id']; ?>
 
         </div> 
         <div id="social-media"> <!--retrieve url links from user table-->
@@ -63,12 +74,8 @@
                 <button class='tag-btn'><p class='tag'> <?php echo $newtag ?></p></button> <!-- will use a foreach function that will show the tag icon foreach tag-->
                 <!-- will be populated with tags retrieved from the db-->
             </div>
+
 <?php } ?>
-
-        <a href='?controller=blog&action=update&blog_id=<?php echo $blog['blog_id'] ?>'>edit blogpost</a>
-
-
-
 
     </div>
 
@@ -118,6 +125,7 @@ crossorigin="anonymous"></script>
             });
         });
         
+        $('#comment_id').val('0');
         load_comment();
 
         function load_comment() {
@@ -128,14 +136,15 @@ crossorigin="anonymous"></script>
                 success: function (data) {
                     $('#display_comment').html(data);
                 }
-            });
-        };
+            })
+        }
         
         $(document).on('click', '.reply', function(){
             var comment_id = $(this).attr("id");
             $('#comment_id').val(comment_id);
-            $('#comment_form').focus();
+            $('#comment_content').focus();
         });
+        
     });
 
 
@@ -168,10 +177,10 @@ crossorigin="anonymous"></script>
 
     .read-blog-container{
         margin: auto;
-        width: 60%;
+        width: 65%;
         padding: 20px;
-        margin-top: 100px;
-        margin-bottom: 50px;
+        margin-top: 10px;
+       
     }
 
     .comment-container{
@@ -184,38 +193,69 @@ crossorigin="anonymous"></script>
     .read-header {
         text-align: center;
         font-size: 1.5em;
-
+        margin: auto;
+        width: 90%;
+        
+        margin-top: 100px;
     }
+    
+    .avatar {
+  vertical-align: middle;
+  width: 145px;
+  height: 145px;
+  border-radius: 55%;
+  margin-top: 30px;
+  margin-right: 20px;
+  float: left
+      
+  
+}
 
     #read-title {
         font-family: 'Playfair Display', serif;
         text-transform: uppercase;
+        font-size: 45px;
+      margin-left: 80px;
+/*         border: 1px solid red;*/
+        
     }
 
     .header-info {
         display: flex;
-        display: inline;
-        justify-content: space-around;
-        margin-left: 20px;
-        font-size: 0.7em;
-        margin-top: 20px;
-    }
+        display: inline-block;
+        justify-content: space-between;
+        margin-left: 35px;
+        margin-right: 35px;
+        font-size: 0.5em;
+        margin-top: 25px;
 
+    }
+    
+    #author {
+   
+    }
+    
+    .main-header{
+          margin: auto;
+        width: 72%;
+        padding: 20px;
+/*         border: 1px solid red;*/
+    }
     .body {
         margin-top: 20px;
-        line-height: 1.8em;
-        font-size: 0.95em;
+        line-height: 2.1em;
+        font-size: 1em;
     }
 
     #body1 {
-        margin-top: 60px;
+        margin-top: 30px;
 
     }
 
     .tag {
-        display: inline;           
+        display: inline-block;           
         margin: 10px 10px;
-        font-size: 0.65em;
+        font-size: 0.7em;
         text-transform: uppercase;
     }
 
@@ -225,8 +265,9 @@ crossorigin="anonymous"></script>
         border-radius: 5px;
         margin: 5px;
         margin-top: 30px;
-        font-weight: bold;
+        
         border-style: none;
+ 
 
     }
 
@@ -241,15 +282,6 @@ crossorigin="anonymous"></script>
         display: inline;
     }
 
-    #comment-container {
-        margin: auto;
-        width: 60%;
-
-        padding: 20px;
-        margin-top: 50px;
-        margin-bottom: 70px;
-
-    }
 
     #socialmedia{
 
@@ -286,7 +318,7 @@ crossorigin="anonymous"></script>
     }
 
     .third_image {   
-        margin-bottom: 40px;
+        margin-bottom: 20px;
     }
 
     @media only screen and (max-width: 1000px) {

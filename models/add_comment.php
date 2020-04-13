@@ -15,41 +15,7 @@ include 'blog.php';
       }
       return self::$instance;
     }
-}
-
-//        $db= Screw_it::getInstance();
-//        
-//        $error='';
-//        $comment_content='';
-//        $blog_id='';
-//        
-//        if(empty($_POST['comment_content'])){
-//            $error.= "<p class='text-danger'>A comment is required</p>";
-//        } else {
-//            $comment_content = filter_input(INPUT_POST, 'comment_content', FILTER_SANITIZE_SPECIAL_CHARS);
-//            $blog_id = $_POST['blog_id'];
-//            
-//        }
-//        
-//        if($error == '') {
-//            $query = "INSERT INTO comments (parent_comment_id, comment, user_id, blog_id)
-//                    VALUES (:parent_comment_id, :comment, '".$_SESSION['user_id']."', :blog_id);";
-//            $stmt = $db->prepare($query);
-//            
-//            $stmt->execute (
-//                    array(
-//                        ':parent_comment_id'  => '0',
-//                        ':comment'  =>  $comment_content,
-//                        ':blog_id'  =>  $blog_id
-//                    )
-//                    );
-//            $error = "<label class='text-success'>Comment added</label>";
-//        }
-//        $data = array(
-//            'error'  => $error
-//        );
-//        echo json_encode($data);
-//    
+}    
 
         $db= Screw_it::getInstance();
 
@@ -65,7 +31,7 @@ include 'blog.php';
         
         if($error == '') {
             $query = "INSERT INTO comments (parent_comment_id, comment, user_id, blog_id)
-                    VALUES (:parent_comment_id, :comment, '".$_SESSION['user_id']."', '225' )";
+                    VALUES (:parent_comment_id, :comment, '".$_SESSION['user_id']."', '175' )";
             $stmt = $db->prepare($query);
             
             $stmt->execute (
@@ -80,8 +46,5 @@ include 'blog.php';
             'error'  => $error
         );
         echo json_encode($data);
-        
-
-
 
 ?>
