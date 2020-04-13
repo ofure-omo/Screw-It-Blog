@@ -6,7 +6,7 @@ class dashboardcontroller {
      
     public function mem_details (){
 
-        if(!isset($_SESSION['user_id'])) {   
+        if(isset($_SESSION['user_id'])) {   
       
             $details = dashboard::getDetails(($_SESSION['user_id']));
             require_once('views/pages/mem_dash.php');
@@ -18,7 +18,7 @@ class dashboardcontroller {
 }
 
     public function fav_blog (){
-        if(!isset($_SESSION['user_id'])) {   
+        if(isset($_SESSION['user_id'])) {   
       
             $details = dashboard::getDetails(($_SESSION['user_id']));
             require_once('views/pages/mem_dash.php');
