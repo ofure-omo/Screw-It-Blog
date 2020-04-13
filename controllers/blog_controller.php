@@ -2,6 +2,7 @@
 
 
 class BlogController {
+    
     public function readAll() {
       // we store all the posts in a variable
       $blogs = Blog::all();
@@ -18,6 +19,7 @@ class BlogController {
       try{
       // we use the given id to get the correct post
       $blog = Blog::find($_GET['blog_id']);
+      $likes = Blog::getlikes($_GET['blog_id']);
       $tag = Blog::findTag($_GET['blog_id']); 
       require_once('views/blogpost/read.php'); 
       }
@@ -41,7 +43,7 @@ class BlogController {
     
     
     
-    public function update() {
+   public function update() {
         
       if($_SERVER['REQUEST_METHOD'] == 'GET'){
           
@@ -72,7 +74,14 @@ class BlogController {
             //require_once('views/blogpost/readAll.php');
       }
       
-      
+    public function likes() {
+        if($_SERVER['REQUEST_METHOD'] == 'GET') {
+        
+            Blog::addlikes($_GET['blog_id']);
+            
+            
+        } 
+    }  
       
     }
   
