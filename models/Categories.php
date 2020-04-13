@@ -67,6 +67,15 @@ public function getAllBody(){
 
         return $result;
     }
+    
+        public function getAll(){
+        $db = Screw_it::getInstance();
+        $sql = "select * from blog_posts;";
+        $stmt = Screw_it::getInstance()->query($sql);
+        $result = $stmt->fetchAll();
+
+        return $result;
+    }
        
     }
 

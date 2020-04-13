@@ -24,21 +24,22 @@ function call($controller, $action) {
 
 // for validation we list the allowed controllers and their actions
 // Add an entry for each new controller and its actions
+
 $controllers = array('pages' => ['home', 'error', 'cookies', 'privacy', 'FAQs'],
-    'blog' => ['readAll', 'read', 'create', 'update', 'delete'],
+    'blog' => ['readAll', 'read', 'create', 'update', 'delete','likes'],
     'search' => ['search'],
     'home' => ['home'],
     'register' => ['registerUser'], 
     'login' => ['loginUser'],
-    //'comments' => ['add'],
+    'comments' => ['add'],
     'categories' => ['showAll','searchCategory'],
-    'dashboard' => ['mem_details', 'fav_blog', 'comments', 'deleteUser', 'unfavourite', 'deleteComment' ], 
+    'dashboard' => ['mem_details', 'fav_blog', 'comments', 'deleteUser', 'unfavourite', 'deleteComment' ],
     'delete' => ['delete'],
     'update' => ['update'],
     'signout' => ['signout'],
     'blogger' => ['about', 'dashboard'],
     'security' => ['loginUserSecurity'],
-    'favourites' => ['getfav', 'setfav']
+    'favourites' => ['getfav','setfav']
 );
 
 // check that the requested controller and action are both allowed

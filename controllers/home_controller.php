@@ -28,7 +28,19 @@ class HomeController {
        for($i = 1; $i <= $count; $i++) {
             ${"blog$i"} = new BlogHP;
             ${"blog$i"}->blog_id = $blog_id[$position];
-            ${"blog$i"}->title = $title[$position];
+            ${"blog$i"}->title = strtolower($title[$position]);
+            
+                $len = 40;
+                if (strlen($title[$position])<$len) {
+                    $titleShort = $title[$position];
+                    }
+                else {
+                    $pos=strpos($title[$position], ' ', $len);
+                    $titleShort = substr($title[$position],0,$pos)."..."; 
+                }
+                
+            ${"blog$i"}->titleShort = strtolower($titleShort); 
+                
             ${"blog$i"}->body = $body[$position];
             
                 $len = 100;
@@ -69,8 +81,8 @@ class HomeController {
         // if no of blog posts is less than 12 (tile display) creates blank
         // objects with default values
         
-        if ($i < 12) {
-            for($i = $i++; $i <= 12; $i++) {
+        if ($i < 13) {
+            for($i = $i++; $i <= 13; $i++) {
                     ${"blog$i"} = new BlogHP;
                     ${"blog$i"}->blog_id = 999;
                     ${"blog$i"}->title = "Coming Soon";

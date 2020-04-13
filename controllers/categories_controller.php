@@ -10,8 +10,13 @@ class CategoriesController {
     $url = "<img src=$src style='width:200px'>";
     $header = "Welcome to the Screw-It archives.";
     $styl = "background-color: #cacbcc; color: white; padding:10px; margin-left: 80px; margin-right: 80px;";
+    $blog = Categories::getAll();
 
     $countBlogs = Categories::countBlogs();
+    //print_r($countBlogs);
+
+    
+    //print_r($blog);
     
     // used later if mamange to make pages e.g. displaying 10 out of 25 results
                 if ($countBlogs < 10) {
@@ -23,6 +28,61 @@ class CategoriesController {
     //echo $countBlogsTest[0];
     
     $results = "$countBlogs[0] result found";
+    
+    // create objects for each row in the db
+    
+       $position = 0;
+       for($i = 1; $i <= $countBlogs[0]; $i++) {
+            ${"blog$i"} = new Categories;
+            ${"blog$i"}->blog_id = $blog[$position]['blog_id'];
+            ${"blog$i"}->title = $blog[$position]['title'];
+            
+                $len = 40;
+                if (strlen($blog[$position]['title'])<$len) {
+                    $titleShort = $blog[$position]['title'];
+                    }
+                else {
+                    $pos=strpos($blog[$position]['title'], ' ', $len);
+                    $titleShort = substr($blog[$position]['title'],0,$pos)."..."; 
+                }
+            ${"blog$i"}->titleShort = $titleShort;     
+            ${"blog$i"}->body = $blog[$position]['body'];
+            
+                $len = 100;
+                if (strlen($blog[$position]['body'])<$len) {
+                    $bodyShort = $blog[$position]['body'];
+                    }
+                else {
+                    $pos=strpos($blog[$position]['body'], ' ', $len);
+                    $bodyShort = substr($blog[$position]['body'],0,$pos)."..."; 
+                }
+                
+            ${"blog$i"}->bodyShort = $bodyShort;   
+            
+                $len = 500;
+                if (strlen($blog[$position]['body'])<$len) {
+                    $bodyLong = $blog[$position]['body'];
+                    }
+                else {
+                    $pos=strpos($blog[$position]['body'], ' ', $len);
+                    $bodyLong = substr($blog[$position]['body'],0,$pos)."..."; 
+                }
+                
+            
+            ${"blog$i"}->bodyShort = $bodyShort;
+            ${"blog$i"}->bodyLong = $bodyLong;   
+            ${"blog$i"}->main_image = $blog[$position]['main_image'];
+            //${"blog$i"}->likes = $likes[$position];
+            //${"blog$i"}->comments = $comments[$position];
+            
+            // HTML
+            
+            ${"blog$i"}->views = $blog[$position]['views'];
+            ${"blog$i"}->date_posted = $blog[$position]['date_posted'];
+            
+            $position++;
+            
+        } 
     
   
 
@@ -85,16 +145,16 @@ class CategoriesController {
         if (in_array($category,$validCategories)){
             
                 if ($category === "create") {
-                    $header = "If you're wanting to create something new for your home, from tables to toothpaste and everything in between, you can find it here.";
+                    $header = "If you're wanting to create something new, from tables to toothpaste and everything in between, you can find it here.";
                     $styl = "background-color: #3F7CAC; color: white; padding:10px; margin-left: 80px; margin-right: 80px;";
 
                 }
                 else if ($category === "decorate") {
-                    $header = "Want to give your home an uplift? No matter your style or your budget, here you can find all kinds of inspiration to make your own your own!";
+                    $header = "Want to give your home an uplift? No matter what your style or your budget, below you can find all kinds of inspiration to make your home your own.";
                     $styl = "background-color: #3F7CAC; color: white;; padding:10px; margin-left: 80px; margin-right: 80px;";
                 }
                 else {
-                    $header = "If your home could use a little TLC, below you can find new ways to transform your home from shabby to shabby chic!";
+                    $header = "If your home could use a little TLC, below you can find new ways to transform your home from shabby to shabby chic.";
                     $styl = "background-color: #3F7CAC; color: white; padding:10px; margin-left: 80px; margin-right: 80px;";
                 }
                 
@@ -107,6 +167,16 @@ class CategoriesController {
             ${"blog$i"} = new Categories;
             ${"blog$i"}->blog_id = $blog[$position]['blog_id'];
             ${"blog$i"}->title = $blog[$position]['title'];
+            
+                $len = 40;
+                if (strlen($blog[$position]['title'])<$len) {
+                    $titleShort = $blog[$position]['title'];
+                    }
+                else {
+                    $pos=strpos($blog[$position]['title'], ' ', $len);
+                    $titleShort = substr($blog[$position]['title'],0,$pos)."..."; 
+                }
+            ${"blog$i"}->titleShort = $titleShort;     
             ${"blog$i"}->body = $blog[$position]['body'];
             
                 $len = 100;

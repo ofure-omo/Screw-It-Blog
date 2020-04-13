@@ -383,5 +383,35 @@ class Blog {
             unlink($temp);
         }
     }
+    
+    public static function getlikes($blog_id) {
+ 
+        $db = Screw_it::getInstance();
+        $blog_id = intval($blog_id);
+            
+       $query = "SELECT count(*) FROM favourites WHERE blog_id = '".$blog_id."'";
+            $req = $db->prepare($query);
+            $req->execute();
+            $likes = $req->fetch();
+            
+            return $likes['count(*)'];
+        }
+
+
+    
+     public static function addlikes($blog_id) {
+        
+        $db = Screw_it::getInstance();
+        $blog_id = intval($blog_id);
+            
+        $req = $db->prepare("INSERT INTO favourites(blog_id, user_id) 
+                             VALUES('".$blog_id."', '".$_SESSION["user_id"]."');"); 
+//                             $req = $db->prepare("UPDATE blog_posts 
+//                             SET favourites = favourites + 1 
+//                             WHERE blog_id = '".$blog_id."'");
+        $req->execute();
+      
+       
+    }
 
 }
