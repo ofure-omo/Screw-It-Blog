@@ -5,96 +5,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Register</title>
-    <style>
-            .page-container{
-                width: 40%;
-                margin-left: 150px;
-                margin-top: 50px;
-                margin-bottom: 150px;
-            }
-
-            h1 {
-                margin-left: 150px;
-                margin-top: 50px;
-            }
-
-            #customFile{
-                cursor: pointer;
-            }
-
-            .button {
-
-                border: none;
-                color: white;
-                padding: 10px 30px;
-                text-align: center;
-                text-decoration: none;
-                text-transform: uppercase;
-                display: inline-block;
-                font-size: 16px;
-                margin-top: 30px;
-                margin-bottom: 30px;
-                margin-left: 200px;
-                cursor: pointer;
-                background-color: black;
-                border-radius: 7px;
-                font-weight: bolder;
-            }       
-
-            .button:hover {
-                color: white;
-                background-color: #3f7cac;
-                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-            }
-
-            .container-btn {
-
-            }
-
-            .img-upload {
-                margin-bottom: 10px;
-            }
-
-            .blog-template {
-                float: right; 
-                height: 800px;
-                margin-right: 150px;
-            }
-
-            #template-container {
-                float:right;
-                margin-top: 50px;
-            }
-
-            .blog-container {
-                margin-left: 170px;
-                text-transform: uppercase;
-                margin-bottom: 0;
-
-            }
-
-            .img-title {
-                margin-bottom: 0;
-            }
-
-            .file-type {
-                padding-top: 20px;
-            }
-            
-            #tags {
-                margin-bottom: 20px;
-            }
-
-
-        </style>
 </head>
 <body>
+    <section class="main-section">
     <h1>Register a New Account</h1>
     <span>
-    <div class='page-container'>
+    <div>
         
         <p>Enter your details to create an account</p>
-        <div class='form-container'>
+        <div>
         <form action="" method="POST" enctype="multipart/form-data">
             <div>
                 <label>Username</label>
@@ -132,5 +51,6 @@
         </form>
     </div> 
     </span>
+    </section>
 </body>
 </html>

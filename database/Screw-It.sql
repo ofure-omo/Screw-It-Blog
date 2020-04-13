@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 12, 2020 at 11:36 PM
+-- Generation Time: Apr 13, 2020 at 06:10 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -51,11 +51,8 @@ CREATE TABLE `blog_posts` (
 INSERT INTO `blog_posts` (`blog_id`, `user_id`, `title`, `body`, `body2`, `date_posted`, `category`, `main_image`, `second_image`, `third_image`, `views`, `slug`, `favourites`) VALUES
 (46, 1, 'how to train a dragon', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don&#39;t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn&#39;t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.', '2020-04-08 20:11:31', 'CREATE', 'views/images/diyimage.jpg', 'views/images/evenmorefireworks.jpg', 'views/images/fireworks.jpeg', NULL, NULL, 0),
 (110, 1, 'latest blog ', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don&#39;t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn&#39;t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentenc', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don&#39;t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn&#39;t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.', '2020-04-10 01:26:56', 'RENOVATE', 'views/images/evenmorefireworks.jpg', 'views/images/fireworks.jpeg', 'views/images/morefireworks.jpeg', NULL, NULL, 0),
-(134, 1, 'how to make a webiste part 2', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don&#39;t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn&#39;t ', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don&#39;t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn&#39;t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don&#39;t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn&#39;t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as ', '2020-04-10 01:57:57', 'RENOVATE', 'views/images/ETHNC - Wallpaper 2.jpg', 'views/images/ETHNC - Wallpaper.jpg', 'views/images/ETHNC Main Logo.png', NULL, NULL, 0),
-(172, 1, 'lets see if the tags work!!', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don&#39;t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn&#39;t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, ', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don&#39;t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn&#39;t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don&#39;t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn&#39;t anything embarrassing hidden in the middle of text. All the Lorem Ipsum ', '2020-04-10 02:50:09', 'DECORATE', 'views/images/ETHNC T-Shirt Design.png', 'views/images/evenmorefireworks.jpg', 'views/images/fireworks.jpeg', NULL, NULL, 0),
 (173, 1, 'do the tags really really work??? yesss ?? well partly  yesss!!!!!!', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don&#39;t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn&#39;t anything embarrassing hidden in the middle of text. All the Lorem Ipsum ', '       There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don&#39;t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn&#39;t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.', '2020-04-12 17:55:16', 'DECORATE', 'views/images/ETHNC T-Shirt Design.png', 'views/images/evenmorefireworks.jpg', 'views/images/fireworks.jpeg', NULL, NULL, 0),
-(175, 17, 'HOW TO UPGRADE MODERN WOODEN BOOKENDS WITH CRAFT PAINT', 'Bookends are one of the easiest accessories to use to dress up any space. Especially bookshelves! Any item that has some weight and heft to it can be used as a bookend:&#13;&#10;&#13;&#10;-rocks, like geodes and marble&#13;&#10;-filled piggy banks&#13;&#10;-figurines and statues, especially if they are made of metal&#13;&#10;-wood blocks&#13;&#10;&#13;&#10;Delta Ceramcoat is my absolute favorite acrylic craft paint. Seeing this paint in Target&#39;s craft aisle brought back fond childhood memories using this paint for crafts, school projects, and the occasional painted rock.&#13;&#10;&#13;&#10;Made in the USA, Delta Ceramcoat satin acrylic paint pot sets at Target are perfect starter sets for new crafters or for small projects because you get 18 different colors of paint in one package. The rich creamy colors provide excellent coverage or can be thinned with water for a more translucent finish. &#13;&#10;&#13;&#10;STEP 1: CHOOSE A PATTERN OR DESIGN&#13;&#10;Find a geometric pattern or design you like by searching Pinterest, looking in design magazines, or browsing wallpaper catalogs. Take a photo or screenshot with your phone to use for reference later.&#13;&#10;&#13;&#10;STEP 2: SELECT PAINT COLORS&#13;&#10;Decide on a color palette using the colors in the Delta Ceramcoat satin acrylic paint pot set&#13;&#10;&#13;&#10;STEP 3: MASK OFF THE PATTERN&#13;&#10;Starting with the largest block of color first, apply masking tape to the wood block using the design you chose as your guide. Use a craft knife or scissors to cut or trim the tape if needed.&#13;&#10;&#13;&#10;STEP 3: MASK OFF THE PATTERN&#13;&#10;Starting with the largest block of color first, apply masking tape to the wood block using the design you chose as your guide. Use a craft knife or scissors to cut or trim the tape if needed.', 'STEP 4: APPLY PAINT&#13;&#10;Carefully apply the paint with a flat brush, brushing away from the tape to avoid paint bleed under the tape.&#13;&#10;Allow to dry. Then peel away the tape.&#13;&#10;&#13;&#10;STEP 5: REPEAT&#13;&#10;Apply tape for the next set of shapes in the pattern. Paint, dry, and repeat until the pattern is complete.&#13;&#10;&#13;&#10;Place the painted wood blocks on either side of a set of books on a shelf. Add dried flowers, potted succulents, or even the Hand Made Modern paint brushes to the hole in the top of the block to complete the look.&#13;&#10;&#13;&#10;&#13;&#10;credit: https://www.smartfundiy.com/diy-wooden-bookends-modern/', '2020-04-11 16:49:54', 'RENOVATE', 'views/images/blog1img1.jpg', 'views/images/blog1img2.jpg', 'views/images/blog1img3.jpg', NULL, NULL, 0),
-(225, 17, 'New blog post cause we can!!', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don&#39;t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn&#39;t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don&#39;t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn&#39;t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.', '2020-04-12 16:21:16', 'RENOVATE', 'views/images/blog1img1.jpg', 'views/images/blog1img2.jpg', 'views/images/blog1img3.jpg', NULL, NULL, NULL);
+(175, 17, 'HOW TO UPGRADE MODERN WOODEN BOOKENDS WITH CRAFT PAINT!', 'Bookends are one of the easiest accessories to use to dress up any space. Especially bookshelves! Any item that has some weight and heft to it can be used as a bookend:&#13;&#10;&#13;&#10;-rocks, like geodes and marble&#13;&#10;-filled piggy banks&#13;&#10;-figurines and statues, especially if they are made of metal&#13;&#10;-wood blocks&#13;&#10;&#13;&#10;Delta Ceramcoat is my absolute favorite acrylic craft paint. Seeing this paint in Target&#39;s craft aisle brought back fond childhood memories using this paint for crafts, school projects, and the occasional painted rock.&#13;&#10;&#13;&#10;Made in the USA, Delta Ceramcoat satin acrylic paint pot sets at Target are perfect starter sets for new crafters or for small projects because you get 18 different colors of paint in one package. The rich creamy colors provide excellent coverage or can be thinned with water for a more translucent finish. &#13;&#10;&#13;&#10;STEP 1: CHOOSE A PATTERN OR DESIGN&#13;&#10;Find a geometric pattern or design you like by searching Pinterest, looking in design magazines, or browsing wallpaper catalogs. Take a photo or screenshot with your phone to use for reference later.&#13;&#10;&#13;&#10;STEP 2: SELECT PAINT COLORS&#13;&#10;Decide on a color palette using the colors in the Delta Ceramcoat satin acrylic paint pot set&#13;&#10;&#13;&#10;STEP 3: MASK OFF THE PATTERN&#13;&#10;Starting with the largest block of color first, apply masking tape to the wood block using the design you chose as your guide. Use a craft knife or scissors to cut or trim the tape if needed.&#13;&#10;&#13;&#10;STEP 3: MASK OFF THE PATTERN&#13;&#10;Starting with the largest block of color first, apply masking tape to the wood block using the design you chose as your guide. Use a craft knife or scissors to cut or trim the tape if needed.', '   STEP 4: APPLY PAINT&#13;&#10;Carefully apply the paint with a flat brush, brushing away from the tape to avoid paint bleed under the tape.&#13;&#10;Allow to dry. Then peel away the tape.&#13;&#10;&#13;&#10;STEP 5: REPEAT&#13;&#10;Apply tape for the next set of shapes in the pattern. Paint, dry, and repeat until the pattern is complete.&#13;&#10;&#13;&#10;Place the painted wood blocks on either side of a set of books on a shelf. Add dried flowers, potted succulents, or even the Hand Made Modern paint brushes to the hole in the top of the block to complete the look.&#13;&#10;&#13;&#10;&#13;&#10;credit: https://www.smartfundiy.com/diy-wooden-bookends-modern/', '2020-04-13 02:55:26', 'RENOVATE', 'views/images/blog1img1.jpg', 'views/images/blog1img2.jpg', 'views/images/5dde91cb79d7576693279df7.jpeg', NULL, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -67,17 +64,6 @@ CREATE TABLE `blog_tags` (
   `blog_id` int(11) NOT NULL,
   `tag` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `blog_tags`
---
-
-INSERT INTO `blog_tags` (`blog_id`, `tag`) VALUES
-(225, '#bedroom'),
-(225, '#buildit'),
-(225, '#crafts'),
-(225, '#garden'),
-(225, '#upcycle');
 
 -- --------------------------------------------------------
 
@@ -91,7 +77,7 @@ CREATE TABLE `comments` (
   `parent_comment_id` int(11) NOT NULL,
   `blog_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `comment_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `comment_date` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -99,30 +85,7 @@ CREATE TABLE `comments` (
 --
 
 INSERT INTO `comments` (`comment_id`, `comment`, `parent_comment_id`, `blog_id`, `user_id`, `comment_date`) VALUES
-(11, 'comment ', 0, 110, 11, '2020-04-12 18:01:13'),
-(12, 'hello', 0, 110, 17, '2020-04-12 18:30:19'),
-(13, 'hello again', 0, 110, 17, '2020-04-12 18:46:46'),
-(14, 'yo', 0, 110, 17, '2020-04-12 19:10:39'),
-(15, 'hhee', 0, 110, 17, '2020-04-12 19:19:11'),
-(16, 'helele', 0, 110, 17, '2020-04-12 19:39:11'),
-(17, 'hi there', 0, 225, 17, '2020-04-12 19:39:44'),
-(18, 'i like this blog', 0, 225, 17, '2020-04-12 19:39:49'),
-(19, 'SSSS', 0, 225, 17, '2020-04-12 19:42:41'),
-(20, 'ASASA', 0, 225, 17, '2020-04-12 19:42:48'),
-(21, 'hello', 20, 225, 17, '2020-04-12 19:52:59'),
-(22, 'you&#39;re so lovely ', 18, 225, 17, '2020-04-12 20:03:11'),
-(23, 'hello again its me!', 20, 225, 17, '2020-04-12 20:19:15'),
-(24, 'how are you today ', 17, 225, 17, '2020-04-12 20:19:38'),
-(25, 'hhhhh', 20, 225, 17, '2020-04-12 20:22:32'),
-(26, 'wag1', 0, 225, 17, '2020-04-12 20:25:44'),
-(27, 'thats weird', 26, 225, 17, '2020-04-12 20:26:00'),
-(28, 'very weird', 22, 225, 17, '2020-04-12 20:26:11'),
-(29, 'hello to you too!', 17, 225, 17, '2020-04-12 20:27:00'),
-(30, 'hiiii', 26, 225, 17, '2020-04-12 20:27:29'),
-(31, 'hmmmm', 27, 225, 17, '2020-04-12 20:27:43'),
-(32, 'fine thank you', 24, 225, 17, '2020-04-12 20:28:53'),
-(33, 'aww thank you!', 22, 225, 17, '2020-04-12 20:29:07'),
-(34, 'yoooo', 26, 225, 17, '2020-04-12 20:33:37');
+(82, 'this is great', 0, 175, 17, '2020-04-13 04:10:24');
 
 -- --------------------------------------------------------
 
@@ -202,7 +165,7 @@ INSERT INTO `Users` (`user_id`, `username`, `password`, `user_fn`, `user_ln`, `e
 (14, 'teseog', '$2y$10$rBjfCwevk34TQe3iSXyoa.qS12Zll/RsOqmYMltLRYE2.nSHQiUvm', 'Omotese', 'Omotese', 'tese.og@hotmail.com', '2014-02-05', 'Member', 'Who is your favourite Ryan', 'gosling', NULL, NULL, NULL, NULL, NULL, NULL, '2020-04-09 19:28:57'),
 (15, 'test', '$2y$10$OCnfF0dF76CbK3Fn1D9/e.3MB.JOmQPCpA1ARiPDQq8mlDh2ZmMZu', 'Omotese', 'Omotese', 'tese.og@hotmail.com', '2003-06-04', 'Member', 'Who is your favourite Ryan', '$2y$10$t2G1SsH529YL.peoTuqjs.6wIrcshim7.kNuykq8YxbsKJBbtsIW2', NULL, NULL, NULL, NULL, NULL, NULL, '2020-04-11 14:20:49'),
 (16, 'test', '$2y$10$00YszUVxfj.xAZ8OJSHDR./LyDMYTqPnUj9W4/I6g2Dm0uVqMZwSq', 'Omotese', 'Omotese', 'tese.og@hotmail.com', '2008-02-07', 'Member', 'Who is your favourite Ryan', '$2y$10$xKIMDm6yFMp7ljwuaILtU.fOoLPhK1eQ7hiooKKIjnpam22reIIHi', NULL, NULL, NULL, NULL, NULL, NULL, '2020-04-11 14:21:15'),
-(17, 'sweetee', '$2y$10$PJUsRzFUJ.cEBgupNkZJBO/bp7SdEe.p0qEG5CrBNmawZWPrWCbii', 'TESE', 'TESE', 'tese.og@hotmail.com', '1997-09-04', 'Blogger', 'Who is your favourite Ryan', '$2y$10$qZorYewVFNa6uzj5zlAUBOgxfiRbWh4ctKcyX91kwUz5k9nT78z92', NULL, NULL, NULL, NULL, NULL, NULL, '2020-04-11 16:38:24');
+(17, 'sweetee', '$2y$10$PJUsRzFUJ.cEBgupNkZJBO/bp7SdEe.p0qEG5CrBNmawZWPrWCbii', 'TESE', 'Hello', 'tese.og@hotmail.com', '1997-09-04', 'Blogger', 'Who is your favourite Ryan', '$2y$10$qZorYewVFNa6uzj5zlAUBOgxfiRbWh4ctKcyX91kwUz5k9nT78z92', NULL, 'views/images/5dde91cb79d7576693279df7.jpeg', 'My name is sweetie and I like sweets', NULL, NULL, NULL, '2020-04-11 16:38:24');
 
 --
 -- Indexes for dumped tables
@@ -219,16 +182,16 @@ ALTER TABLE `blog_posts`
 -- Indexes for table `blog_tags`
 --
 ALTER TABLE `blog_tags`
-  ADD KEY `tag` (`tag`),
-  ADD KEY `blog_id` (`blog_id`);
+  ADD PRIMARY KEY (`blog_id`,`tag`),
+  ADD KEY `tag` (`tag`);
 
 --
 -- Indexes for table `comments`
 --
 ALTER TABLE `comments`
   ADD PRIMARY KEY (`comment_id`),
-  ADD KEY `user_id` (`user_id`),
-  ADD KEY `comments_ibfk_1` (`blog_id`);
+  ADD KEY `comments_ibfk_1` (`blog_id`),
+  ADD KEY `comments_ibfk_2` (`user_id`);
 
 --
 -- Indexes for table `favourites`
@@ -258,13 +221,13 @@ ALTER TABLE `Users`
 -- AUTO_INCREMENT for table `blog_posts`
 --
 ALTER TABLE `blog_posts`
-  MODIFY `blog_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=226;
+  MODIFY `blog_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=229;
 
 --
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
 
 --
 -- AUTO_INCREMENT for table `favourites`
@@ -293,14 +256,14 @@ ALTER TABLE `blog_posts`
 --
 ALTER TABLE `blog_tags`
   ADD CONSTRAINT `blog_tags_ibfk_1` FOREIGN KEY (`tag`) REFERENCES `tags` (`tag`),
-  ADD CONSTRAINT `blog_tags_ibfk_2` FOREIGN KEY (`blog_id`) REFERENCES `blog_posts` (`blog_id`);
+  ADD CONSTRAINT `blog_tags_ibfk_2` FOREIGN KEY (`blog_id`) REFERENCES `blog_posts` (`blog_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `comments`
 --
 ALTER TABLE `comments`
-  ADD CONSTRAINT `comments_ibfk_1` FOREIGN KEY (`blog_id`) REFERENCES `blog_posts` (`blog_id`),
-  ADD CONSTRAINT `comments_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
+  ADD CONSTRAINT `comments_ibfk_1` FOREIGN KEY (`blog_id`) REFERENCES `blog_posts` (`blog_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `comments_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `favourites`

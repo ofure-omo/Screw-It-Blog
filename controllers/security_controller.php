@@ -10,7 +10,7 @@ class SecurityController {
 
     public function loginUserSecurity() {
 
-        require_once('views/pages/forgot_password_page.php');
+   
         //check if session is set. If set redirect
         if (!isset($_SESSION['loggedin'])) {
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -20,7 +20,8 @@ class SecurityController {
         } else {
 
             echo 'You are already logged in!';
-        }
+        }     
+        require_once('views/pages/forgot_password_page.php');
     }
 
 }
