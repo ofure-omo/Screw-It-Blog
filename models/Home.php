@@ -12,6 +12,7 @@ class BlogHP {
     public $main_image;
     public $likes;
     public $comments;
+    public $titleShort;
     
     public $viewHTML;
 

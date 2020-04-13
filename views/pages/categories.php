@@ -14,73 +14,75 @@
         
         
         
+        
+        
     <!-- CARDS ------------------------------------------------------------------->
    
     <?php
     
     if (empty($category)){
-        echo "to be continued";
+             echo "<div class='card-deck' style=' padding-left: 2%; max-height: 250px; display:flex;'>";
+                for($i = 1; $i <= $countBlogs[0]; $i++) {
+        
+                echo "<div style ='flex: initial; flex-direction:column; flex-wrap: wrap; width: 18%; min-width:30px; margin-bottom:30px;' class='card'>";
+                    
+                        echo "<a href='?controller=blog&action=read&blog_id=".${"blog$i"}->blog_id."class='btn btn-primary'><img style='padding-top: 5%; ; height: 250px; width:300px; object-fit: cover;' class='card-img-top' src=".${"blog$i"}->main_image." alt=".${"blog$i"}->title.">";
+                        echo "</a>"; 
+                            echo "<div class='card-body' style='padding-bottom: 15%; max-height: 300px'>";
+                                echo "<h5 class='card-title'>".${"blog$i"}->titleShort."</h5>";
+                                echo "<p class='card-text'>".${"blog$i"}->bodyShort."</p>";
+                                echo "<div style='text-align:bottom;'>";
+                                echo "<a href='?controller=blog&action=read&blog_id=".${"blog$i"}->blog_id."class=''>View blog</a>";
+                                echo "</div>";
+                            echo "</div>";
+                            
+                            echo "<div class='card-footer'";
+                                echo "<p class='text-muted'>";
+                                    $d = strtotime(${"blog$i"}->date_posted);
+                                    echo "Posted on " . date("jS F Y", $d) . "<br></p>";
+                            echo "</div>";  
+                           
+                echo "</div>";
+                                       
+                }
+            echo "</div><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>"; 
+            echo "</div><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
     }
     else {
-    
-    if ($countBlogs > 5){
-            
+               
         // Row 1
-            echo "<div class='card-deck' style='padding: 5%; max-height: 300px; '>";
-                for($i = 1; $i <= 5; $i++) {
-        
-                echo "<div style ='max-width: 20%' class='card'>";
-                echo "<img style='padding: 2%; max-height: 300px;' class='card-img-top' src=".${"blog$i"}->main_image." alt=".${"blog$i"}->title.">";
-                echo "<div class='card-body'>";
-                echo "<h5 class='card-title'>".${"blog$i"}->title."</h5>";
-                echo "<p class='card-text'>".${"blog$i"}->bodyShort."</p>";
-                echo "<p class='card-text'><small class='text-muted'>".${"blog$i"}->date_posted."</small></p>";
-                echo "<a href='?controller=blog&action=read&blog_id=".${"blog$i"}->blog_id."class='btn btn-primary'>View blog</a>";
-                echo "</div>";
-                echo "</div>";
-        
-                }
-            echo "</div><br><br><br><br><br><br><br><br><br><br>"; 
-            
-            
-        // Row 2    
-            echo "<div class='card-deck' style='padding: 20px; max-height: 300px; '>";
-                for($i = 6; $i <= $countBlogs; $i++) {
-        
-                echo "<div style ='max-width: 20%' class='card'>";
-                echo "<img style='padding: 2%; max-height: 300px;' class='card-img-top' src=".${"blog$i"}->main_image." alt=".${"blog$i"}->title.">";
-                echo "<div class='card-body'>";
-                echo "<h5 class='card-title'>".${"blog$i"}->title."</h5>";
-                echo "<p class='card-text'>".${"blog$i"}->bodyShort."</p>";
-                echo "<p class='card-text'><small class='text-muted'>".${"blog$i"}->date_posted."</small></p>";
-                echo "<a href='?controller=blog&action=read&blog_id=".${"blog$i"}->blog_id."class='btn btn-primary'>View blog</a>";
-                echo "</div>";
-                echo "</div>";
-        
-                }
-            echo "</div>"; 
-            
-        
-    
-    } else {
-        
-             echo "<div class='card-deck' style='padding: 20px; max-height: 300px; '>";
+            echo "<div class='card-deck' style=' padding-left: 2%; max-height: 250px; display:flex;'>";
                 for($i = 1; $i <= $countBlogs; $i++) {
         
-                echo "<div style ='max-width: 20%' class='card'>";
-                echo "<img style='padding: 2%; max-height: 300px;' class='card-img-top' src=".${"blog$i"}->main_image." alt=".${"blog$i"}->title.">";
-                echo "<div class='card-body'>";
-                echo "<h5 class='card-title'>".${"blog$i"}->title."</h5>";
-                echo "<p class='card-text'>".${"blog$i"}->bodyShort."</p>";
-                echo "<p class='card-text'><small class='text-muted'>".${"blog$i"}->date_posted."</small></p>";
-                echo "<a href='?controller=blog&action=read&blog_id=".${"blog$i"}->blog_id."class='btn btn-primary'>View blog</a>";
+                echo "<div style ='flex: initial; flex-direction:column; flex-wrap: wrap; width: 18%; min-width:30px; margin-bottom:30px;' class='card'>";
+                    
+                        echo "<a href='?controller=blog&action=read&blog_id=".${"blog$i"}->blog_id."class='btn btn-primary'><img style='padding-top: 5%; ; height: 250px; width:300px; object-fit: cover;' class='card-img-top' src=".${"blog$i"}->main_image." alt=".${"blog$i"}->title.">";
+                        echo "</a>"; 
+                            echo "<div class='card-body' style='padding-bottom: 15%; max-height: 300px'>";
+                                echo "<h5 class='card-title'>".${"blog$i"}->titleShort."</h5>";
+                                echo "<p class='card-text'>".${"blog$i"}->bodyShort."</p>";
+                                echo "<div style='text-align:bottom;'>";
+                                echo "<a href='?controller=blog&action=read&blog_id=".${"blog$i"}->blog_id."class=''>View blog</a>";
+                                echo "</div>";
+                            echo "</div>";
+                            
+                            echo "<div class='card-footer'";
+                                echo "<p class='text-muted'>";
+                                    $d = strtotime(${"blog$i"}->date_posted);
+                                    echo "Posted on " . date("jS F Y", $d) . "<br></p>";
+                            echo "</div>";  
+                           
                 echo "</div>";
-                echo "</div>";
-        
+                                       
                 }
-            echo "</div>"; 
+            echo "</div><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>"; 
+          
+            
+           
+
+    
     }
-    }
+    
 
     
     ?>

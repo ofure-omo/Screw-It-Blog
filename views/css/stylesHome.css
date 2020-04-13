@@ -2,51 +2,55 @@
 
 /* CAROUSEL */
 
-#carouselExampleIndicators {
-   height:700px !important; 
-   padding-left: 80px !important; 
-   padding-right: 80px !important; 
+
+
+#carouselExampleIndicators { 
+
    background-color: #fafafa !important; 
 }
+/* this is the styling for the div the carousel sits in */
 
-#HP-carousel-inner {
-    height:650px !important;
-}
 
-        /* Title*/
+       
 
 .HPCarousel-item-title {
     position: absolute; 
-    z-index: 10; /*makes it on top of the carousel*/
-    color: black; 
+    z-index: 1; /*makes it on top of the carousel*/ 
     background-color: white; 
     top:350px; 
-    right:150px; 
-    opacity: .55; 
-    width: 450px; 
-    border-radius: 15px
+    right:40px; 
+    opacity: .7; 
+    width: 30%; 
+    text-align: center;
+    display: flex;
+    justify-content:center;
+    flex-direction: column;
 }
+ /* This is the styling fo rthe text overlay*/
 
 .HPCarousel-item-title > h3 {
-    font-size: 32px; 
+    font-size: 28px; 
+    color: black;
+    padding:10px;
+    dsiplay: block;
     }
 
         /* Blog Text */
 
 .HPCarousel-item-text {
     position: absolute; 
-    z-index: 10; 
+    z-index: 2; 
     color: black; 
     background-color: white; 
-    top:400px; 
-    right:150px; 
+    top:150px; 
+    right:40px; 
     opacity: .55;
     width: 450px; 
-    height: 200px; 
-    border-radius: 15px;
+    height: 350px; 
     text-align: center;
+    display: flex;
 }
-.HPCarousel-item-text> p {
+.HPCarousel-item-title > p {
     font-size: 14px; 
     padding: 5px;
 }
@@ -73,31 +77,24 @@
 
 /* LAYOUT */
 
+
 main {
-    min-height: 100vh;
+    min-height: 90vh;
     background-color: #fafafa;
-    color: #262626;
+    color: black;
     padding-bottom: 3rem;
 }
 
-.gallery-item img {
-    display: block;
+img {
+    
 }
 
-.blog-container {
-    max-width: 93.5rem;
+.container {
+ 
     margin: 0 auto;
     padding: 0 2rem;
 }
 
-
-.visually-hidden {
-    position: absolute !important;
-    height: 1px;
-    width: 1px;
-    overflow: hidden;
-    clip: rect(1px, 1px, 1px, 1px);
-}
 
 
 /* Gallery Section */
@@ -107,14 +104,19 @@ main {
     flex-wrap: wrap;
     margin: -1rem -1rem;
     padding-bottom: 3rem;
+    padding-left: 20rem;
+    padding-right: 20rem;
+    
 }
 
 .gallery-item {
     position: relative;
-    flex: 1 0 22rem;
+    flex: 20rem;
     margin: 1rem;
-    color: white;
+    color: #fff;
     cursor: pointer;
+    height: 22rem;
+
 }
 
 .gallery-item:hover .gallery-item-info,
@@ -122,6 +124,7 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding-right: 2rem;
     position: absolute;
     top: 0;
     width: 100%;
@@ -131,13 +134,13 @@ main {
 
 .gallery-item-info {
     display: none;
-    
 }
 
 .gallery-item-info li {
-    font-size: 25px;
-    color: white;
+    display: block;
+
 }
+
 
 
 
@@ -146,4 +149,6 @@ main {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    display: block;
 }
+
