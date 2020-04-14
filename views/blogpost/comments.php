@@ -4,11 +4,11 @@
  if(isset($_SESSION['loggedin'])) { 
      echo '       
 
-        <div class="comment-container" style="width:45%;">
+        <div class="comment-container" style="width:52%;">
             <form method="POST" id="comment_form" action="">
                 <div class="form-group">
-                  <b>  <label for="exampleFormControlTextarea1" style="text-align: center; margin-bottom:20px; margin-left:250px;">COMMENTS</label></b>
-                    <textarea class="form-control" id="comment_content" rows="3" placeholder="write your comment here" name="comment_content"></textarea>
+                  <b>  <label for="exampleFormControlTextarea1" style="text-align: center; ">COMMENTS</label></b>
+                    <textarea class="form-control" id="comment_content" rows="4" placeholder="write your comment here" name="comment_content"></textarea>
                 </div>
                 <div class="pure-form pure-form-aligned container-btn form-group">
                 <input type="hidden" name="comment_id" id="comment_id" value="0"/>               
@@ -24,7 +24,7 @@
              . "style='text-decoration: none; text-transform:bold;'> log in</a></p>";
  } ?> 
 
-<div class="comment-container" style="width:45%;">
+<div class="comment-container" style="width:52%;">
             </form>
             <span id="comment_message"></span>
             <br/>
@@ -36,6 +36,19 @@
             </div>
         </div>
 
+<style>
+    
+    .comment-container{
+        width:48%;
+    }
+    @media only screen and (max-width: 400px) {
+        
+        .comment-container {
+            width: 55%;
+        }
+        
+    }
+</style>
             
 <!--                          REPLIES-->
             
