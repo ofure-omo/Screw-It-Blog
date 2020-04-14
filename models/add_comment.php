@@ -31,7 +31,7 @@ include 'blog.php';
         
         if($error == '') {
             $query = "INSERT INTO comments (parent_comment_id, comment, user_id, blog_id)
-                    VALUES (:parent_comment_id, :comment, '".$_SESSION['user_id']."', '175' )";
+                    VALUES (:parent_comment_id, :comment, '".$_SESSION['user_id']."', '173' )";
             $stmt = $db->prepare($query);
             
             $stmt->execute (

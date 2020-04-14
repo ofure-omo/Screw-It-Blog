@@ -1,33 +1,78 @@
 <body>
 
-    <!--text to be replaced with data from the blog_post table -->
+    <!--          HEADER       -->
 
-    
-        <div class='read-header'>
-            
-            
-            <div class= 'main-header'>
-            <div >
-                   <?php   
-                   $blogimg = $blog['profile_pic'];
-               $img = "<img src=$blogimg alt='profile picture' class='avatar'>";
-                     echo $img; 
-                     ?>
-        </div>
+    <div class='read-header'>
+
+
+        <div class= 'main-header'>
+
             <h1 id="read-title"><?php echo $blog['title']; ?></h1> <!--header section to retrieve data from db -->
 
-            <p class='header-info' id ='author'>Written by: <?php echo $blog['user_fn'] . PHP_EOL . $blog['user_ln']; ?></p> <!--should be replaced with username based on the session id-->
-            <p class='header-info'>Posted on: <?php
+
+            <div>
+                <?php
+                if (isset($blog['profile_pic'])) {
+                    $blogimg = $blog['profile_pic'];
+                    $img = "<img src=$blogimg alt='profile picture' class='avatar'>";
+                    echo $img;
+                } else {
+                    echo "<img src='views/images/ryan.jpg' alt='Ryan Gosling' class='avatar'>";
+                }
+                ?>
+            </div>
+            <p class='header-info' id ='author'>Written by:<a href='?controller=blogger&action=about' style='text-decoration: none;'> <?php echo $blog['user_fn'] . PHP_EOL . $blog['user_ln']; ?></a> <!--should be replaced with username based on the session id-->
+                on the <?php
                 $d = strtotime($blog['date_posted']);
                 echo date('jS F Y', $d);
                 ?></p>
-            <p class='header-info'>Category: <?php echo $blog['category']; ?></p> 
+            <?php
+            $categories = $blog['category'];
+            if ($categories == 'RENOVATE') {
+                $category = "<p class='category'><a href='?controller=categories&action=searchCategory&category=renovate' style='text-decoration: none;'> $categories</p></a> ";
+                echo $category;
+            } else {
+                echo "";
+            }
+            ?>
+            <?php
+            $categories = $blog['category'];
+            if ($categories == 'CREATE') {
+                $category = " <p class='category'><a href='?controller=categories&action=searchCategory&category=create' style='text-decoration: none;'> $categories</p></a ";
+                echo $category;
+            } else {
+                echo "";
+            }
+            ?>
+            <?php
+            $categories = $blog['category'];
+            if ($categories == 'DECORATE') {
+                $category = " <p class='category'><a href='?controller=categories&action=searchCategory&category=decorate' style='text-decoration: none;'> $categories</p></a> ";
+                echo $category;
+            } else {
+                echo "";
+            }
+            ?>
+
+            <div id="social-media" style="dispaly:inline-block; "> <!--retrieve url links from user table-->
+                <a href="<?php echo 'www.' . $blog['facebook_url']; ?>"><i class="fa read-fa fa-facebook" aria-hidden="true"></i></a>
+                <a href="<?php echo 'www.' . $blog['insta_url']; ?>"><i class="fa read-fa fa-instagram" aria-hidden="true"></i></a>
+                <a href="<?php echo 'www.' . $blog['twitter_url']; ?>"><i class="fa read-fa fa-twitter" aria-hidden="true"></i></a>
+                <a href="?controller=blog&action=likes&blog_id=<?= $blog['blog_id'] ?>" style="text-decoration: none;"> 
+                    <i onclick="myFunction(this)" class="fa fa-thumbs-o-up like" name="like"></i>
+                </a>
+                <span style="margin-left:4px;"><?php echo $likes; ?></span>
             </div>
 
         </div>
-<div class='read-blog-container'>
+
+        <!--        BLOG CONTENT-->
+
+    </div>
+    <div class='read-blog-container'>
         <div id='body-container'> <!--main body section -->
-            <p class='body' id="body1"> <?php $body = $blog['body'];
+            <p class='body' id="body1"> <?php
+                $body = $blog['body'];
                 echo $body; //echo nl2br($body);   
                 ?></p>
 
@@ -59,14 +104,10 @@
             ?>
 
         </div> 
-        <div id="social-media"> <!--retrieve url links from user table-->
-            <a href="<?php echo 'www.' . $blog['facebook_url']; ?>"><i class="fa read-fa fa-facebook" aria-hidden="true"></i></a>
-            <a href="<?php echo 'www.' . $blog['insta_url']; ?>"><i class="fa read-fa fa-instagram" aria-hidden="true"></i></a>
-            <a href="<?php echo 'www.' . $blog['twitter_url']; ?>"><i class="fa read-fa fa-twitter" aria-hidden="true"></i></a>
 
-            <a href="#" style="float:right; margin-left:20px;" id="like-btn">Like</a>
+        <div>
+            <!--            <a href="#" style="float:right; margin-left:20px;" id="like-btn">Like</a>-->
 
-            <a href='#'"><i class="fa fa-heart-o" onclick="myFunction()"></i> </a>
         </div>
         <?php foreach ($tag as $newtag) {
             ?>
@@ -75,16 +116,17 @@
                 <!-- will be populated with tags retrieved from the db-->
             </div>
 
-<?php } ?>
+        <?php } ?>
 
     </div>
+    <!--    COMMENTS-->
 
     <?php include_once "comments.php";
     ?>
 
 
 
-    <!--    COMMENTS-->
+
 
 
 </body>
@@ -96,56 +138,62 @@
     src="https://code.jquery.com/jquery-3.4.1.min.js"
     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
 crossorigin="anonymous"></script>
-<script type="text/javascript">
-//            $(document).ready(function () {
-//                $("#like-btn").click(function () {
-//                    $("#like-btn").css("color", "red");
-//                });
-//            });
+<!--<script type="text/javascript">
+                $(document).ready(function () {
+                    $("#like-btn").click(function () {
+                        $("#like-btn").css("color", "red");
+                    });
+                });
 
 
-</script>
+</script>-->
 <script scr='text/javascript'>
-    $(document).ready(function () {
 
-        $('#comment_form').on('submit', function (event) {
-            event.preventDefault();
-            var form_data = $(this).serialize();
-            $.ajax({
-                url: 'models/add_comment.php',
-                method: 'POST',
-                data: form_data,
-                dataType: 'JSON',
-                success: function (data) {
-                    if (data.error != '') {
-                        $('#comment_form')[0].reset();
-                        $('#comment_message').html(data.error);
-                    }
-                }
-            });
-        });
-        
-        $('#comment_id').val('0');
-        load_comment();
+                        function myFunction(x) {
+                            x.classList.toggle("fa-thumbs-up");
+                            alert('You\'ve liked this blogpost!');
+                        }
 
-        function load_comment() {
+                        $(document).ready(function () {
 
-            $.ajax({
-                url: 'models/post_comment.php',
-                method: 'POST',
-                success: function (data) {
-                    $('#display_comment').html(data);
-                }
-            })
-        }
-        
-        $(document).on('click', '.reply', function(){
-            var comment_id = $(this).attr("id");
-            $('#comment_id').val(comment_id);
-            $('#comment_content').focus();
-        });
-        
-    });
+                            $('#comment_form').on('submit', function (event) {
+                                event.preventDefault();
+                                var form_data = $(this).serialize();
+                                $.ajax({
+                                    url: 'models/add_comment.php',
+                                    method: 'POST',
+                                    data: form_data,
+                                    dataType: 'JSON',
+                                    success: function (data) {
+                                        if (data.error != '') {
+                                            $('#comment_form')[0].reset();
+                                            $('#comment_message').html(data.error);
+                                        }
+                                    }
+                                });
+                            });
+
+                            $('#comment_id').val('0');
+                            load_comment();
+
+                            function load_comment() {
+
+                                $.ajax({
+                                    url: 'models/post_comment.php',
+                                    method: 'POST',
+                                    success: function (data) {
+                                        $('#display_comment').html(data);
+                                    }
+                                });
+                            }
+
+                            $(document).on('click', '.reply', function () {
+                                var comment_id = $(this).attr("id");
+                                $('#comment_id').val(comment_id);
+                                $('#comment_content').focus();
+                            });
+
+                        });
 
 
 
@@ -180,13 +228,12 @@ crossorigin="anonymous"></script>
         width: 65%;
         padding: 20px;
         margin-top: 10px;
-       
     }
 
     .comment-container{
         margin: auto;
-        width: 60%;
-        margin-top: 50px;
+        width: 55%;
+        margin-top: 30px;
         margin-bottom: 50px;
     }
 
@@ -195,60 +242,56 @@ crossorigin="anonymous"></script>
         font-size: 1.5em;
         margin: auto;
         width: 90%;
-        
-        margin-top: 100px;
+
+        margin-top: 70px;
     }
-    
+
     .avatar {
-  vertical-align: middle;
-  width: 145px;
-  height: 145px;
-  border-radius: 55%;
-  margin-top: 30px;
-  margin-right: 20px;
-  float: left
-      
-  
-}
+        vertical-align: middle;
+        width: 70px;
+        height: 70px;
+        border-radius: 55%;
+        margin-right: 20px;
+        margin: auto;
+
+    }
 
     #read-title {
         font-family: 'Playfair Display', serif;
         text-transform: uppercase;
         font-size: 45px;
-      margin-left: 80px;
-/*         border: 1px solid red;*/
-        
+        margin-bottom: 20px;
     }
 
     .header-info {
-        display: flex;
-        display: inline-block;
-        justify-content: space-between;
         margin-left: 35px;
         margin-right: 35px;
+        font-size: 0.45em;
+        margin-top: 10px;
+        text-align:center;
+        font-style: italic;
+    }
+
+    .category {
         font-size: 0.5em;
-        margin-top: 25px;
+        text-align: center;
+    }
+
+    .main-header{
+        margin: auto;
+        width: 80%;
+        padding: 20px;
 
     }
     
-    #author {
-   
-    }
-    
-    .main-header{
-          margin: auto;
-        width: 72%;
-        padding: 20px;
-/*         border: 1px solid red;*/
-    }
     .body {
-        margin-top: 20px;
-        line-height: 2.1em;
-        font-size: 1em;
+        margin-top: 10px;
+        line-height: 2.5em;
+        font-size: 0.95em;
     }
 
     #body1 {
-        margin-top: 30px;
+        margin-top: 55px;
 
     }
 
@@ -265,9 +308,9 @@ crossorigin="anonymous"></script>
         border-radius: 5px;
         margin: 5px;
         margin-top: 30px;
-        
+
         border-style: none;
- 
+
 
     }
 
@@ -283,10 +326,8 @@ crossorigin="anonymous"></script>
     }
 
 
-    #socialmedia{
-
-        margin-top: 50px;
-        font-size: 1.3em;
+    #social-media{
+        font-size: 0.6em;
 
     }
 
@@ -296,14 +337,9 @@ crossorigin="anonymous"></script>
         font-size: 0.3em;
     }
 
-    .fa-heart-o {
-        user-select: none;
-        float: right;
-        color: black;
-    }
+    .like {
 
-    .fa-heart-o:hover {
-        color: red;
+        cursor: pointer;
     }
 
     .row {

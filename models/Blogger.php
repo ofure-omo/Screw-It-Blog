@@ -209,10 +209,11 @@ class Blogger extends Users {
     public static function deleteAccount($user_id) {
       $db = Screw_it::getInstance();
       //make sure $id is an integer
-      $user_id = intval($user_id);
+      $user = intval($user_id);
       $req = $db->prepare('delete FROM Users WHERE user_id = :user_id');
       // the query was prepared, now replace :id with the actual $id value
-      $req->execute(array('user_id' => $user_id));
+      $req->execute(array('user_id' => $user));
+
   }
 
 

@@ -18,4 +18,8 @@ class PagesController {
       require_once('views/pages/privacy.php');
     }
     
+    public function FAQs() {
+      require_once('views/pages/FAQs.php');
+    }
+    
 }

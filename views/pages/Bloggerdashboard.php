@@ -25,13 +25,12 @@
                 </div>
                   
      <style>
-/*body {font-family: Arial;}
 
 /* Style the tab */
 .tab {
   overflow: hidden;
   border: 1px solid #ccc;
-  background-color: #f1f1f1;
+  background-color: #3F7CAC;
 }
 
 /* Style the buttons inside the tab */
@@ -43,17 +42,20 @@
   cursor: pointer;
   padding: 14px 16px;
   transition: 0.3s;
-  font-size: 17px;
+  font-size: 14px;
+  color: #FFFFFF;
 }
 
 /* Change background color of buttons on hover */
 .tab button:hover {
-  background-color: #ddd;
+  background-color: #70D6FF;
+  color: #000000;
 }
 
 /* Create an active/current tablink class */
 .tab button.active {
-  background-color: #ccc;
+  background-color: #FCB078;
+  color: #FFFFFF
 }
 
 /* Style the tab content */
@@ -79,9 +81,9 @@
 </style>
 
 <div class="tab">
-  <button class="tablinks" onclick="openTab(event, 'MBlogs')">Blogs</button>
-  <button class="tablinks" onclick="openTab(event, 'MComments')">Comments</button>
-  <button class="tablinks" onclick="openTab(event, 'MProfile')">Profile</button>
+    <button class="tablinks" onclick="openTab(event, 'MBlogs')"><b>BLOGS</b></button>
+    <button class="tablinks" onclick="openTab(event, 'MComments')"><b>COMMENTS</b></button>
+    <button class="tablinks" onclick="openTab(event, 'MProfile')"><b>PROFILE</b></button>
 </div>
 
 <div id="MBlogs" class="tabcontent">
@@ -89,11 +91,11 @@
             <?php if (count($blogsfavscomments) > 0) { ?>
   <table style="width:100%">     
       <tr>
-          <th>Blog</th>
-          <th>Date Posted</th>
-          <th>Favourite Count</th>
-          <th>Comment Count</th>
-          <th>Actions</th>
+          <th><h3>Blog</h3></th>
+          <th><h3>Date Posted</h3></th>
+          <th><h3>Favourite Count</h3></th>
+          <th><h4>Comment Count</h4></th>
+          <th><h4>Actions</h4></th>
       </tr>
       <?php foreach ($blogsfavscomments as $posts) { ?>
       <tr>
@@ -113,7 +115,7 @@
                     <?php
                 }
             } else {
-                echo '<p>You currently have no published blogs. </p><a href=""> Create a blog </a><p> now.</p>';
+                echo '<p>You currently have no published blogs. </p><a href="?controller=blog&action=create"> Create a blog </a><p> now.</p>';
             }
             ?>
   </table>
@@ -121,13 +123,44 @@
 
 <div id="MComments" class="tabcontent">
   <p>See all your comments below:</p> 
+
+  <p></p>
+            <?php if (count($blogsfavscomments) > 0) { ?>
+  <table style="width:100%">     
+      <tr>
+          <th><h3>Blog</h3></th>
+          <th><h3>Date Posted</h3></th>
+          <th><h3>Your Comments</h3></th>
+          <th><h4>Actions</h4></th>
+      </tr>
+      <?php foreach ($blogsfavscomments as $posts) { ?>
+      <tr>
+          <td><?php echo $posts['title'] ?></td>
+          <td> <?php
+                    $d = strtotime($posts['date_posted']);
+                    echo date("jS F Y", $d);?>
+          </td>
+          <td><?php echo $posts['comment_count'] ?> </td>
+          <td>  
+              <a  href='?controller=blog&action=read&blog_id=<?php echo $posts['blog_id']; ?>'>View</a>&nbsp; 
+              <a  href='?controller=blog&action=update&blog_id=<?php echo $posts['blog_id']; ?>'>Update</a>&nbsp;
+              <a  href='?controller=blog&action=delete&blog_id=<?php echo $posts['blog_id']; ?>'>Delete</a>&nbsp;
+          </td>
+      </tr>  
+                    <?php
+                }
+            } else {
+                echo '<p>You have not posted any comments yet.</p>';
+            }
+            ?>
+  </table>
 </div>
+
 
 <div id="MProfile" class="tabcontent">
     <p></p>
   
 <div class="container">
-    <h2 style="text-align: center">Edit Profile</h2>
   <form action="" method="POST" enctype="multipart/form-data">
     <div class="row">
       <div class="col-25">
@@ -224,12 +257,14 @@ echo "<img src='views/images/profileplaceholderimage.png' width='150' />";
           </div></div>
           <br>
     <div class="row">
+        <button id="delete-btn" onclick="deleteAccount(<?php echo $blogger['user_id']; ?>)"><i class="fas fa-trash-alt"></i> Delete Account</a></button>
       <input type="submit" value="Update">
     </div>
   </form>
 </div>   
-  
 </div>
+
+
 
 <script>
 function openTab(evt, Area) {
@@ -245,10 +280,40 @@ function openTab(evt, Area) {
   document.getElementById(Area).style.display = "block";
   evt.currentTarget.className += " active";
 }
+
+
+  function deleteAccount(id) {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.open("GET", "?controller=blogger&action=delete&user_id=" + id, true);
+        xmlhttp.send();
+        goBackToHome();
+    }
+    function goBackToHome() {
+        window.refresh;
+        window.location.href = "?controller=home&action=home";
+}
+
 </script>
+
    
 
 <style>
+  #delete-btn {
+       
+  background-color: #3F7CAC;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 0 auto;     
+    }
+    
+  #delete-btn:hover {
+       
+  background-color: #70D6FF;    
+    }
+    
 * {
   box-sizing: border-box;
 }
@@ -290,7 +355,7 @@ input[type=submit]:hover {
 
 .container {
   border-radius: 5px;
-  background-color: #f2f2f2;
+  background-color: #FFFFFF;
   padding: 20px;
 }
 
@@ -319,14 +384,9 @@ input[type=submit]:hover {
   .col-25, .col-75, input[type=submit] {
     width: 100%;
     margin-top: 0;
-    text-align: leftt;
+    text-align: left;
   }
 }
 </style>
-</head>
-<body>
 
-                    
-                    
-                    
-  
+
