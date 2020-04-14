@@ -11,7 +11,7 @@
                     <textarea class="form-control" id="comment_content" rows="3" placeholder="write your comment here" name="comment_content"></textarea>
                 </div>
                 <div class="pure-form pure-form-aligned container-btn form-group">
-                <input type="hidden" name="comment_id" id="comment_id" value="0"/>
+                <input type="hidden" name="comment_id" id="comment_id" value="0"/>               
                     <input type="submit" value="COMMENT" name= "submit" id="button" class="btn btn-info" style="float:right;" >
                 </div>         
     </div>

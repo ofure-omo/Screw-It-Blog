@@ -21,7 +21,7 @@ $output = '';
 
 $query = "SELECT * FROM comments 
          INNER JOIN Users ON comments.user_id = users.user_id
-         WHERE parent_comment_id = '0' AND blog_id ='175'
+         WHERE parent_comment_id = '0' AND blog_id ='173'
          ORDER BY comment_id DESC";
 
 $stmt = $db->prepare($query);
@@ -35,7 +35,7 @@ foreach ($result as $row) {
     $output .= '
               <div class="comment" style="margin-top: 50px; color:black;">
              <b> <div class="panel-heading " style="font-size: 1.1em;"><span class="user-comment"> By ' . $row["username"] . ' </span></b><br> <i style="font-size:0.8em;"> on ' . $row["comment_date"] . '</i> </div>
-                  <div class="panel-body" > ' . $row["comment"] . '</div>
+                  <div style="margin-bottom:10px;" > ' . $row["comment"] . '</div>
              
                       <div class="panel-footer" align="left"><button onclick="reply()" type="button" class="btn btn-info reply" id= ' . $row["comment_id"] . '>
                           <span style="font-size: 0.8em; padding:0px;" >REPLY</span></button>
@@ -47,7 +47,9 @@ foreach ($result as $row) {
 }
 
 echo $output;
-
+//echo "<script type='text/javascript'>location.reload();
+//return false;</script>"; 
+//echo '<script type="text/javascript">window.location.reload();.</script>';
 
 
 //REPLIES
@@ -59,7 +61,7 @@ function get_reply_comment($db, $parent_id = 0, $marginleft = 0) {
 
     $query = "SELECT * FROM comments 
              INNER JOIN Users ON comments.user_id = users.user_id 
-             WHERE parent_comment_id = '" . $parent_id . "' AND blog_id = '175'
+             WHERE parent_comment_id = '" . $parent_id . "' AND blog_id = '173'
         ";
 
     $stmt = $db->prepare($query);
@@ -88,8 +90,7 @@ function get_reply_comment($db, $parent_id = 0, $marginleft = 0) {
                     <div style= "margin-left:' . $marginleft . 'px margin-bottom: 500px; margin-top:12px; color: dark-grey;">
                <b><div style="font-size: 1em;">' . $row["username"] . ' </b> <span style="font-size:0.85em;">replied</span>  '
                     . '<br> <i style="font-size:0.8em;"> on ' . $row["comment_date"] . '</i> </div>
-                    <div class="panel-body"> ' . $row["comment"] . '</div> 
-     
+                    <div style="margin-bottom:10px;" > ' . $row["comment"] . '</div> 
                         <div align="left"><button type="button"  style=" margin-bottom:20px; size:5px;" class="btn btn-info reply" id= ' . $row["comment_id"] . '>
                           <span style="font-size: 0.8em; padding:0px;">REPLY</span></button>
                 </div> 
@@ -103,7 +104,7 @@ function get_reply_comment($db, $parent_id = 0, $marginleft = 0) {
     }
 
     return $output;
-
+     //echo "<script type='text/javascript'>location.reload(true);</script>";
 }
 ?>
 

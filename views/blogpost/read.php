@@ -1,31 +1,35 @@
 <body>
 
-<!--          HEADER       -->
+    <!--          HEADER       -->
 
     <div class='read-header'>
 
 
         <div class= 'main-header'>
-            <div >
-                <?php if(isset($blog['profile_pic'])){ 
-                $blogimg = $blog['profile_pic'];
-                $img = "<img src=$blogimg alt='profile picture' class='avatar'>";
-                echo $img;} else {
-                    echo "<img src='views/images/ryan.jpg' alt='Ryan Gosling' class='avatar'>"; 
+
+            <h1 id="read-title"><?php echo $blog['title']; ?></h1> <!--header section to retrieve data from db -->
+
+
+            <div>
+                <?php
+                if (isset($blog['profile_pic'])) {
+                    $blogimg = $blog['profile_pic'];
+                    $img = "<img src=$blogimg alt='profile picture' class='avatar'>";
+                    echo $img;
+                } else {
+                    echo "<img src='views/images/ryan.jpg' alt='Ryan Gosling' class='avatar'>";
                 }
                 ?>
             </div>
-            <h1 id="read-title"><?php echo $blog['title']; ?></h1> <!--header section to retrieve data from db -->
-
-            <p class='header-info' id ='author'>Written by:<a href='?controller=blogger&action=about' style='text-decoration: none;'> <?php echo $blog['user_fn'] . PHP_EOL . $blog['user_ln']; ?></a></p> <!--should be replaced with username based on the session id-->
-            <p class='header-info'>Posted on: <?php
+            <p class='header-info' id ='author'>Written by:<a href='?controller=blogger&action=about' style='text-decoration: none;'> <?php echo $blog['user_fn'] . PHP_EOL . $blog['user_ln']; ?></a> <!--should be replaced with username based on the session id-->
+                on the <?php
                 $d = strtotime($blog['date_posted']);
                 echo date('jS F Y', $d);
                 ?></p>
             <?php
             $categories = $blog['category'];
             if ($categories == 'RENOVATE') {
-                $category = "<p class='header-info'><a href='?controller=categories&action=searchCategory&category=renovate' style='text-decoration: none;'> $categories</p></a> ";
+                $category = "<p class='category'><a href='?controller=categories&action=searchCategory&category=renovate' style='text-decoration: none;'> $categories</p></a> ";
                 echo $category;
             } else {
                 echo "";
@@ -34,7 +38,7 @@
             <?php
             $categories = $blog['category'];
             if ($categories == 'CREATE') {
-                $category = " <p class='header-info'><a href='?controller=categories&action=searchCategory&category=create' style='text-decoration: none;'> $categories</p></a ";
+                $category = " <p class='category'><a href='?controller=categories&action=searchCategory&category=create' style='text-decoration: none;'> $categories</p></a ";
                 echo $category;
             } else {
                 echo "";
@@ -43,15 +47,26 @@
             <?php
             $categories = $blog['category'];
             if ($categories == 'DECORATE') {
-                $category = " <p class='header-info'><a href='?controller=categories&action=searchCategory&category=decorate' style='text-decoration: none;'> $categories</p></a> ";
+                $category = " <p class='category'><a href='?controller=categories&action=searchCategory&category=decorate' style='text-decoration: none;'> $categories</p></a> ";
                 echo $category;
             } else {
                 echo "";
             }
             ?>
+
+            <div id="social-media" style="dispaly:inline-block; "> <!--retrieve url links from user table-->
+                <a href="<?php echo 'www.' . $blog['facebook_url']; ?>"><i class="fa read-fa fa-facebook" aria-hidden="true"></i></a>
+                <a href="<?php echo 'www.' . $blog['insta_url']; ?>"><i class="fa read-fa fa-instagram" aria-hidden="true"></i></a>
+                <a href="<?php echo 'www.' . $blog['twitter_url']; ?>"><i class="fa read-fa fa-twitter" aria-hidden="true"></i></a>
+                <a href="?controller=blog&action=likes&blog_id=<?= $blog['blog_id'] ?>" style="text-decoration: none;"> 
+                    <i onclick="myFunction(this)" class="fa fa-thumbs-o-up like" name="like"></i>
+                </a>
+                <span style="margin-left:4px;"><?php echo $likes; ?></span>
+            </div>
+
         </div>
-        
-<!--        BLOG CONTENT-->
+
+        <!--        BLOG CONTENT-->
 
     </div>
     <div class='read-blog-container'>
@@ -71,36 +86,28 @@
                 ?>
             </div>
             <div id='second_image ' class="column">
-<?php
-$blogimg = $blog['second_image'];
-$img = "<img class='d-block w-100' src=$blogimg alt='First slide' style='width:100%' alt='blog image1'/>";
-echo $img;
-?>
+                <?php
+                $blogimg = $blog['second_image'];
+                $img = "<img class='d-block w-100' src=$blogimg alt='First slide' style='width:100%' alt='blog image1'/>";
+                echo $img;
+                ?>
             </div>
         </div>
         <div id='body-container'> <!--body 2 section -->
             <p class='body'> <?php echo $blog['body2'] ?></p>
         </div>
         <div class='third_image'>
-<?php
-$blogimg = $blog['third_image'];
-$img = "<img class='d-block w-100' src=$blogimg alt='First slide' style='width:100%' alt='blog image1'/>";
-echo $img;
-?>
+            <?php
+            $blogimg = $blog['third_image'];
+            $img = "<img class='d-block w-100' src=$blogimg alt='First slide' style='width:100%' alt='blog image1'/>";
+            echo $img;
+            ?>
 
         </div> 
-        <div id="social-media"> <!--retrieve url links from user table-->
-            <a href="<?php echo 'www.' . $blog['facebook_url']; ?>"><i class="fa read-fa fa-facebook" aria-hidden="true"></i></a>
-            <a href="<?php echo 'www.' . $blog['insta_url']; ?>"><i class="fa read-fa fa-instagram" aria-hidden="true"></i></a>
-            <a href="<?php echo 'www.' . $blog['twitter_url']; ?>"><i class="fa read-fa fa-twitter" aria-hidden="true"></i></a>
 
-<!--            <a href="#" style="float:right; margin-left:20px;" id="like-btn">Like</a>-->
-<span style="float:right; margin-left:6px; "><?php  echo $likes;?></span>
-<a onclick="success()" href="?controller=blog&action=likes&blog_id=<?= $blog['blog_id']?>" name="like"> 
-    <i onclick="myFunction(this)" class="fa fa-thumbs-o-up like" name="like"></i>
-</a>
+        <div>
+            <!--            <a href="#" style="float:right; margin-left:20px;" id="like-btn">Like</a>-->
 
-         
         </div>
         <?php foreach ($tag as $newtag) {
             ?>
@@ -109,17 +116,17 @@ echo $img;
                 <!-- will be populated with tags retrieved from the db-->
             </div>
 
-<?php } ?>
+        <?php } ?>
 
     </div>
- <!--    COMMENTS-->
- 
-<?php include_once "comments.php";
-?>
+    <!--    COMMENTS-->
+
+    <?php include_once "comments.php";
+    ?>
 
 
 
-   
+
 
 
 </body>
@@ -141,55 +148,52 @@ crossorigin="anonymous"></script>
 
 </script>-->
 <script scr='text/javascript'>
-    
- function myFunction(x) {
-  x.classList.toggle("fa-thumbs-up");
-}
 
-function success(){
-    alert('you\'ve liked this blogpost');
-}
-  
-    $(document).ready(function () {
+                        function myFunction(x) {
+                            x.classList.toggle("fa-thumbs-up");
+                            alert('You\'ve liked this blogpost!');
+                        }
 
-        $('#comment_form').on('submit', function (event) {
-            event.preventDefault();
-            var form_data = $(this).serialize();
-            $.ajax({
-                url: 'models/add_comment.php',
-                method: 'POST',
-                data: form_data,
-                dataType: 'JSON',
-                success: function (data) {
-                    if (data.error != '') {
-                        $('#comment_form')[0].reset();
-                        $('#comment_message').html(data.error);
-                    }
-                }
-            });
-        });
+                        $(document).ready(function () {
 
-        $('#comment_id').val('0');
-        load_comment();
+                            $('#comment_form').on('submit', function (event) {
+                                event.preventDefault();
+                                var form_data = $(this).serialize();
+                                $.ajax({
+                                    url: 'models/add_comment.php',
+                                    method: 'POST',
+                                    data: form_data,
+                                    dataType: 'JSON',
+                                    success: function (data) {
+                                        if (data.error != '') {
+                                            $('#comment_form')[0].reset();
+                                            $('#comment_message').html(data.error);
+                                        }
+                                    }
+                                });
+                            });
 
-        function load_comment() {
+                            $('#comment_id').val('0');
+                            load_comment();
 
-            $.ajax({
-                url: 'models/post_comment.php',
-                method: 'POST',
-                success: function (data) {
-                    $('#display_comment').html(data);
-                }
-            });
-        }
+                            function load_comment() {
 
-        $(document).on('click', '.reply', function () {
-            var comment_id = $(this).attr("id");
-            $('#comment_id').val(comment_id);
-            $('#comment_content').focus();
-        });
-       
-    });
+                                $.ajax({
+                                    url: 'models/post_comment.php',
+                                    method: 'POST',
+                                    success: function (data) {
+                                        $('#display_comment').html(data);
+                                    }
+                                });
+                            }
+
+                            $(document).on('click', '.reply', function () {
+                                var comment_id = $(this).attr("id");
+                                $('#comment_id').val(comment_id);
+                                $('#comment_content').focus();
+                            });
+
+                        });
 
 
 
@@ -224,13 +228,12 @@ function success(){
         width: 65%;
         padding: 20px;
         margin-top: 10px;
-
     }
 
     .comment-container{
         margin: auto;
-        width: 60%;
-        margin-top: 50px;
+        width: 55%;
+        margin-top: 30px;
         margin-bottom: 50px;
     }
 
@@ -240,18 +243,16 @@ function success(){
         margin: auto;
         width: 90%;
 
-        margin-top: 100px;
+        margin-top: 70px;
     }
 
     .avatar {
         vertical-align: middle;
-        width: 145px;
-        height: 145px;
+        width: 70px;
+        height: 70px;
         border-radius: 55%;
-        margin-top: 30px;
         margin-right: 20px;
-        float: left
-
+        margin: auto;
 
     }
 
@@ -259,40 +260,38 @@ function success(){
         font-family: 'Playfair Display', serif;
         text-transform: uppercase;
         font-size: 45px;
-        margin-left: 80px;
-        /*         border: 1px solid red;*/
-
+        margin-bottom: 20px;
     }
 
     .header-info {
-        display: flex;
-        display: inline-block;
-        justify-content: space-between;
         margin-left: 35px;
         margin-right: 35px;
-        font-size: 0.5em;
-        margin-top: 25px;
-
+        font-size: 0.45em;
+        margin-top: 10px;
+        text-align:center;
+        font-style: italic;
     }
 
-    #author {
-
+    .category {
+        font-size: 0.5em;
+        text-align: center;
     }
 
     .main-header{
         margin: auto;
-        width: 72%;
+        width: 80%;
         padding: 20px;
-        /*         border: 1px solid red;*/
+
     }
+    
     .body {
-        margin-top: 20px;
-        line-height: 2.1em;
-        font-size: 1em;
+        margin-top: 10px;
+        line-height: 2.5em;
+        font-size: 0.95em;
     }
 
     #body1 {
-        margin-top: 30px;
+        margin-top: 55px;
 
     }
 
@@ -327,10 +326,8 @@ function success(){
     }
 
 
-    #socialmedia{
-
-        margin-top: 50px;
-        font-size: 1.3em;
+    #social-media{
+        font-size: 0.6em;
 
     }
 
@@ -341,14 +338,9 @@ function success(){
     }
 
     .like {
-        user-select: none;
-        float: right;
-        cursor: pointer;
-        float:right;
-        
-    }
 
-  
+        cursor: pointer;
+    }
 
     .row {
         display: flex;

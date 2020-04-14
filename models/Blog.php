@@ -123,7 +123,7 @@ class Blog {
 
         $req->execute();
         
-        if(isset($_POST['tag'])) {
+       if(isset($_POST['tag'])) {
             $filteredTag = $_POST['tag'];
         $newtag = $filteredTag;
         foreach ($newtag as $key => $tags) {
@@ -134,7 +134,7 @@ class Blog {
             $tag = $tag2; //tags doesnt work, how to check if tag already in db and if input tag not == to db tag then delete 
             $req->execute();
         }
-    } else { echo ""; }
+   } else { echo ""; }
 //upload product image if it exists
         /*if (!empty($_FILES[self::InputKey]['name'])) {
             Product::uploadFile($name);
@@ -159,9 +159,6 @@ class Blog {
         if (isset($_POST['category']) && $_POST['category'] != "") {
             $filteredCategory = filter_input(INPUT_POST, 'category', FILTER_SANITIZE_SPECIAL_CHARS);
         }
-
-        //$explodetag = explode('# ', $newtag);
-        //echo $explodetag;
 
         /* if (isset($_FILES["myfile"]["tmp_name"][2])) {
           echo"";
@@ -246,8 +243,14 @@ class Blog {
          
         //upload product image:  
         Blog::uploadFiles($imagename);
+        echo '<h3 style="text-align:center; margin-top:30px; margin-bottom:20px;"> Your blog has been uploaded!</h3>'
+        . '<img style="display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;" src="views/images/bloguploaded.png"/>';
         
-         echo "<script type='text/javascript'>location.href = '?controller=blogger&action=dashboard';</script>";
+       echo '<meta http-equiv="refresh" content="4;  url=?controller=blogger&action=dashboard" />';
+
     }
 
     const AllowedTypes = ['image/jpeg', 'image/jpg', 'image/png'];
@@ -287,11 +290,12 @@ class Blog {
           echo "";
           } */     
 
-//         if (!in_array($_FILES["myfile"]["tmp_name"], self::AllowedTypes)) {
-//          echo"File Type Not Allowed: " . $_FILES["myfile"]["name"][$key] . PHP_EOL;
-//          } else {
-//          echo "";
-//          } 
+         if (!in_array($_FILES["myfile"]["tmp_name"], self::AllowedTypes)) {
+          echo"<p style='text-align:center; margin:0; margin-top:10px;'>'File type not allowed</p>  ";
+          } else {
+          echo "";
+          } 
+          
           if (!in_array($file_type, self::AllowedTypes)) {
             echo ("Handle File Type Not Allowed: ");
         }
@@ -304,7 +308,7 @@ class Blog {
         move_uploaded_file($temp, $destinationFile);
         //(move_uploaded_file($_FILES[self::InputKey]['tmp_name'], $destinationFile));
         if (!move_uploaded_file($temp, $destinationFile)) { //file does upload not usre why throwing error?
-            echo "file not uploaded or images already exist! <br>";
+            echo "<p style='text-align:center; margin:0;'>File not uploaded or images already exist! </p><br>";
         } else {
             echo "your files have uploaded";
         }
@@ -324,47 +328,30 @@ class Blog {
         // the query was prepared, now replace :id with the actual $id value
         
         $req->execute(array('blog_id' => $blog_id));
-        
+
         echo "<script type='text/javascript'>location.href = '?controller=blogger&action=dashboard';</script>";
     }  
 
      
 
-    public static function updateImages($imagename) {
+    public static function updateImage1($imagename) {
 
-        $db = Screw_it::getInstance();
-
-        foreach ($_FILES["myfile"]["tmp_name"] as $key => $tmp_name) {
-
-            $temp = $_FILES["myfile"]["tmp_name"][$key];
-            $imagename = $_FILES["myfile"]["name"][$key];   //save this in the db!!
+          $temp = $_FILES["myfile"]['tmp_name'];
+            $imagename = $_FILES["myfile"]["name"];   //save this in the db!!
             //echo $imagename;
-        }
-
-        if (empty($_FILES["myfile"]["tmp_name"])) {
+         if (empty($_FILES[self::InputKey])) {
             //die("File Missing!");
-            die("File Missing! <br>");
-        } else {
-            echo "";
+            trigger_error("File Missing!");
         }
 
-        if (isset($_FILES["myfile"]["tmp_name"][2])) {
-            echo"";
-        } else {
-            echo ("Please upload 3 images<br>");
+        if ($_FILES[self::InputKey]['error'] > 0) {
+            trigger_error("Handle the error! " . $_FILES[InputKey]['error']);
         }
+        echo $_FILES[self::InputKey]['type'];
 
-        /* if ($imagename < 3) {
-          echo "You haven't uploaded enough images, please upload 3 <br>";
-          } else {
-          echo "";
-          } */
-
-        /* if (!in_array($_FILES["myfile"]["tmp_name"], self::AllowedTypes)) {
-          echo"File Type Not Allowed: " . $_FILES["myfile"]["name"][$key] . PHP_EOL;
-          } else {
-          echo "";
-          } */
+        if (!in_array($_FILES[self::InputKey]['type'], self::AllowedTypes)) {
+            trigger_error("Handle File Type Not Allowed: " . $_FILES[self::InputKey]['type']);
+        }
 
         //$tempFile = $_FILES[self::InputKey]['tmp_name']; 
         $path = DIRECTORY_SEPARATOR . 'Applications' . DIRECTORY_SEPARATOR . 'XAMPP' . DIRECTORY_SEPARATOR . 'xamppfiles' . DIRECTORY_SEPARATOR . 'htdocs' . DIRECTORY_SEPARATOR . 'Screw-it' . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR;
@@ -372,7 +359,7 @@ class Blog {
 
         move_uploaded_file($temp, $destinationFile);
         //(move_uploaded_file($_FILES[self::InputKey]['tmp_name'], $destinationFile));
-        if (!move_uploaded_file($_FILES["myfile"]["tmp_name"][$key], $destinationFile)) { //file does upload not usre why throwing error?
+        if (!move_uploaded_file($_FILES["myfile"]["tmp_name"], $destinationFile)) { //file does upload not usre why throwing error?
             echo "your images have not uploaded! <br>";
         } else {
             echo "";
@@ -410,8 +397,8 @@ class Blog {
 //                             SET favourites = favourites + 1 
 //                             WHERE blog_id = '".$blog_id."'");
         $req->execute();
-      
-       
+     
+      echo '<meta http-equiv="refresh" content="0;  url=?controller=blog&action=read&blog_id=' . $blog_id . '"/>';
     }
 
 }
