@@ -152,28 +152,7 @@ img {
     display: block;
 }
 /*register form styling */
-/* Style all input fields */
-/*input {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-  margin-top: 6px;
-  margin-bottom: 16px;
-}
 
-/* Style the submit button 
-input[type=submit] {
-  background-color: #4CAF50;
-  color: white;
-}*/
-
-/* Style the container for inputs 
-.container {
-  background-color: #f1f1f1;
-  padding: 20px;
-}*/
 
 /* The message box is shown when the user clicks on the password field */
 #message {
@@ -192,7 +171,7 @@ input[type=submit] {
 
 /* Add a green text color and a checkmark when the requirements are right */
 .valid {
-  color: green;
+  color: #3F7CAC;
 }
 
 .valid:before {
@@ -203,7 +182,7 @@ input[type=submit] {
 
 /* Add a red text color and an "x" when the requirements are wrong */
 .invalid {
-  color: red;
+  color: #FCB078;
 }
 
 .invalid:before {
