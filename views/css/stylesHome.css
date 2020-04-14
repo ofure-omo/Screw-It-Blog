@@ -161,19 +161,19 @@ img {
   box-sizing: border-box;
   margin-top: 6px;
   margin-bottom: 16px;
-}*/
+}
 
-/* Style the submit button */
+/* Style the submit button 
 input[type=submit] {
   background-color: #4CAF50;
   color: white;
-}
+}*/
 
-/* Style the container for inputs */
+/* Style the container for inputs 
 .container {
   background-color: #f1f1f1;
   padding: 20px;
-}
+}*/
 
 /* The message box is shown when the user clicks on the password field */
 #message {
