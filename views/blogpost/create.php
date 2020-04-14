@@ -3,9 +3,11 @@
 
         <style>
             .form-container{
-                width: 40%;
+                width: 50%;
+                padding:0;
                 margin-left: 150px;
                 margin-top: 50px;
+                position: relative;
             }
 
             h1 {
@@ -53,7 +55,7 @@
             .blog-template {
                 float: right; 
                 height: 800px;
-                margin-right: 150px;
+                margin-right: 10px;
             }
 
             #template-container {
@@ -85,6 +87,23 @@
                 font-size: 0.6em;
                 font-style: italic;
             }
+            
+            @media only screen and (max-width: 400px) {
+                
+                h1 {
+                    font-size: 1.5em;
+                    margin: auto;
+                    padding: auto;
+                    margin-top: 20px;
+                    margin-left:20px;
+                }
+                
+                .blog-container {
+                    margin: auto;
+                    float:right;
+                    
+                }
+            }
 
         </style>
         <!--<form action="" method="POST" class="w3-container" enctype="multipart/form-data">
@@ -114,9 +133,11 @@
 
         <span>
             <div id="template-container">
-                <p class="blog-container"> blog template </p>
+                <div class="blog-container"> <p> blog template </p>
                 <img src="views/images/blogtemplate.png" alt="blog template" class="blog-template" >
+                </div>
             </div>
+            
             <div class=' form-container'>
                 <form action="" method="POST" class="w3-container" enctype="multipart/form-data">
                     <div class="form-group">
@@ -211,15 +232,7 @@
                         </div>  
                     </div>
 
-                        <script>
-
-                            function onSelect(e) {
-                                if (e.files.length > 3) {
-                                    alert("Please select max 3 files.");
-                                    e.preventDefault();
-                                }
-                            }
-                        </script>
+                        
                 </form>
             </div>
         </span>

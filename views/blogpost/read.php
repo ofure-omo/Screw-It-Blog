@@ -1,11 +1,8 @@
 <body>
-
     <!--          HEADER       -->
 
     <div class='read-header'>
 
-
-        <div class= 'main-header'>
 
             <h1 id="read-title"><?php echo $blog['title']; ?></h1> <!--header section to retrieve data from db -->
 
@@ -61,14 +58,13 @@
                 <a href="?controller=blog&action=likes&blog_id=<?= $blog['blog_id'] ?>" style="text-decoration: none;"> 
                     <i onclick="myFunction(this)" class="fa fa-thumbs-o-up like" name="like"></i>
                 </a>
-                <span style="margin-left:4px;"><?php echo $likes; ?></span>
+                <span style="margin-left:4px; font-size:0.6em;"><?php echo $likes; ?></span>
             </div>
 
         </div>
 
         <!--        BLOG CONTENT-->
 
-    </div>
     <div class='read-blog-container'>
         <div id='body-container'> <!--main body section -->
             <p class='body' id="body1"> <?php
@@ -120,8 +116,11 @@
 
     </div>
     <!--    COMMENTS-->
+    <?php
+    include_once "comments.php";
 
-    <?php include_once "comments.php";
+    //include_once 'models/post_comment.php';
+//include_once 'models/add_comment.php';
     ?>
 
 
@@ -226,8 +225,7 @@ crossorigin="anonymous"></script>
     .read-blog-container{
         margin: auto;
         width: 65%;
-        padding: 20px;
-        margin-top: 10px;
+
     }
 
     .comment-container{
@@ -242,8 +240,7 @@ crossorigin="anonymous"></script>
         font-size: 1.5em;
         margin: auto;
         width: 90%;
-
-        margin-top: 70px;
+        margin-top: 50px;
     }
 
     .avatar {
@@ -283,7 +280,7 @@ crossorigin="anonymous"></script>
         padding: 20px;
 
     }
-    
+
     .body {
         margin-top: 10px;
         line-height: 2.5em;
@@ -327,8 +324,12 @@ crossorigin="anonymous"></script>
 
 
     #social-media{
-        font-size: 0.6em;
+        font-size: 0.5em;
 
+    }
+    
+    i.fa{
+        font-size: 18px;
     }
 
     .read-fa {
@@ -364,11 +365,12 @@ crossorigin="anonymous"></script>
 
         }
         #read-title{
-            font-size: 1.3em;   
+            font-size: 0.9em; 
+            margin-top:20px;
         }
 
         .read-blog-container {
-            margin-top: 30px;
+/*           margin-top: 30px;*/
             width: 85%;
         }
 
@@ -384,7 +386,41 @@ crossorigin="anonymous"></script>
             text-align: center;
 
         }
+        
+        .avatar {
+            width: 50px;
+            height: 50px;
+        }
 
+
+    }
+    @media only screen and (max-width: 400px) {
+      .header-info {
+        font-size: 0.35em;
+
+    }
+    
+     .category {
+        font-size: 0.35em;
+
+    }
+    i.fa {
+        font-size: 10px;
+    }
+    
+    .read-blog-container{
+        margin: auto;
+        width: 82%;
+        padding: 20px;
+
+    }
+    
+    .read-header {
+        padding-bottom: 0px;
+        width: 82%;
+        margin-top: 50px;
+    }
+    
     }
 
 

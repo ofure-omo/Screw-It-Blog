@@ -1,9 +1,8 @@
 
 <?php  session_start();
 
-include 'blog.php';
 
- class Screw_it {
+ class Screwit {
     
     private static $instance = NULL;
 
@@ -17,7 +16,7 @@ include 'blog.php';
     }
 }    
 
-        $db= Screw_it::getInstance();
+        $db= Screwit::getInstance();
 
         $error='';
         $comment_content='';

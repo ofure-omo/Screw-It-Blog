@@ -43,8 +43,8 @@ class BlogController {
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 
-            if (!isset($_GET['blog_id']))
-                return call('pages', 'error');
+            if (isset($_GET['blog_id'])) {
+               
 
             $tag = Blog::findTag($_GET['blog_id']); // we use the given id to get the correct product
             $tags = Blog::getTag(($_GET['blog_id']));
@@ -58,6 +58,7 @@ class BlogController {
             //$blog = Blog::all();
             //require_once('views/blogpost/readAll.php');
         }
+    }
     }
 
     public function delete() {

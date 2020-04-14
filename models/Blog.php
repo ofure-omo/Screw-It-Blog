@@ -93,6 +93,7 @@ class Blog {
     public static function update($blog_id) {
         $db = Screw_it::getInstance(); 
         
+        
         $blog_id = intval($blog_id);
         if (isset($_POST['title']) && $_POST['title'] != "") {
             $filteredTitle = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -141,7 +142,6 @@ class Blog {
         }*/
     echo "<script type='text/javascript'>location.href = '?controller=blogger&action=dashboard';</script>";
     }
-    
     
     public static function add() {
 
@@ -353,6 +353,7 @@ class Blog {
             trigger_error("Handle File Type Not Allowed: " . $_FILES[self::InputKey]['type']);
         }
 
+  
         //$tempFile = $_FILES[self::InputKey]['tmp_name']; 
         $path = DIRECTORY_SEPARATOR . 'Applications' . DIRECTORY_SEPARATOR . 'XAMPP' . DIRECTORY_SEPARATOR . 'xamppfiles' . DIRECTORY_SEPARATOR . 'htdocs' . DIRECTORY_SEPARATOR . 'Screw-it' . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR;
         $destinationFile = $path . $imagename;

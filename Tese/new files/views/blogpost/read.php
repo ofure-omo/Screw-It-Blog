@@ -99,7 +99,7 @@
         <div class='third_image'>
             <?php
             $blogimg = $blog['third_image'];
-            $img = "<img class='d-block w-100' src=$blogimg alt='First slide' style='width:100%' alt='blog image1'/>";
+            $img = "<img class='d-block w-100' src=$blogimg alt='First slide' style='width:100%; margin-bottom: 30px;' alt='blog image1'/>";
             echo $img;
             ?>
 
@@ -233,7 +233,7 @@ crossorigin="anonymous"></script>
     .comment-container{
         margin: auto;
         width: 55%;
-        margin-top: 30px;
+        margin-top: 70px;
         margin-bottom: 50px;
     }
 
@@ -242,8 +242,6 @@ crossorigin="anonymous"></script>
         font-size: 1.5em;
         margin: auto;
         width: 90%;
-
-        margin-top: 70px;
     }
 
     .avatar {
@@ -261,6 +259,7 @@ crossorigin="anonymous"></script>
         text-transform: uppercase;
         font-size: 45px;
         margin-bottom: 20px;
+        margin-top: 30px;
     }
 
     .header-info {
