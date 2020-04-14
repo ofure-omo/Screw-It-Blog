@@ -74,7 +74,7 @@ class Register {
         $username = $filteredUsername;
         $password = $hashedPassword;
         $user_fn = $filteredUser_fn;
-        $user_ln = $filteredUser_fn;
+        $user_ln = $filteredUser_ln;
         $email = $filteredEmail;
         $dob = $filteredDob;
         $answer_1 = $hashedAnswer_1;
@@ -127,7 +127,7 @@ class Register {
         $username = $filteredUsername;
         $password = $hashedPassword;
         $user_fn = $filteredUser_fn;
-        $user_ln = $filteredUser_fn;
+        $user_ln = $filteredUser_ln;
         $email = $filteredEmail;
         $dob = $filteredDob;
         $answer_1 = $hashedAnswer_1;
@@ -166,7 +166,7 @@ class Register {
 
         $query = "SELECT username FROM users WHERE username = '$username'";
         
-        $result = $db->exec($query);
+        $result = PDO::exec($query);
         
         
         //$result = mysqli_query($db, $query);
