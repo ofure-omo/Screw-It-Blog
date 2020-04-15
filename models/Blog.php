@@ -62,7 +62,7 @@ class Blog {
         return $blog;
     }
 
-    public function findTag($blog_id) {
+    public function findTagForBlog($blog_id) {
         $db = Screw_it::getInstance();
         $blog_id = intval($blog_id);
         $req = $db->prepare('SELECT * FROM blog_tags 
@@ -93,7 +93,6 @@ class Blog {
     public static function update($blog_id) {
         $db = Screw_it::getInstance(); 
         
-        
         $blog_id = intval($blog_id);
         if (isset($_POST['title']) && $_POST['title'] != "") {
             $filteredTitle = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -109,6 +108,9 @@ class Blog {
         
         if (isset($_POST['category']) && $_POST['category'] != "") {
             $filteredCategory = filter_input(INPUT_POST, 'category', FILTER_SANITIZE_SPECIAL_CHARS);
+        }
+        if (isset($_POST['layout']) && $_POST['layout'] != "") {
+            $filteredLayout = filter_input(INPUT_POST, 'layout', FILTER_SANITIZE_SPECIAL_CHARS);
         }
         
          $filteredImage = filter_input(INPUT_POST, 'myfile[]', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -131,7 +133,7 @@ class Blog {
     
         
         $req = $db->prepare("Update blog_posts set title=:title, body=:body, body2=:body2, category=:category
-                              main_image=:main_image, second_image=:second_image, third_image=:third_image WHERE blog_id= '".$blog_id."';");
+                              main_image=:main_image, second_image=:second_image, third_image=:third_image, layout=:layout WHERE blog_id= '".$blog_id."';");
         
         
         $req->bindParam(':title', $title);
@@ -141,6 +143,7 @@ class Blog {
          $req->bindParam(':main_image', $main_image);
         $req->bindParam(':second_image', $second_image);
         $req->bindParam(':third_image', $third_image);
+        $req->bindParam(':layout', $layout);
        
         $title = $filteredTitle;
         $body = $filteredBody;
@@ -149,16 +152,20 @@ class Blog {
         $main_image = $file_path1;
         $second_image = $file_path2;
         $third_image = $file_path3;
+        $layout = $filteredLayout;
 
         $req->execute();
         
        if(isset($_POST['tag'])) {
-            $filteredTag = $_POST['tag'];
+           $req = $db->prepare("DELETE * FROM blog_tags WHERE blog_id = '".$blog_id."');");
+           $req->execute();
+           
+        $filteredTag = $_POST['tag'];
         $newtag = $filteredTag;
         foreach ($newtag as $key => $tags) {
             $tag2 = $tags;
 
-            $req = $db->prepare("UPDATE blog_tags set tag=:tag WHERE blog_id = '".$blog_id."');");
+            $req = $db->prepare("INSERT INTO blog_tags(tag, blog_id) VALUES (:tag, '".$blog_id."');");
             $req->bindParam('tag', $tag);
             $tag = $tag2; //tags doesnt work, how to check if tag already in db and if input tag not == to db tag then delete 
             $req->execute();
@@ -168,8 +175,13 @@ class Blog {
         if (!empty($_POST['myfile[]'])) {
             UpdateImages::uploadFile($updatename);
         }
+             echo '<h3 style="text-align:center; margin-top:30px; margin-bottom:20px;"> Your blog has been uploaded!</h3>'
+        . '<img style="display: block; margin-left: auto; margin-right: auto; width: 40%;" src="views/images/bloguploaded.png"/>';
+//        
+//       echo '<meta http-equiv="refresh" content="4;  url=?controller=blogger&action=dashboard" />';
     echo "<script type='text/javascript'>location.href = '?controller=blogger&action=dashboard';</script>";
     }
+    
     
     
     public static function updateImages($updatename) {
