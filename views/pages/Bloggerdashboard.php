@@ -81,7 +81,7 @@
 </style>
 
 <div class="tab">
-    <button class="tablinks" onclick="openTab(event, 'MBlogs')"><b>BLOGS</b></button>
+    <button class="tablinks" onclick="openTab(event, 'MBlogs')" id="defaultOpen"><b>BLOGS</b></button>
     <button class="tablinks" onclick="openTab(event, 'MComments')"><b>COMMENTS</b></button>
     <button class="tablinks" onclick="openTab(event, 'MProfile')"><b>PROFILE</b></button>
 </div>
@@ -105,7 +105,7 @@
                     echo date("jS F Y", $d);?>
           </td>
           <td><?php echo $posts['favourite_count'] ?></td>
-          <td><?php echo $posts['comment_count'] ?> </td>
+          <td><?php echo $posts['comment_count'] ?></td>
           <td>  
               <a  href='?controller=blog&action=read&blog_id=<?php echo $posts['blog_id']; ?>'>View</a>&nbsp; 
               <a  href='?controller=blog&action=update&blog_id=<?php echo $posts['blog_id']; ?>'>Update</a>&nbsp;
@@ -115,17 +115,17 @@
                     <?php
                 }
             } else {
-                echo '<p>You currently have no published blogs. </p><a href="?controller=blog&action=create"> Create a blog </a><p> now.</p>';
+                echo '<p>You currently have no published blogs. </p><a href="?controller=blog&action=create"> Create a blog </a>now.</p>';
             }
             ?>
   </table>
         </div> 
 
 <div id="MComments" class="tabcontent">
-  <p>See all your comments below:</p> 
+  <p></p> 
 
   <p></p>
-            <?php if (count($blogsfavscomments) > 0) { ?>
+            <?php if (count($commenttext) > 0) { ?>
   <table style="width:100%">     
       <tr>
           <th><h3>Blog</h3></th>
@@ -133,18 +133,18 @@
           <th><h3>Your Comments</h3></th>
           <th><h4>Actions</h4></th>
       </tr>
-      <?php foreach ($blogsfavscomments as $posts) { ?>
+      <?php foreach ($commenttext as $comment) { ?>
       <tr>
-          <td><?php echo $posts['title'] ?></td>
+          <td><?php echo $comment['blog_id'] ?></td> 
           <td> <?php
-                    $d = strtotime($posts['date_posted']);
+                    $d = strtotime($comment['comment_date']);
                     echo date("jS F Y", $d);?>
           </td>
-          <td><?php echo $posts['comment_count'] ?> </td>
+          <td><?php echo $comment['comment'] ?> </td>
           <td>  
-              <a  href='?controller=blog&action=read&blog_id=<?php echo $posts['blog_id']; ?>'>View</a>&nbsp; 
-              <a  href='?controller=blog&action=update&blog_id=<?php echo $posts['blog_id']; ?>'>Update</a>&nbsp;
-              <a  href='?controller=blog&action=delete&blog_id=<?php echo $posts['blog_id']; ?>'>Delete</a>&nbsp;
+              <a  href='?controller=blog&action=read&blog_id=<?php echo $comment['blog_id']; ?>'>View</a>&nbsp; 
+              <a  href='?controller=comments&action=update&comment_id=<?php echo $comment['comment_id']; ?>'>Update</a>&nbsp;
+              <a  href='?controller=comments&action=delete&comment_id=<?php echo $comment['comment_id']; ?>'>Delete</a>&nbsp;
           </td>
       </tr>  
                     <?php
@@ -194,20 +194,12 @@
         <input type="email" id="email" name="email" value="<?= $blogger['email'] ?>">
       </div>
     </div>
-       <div class="row">
-      <div class="col-25">
-        <label for="dob">Birth date</label>
-      </div>
-      <div class="col-75">
-        <input type="text" id="dob" name="dob"  value="<?= $blogger['dob'] ?>">
-      </div>
-    </div>
       <div class="row">
       <div class="col-25">
     <label for="bio">Bio</label>
       </div>
       <div class="col-75">
-       <input type="text" id="bio" name="bio"  value="<?= $blogger['bio'] ?>">
+       <input type="text" id="bio" name="bio" placeholder="Tell our readers a little about you" value="<?= $blogger['bio'] ?>">
       </div>
     </div>
        <div class="row">
@@ -280,6 +272,8 @@ function openTab(evt, Area) {
   document.getElementById(Area).style.display = "block";
   evt.currentTarget.className += " active";
 }
+
+document.getElementById("defaultOpen").click();
 
 
   function deleteAccount(id) {

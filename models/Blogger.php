@@ -98,9 +98,9 @@ class Blogger extends Users {
         if (isset($_POST['bio']) && $_POST['bio'] != "") {
             $filteredBio = filter_input(INPUT_POST, 'bio', FILTER_SANITIZE_SPECIAL_CHARS);
         }
-        if (isset($_POST['dob']) && $_POST['dob'] != "") {
-            $filtereddob = filter_input(INPUT_POST, 'dob', FILTER_SANITIZE_SPECIAL_CHARS);
-        }
+     // if (isset($_POST['dob']) && $_POST['dob'] != "") {
+     //       $filtereddob = filter_input(INPUT_POST, 'dob', FILTER_SANITIZE_SPECIAL_CHARS);
+     //   }
         if (isset($_POST['user_fn']) && $_POST['user_fn'] != "") {
             $filteredfn = filter_input(INPUT_POST, 'user_fn', FILTER_SANITIZE_SPECIAL_CHARS);
         }
@@ -125,7 +125,7 @@ class Blogger extends Users {
         
         $username = $filteredUsername;
         $bio = $filteredBio;
-        $dob = $filtereddob;
+        //$dob = $filtereddob;
         $fn = $filteredfn;
         $ln = $filteredln;
         $email = $filteredemail;
@@ -134,13 +134,13 @@ class Blogger extends Users {
         $facebook = $filteredfacebook;
         //$profilepic = $filteredimage;
         
-        /* removed -- , profile_pic=:profile_pic  from query*/
+        /* removed -- , profile_pic=:profile_pic, dob=:dob, from query*/
         
-        $req = $db->prepare("Update Users set username=:username, bio=:bio, dob=:dob, user_fn=:user_fn, user_ln=:user_ln, email=:email, twitter_url=:twitter, insta_url=:insta, facebook_url=:facebook WHERE user_id=:user_id;");
+        $req = $db->prepare("Update Users set username=:username, bio=:bio,  user_fn=:user_fn, user_ln=:user_ln, email=:email, twitter_url=:twitter, insta_url=:insta, facebook_url=:facebook WHERE user_id=:user_id;");
         $req->bindParam(':user_id', $user_id);
         $req->bindParam(':username', $username);
         $req->bindParam(':bio', $bio);
-        $req->bindParam(':dob', $dob);
+       // $req->bindParam(':dob', $dob);
         $req->bindParam(':user_fn', $fn);
         $req->bindParam(':user_ln', $ln);
         $req->bindParam(':email', $email);
@@ -231,8 +231,24 @@ public function getBlogsFavsComments($user_id) {
         return $results;
     
 }
-    }
+   
 
+    
+            public function getComments($user_id) {
+      $db = Screw_it::getInstance();
+      
+            $user_id = intval($user_id);
+      
+            $query = "SELECT * FROM comments WHERE user_id = :user_id;";
+            $stmt = $db->prepare($query);
+            $stmt->bindParam(':user_id',$user_id,PDO::PARAM_INT);
+            $stmt->execute(array('user_id' => $user_id));
+            $comments = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+        return $comments;
+    }
+     }
+    
     /* I think this will need the blog model because it's trying to create a new class of blog... 
         public static function getUserBlogs($user_id) {
         $db = Screw_it::getInstance();

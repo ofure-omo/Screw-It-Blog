@@ -18,6 +18,7 @@ class BloggerController {
             $blogs = Blogger::getCountBlogs(($_SESSION['user_id']));
             $comments = Blogger::getCountComments(($_SESSION['user_id']));
             $blogsfavscomments = Blogger::getBlogsFavsComments(($_SESSION['user_id'])); 
+            $commenttext = Blogger::getComments(($_SESSION['user_id'])); 
            // $blogcontents = Blogger::getUserBlogs($_SESSION['user_id']);
             require_once('views/pages/Bloggerdashboard.php');
             
