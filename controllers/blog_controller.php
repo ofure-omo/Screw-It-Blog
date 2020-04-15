@@ -19,7 +19,7 @@ class BlogController {
             // we use the given id to get the correct post
             $blog = Blog::find($_GET['blog_id']);
             $likes = Blog::getlikes($_GET['blog_id']);
-            $tag = Blog::findTag($_GET['blog_id']);
+            $tag = Blog::findTagForBlog($_GET['blog_id']);
             //code for postComments
             require_once('views/blogpost/read.php');
             
