@@ -12,7 +12,7 @@
                 </div>
                 <div class="pure-form pure-form-aligned container-btn form-group">
                 <input type="hidden" name="comment_id" id="comment_id" value="0"/>               
-                    <input type="submit" value="COMMENT" name= "submit" id="button" class="btn btn-info" style="float:right;" >
+                    <input type="submit" value="comment" name= "submit" id="button" class="btn btn-info" style="float:right;" >
                 </div>         
     </div>
     
@@ -36,19 +36,6 @@
             </div>
         </div>
 
-<style>
-    
-    .comment-container{
-        width:48%;
-    }
-    @media only screen and (max-width: 400px) {
-        
-        .comment-container {
-            width: 55%;
-        }
-        
-    }
-</style>
             
 <!--                          REPLIES-->
             

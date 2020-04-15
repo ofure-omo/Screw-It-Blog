@@ -6,9 +6,10 @@
         <title>Login</title>
     </head>
     <body>
-
+        <br><br>
+        <h2 style="padding-left:2.7em">Login</h2>
         <section class="main-section">
-            <h2>Login</h2>
+            
 
             <form action="" method="post">
                 <div> 
@@ -16,9 +17,10 @@
                     <input type="text" name="username" autocomplete='off' required>
                 </div>    
                 <div>
-                    <label>Password</label>
+                    <label>&nbsp;Password</label>
                     <input type="password" name="password" required>
                 </div>
+                <br>
                 <div>
                     <input type="submit" name="submit" value="Log in">
                 </div>

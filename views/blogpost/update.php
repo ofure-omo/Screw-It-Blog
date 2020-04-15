@@ -203,7 +203,7 @@
                         </div>
                          <div class="form-group form-check-inline">
                             <input type="checkbox" class="form-check-input" id="exampleCheck1" name ="tag[]" value="draft">
-                            <label class="form-check-label" for="exampleCheck1">Save your blogpost</label>
+                            <label class="form-check-label" for="exampleCheck1">Save your blog-post</label>
                         </div>
 
                         <div class="pure-form pure-form-aligned container-btn">
@@ -215,8 +215,4 @@
         </span>
     </body>
     
-<!--    <script>
-function myFunction() {
-  document.getElementById("textarea").value = <?= $blog['body']; ?>;
-}
-</script>-->
+

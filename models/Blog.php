@@ -101,26 +101,54 @@ class Blog {
         if (isset($_POST['body']) && $_POST['body'] != "") {
             $filteredBody = filter_input(INPUT_POST, 'body', FILTER_SANITIZE_SPECIAL_CHARS);
         }
-        if (isset($_POST['body2']) && $_POST['body2'] != "") {
-            $filteredBody2 = filter_input(INPUT_POST, 'body2', FILTER_SANITIZE_SPECIAL_CHARS);
+        if (isset($_POST['body2']) && $_POST['body2']) {
+        $filteredBody2 = filter_input(INPUT_POST, 'body2', FILTER_SANITIZE_SPECIAL_CHARS); }
+                else { $filteredBody2 = "null"; 
+                
         }
+        
         if (isset($_POST['category']) && $_POST['category'] != "") {
             $filteredCategory = filter_input(INPUT_POST, 'category', FILTER_SANITIZE_SPECIAL_CHARS);
         }
+        
+         $filteredImage = filter_input(INPUT_POST, 'myfile[]', FILTER_SANITIZE_SPECIAL_CHARS);
+
+        //$filteredImage = $_FILES['myfile']['name'];
+        foreach ($_FILES["myfile"]["tmp_name"] as $key => $tmp_name) {
+
+            $temp = $_FILES["myfile"]["tmp_name"][$key];
+            $imagename = $_FILES["myfile"]["name"][$key];   //save this in the db!!
+
+            $img1 = $_FILES["myfile"]["name"][0];
+            $img2 = $_FILES["myfile"]["name"][1];
+            $img3 = $_FILES["myfile"]["name"][2];
+        }
+        $location = "views/images/";
+        //creates a file path for each image uploaded
+        $file_path1 = $location . $img1;
+        $file_path2 = $location . $img2;
+        $file_path3 = $location . $img3;
     
         
-        $req = $db->prepare("Update blog_posts set title=:title, body=:body, body2=:body2, category=:category where blog_id= '".$blog_id."';");
+        $req = $db->prepare("Update blog_posts set title=:title, body=:body, body2=:body2, category=:category
+                              main_image=:main_image, second_image=:second_image, third_image=:third_image WHERE blog_id= '".$blog_id."';");
         
         
         $req->bindParam(':title', $title);
         $req->bindParam(':body', $body);
         $req->bindParam(':body2', $body2);
         $req->bindParam(':category', $category);
+         $req->bindParam(':main_image', $main_image);
+        $req->bindParam(':second_image', $second_image);
+        $req->bindParam(':third_image', $third_image);
        
         $title = $filteredTitle;
         $body = $filteredBody;
         $body2 = $filteredBody2;
         $category = $filteredCategory;
+        $main_image = $file_path1;
+        $second_image = $file_path2;
+        $third_image = $file_path3;
 
         $req->execute();
         
@@ -137,11 +165,84 @@ class Blog {
         }
    } else { echo ""; }
 //upload product image if it exists
-        /*if (!empty($_FILES[self::InputKey]['name'])) {
-            Product::uploadFile($name);
-        }*/
+        if (!empty($_POST['myfile[]'])) {
+            UpdateImages::uploadFile($updatename);
+        }
     echo "<script type='text/javascript'>location.href = '?controller=blogger&action=dashboard';</script>";
     }
+    
+    
+    public static function updateImages($updatename) {
+       
+
+        foreach ($_FILES["myfile"]["tmp_name"] as $key => $tmp_name) {
+
+            $temp = $_FILES["myfile"]["tmp_name"][$key];
+            $updatename = $_FILES["myfile"]["name"][$key];  
+            $file_type = $_FILES["myfile"]["type"][$key];
+            //save this in the db!!
+        
+        if (empty($_FILES["myfile"]["tmp_name"])) {
+            //die("File Missing!");
+            die("File Missing! <br>");
+        } else {
+            echo "";
+        }
+
+        if (isset($_FILES["myfile"]["tmp_name"][2])) {
+            echo"";
+        } else {
+            echo ("Please upload 3 images<br>");
+        }
+
+        /* if ($imagename < 3) {
+          echo "You haven't uploaded enough images, please upload 3 <br>";
+          } else {
+          echo "";
+          } */     
+
+         if (!in_array($_FILES["myfile"]["tmp_name"], self::AllowedTypes)) {
+          echo"<p style='text-align:center; margin:0; margin-top:10px;'>'File type not allowed</p>  ";
+          } else {
+          echo "";
+          } 
+          
+//          if (!in_array($file_type, self::AllowedTypes)) {
+//            echo ("Handle File Type Not Allowed: ");
+//        }
+
+        //$tempFile = $_FILES[self::InputKey]['tmp_name']; 
+        $path = DIRECTORY_SEPARATOR . 'Applications' . DIRECTORY_SEPARATOR . 'XAMPP' . DIRECTORY_SEPARATOR . 'xamppfiles' . DIRECTORY_SEPARATOR . 'htdocs' . DIRECTORY_SEPARATOR . 'Screw-it' . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR;
+        $destinationFile = $path . $updatename;
+        
+
+        move_uploaded_file($temp, $destinationFile);
+        //(move_uploaded_file($_FILES[self::InputKey]['tmp_name'], $destinationFile));
+        if (!move_uploaded_file($temp, $destinationFile)) { //file does upload not usre why throwing error?
+            echo "<p style='text-align:center; margin:0;'>File not uploaded or images already exist! </p><br>";
+        } else {
+            echo "your files have uploaded";
+        }
+
+        //Clean up the temp file
+        if (file_exists($temp)) {
+            unlink($temp);
+        }
+        }
+    }
+    
+//    public static function layout(){
+//        $db = Screw_it::getInstance();
+//        $blog_id = $db->lastInsertId();
+//        
+//        if (isset($_POST['layout']) && $_POST['layout'] != "") {
+//            $filteredLayout = filter_input(INPUT_POST, 'layout', FILTER_SANITIZE_SPECIAL_CHARS);
+//        }
+//        $layout = $filteredLayout;
+//        
+//        $req = $db->prepare("INSERT INTO blog_posts(layout) VALUE ('".$layout."') WHERE blog_id = '".$blog_id."';");
+//        $req->execute();
+//    }
     
     public static function add() {
 
@@ -154,12 +255,16 @@ class Blog {
             $filteredBody = filter_input(INPUT_POST, 'body', FILTER_SANITIZE_SPECIAL_CHARS);
         }
         if (isset($_POST['body2']) && $_POST['body2'] != "") {
-            $filteredBody2 = filter_input(INPUT_POST, 'body2', FILTER_SANITIZE_SPECIAL_CHARS);
+        $filteredBody2 = filter_input(INPUT_POST, 'body2', FILTER_SANITIZE_SPECIAL_CHARS);}
+             else { $filteredBody2 = ""; 
         }
         if (isset($_POST['category']) && $_POST['category'] != "") {
             $filteredCategory = filter_input(INPUT_POST, 'category', FILTER_SANITIZE_SPECIAL_CHARS);
         }
-
+        if (isset($_POST['layout']) && $_POST['layout'] != "") {
+            $filteredLayout = filter_input(INPUT_POST, 'layout', FILTER_SANITIZE_SPECIAL_CHARS);
+        }
+   
         /* if (isset($_FILES["myfile"]["tmp_name"][2])) {
           echo"";
           } else {
@@ -193,8 +298,8 @@ class Blog {
         //foreach ($Tag as $key => $newtag) {
         //$explodeTag = $newtag;
         //for user_id once sessions is done it will need to be the session(user_id) that would go into the values for user_id!!
-        $req = $db->prepare("INSERT INTO blog_posts(user_id, title, body, body2, category, main_image, second_image, third_image) 
-                                VALUES ('".$_SESSION['user_id']."', :title, :body, :body2, :category, :main_image, :second_image, :third_image);
+        $req = $db->prepare("INSERT INTO blog_posts(user_id, title, body, body2, category, main_image, second_image, third_image, layout) 
+                                VALUES ('".$_SESSION['user_id']."', :title, :body, :body2, :category, :main_image, :second_image, :third_image, :layout);
                                ");
 
         $req->bindParam(':title', $title);
@@ -204,6 +309,7 @@ class Blog {
         $req->bindParam(':main_image', $main_image);
         $req->bindParam(':second_image', $second_image);
         $req->bindParam(':third_image', $third_image);
+        $req->bindParam(':layout', $layout);
 
         $title = $filteredTitle;
         $body = $filteredBody;
@@ -212,6 +318,7 @@ class Blog {
         $main_image = $file_path1;
         $second_image = $file_path2;
         $third_image = $file_path3;
+        $layout = $filteredLayout;
 
         $req->execute();
         $id = $db->lastInsertId();
@@ -244,25 +351,20 @@ class Blog {
         //upload product image:  
         Blog::uploadFiles($imagename);
         echo '<h3 style="text-align:center; margin-top:30px; margin-bottom:20px;"> Your blog has been uploaded!</h3>'
-        . '<img style="display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 40%;" src="views/images/bloguploaded.png"/>';
+        . '<img style="display: block; margin-left: auto; margin-right: auto; width: 40%;" src="views/images/bloguploaded.png"/>';
         
        echo '<meta http-equiv="refresh" content="4;  url=?controller=blogger&action=dashboard" />';
 
     }
 
     const AllowedTypes = ['image/jpeg', 'image/jpg', 'image/png'];
-    const InputKey = 'myfile';
+    const InputKey = 'myfile[]';
 
 //die() function calls replaced with trigger_error() calls
 //replace with structured exception handling
     public static function uploadFiles($imagename) {
 
         $db = Screw_it::getInstance();
-        
-        $filea=$_FILES["myfile"]["type"];
 
         foreach ($_FILES["myfile"]["tmp_name"] as $key => $tmp_name) {
 
@@ -296,9 +398,9 @@ class Blog {
           echo "";
           } 
           
-          if (!in_array($file_type, self::AllowedTypes)) {
-            echo ("Handle File Type Not Allowed: ");
-        }
+//          if (!in_array($file_type, self::AllowedTypes)) {
+//            echo ("Handle File Type Not Allowed: ");
+//        }
 
         //$tempFile = $_FILES[self::InputKey]['tmp_name']; 
         $path = DIRECTORY_SEPARATOR . 'Applications' . DIRECTORY_SEPARATOR . 'XAMPP' . DIRECTORY_SEPARATOR . 'xamppfiles' . DIRECTORY_SEPARATOR . 'htdocs' . DIRECTORY_SEPARATOR . 'Screw-it' . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR;
@@ -333,44 +435,6 @@ class Blog {
     }  
 
      
-
-    public static function updateImage1($imagename) {
-
-          $temp = $_FILES["myfile"]['tmp_name'];
-            $imagename = $_FILES["myfile"]["name"];   //save this in the db!!
-            //echo $imagename;
-         if (empty($_FILES[self::InputKey])) {
-            //die("File Missing!");
-            trigger_error("File Missing!");
-        }
-
-        if ($_FILES[self::InputKey]['error'] > 0) {
-            trigger_error("Handle the error! " . $_FILES[InputKey]['error']);
-        }
-        echo $_FILES[self::InputKey]['type'];
-
-        if (!in_array($_FILES[self::InputKey]['type'], self::AllowedTypes)) {
-            trigger_error("Handle File Type Not Allowed: " . $_FILES[self::InputKey]['type']);
-        }
-
-  
-        //$tempFile = $_FILES[self::InputKey]['tmp_name']; 
-        $path = DIRECTORY_SEPARATOR . 'Applications' . DIRECTORY_SEPARATOR . 'XAMPP' . DIRECTORY_SEPARATOR . 'xamppfiles' . DIRECTORY_SEPARATOR . 'htdocs' . DIRECTORY_SEPARATOR . 'Screw-it' . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR;
-        $destinationFile = $path . $imagename;
-
-        move_uploaded_file($temp, $destinationFile);
-        //(move_uploaded_file($_FILES[self::InputKey]['tmp_name'], $destinationFile));
-        if (!move_uploaded_file($_FILES["myfile"]["tmp_name"], $destinationFile)) { //file does upload not usre why throwing error?
-            echo "your images have not uploaded! <br>";
-        } else {
-            echo "";
-        }
-
-        //Clean up the temp file
-        if (file_exists($temp)) {
-            unlink($temp);
-        }
-    }
     
     public static function getlikes($blog_id) {
  

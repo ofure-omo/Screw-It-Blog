@@ -20,12 +20,23 @@ class BlogController {
             $blog = Blog::find($_GET['blog_id']);
             $likes = Blog::getlikes($_GET['blog_id']);
             $tag = Blog::findTag($_GET['blog_id']);
+            //code for postComments
             require_once('views/blogpost/read.php');
             
         } catch (Exception $ex) {
             return call('pages', 'error');
         }
     }
+    
+//    public function chooseLayout(){
+//        if($_SERVER['REQUEST_METHOD'] == 'GET') {
+//           require_once('views/blogpost/choose_layout.php');
+//           
+//    } else {
+//        Blog::layout();
+//        require_once('views/blogpost/create.php');
+//    }
+//    }
 
     public function create() {
 
@@ -34,7 +45,8 @@ class BlogController {
             $tag = Blog::getTag();
             require_once('views/blogpost/create.php');
         } else {
-            Blog::add(); //function for: insert into tags values (tag) where tag = :tag AND where blog_id = lastinserted blog_id
+            Blog::add();
+            //function for: insert into tags values (tag) where tag = :tag AND where blog_id = lastinserted blog_id
         }
     }
 
@@ -76,7 +88,6 @@ class BlogController {
             
         }       
     }
-
 }
 
 ?>
