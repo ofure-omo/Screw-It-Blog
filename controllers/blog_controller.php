@@ -19,7 +19,7 @@ class BlogController {
             // we use the given id to get the correct post
             $blog = Blog::find($_GET['blog_id']);
             $likes = Blog::getlikes($_GET['blog_id']);
-            $tag = Blog::findTag($_GET['blog_id']);
+            $tag = Blog::findTagForBlog($_GET['blog_id']);
             //code for postComments
             require_once('views/blogpost/read.php');
             
@@ -55,8 +55,7 @@ class BlogController {
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 
-            if (isset($_GET['blog_id'])) {
-               
+            if (isset($_GET['blog_id'])) {              
 
             $tag = Blog::findTagForBlog($_GET['blog_id']); // we use the given id to get the correct product
             $tags = Blog::getTag(($_GET['blog_id']));
@@ -68,7 +67,7 @@ class BlogController {
             //$blog_id = $_GET['blog_id'];
             Blog::update($_GET['blog_id']);
             //$blog = Blog::all();
-            require_once('views/Bloggerdashboard.php');
+            //require_once('views/blogpost/readAll.php');
         }
     }
     }
