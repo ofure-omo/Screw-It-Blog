@@ -55,8 +55,7 @@ class BlogController {
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 
-            if (isset($_GET['blog_id'])) {
-               
+            if (isset($_GET['blog_id'])) {              
 
             $tag = Blog::findTagForBlog($_GET['blog_id']); // we use the given id to get the correct product
             $tags = Blog::getTag(($_GET['blog_id']));
@@ -68,7 +67,7 @@ class BlogController {
             //$blog_id = $_GET['blog_id'];
             Blog::update($_GET['blog_id']);
             //$blog = Blog::all();
-            require_once('views/Bloggerdashboard.php');
+            //require_once('views/blogpost/readAll.php');
         }
     }
     }

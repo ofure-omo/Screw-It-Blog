@@ -334,7 +334,7 @@
                     </div>
 
                     <div class="pure-form pure-form-aligned container-btn">
-                        <input type="submit" value="SUBMIT" name= "submit" class="button" >
+                        <input type="submit" value="UPDATE" name= "submit" class="button" >
                     </div>  
                 </div>
                 </div>

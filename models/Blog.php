@@ -132,7 +132,7 @@ class Blog {
         $file_path3 = $location . $img3;
     
         
-        $req = $db->prepare("Update blog_posts set title=:title, body=:body, body2=:body2, category=:category
+        $req = $db->prepare("Update blog_posts SET title=:title, body=:body, body2=:body2, category=:category,
                               main_image=:main_image, second_image=:second_image, third_image=:third_image, layout=:layout WHERE blog_id= '".$blog_id."';");
         
         
@@ -158,8 +158,8 @@ class Blog {
         
        if(isset($_POST['tag'])) {
            $req = $db->prepare("DELETE * FROM blog_tags WHERE blog_id = '".$blog_id."');");
-           $req->execute();
-           
+           $req->execute();}
+           else {
         $filteredTag = $_POST['tag'];
         $newtag = $filteredTag;
         foreach ($newtag as $key => $tags) {
@@ -170,7 +170,7 @@ class Blog {
             $tag = $tag2; //tags doesnt work, how to check if tag already in db and if input tag not == to db tag then delete 
             $req->execute();
         }
-   } else { echo ""; }
+           } 
 //upload product image if it exists
         if (!empty($_POST['myfile[]'])) {
             UpdateImages::uploadFile($updatename);
@@ -178,7 +178,7 @@ class Blog {
              echo '<h3 style="text-align:center; margin-top:30px; margin-bottom:20px;"> Your blog has been uploaded!</h3>'
         . '<img style="display: block; margin-left: auto; margin-right: auto; width: 40%;" src="views/images/bloguploaded.png"/>';
 //        
-//       echo '<meta http-equiv="refresh" content="4;  url=?controller=blogger&action=dashboard" />';
+ echo '<meta http-equiv="refresh" content="7;  url=?controller=blogger&action=dashboard" />';
     echo "<script type='text/javascript'>location.href = '?controller=blogger&action=dashboard';</script>";
     }
     
