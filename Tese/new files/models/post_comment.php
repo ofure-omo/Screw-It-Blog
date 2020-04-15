@@ -37,7 +37,7 @@ foreach ($result as $row) {
              <b> <div class="panel-heading " style="font-size: 1.1em;"><span class="user-comment"> By ' . $row["username"] . ' </span></b><br> <i style="font-size:0.8em;"> on ' . $row["comment_date"] . '</i> </div>
                   <div style="margin-bottom:10px;" > ' . $row["comment"] . '</div>
              
-                      <div class="panel-footer" align="left"><button onclick="reply()" type="button" class="btn btn-info reply" id= ' . $row["comment_id"] . '>
+                      <div class="panel-footer" align="left"><button onclick="reply()" type="button" class="btn btn-info" id= ' . $row["comment_id"] . '>
                           <span style="font-size: 0.8em; padding:0px;" >REPLY</span></button>
                           </div>
              </div>
@@ -91,7 +91,7 @@ function get_reply_comment($db, $parent_id = 0, $marginleft = 0) {
                <b><div style="font-size: 1em;">' . $row["username"] . ' </b> <span style="font-size:0.85em;">replied</span>  '
                     . '<br> <i style="font-size:0.8em;"> on ' . $row["comment_date"] . '</i> </div>
                     <div style="margin-bottom:10px;" > ' . $row["comment"] . '</div> 
-                        <div align="left"><button type="button"  style=" margin-bottom:20px; size:5px;" class="btn btn-info reply" id= ' . $row["comment_id"] . '>
+                        <div align="left"><button type="button"  style=" margin-bottom:20px; size:5px;" class="btn btn-info" id= ' . $row["comment_id"] . '>
                           <span style="font-size: 0.8em; padding:0px;">REPLY</span></button>
                 </div> 
   

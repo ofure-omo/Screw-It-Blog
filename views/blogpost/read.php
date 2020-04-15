@@ -1,6 +1,7 @@
+<?php include_once 'read2.php';?>
 <body>
     <!--          HEADER       -->
-
+ <?php if($blog['layout'] == '1'): ?>
     <div class='read-header'>
 
 
@@ -64,47 +65,45 @@
         </div>
 
         <!--        BLOG CONTENT-->
+  
+        
+   <div class='read-blog-container'>
+        <div id='body-container'> 
+            <p class='body' id='body1'> 
+               <?php $body = $blog['body'];
+                echo $body; //echo nl2br($body);  ?> 
+                </p>
 
-    <div class='read-blog-container'>
-        <div id='body-container'> <!--main body section -->
-            <p class='body' id="body1"> <?php
-                $body = $blog['body'];
-                echo $body; //echo nl2br($body);   
-                ?></p>
-
         </div>
-        <div id='img_container r' class="row"> <!--grid for 2 images, that will be positioned side by side at at the same size, when viewing on phone they will lay on top of each other -->
-            <div id='main_image ' class="column">
-                <?php
-                $blogimg = $blog['main_image'];
-                $img = "<img class='d-block w-100' src=$blogimg alt='First slide' style='width:100%' alt='blog image1'/>";
-                echo $img;
-                ?>
-            </div>
-            <div id='second_image ' class="column">
-                <?php
-                $blogimg = $blog['second_image'];
-                $img = "<img class='d-block w-100' src=$blogimg alt='First slide' style='width:100%' alt='blog image1'/>";
-                echo $img;
-                ?>
+        <div id='img_container r' class='row'> 
+            <div id='main_image ' class='column'>
+                
+              <?php  $blogimg = $blog['main_image'];
+                $img =  "<img class='d-block w-100' src='".$blogimg."' alt='First slide' style='width:100%' alt='blog image1'/>"; 
+                echo $img; ?>
+                
+           </div>
+            <div id='second_image ' class='column'> 
+                
+               <?php $blogimg = $blog['second_image'];
+                $img = "<img class='d-block w-100' src='".$blogimg ."'alt='First slide' style='width:100%' alt='blog image1'/>";
+                echo $img;?>
+                
             </div>
         </div>
-        <div id='body-container'> <!--body 2 section -->
-            <p class='body'> <?php echo $blog['body2'] ?></p>
+        <div id='body-container'> 
+            <p class='body'> <?php echo $blog['body2']; ?> </p>
         </div>
-        <div class='third_image'>
-            <?php
-            $blogimg = $blog['third_image'];
+        <div class='third_image'> 
+            
+          <?php  $blogimg = $blog['third_image'];
             $img = "<img class='d-block w-100' src=$blogimg alt='First slide' style='width:100%' alt='blog image1'/>";
-            echo $img;
-            ?>
+            echo $img; ?>
+            
 
-        </div> 
+       </div>
 
-        <div>
-            <!--            <a href="#" style="float:right; margin-left:20px;" id="like-btn">Like</a>-->
-
-        </div>
+ 
         <?php foreach ($tag as $newtag) {
             ?>
             <div class="tags"> 
@@ -115,18 +114,44 @@
         <?php } ?>
 
     </div>
-    <!--    COMMENTS-->
-    <?php
-    include_once "comments.php";
+<!--        COMMENTS-->
+        
+   <?php if(isset($_SESSION['loggedin'])) { 
+     echo '       
 
-    //include_once 'models/post_comment.php';
-//include_once 'models/add_comment.php';
-    ?>
+        <div class="comment-container" style="width:52%;">
+            <form method="POST" id="comment_form" action="">
+                <div class="form-group">
+                  <b>  <label for="exampleFormControlTextarea1" style="text-align: center; ">COMMENTS</label></b>
+                    <textarea class="form-control" id="comment_content" rows="4" placeholder="write your comment here" name="comment_content"></textarea>
+                </div>
+                <div class="pure-form pure-form-aligned container-btn form-group">
+                <input type="hidden" name="comment_id" id="comment_id" value="0"/>               
+                    <input type="submit" value="comment" name= "submit" id="button" class="btn btn-info" style="float:right;" >
+                </div>         
+    </div>
+    
 
+ ' ;}  else {
+     echo "<p style='text-align: center; color: #3F7CAC;'>Want to comment? "
+     . "Why not<a href='?controller=register&action=registerUser' style='text-decoration: none; "
+             . "text-transform:bold;'> sign up </a>and become a member or <a href='?controller=login&action=loginUser' "
+             . "style='text-decoration: none; text-transform:bold;'> log in</a></p>";
+ } endif; ?> 
 
+<div class="comment-container" style="width:52%;">
+            </form>
+            <span id="comment_message"></span>
+            <br/>
+            <div id="display_comment">
+             <div class="panel panel-default">
+              
+             </div>
+                 
+            </div>
+        </div>
 
-
-
+<?php ; ?>
 
 </body>
 
@@ -159,7 +184,7 @@ crossorigin="anonymous"></script>
                                 event.preventDefault();
                                 var form_data = $(this).serialize();
                                 $.ajax({
-                                    url: 'models/add_comment.php',
+                                    url: "?controller=comments&action=add&blog_id=<?= $blog['blog_id']; ?>",
                                     method: 'POST',
                                     data: form_data,
                                     dataType: 'JSON',
@@ -178,7 +203,7 @@ crossorigin="anonymous"></script>
                             function load_comment() {
 
                                 $.ajax({
-                                    url: 'models/post_comment.php',
+                                    url: "?controller=comments&action=post&blog_id=<?= $blog['blog_id']; ?>",
                                     method: 'POST',
                                     success: function (data) {
                                         $('#display_comment').html(data);
@@ -191,6 +216,7 @@ crossorigin="anonymous"></script>
                                 $('#comment_id').val(comment_id);
                                 $('#comment_content').focus();
                             });
+                           
 
                         });
 
