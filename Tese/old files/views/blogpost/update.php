@@ -211,8 +211,4 @@
         </span>
     </body>
     
-<!--    <script>
-function myFunction() {
-  document.getElementById("textarea").value = <?= $blog['body']; ?>;
-}
-</script>-->
+
