@@ -98,11 +98,11 @@
                                 <input type="text" name="answer_1" autocomplete='off' required value="">
                             </div> 
                             <div>
-                                <label>Upload a profile pic<br></label>
+                                <label>Upload a profile pic</label>
                                 <input type="hidden" 
                                        name="MAX_FILE_SIZE" 
                                        value="10000000" />
-                                <input type="file" name="myfile" />
+                                <input type="file" name="profile_pic" />
                                 <input type="submit" value="send" />
                             </div>
                             <div>
