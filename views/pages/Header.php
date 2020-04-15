@@ -40,9 +40,13 @@
                     echo '<a class="nav-link" href="?controller=blog&action=create" style="font-size: 16px;">Post Blog</a>';
                     echo '<a class="nav-link" href="?controller=blogger&action=dashboard">Dashboard</a>';
                     echo '<a class="nav-link" href="?controller=signout&action=signout" style="font-size: 16px;">Log out</a>';
+                }
+                if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSION ['user_type']=== "Moderator"){
+                    echo '<a class="nav-link" id="droptext" href="?controller=mod&action=showAll" style="font-size: 16px;">Your dashboard</a>';
+                    echo '<a class="nav-link" href="?controller=signout&action=signout" style="font-size: 16px;">Log out</a>';
                 };
                 ?>
-        </li>
+        
     </ul>
 
     <ul class="nav ml-auto">  

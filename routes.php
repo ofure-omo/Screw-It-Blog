@@ -38,7 +38,8 @@ $controllers = array('pages' => ['home', 'error', 'cookies', 'privacy', 'FAQs'],
     'signout' => ['signout'],
     'blogger' => ['about', 'dashboard'],
     'security' => ['loginUserSecurity'],
-    'comments' => ['comments']
+    'comments' => ['comments'],
+    'mod' => ['showAll']
 
 );
 
