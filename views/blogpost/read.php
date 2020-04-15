@@ -1,4 +1,4 @@
-<?php include_once 'read2.php';?>
+
 <body>
     <!--          HEADER       -->
  <?php if($blog['layout'] == '1'): ?>
@@ -129,7 +129,7 @@
                 <input type="hidden" name="comment_id" id="comment_id" value="0"/>               
                     <input type="submit" value="comment" name= "submit" id="button" class="btn btn-info" style="float:right;" >
                 </div>         
-    </div>
+        </div>
     
 
  ' ;}  else {
@@ -152,7 +152,7 @@
         </div>
 
 <?php ; ?>
-
+<?php include_once 'read2.php';?>
 </body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
