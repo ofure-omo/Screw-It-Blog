@@ -266,6 +266,14 @@
                         <option value="RENOVATE">RENOVATE</option>
                     </select>
                      <?php endif; ?>
+                    <?php if($blog['category'] === '' || $blog['category'] === 'Choose a category'): ?>
+                    <select class="form-control" name ="category" id="exampleFormControlSelect1" >
+                        <option value='' selected="selected">Choose a category</option>
+                        <option value="CREATE">CREATE</option>
+                        <option value="RENOVATE">RENOVATE</option>
+                        <option value="DECORATE">DECORATE</option>
+                    </select>
+                     <?php endif; ?>
                 </div>
 
                         <p><b> TAGS </b></p>
@@ -327,13 +335,15 @@
                         <label for="exampleFormControlFile1">Upload 3 images</label>
                         <input type="file" name="myfile[]" accept="image/*" class="form-control-file" id="exampleFormControlFile1" multiple >
                     </div>
+                    
 
                     <div class="form-group form-check-inline">
-                        <input type="radio" class="form-check-input" id="exampleCheck1" name ="published" value="1">
+                        <input type="radio" class="form-check-input" id="exampleCheck1" name ="published" value="published">
                         <label class="form-check-label" for="exampleCheck1">Publish blog</label>
                     </div>
+
                     <div class="form-group form-check-inline">
-                        <input type="radio" class="form-check-input" id="exampleCheck1" name ="published" value="0">
+                        <input type="radio" class="form-check-input" id="exampleCheck1" name ="published" value="saved">
                         <label class="form-check-label" for="exampleCheck1">Save to drafts</label>
                     </div>
 

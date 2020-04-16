@@ -3,8 +3,9 @@
 class CommentsController {
     
    public function add() {
-         if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_SESSION['loggedin'])) {
+         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 //             echo $_REQUEST['comment'];
+             $blog_id =($_GET['blog_id']);
                Comments::addComment($_GET['blog_id']);
 
          }
@@ -27,7 +28,7 @@ class CommentsController {
          }
 
    }
-}
+   }
 
 
   

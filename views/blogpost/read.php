@@ -1,7 +1,7 @@
 
 <body>
     <!--          HEADER       -->
- <?php if($blog['layout'] == '1' && $blog['published'] === '1'): ?>
+ <?php if($blog['layout'] == '1' && $blog['published'] === 'published'): ?>
     <div class='read-header'>
 
 
@@ -55,7 +55,8 @@
             <div id="social-media" style="dispaly:inline-block; "> <!--retrieve url links from user table-->
                 <a href="<?php echo 'www.' . $blog['facebook_url']; ?>"><i class="fa read-fa fa-facebook" aria-hidden="true"></i></a>
                 <a href="<?php echo 'www.' . $blog['insta_url']; ?>"><i class="fa read-fa fa-instagram" aria-hidden="true"></i></a>
-                <a href="<?php echo 'www.' . $blog['twitter_url']; ?>"><i class="fa read-fa fa-twitter" aria-hidden="true"></i></a>
+                <a href="http://twitter.com/share?text=An%20intersting%20blog&url=http://www.Screw-it"
+	target="_blank"><i class="fa read-fa fa-twitter" aria-hidden="true"></i></a>
                 <a href="?controller=blog&action=likes&blog_id=<?= $blog['blog_id'] ?>" style="text-decoration: none;"> 
                     <i onclick="myFunction(this)" class="fa fa-thumbs-o-up like" name="like"></i>
                 </a>
@@ -116,8 +117,8 @@
     </div>
 <!--        COMMENTS-->
         
-   <?php if(isset($_SESSION['loggedin'])) { 
-     echo '       
+   <?php if(isset($_SESSION['loggedin'])): ?>
+          
 
         <div class="comment-container" style="width:52%;">
             <form method="POST" id="comment_form" action="">
@@ -128,31 +129,41 @@
                 <div class="pure-form pure-form-aligned container-btn form-group">
                 <input type="hidden" name="comment_id" id="comment_id" value="0"/>               
                     <input type="submit" value="comment" name= "submit" id="button" class="btn btn-info" style="float:right;" >
-                </div>         
+                </div> 
+                
         </div>
-    
-
- ' ;}  else {
-     echo "<p style='text-align: center; color: #3F7CAC;'>Want to comment? "
-     . "Why not<a href='?controller=register&action=registerUser' style='text-decoration: none; "
-             . "text-transform:bold;'> sign up </a>and become a member or <a href='?controller=login&action=loginUser' "
-             . "style='text-decoration: none; text-transform:bold;'> log in</a></p>";
- } endif; ?> 
-
-<div class="comment-container" style="width:52%;">
+            <div class="comment-container" style="width:52%;">
             </form>
             <span id="comment_message"></span>
             <br/>
             <div id="display_comment">
              <div class="panel panel-default">
-              
+               
              </div>
                  
             </div>
         </div>
+<?php endif; ?>
 
-<?php ; ?>
-<?php include_once 'read2.php';?>
+   <?php if(!isset($_SESSION['loggedin'])): ?>
+
+    <p style='text-align: center; color: #3F7CAC;'>Want to comment? Why not<a href='?controller=register&action=registerUser' style='text-decoration: none; 
+              text-transform:bold;'> sign up </a>and become a member or <a href='?controller=login&action=loginUser' 
+              style='text-decoration: none; text-transform:bold;'> log in</a></p>";
+
+              
+                  <div class="comment-container" style="width:52%;">
+            </form>
+            <span id="comment_message"></span>
+            <br/>
+            <div id="display_comment">
+             <div class="panel panel-default">
+               
+             </div>
+                 
+            </div>
+        </div>
+              <?php endif; ?>
 </body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
@@ -179,6 +190,8 @@ crossorigin="anonymous"></script>
                         }
 
                         $(document).ready(function () {
+                            
+
 
                             $('#comment_form').on('submit', function (event) {
                                 event.preventDefault();
@@ -200,22 +213,22 @@ crossorigin="anonymous"></script>
                             $('#comment_id').val('0');
                             load_comment();
 
-                            function load_comment() {
-
-                                $.ajax({
-                                    url: "?controller=comments&action=post&blog_id=<?= $blog['blog_id']; ?>",
-                                    method: 'POST',
-                                    success: function (data) {
-                                        $('#display_comment').html(data);
-                                    }
-                                });
-                            }
-
-                            $(document).on('click', '.reply', function () {
-                                var comment_id = $(this).attr("id");
-                                $('#comment_id').val(comment_id);
-                                $('#comment_content').focus();
-                            });
+//                            function load_comment() {
+//
+//                                $.ajax({
+//                                    url: "?controller=comments&action=post&blog_id=<?= $blog['blog_id']; ?>",
+//                                    method: 'POST',
+//                                    success: function (data) {
+//                                        $('#display_comment').html(data);
+//                                    }
+//                                });
+//                            }
+//
+//                            $(document).on('click', '.reply', function () {
+//                                var comment_id = $(this).attr("id");
+//                                $('#comment_id').val(comment_id);
+//                                $('#comment_content').focus();
+//                            });
                            
 
                         });
@@ -223,7 +236,7 @@ crossorigin="anonymous"></script>
 
 
 </script>
-
+<?php endif; ?>
 <style>
 
     .user {
