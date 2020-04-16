@@ -209,7 +209,7 @@ CREATE TABLE `Users` (
   `user_ln` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
   `dob` date NOT NULL,
-  `user_type` enum('Member','Blogger','Moderator') NOT NULL DEFAULT 'Blogger',
+  `user_type` enum('Member','Blogger','Moderator') NOT NULL DEFAULT 'Member',
   `security_1` varchar(255) DEFAULT 'Who is your favourite Ryan',
   `answer_1` varchar(255) NOT NULL,
   `signature` varchar(100) DEFAULT NULL,
@@ -228,6 +228,7 @@ CREATE TABLE `Users` (
 INSERT INTO `Users` (`user_id`, `username`, `password`, `user_fn`, `user_ln`, `email`, `dob`, `user_type`, `security_1`, `answer_1`, `signature`, `profile_pic`, `bio`, `twitter_url`, `insta_url`, `facebook_url`, `date_joined`) VALUES
 (1, 'sweet_tee', '', 'Tese', 'Ogbeifun', 'tese@hotmail.com', '1997-09-04', 'Blogger', 'Who is your favourite Ryan', 'reynolds', 'sweet_tee', NULL, 'Hi, i\'m sweet_tee or Tese, i\'m a digital designer by day and a DIY-er by night!', 'twitter.com', 'instagram.com', 'facebook.com', '2020-03-31 13:59:24'),
 (2, NULL, '', 'Amrita', 'Bains', 'amrita@gmail.co.uk', '1990-05-25', 'Moderator', 'Who is your favourite Ryan', 'gosling', NULL, NULL, NULL, 'twitter.com', 'instagram.com', 'facebook.com', '2020-03-31 13:59:24'),
+(4, 'li-lo', '', 'Linzi', 'Carlin', 'linzi@email.com', '1980-04-25', 'Blogger', 'Who is your favourite Ryan', 'gosling', 'li_lo', 'views/images/profile_pics/IMG_2378.jpeg', 'Li-lo’s the name, DIY’s the game!', 'twitter.com', 'instagram.com', 'facebook.com', '2020-03-31 13:59:24'),
 (3, 'saucy_steph', '', 'Stephanie', 'Foster', 'steph@gmail.com', '1989-02-12', 'Member', 'Who is your favourite Ryan', 'gallagher', NULL, NULL, NULL, 'twitter.com', 'instagram.com', 'facebook.com', '2020-03-31 13:59:24'),
 (11, 'tese', '$2y$10$mZtCfWGcWIWCVOPl3cSJWubg2zDvXW0pP7qlKDBPSAKmJKc5Xfmsy', 'tese', 'tese', 'tese.og@hotmail.com', '2020-04-18', 'Member', 'Who is your favourite Ryan', 'gosling', NULL, NULL, NULL, NULL, NULL, NULL, '2020-04-09 01:31:13'),
 (12, 'tese', '$2y$10$DTT8YPNfsNEcGvuh24.Ezua6KwL.N0eMTbUyvlHRMNN0P1sIfkpSC', 'Omotese', 'Omotese', 'tese.og@hotmail.com', '2015-06-04', 'Member', 'Who is your favourite Ryan', 'gosling', NULL, NULL, NULL, NULL, NULL, NULL, '2020-04-09 11:50:35'),
