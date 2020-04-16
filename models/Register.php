@@ -215,11 +215,11 @@ class Register {
 
  
 
-         if (!in_array($_FILES["profile_pic"]["tmp_name"], self::AllowedTypes)) {
+         /*if (!in_array($_FILES["profile_pic"]["tmp_name"], self::AllowedTypes)) {
           echo"<p style='text-align:center; margin:0; margin-top:10px;'>'File type not allowed</p>  ";
           } else {
           echo "";
-          } 
+          } */
       /*    
           if (!in_array($file_type, self::AllowedTypes)) {
             echo ("Handle File Type Not Allowed: ");

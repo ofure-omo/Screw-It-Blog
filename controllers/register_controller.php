@@ -15,7 +15,7 @@ class RegisterController { //ive renamed this to RegisterController so it follow
             require_once('views/pages/register_page.php');
         } else {
             Register::addUser(); 
-            echo"you have successfully registered!"; //this will need to be removed place holder for redirect link to mem dashboard
+            echo"<p style='text-align:center; margin:0;'>you have successfully registered!</p>"; //this will need to be removed place holder for redirect link to mem dashboard
             //when mem dashboard is created it should be called here so when the user has registered they'll be redirected to the
             //members page which will show their details based on their user_id and also start a session!
         }

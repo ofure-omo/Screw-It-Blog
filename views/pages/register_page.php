@@ -101,7 +101,7 @@
                                        name="MAX_FILE_SIZE" 
                                        value="10000000" />
                                 <input type="file" name="profile_pic" />
-                                <input type="submit" value="send" />
+                               <!-- <input type="submit" value="send" />-->
                             </div>
                             <div>
                                 <br>
