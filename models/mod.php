@@ -54,7 +54,25 @@ class Mod {
 
     public function getComments10() {
         $db = Screw_it::getInstance();
-        $sql = "select blog_posts.*, comments.*, users.*
+        $sql = "select blog_posts.blog_id, 
+                blog_posts.user_id as blogger,
+                blog_posts.title,
+                blog_posts.body,
+                blog_posts.date_posted,
+                blog_posts.category,
+                comments.comment_id, 
+                comments.comment,
+                comments.parent_comment_id,
+                comments.blog_id,
+                comments.user_id as commenter,
+                comments.comment_date,
+                users.user_id as commenter,
+                users.username,
+                users.user_fn,
+                users.user_ln,
+                users.dob,
+                users.profile_pic,
+                users.date_joined
                     from blog_posts
                         inner join comments
                     on blog_posts.blog_id = comments.blog_id
@@ -71,7 +89,7 @@ class Mod {
     
     public function commentsCount(){
         $db = Screw_it::getInstance();
-        $sql = "select count(comment_id) AS count from comments;";
+        $sql = "select count(comment_id) AS count from comments where parent_comment_id = 0;";
         $stmt = $db->prepare($sql);
         $stmt->execute(array());
         $commsCount = $stmt->fetchAll();
@@ -97,5 +115,44 @@ class Mod {
         $memCount = $stmt->fetchAll();
 
         return $memCount;
+    }
+    
+    public function bloggerCount(){
+        $db = Screw_it::getInstance();
+        $sql = "select count(user_id) AS count from users where user_type = 'Blogger';";
+        $stmt = $db->prepare($sql);
+        $stmt->execute(array());
+        $memCount = $stmt->fetchAll();
+
+        return $memCount;
+    }
+    
+        public function likesCount(){
+        $db = Screw_it::getInstance();
+        $sql = "select count(fav_id) AS count from favourites;";
+        $stmt = $db->prepare($sql);
+        $stmt->execute(array());
+        $memCount = $stmt->fetchAll();
+
+        return $memCount;
+    }
+    
+        public function repliesCount(){
+        $db = Screw_it::getInstance();
+        $sql = "select count(comment_id) AS count from comments where parent_comment_id > 0;";
+        $stmt = $db->prepare($sql);
+        $stmt->execute(array());
+        $memCount = $stmt->fetchAll();
+
+        return $memCount;
+    }
+    
+    // Delete
+    
+    public function deleteComment($commentID){
+        $db = Screw_it::getInstance();
+        $sql = "delete from comments where comment_id = :commentid;";
+        $stmt = $db->prepare($sql);
+        $stmt->execute(array('commentid' => $commentID));
     }
 }

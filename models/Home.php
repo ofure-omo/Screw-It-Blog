@@ -13,6 +13,7 @@ class BlogHP {
     public $likes;
     public $comments;
     public $titleShort;
+    public $third_image;
     
     public $viewHTML;
 
@@ -83,12 +84,12 @@ class BlogHP {
     }
     
     public function getAllImage(){
-        $sql = "select main_image from blog_posts order by date_posted desc";
+        $sql = "select third_image from blog_posts order by date_posted desc";
         $stmt = Screw_it::getInstance()->query($sql);
         $result = $stmt->fetchAll();
 
         foreach( $result as $row ) {
-        $main_image[] = $row['main_image'];
+        $main_image[] = $row['third_image'];
         }
 
         return $main_image;

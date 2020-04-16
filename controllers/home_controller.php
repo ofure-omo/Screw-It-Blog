@@ -54,7 +54,7 @@ class HomeController {
                 
             ${"blog$i"}->bodyShort = $bodyShort;   
             
-                $len = 500;
+                $len = 250;
                 if (strlen($body[$position])<$len) {
                     $bodyLong = $body[$position];
                     }

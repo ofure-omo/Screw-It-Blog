@@ -11,7 +11,11 @@ public function showAll(){
         $commsCount = Mod::commentsCount();
         $blogsCount = Mod::blogsCount();
         $memCount = Mod::memberCount();
-        //print_r($commsCount);
+        $bloggerCount = Mod::bloggerCount();
+        $likesCount = Mod::likesCount();
+        $repliesCount = Mod::repliesCount();
+        //print_r($bloggerCount);
+
             
         // Gets the member details
             
@@ -27,6 +31,11 @@ public function showAll(){
         // Gets the comments details
             
             $comms = Mod::getComments10();
+        
+        // Functions
+        function deleteComment($commentID){
+            Mod::deleteComment($commentID);
+        }
             
             
             require_once('views/pages/mod_page.php');
