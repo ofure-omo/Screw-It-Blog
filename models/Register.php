@@ -134,7 +134,7 @@ class Register {
 
             $profile_pic = $_FILES["profile_pic"]["name"];
             
-             $location = "views/images/profile_pics";
+             $location = "views/images/profile_pics/";
         //creates a file path for each image uploaded
         $file_path = $location . $profile_pic;
 
@@ -167,6 +167,8 @@ class Register {
 
 
         $stmt->execute();
+        
+        Register::uploadProfilePic($imagename);
         // Attempt to execute the prepared statement
         /* if ($stmt->execute()) {
           // Redirect to login page
