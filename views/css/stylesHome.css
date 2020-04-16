@@ -169,7 +169,7 @@ img {
   font-size: 18px;
 }
 
-/* Add a green text color and a checkmark when the requirements are right */
+/* Add a blue text color and a checkmark when the requirements are right */
 .valid {
   color: #3F7CAC;
 }
@@ -180,7 +180,7 @@ img {
   content: "✔";
 }
 
-/* Add a red text color and an "x" when the requirements are wrong */
+/* Add a orange text color and an "x" when the requirements are wrong */
 .invalid {
   color: #FCB078;
 }

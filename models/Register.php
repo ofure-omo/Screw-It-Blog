@@ -10,6 +10,9 @@ class Register {
     public $dob;
     public $answer_1;
 
+    const AllowedTypes = ['image/jpeg', 'image/jpg', 'image/png'];
+    const InputKey = 'profile_pic';
+
     function __construct($username, $password, $user_fn, $user_ln, $email, $dob, $answer_1) {
 
         $this->username = $username;
@@ -39,7 +42,7 @@ class Register {
       } */
 
     public static function getDetails() {
-        
+
         $userArray = [];
         $db = Screw_it::getInstance();
         //getInstance for db connection?
@@ -123,6 +126,18 @@ class Register {
             $filteredAnswer_1 = filter_input(INPUT_POST, 'answer_1', FILTER_SANITIZE_SPECIAL_CHARS);
             $hashedAnswer_1 = password_hash($filteredAnswer_1, PASSWORD_BCRYPT);
         }
+        
+        //$filteredImage = filter_input(INPUT_POST, 'profile_pic', FILTER_SANITIZE_SPECIAL_CHARS);
+        
+            $temp = $_FILES["profile_pic"]["tmp_name"];
+            $imagename = $_FILES["profile_pic"]["name"];   //save this in the db!!
+
+            $profile_pic = $_FILES["profile_pic"]["name"];
+            
+             $location = "views/images/profile_pics";
+        //creates a file path for each image uploaded
+        $file_path = $location . $profile_pic;
+
 
         $username = $filteredUsername;
         $password = $hashedPassword;
@@ -131,9 +146,13 @@ class Register {
         $email = $filteredEmail;
         $dob = $filteredDob;
         $answer_1 = $hashedAnswer_1;
+        $profile_pic = $file_path;
+        
 
-        $stmt = $db->prepare("INSERT INTO Users (username, password, user_fn, user_ln, email, dob, answer_1)
-                 VALUES (:username, :password, :user_fn, :user_ln, :email, :dob, :answer_1);");
+        
+
+        $stmt = $db->prepare("INSERT INTO Users (username, password, user_fn, user_ln, email, dob, answer_1, profile_pic)
+                 VALUES (:username, :password, :user_fn, :user_ln, :email, :dob, :answer_1, :profile_pic);");
         // Set parameters
         // Bind variables to the prepared statement as parameters
         $stmt->bindParam(":username", $username);
@@ -143,6 +162,7 @@ class Register {
         $stmt->bindParam(":email", $email);
         $stmt->bindParam(":dob", $dob); //not string - yes it is!
         $stmt->bindParam(":answer_1", $answer_1);
+        $stmt->bindParam(":profile_pic", $profile_pic);
 
 
 
@@ -165,10 +185,10 @@ class Register {
         $username = $userArray['username'];
 
         $query = "SELECT username FROM users WHERE username = '$username'";
-        
+
         $result = PDO::exec($query);
-        
-        
+
+
         //$result = mysqli_query($db, $query);
         //confirmQuery($result);
 
@@ -179,6 +199,49 @@ class Register {
 
             return false;
         }
+    }
+
+    public function uploadProfilePic($imagename) {
+        $db = Screw_it::getInstance();
+
+
+
+            $temp = $_FILES["profile_pic"]["tmp_name"];
+            $imagename = $_FILES["profile_pic"]["name"];  
+            $file_type = $_FILES["profile_pic"]["type"];
+            //save this in the db!!
+
+ 
+
+         if (!in_array($_FILES["profile_pic"]["tmp_name"], self::AllowedTypes)) {
+          echo"<p style='text-align:center; margin:0; margin-top:10px;'>'File type not allowed</p>  ";
+          } else {
+          echo "";
+          } 
+      /*    
+          if (!in_array($file_type, self::AllowedTypes)) {
+            echo ("Handle File Type Not Allowed: ");
+        }
+*/
+        //$tempFile = $_FILES[self::InputKey]['tmp_name']; 
+        $path = DIRECTORY_SEPARATOR . 'Applications' . DIRECTORY_SEPARATOR . 'XAMPP' . DIRECTORY_SEPARATOR . 'xamppfiles' . DIRECTORY_SEPARATOR . 'htdocs' . DIRECTORY_SEPARATOR . 'Screw-it' . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'profile_pics' . DIRECTORY_SEPARATOR;
+        $destinationFile = $path . $imagename;
+        
+
+        move_uploaded_file($temp, $destinationFile);
+        //(move_uploaded_file($_FILES[self::InputKey]['tmp_name'], $destinationFile));
+        if (!move_uploaded_file($temp, $destinationFile)) { //file does upload not usre why throwing error?
+            echo "<p style='text-align:center; margin:0;'>File not uploaded or images already exist! </p><br>";
+        } else {
+            echo "your files have uploaded";
+        }
+
+        //Clean up the temp file
+        if (file_exists($temp)) {
+            unlink($temp);
+        }
+        
+       
     }
 
 }
