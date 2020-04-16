@@ -1,4 +1,9 @@
 <head>
+    <style>
+        a:hover { color:#FCA15F; text-decoration: none; }
+        a:active { color:#FCA15F; text-decoration: none; }
+        a { color:#3F7CAC; text-decoration: none; }
+    </style>
 
 </head>
 
@@ -13,7 +18,7 @@
             
             
             <div class="dropdown" style="padding-left:2rem;">
-                <a style="background-color: #fafafa; color:#FCA15F; border:none; border-radius: 0px;" class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a style="background-color: #fafafa; color:#FCA15F; border:none; border-radius: 0px; border-color: #fafafa;" class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Useful Links
                 </a>
 
@@ -96,25 +101,25 @@
         <div class="container">
             <h6 style="background-color: #fafafa; padding: 0.5rem;"><b>Screw-It:</b>  website performance</h6>
             <div class="row row-cols-3">
-                <div class="col"><i class='fas fa-pencil-alt'></i> Total Blogs</div>
-                <div class="col"><i class='fas fa-user-circle'></i> Total users</div>
-                <div class="col"><i class='fas fa-users'></i> Total Bloggers</div>
+                <div class="col"><i class='fas fa-pencil-alt'></i><b><a href="?controller=categories&action=showAll" style="color: black;"> Total Blogs</a></b></div>
+                <div class="col"><i class='fas fa-user-circle'></i><b> Total users</b></div>
+                <div class="col"><i class='fas fa-users'></i><b> Total Bloggers</b></div>
                 
-                <div class="col" style="background-color: greenyellow;"><?php echo $blogsCount[0]['count'] ?></div>
-                <div class="col" style="background-color: greenyellow;"><?php echo $memCount[0]['count'] ?></div>
-                <div class="col">4</div>
+                <div class="col" style=""><?php echo $blogsCount[0]['count'] ?></div>
+                <div class="col" style=""><?php echo $memCount[0]['count'] ?></div>
+                <div class="col" style=""><?php echo $bloggerCount[0]['count'] ?></div>
                 
                 <div class="col" style="">new</div>
                 <div class="col">new</div>
                 <div class="col">new</div>
                 
                 
-                <div class="col"><i class='far fa-heart'></i> Total Likes</div>
-                <div class="col"><i class='far fa-comment-dots'></i> Total Comments</div>
-                <div class="col"><i class='far fa-comments'></i> Total replies</div>
-                <div class="col">4</div>
-                <div class="col" style="background-color: greenyellow;"><?php echo $commsCount[0]['count'] ?></div>
-                <div class="col">4</div>
+                <div class="col"><i class='far fa-heart'></i><b> Total Likes</b></div>
+                <div class="col"><i class='far fa-comment-dots'></i><b> Total Comments</b></div>
+                <div class="col"><i class='far fa-comments'></i><b> Total replies</b></div>
+                <div class="col"style=""><?php echo $likesCount[0]['count'] ?></div>
+                <div class="col" style=""><?php echo $commsCount[0]['count'] ?></div>
+                <div class="col" style=""><?php echo $repliesCount[0]['count'] ?></div>
             </div>
         </div>
         <br><br><br>
@@ -152,45 +157,117 @@
 
 </div>
 
-        
-<h6>Review latest comments</h6>
+
+
+
+
+<!-- review comments -->
+<br> 
+
+<p>
+  <a style="background-color: #fafafa; color:#FCA15F; border:none; border-radius: 0px;" class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+    Review latest comments
+  </a>
+<div class="collapse" id="collapseExample">
+    <div class="container">
+
+
+
+
+
+
 
 <?php 
 
+$i=1;
+
 foreach ($comms as $comment){
     
-                echo "<div>";
-                    echo "<div>";
-                        $d = strtotime($comment['date_posted']);
-                        echo date("jS F Y", $d);
+               
+                
+                echo "<div class = 'row' style='border-style: solid; border-radius: 0px 5px 5px 0px; border-color: #e3e3e3; border-width:0.1rem; border-left-color: #3F7CAC; border-left-style: solid; border-left-width: 1rem; margin:1rem; padding:0.5rem;'>";
+                $blog = $comment['blog_id'];
+
+
+                    // Commenter Username
+                    echo "<div class='col-sm-2' style='background-color: #fafafa;'>";
+                        echo "<i class='fas fa-user-circle'></i> ".$comment['username'];
                     echo "</div>";
-                    echo "<div>";    
-                        echo $comment['user_id'];
+                    
+                    // Comment Date
+                    echo "<div class='col-sm-2' style='background-color: #fafafa;'>";
+                        $d = strtotime($comment['comment_date']);
+                        echo "<i class='far fa-comment-dots'></i> ".date("jS F Y", $d);
                     echo "</div>";
-                    echo "<div>";        
-                        echo $comment['title'];
+                    
+                    //empty
+                    echo "<div class='col-sm-4'></div>";
+                    
+                    //Blog Title
+                    echo "<div class='col-sm-4'>";
+                        echo "<a href='?controller=blog&action=read&blog_id=$blog'><i class='fas fa-pencil-alt'></i> ".substr($comment['title'],0,25)."...</a>";
                     echo "</div>";
-                    echo "<div>";    
-                        echo $comment['user_id'];
-                    echo "</div>";
-                    echo "<div>";        
+                    
+                    //Empty
+                    echo "<div class='col-sm-12' style=''>";
+                    echo "<p></p></div>";
+                    
+                    //Comment
+                    echo "<div class='col-sm-12' style=''>";
                         echo $comment['comment'];
                     echo "</div>";
-                    echo "<div>";    
-                        $len = 40;
-                        if (strlen($comment['body'])<$len) {
-                            $bodyShort = $comment['body'];
-                            }
-                        else {
-                            $bodyShort = substr($comment['body'],0,$len); 
-                        }
+                    
+                    //Empty
+                    echo "<div class='col-sm-12' style=''>";
+                    echo "<p></p></div>";
+                    
+                    
+                    //blogger
+                    echo "<div class = 'col-sm-2' style='background-color: #fafafa;'>";
+                        echo "<i class='fas fa-users'></i> ".$comment['blogger'];
+                    echo "</div>";    
+                    
+                    //blog date
+                    echo "<div class = 'col-sm-2' style='background-color: #fafafa;'>";
+                        $d = strtotime($comment['date_posted']);
+                        echo "<i class='fas fa-calendar'></i> ".date("jS F Y", $d);
+                    echo "</div>";
+                    
+                    //action
+                    
+                    echo "<div class = 'col-sm-2' style='background-color: #fafafa;'>";
+                    
+                        echo "<div class='dropdown'>";
+                        echo " <a style='color:black; background-color: #fafafa; border-radius:0px; border-style: none;' class='btn btn-secondary dropdown-toggle' href='#' role='button' id='dropdownMenuLink' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>";
+                            echo "<i class='fas fa-comment-slash' style=''></i> Action";
+                        echo "</a>";                  
+                    
+                        echo "<div class='dropdown-menu' aria-labelledby='dropdownMenuLink'>";
+                            echo "<a class='dropdown-item' href='?controller=blog&action=read&blog_id=$blog'>View</a>";
+                            echo "<button class='dropdown-item' type='button' onclick()href='deleteComment/".$comment['comment_id']."'>Delete</a>";
+                        echo "</div>";
+
+
+                    echo "</div>";
+                    echo "</div>";
+                    
+                    //empty
+                    echo "<div class = 'col-sm-6'></div>";                
+                      
                 echo "</div>";
                 
+                $i++;
+                               
     }
 
 ?>
-        
-        
+      
+<a href="#">Next ></a>
+<br>
+  </div>
+</div>
+<br><br>        
+<a href="#">Back to Top</a>        
 </center>    
 </body>
 

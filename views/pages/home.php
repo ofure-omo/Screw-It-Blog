@@ -77,6 +77,14 @@
 
           <!-- blog 3 -->
           <div class="carousel-item">
+              
+              <!-- title -->
+                <div class="container" style="background-color: white; z-index: 1; position: absolute; max-height: 23%; opacity: 0.8; overflow:hidden; margin-left: 2rem; margin-top: 30rem; max-width:50rem; justify-content: center;">
+                        <h3 style=""><?php echo $blog3->titleShort ?></h3>
+                        <p style="padding-bottom:2rem;">
+                            <?php echo $blog3->bodyLong ?>
+                        </p>
+                </div>
             
               <!-- image -->   
                 <a href='?controller=blog&action=read&blog_id=<?php echo $blog3->blog_id;?>'>
