@@ -1,6 +1,15 @@
 /*---------- ACROSS THE SITE -----------*/
 
-html, h1, h2, h3, h4, h5, h6 {
+h4 { font-family: 'Roboto Slab', serif; font-size: 2rem; } /* Your basics */
+
+@media only screen and (min-width: 600px) {
+ h4 { font-size: 5rem; } /* Override for 600px+ */
+}
+@media only screen and (min-width: 980px) {
+ h4 { font-size: 7rem; } /* Override for 980px+ */
+}
+
+html, h1, h2, h3, h5, h6 {
  font-family: 'Roboto Slab', serif;
 }
 
@@ -261,7 +270,7 @@ img {max-width:100%}
     font-family: 'Open Sans';
     text-transform: uppercase;
     font-weight: bold;
-    color: #70D6FF;
+    color: #FFFFFF;
     text-decoration: none;
 }
 
