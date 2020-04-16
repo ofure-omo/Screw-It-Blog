@@ -112,6 +112,10 @@ class Blog {
         if (isset($_POST['layout']) && $_POST['layout'] != "") {
             $filteredLayout = filter_input(INPUT_POST, 'layout', FILTER_SANITIZE_SPECIAL_CHARS);
         }
+       
+        if (isset($_POST['published']) && $_POST['published'] != "") {
+            $filteredPublished = filter_input(INPUT_POST, 'published', FILTER_SANITIZE_SPECIAL_CHARS);
+        }
         
         if(!empty($_POST['file[]'])){
        $filteredImage = filter_input(INPUT_POST, 'myfile[]', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -144,19 +148,21 @@ class Blog {
         } else {echo "";}
   
         $req = $db->prepare("Update blog_posts SET title=:title, body=:body, body2=:body2, category=:category,
-                             layout=:layout WHERE blog_id= '".$blog_id."';");
+                             layout=:layout, published=:published WHERE blog_id= '".$blog_id."';");
         
         $req->bindParam(':title', $title);
         $req->bindParam(':body', $body);
         $req->bindParam(':body2', $body2);
         $req->bindParam(':category', $category);
         $req->bindParam(':layout', $layout);
+        $req->bindParam(':published', $published);
        
         $title = $filteredTitle;
         $body = $filteredBody;
         $body2 = $filteredBody2;
         $category = $filteredCategory;
         $layout = $filteredLayout;
+        $published = $filteredPublished;
 
         $req->execute();
         

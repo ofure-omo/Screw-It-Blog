@@ -1,5 +1,4 @@
 
-
 <body>
     <!--          HEADER       -->
  <?php if($blog['layout'] == '1' && $blog['published'] === '1'): ?>
