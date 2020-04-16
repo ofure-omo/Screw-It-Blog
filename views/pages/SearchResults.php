@@ -21,7 +21,7 @@ echo "<span class='results'><br><br><h4>There are " . count($results) . " search
                 <a href='?controller=blog&action=read&blog_id=<?php echo $blogpost['blog_id']; ?>' class="whole-card-link">
                 <img class="card-img-top" src="<?php echo $blogpost['main_image'] ?>" height="250" width="50%" >
                 <div class="card-body">
-                    <h5 class="card-title"><?php echo $blogpost['title'] ?></h5>
+                    <h3 class="card-title"><?php echo $blogpost['title'] ?></h3>
                     <p class="card-text"><?php $blogexcerpt = substr($blogpost['body'], 0, 90);
                     echo $blogexcerpt . "..." ?><br>
                     <a href='?controller=blog&action=read&blog_id=<?php echo $blogpost['blog_id']; ?>'>Read More</a></p> 

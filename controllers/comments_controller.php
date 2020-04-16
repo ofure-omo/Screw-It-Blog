@@ -3,19 +3,17 @@
 class CommentsController {
     
    public function add() {
-         if ($_REQUEST["comment"]) {
-             echo $_REQUEST['comment'];
+         if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_SESSION['loggedin'])) {
+//             echo $_REQUEST['comment'];
                Comments::addComment($_GET['blog_id']);
-               
+
          }
 
    }
    
     public function post() {
         
-        if (!isset($_GET['blog_id'])) {
-            return call('pages', 'error');
-        }
+        if (isset($_GET['blog_id'])) {
 
         try {
             // we use the given id to get the correct post
@@ -29,6 +27,7 @@ class CommentsController {
          }
 
    }
+}
 
 
   

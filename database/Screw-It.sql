@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 13, 2020 at 06:10 AM
+-- Generation Time: Apr 15, 2020 at 07:37 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -33,26 +33,27 @@ CREATE TABLE `blog_posts` (
   `user_id` int(11) DEFAULT NULL,
   `title` varchar(255) NOT NULL,
   `body` mediumtext NOT NULL,
-  `body2` text NOT NULL,
+  `body2` text DEFAULT NULL,
   `date_posted` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `category` varchar(100) NOT NULL,
   `main_image` tinytext DEFAULT NULL,
   `second_image` tinytext DEFAULT NULL,
   `third_image` tinytext DEFAULT NULL,
-  `views` int(10) DEFAULT NULL,
-  `slug` varchar(100) DEFAULT NULL,
-  `favourites` int(11) DEFAULT NULL
+  `layout` tinyint(4) NOT NULL,
+  `published` tinyint(1) NOT NULL DEFAULT 1,
+  `slug` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `blog_posts`
 --
 
-INSERT INTO `blog_posts` (`blog_id`, `user_id`, `title`, `body`, `body2`, `date_posted`, `category`, `main_image`, `second_image`, `third_image`, `views`, `slug`, `favourites`) VALUES
-(46, 1, 'how to train a dragon', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don&#39;t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn&#39;t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.', '2020-04-08 20:11:31', 'CREATE', 'views/images/diyimage.jpg', 'views/images/evenmorefireworks.jpg', 'views/images/fireworks.jpeg', NULL, NULL, 0),
-(110, 1, 'latest blog ', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don&#39;t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn&#39;t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentenc', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don&#39;t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn&#39;t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.', '2020-04-10 01:26:56', 'RENOVATE', 'views/images/evenmorefireworks.jpg', 'views/images/fireworks.jpeg', 'views/images/morefireworks.jpeg', NULL, NULL, 0),
-(173, 1, 'do the tags really really work??? yesss ?? well partly  yesss!!!!!!', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don&#39;t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn&#39;t anything embarrassing hidden in the middle of text. All the Lorem Ipsum ', '       There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don&#39;t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn&#39;t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.', '2020-04-12 17:55:16', 'DECORATE', 'views/images/ETHNC T-Shirt Design.png', 'views/images/evenmorefireworks.jpg', 'views/images/fireworks.jpeg', NULL, NULL, 0),
-(175, 17, 'HOW TO UPGRADE MODERN WOODEN BOOKENDS WITH CRAFT PAINT!', 'Bookends are one of the easiest accessories to use to dress up any space. Especially bookshelves! Any item that has some weight and heft to it can be used as a bookend:&#13;&#10;&#13;&#10;-rocks, like geodes and marble&#13;&#10;-filled piggy banks&#13;&#10;-figurines and statues, especially if they are made of metal&#13;&#10;-wood blocks&#13;&#10;&#13;&#10;Delta Ceramcoat is my absolute favorite acrylic craft paint. Seeing this paint in Target&#39;s craft aisle brought back fond childhood memories using this paint for crafts, school projects, and the occasional painted rock.&#13;&#10;&#13;&#10;Made in the USA, Delta Ceramcoat satin acrylic paint pot sets at Target are perfect starter sets for new crafters or for small projects because you get 18 different colors of paint in one package. The rich creamy colors provide excellent coverage or can be thinned with water for a more translucent finish. &#13;&#10;&#13;&#10;STEP 1: CHOOSE A PATTERN OR DESIGN&#13;&#10;Find a geometric pattern or design you like by searching Pinterest, looking in design magazines, or browsing wallpaper catalogs. Take a photo or screenshot with your phone to use for reference later.&#13;&#10;&#13;&#10;STEP 2: SELECT PAINT COLORS&#13;&#10;Decide on a color palette using the colors in the Delta Ceramcoat satin acrylic paint pot set&#13;&#10;&#13;&#10;STEP 3: MASK OFF THE PATTERN&#13;&#10;Starting with the largest block of color first, apply masking tape to the wood block using the design you chose as your guide. Use a craft knife or scissors to cut or trim the tape if needed.&#13;&#10;&#13;&#10;STEP 3: MASK OFF THE PATTERN&#13;&#10;Starting with the largest block of color first, apply masking tape to the wood block using the design you chose as your guide. Use a craft knife or scissors to cut or trim the tape if needed.', '   STEP 4: APPLY PAINT&#13;&#10;Carefully apply the paint with a flat brush, brushing away from the tape to avoid paint bleed under the tape.&#13;&#10;Allow to dry. Then peel away the tape.&#13;&#10;&#13;&#10;STEP 5: REPEAT&#13;&#10;Apply tape for the next set of shapes in the pattern. Paint, dry, and repeat until the pattern is complete.&#13;&#10;&#13;&#10;Place the painted wood blocks on either side of a set of books on a shelf. Add dried flowers, potted succulents, or even the Hand Made Modern paint brushes to the hole in the top of the block to complete the look.&#13;&#10;&#13;&#10;&#13;&#10;credit: https://www.smartfundiy.com/diy-wooden-bookends-modern/', '2020-04-13 02:55:26', 'RENOVATE', 'views/images/blog1img1.jpg', 'views/images/blog1img2.jpg', 'views/images/5dde91cb79d7576693279df7.jpeg', NULL, NULL, 0);
+INSERT INTO `blog_posts` (`blog_id`, `user_id`, `title`, `body`, `body2`, `date_posted`, `category`, `main_image`, `second_image`, `third_image`, `layout`, `published`, `slug`) VALUES
+(46, 17, 'how to train a dragon', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don&#39;t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn&#39;t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.', '2020-04-14 15:53:58', 'CREATE', 'views/images/diyimage.jpg', 'views/images/evenmorefireworks.jpg', 'views/images/fireworks.jpeg', 1, 1, NULL),
+(110, 17, 'latest blog ', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don&#39;t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn&#39;t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentenc', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don&#39;t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn&#39;t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.', '2020-04-14 15:54:11', 'RENOVATE', 'views/images/evenmorefireworks.jpg', 'views/images/fireworks.jpeg', 'views/images/morefireworks.jpeg', 1, 1, NULL),
+(173, 17, 'blog title', 'Bookends are one of the easiest accessories to use to dress up any space. Especially bookshelves! Any item that has some weight and heft to it can be used as a bookend:\r\n\r\nrocks, like geodes and marble\r\nfilled piggy banks\r\nfigurines and statues, especially if they are made of metal\r\nwood blocks', 'Bookends are one of the easiest accessories to use to dress up any space. Especially bookshelves! Any item that has some weight and heft to it can be used as a bookend:\r\n\r\nrocks, like geodes and marble\r\nfilled piggy banks\r\nfigurines and statues, especially if they are made of metal\r\nwood blocks\r\nBookends are one of the easiest accessories to use to dress up any space. Especially bookshelves! Any item that has some weight and heft to it can be used as a bookend:\r\n\r\nrocks, like geodes and marble\r\nfilled piggy banks\r\nfigurines and statues, especially if they are made of metal\r\nwood blocks', '2020-04-15 00:36:20', '', 'views/images/ETHNC T-Shirt Design.png', 'views/images/evenmorefireworks.jpg', 'views/images/fireworks.jpeg', 1, 1, NULL),
+(267, 17, 'as', 'asss', 'asss', '2020-04-15 00:35:28', 'Choose a category', 'views/images/blog1img1.jpg', 'views/images/blog1img2.jpg', 'views/images/blog1img3.jpg', 2, 1, NULL),
+(268, 17, 'hello new layout ', 'ontrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of &#34;de Finibus Bonorum et Malorum&#34; (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, &#34;Lorem ipsum dolor sit amet..&#34;, comes from a line in section 1.10.32.&#13;&#10;&#13;&#10;The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from &#34;de Finibus Bonorum et Malorum&#34; by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.&#13;&#10;&#13;&#10;Where can I get some?&#13;&#10;There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don&#39;t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn&#39;t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.&#13;&#10;&#13;&#10;ontrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of &#34;de Finibus Bonorum et Malorum&#34; (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, &#34;Lorem ipsum dolor sit amet..&#34;, comes from a line in section 1.10.32.&#13;&#10;&#13;&#10;The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from &#34;de Finibus Bonorum et Malorum&#34; by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.&#13;&#10;&#13;&#10;Where can I get some?&#13;&#10;There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don&#39;t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be &#13;&#10;&#13;&#10;', NULL, '2020-04-15 02:00:21', 'RENOVATE', 'views/images/blog1img1.jpg', 'views/images/blog1img2.jpg', 'views/images/blog1img3.jpg', 2, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -64,6 +65,17 @@ CREATE TABLE `blog_tags` (
   `blog_id` int(11) NOT NULL,
   `tag` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `blog_tags`
+--
+
+INSERT INTO `blog_tags` (`blog_id`, `tag`) VALUES
+(267, '#buildit'),
+(268, '#buildit'),
+(268, '#crafts'),
+(268, '#garden'),
+(268, '#home');
 
 -- --------------------------------------------------------
 
@@ -85,7 +97,12 @@ CREATE TABLE `comments` (
 --
 
 INSERT INTO `comments` (`comment_id`, `comment`, `parent_comment_id`, `blog_id`, `user_id`, `comment_date`) VALUES
-(82, 'this is great', 0, 175, 17, '2020-04-13 04:10:24');
+(130, 'yes', 0, 173, 17, '2020-04-14 18:19:45'),
+(131, 'ola', 0, 173, 17, '2020-04-14 18:19:54'),
+(134, 'loool', 0, 173, 17, '2020-04-14 18:29:43'),
+(135, 'loool', 0, 173, 17, '2020-04-14 18:29:51'),
+(136, 'okay', 0, 173, 17, '2020-04-14 18:30:01'),
+(137, 'hii', 134, 173, 17, '2020-04-14 18:32:32');
 
 -- --------------------------------------------------------
 
@@ -98,6 +115,59 @@ CREATE TABLE `favourites` (
   `blog_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `favourites`
+--
+
+INSERT INTO `favourites` (`fav_id`, `blog_id`, `user_id`) VALUES
+(8, 110, 17),
+(9, 46, 17),
+(10, 46, 17),
+(11, 46, 17),
+(12, 46, 17),
+(13, 46, 17),
+(14, 46, 17),
+(15, 46, 17),
+(16, 46, 17),
+(17, 46, 17),
+(18, 46, 17),
+(19, 46, 17),
+(20, 46, 17),
+(21, 46, 17),
+(22, 46, 17),
+(23, 46, 17),
+(24, 46, 17),
+(25, 46, 17),
+(26, 46, 17),
+(27, 46, 17),
+(28, 46, 17),
+(29, 46, 17),
+(30, 46, 17),
+(31, 46, 17),
+(32, 46, 17),
+(33, 46, 17),
+(34, 46, 17),
+(35, 46, 17),
+(36, 46, 17),
+(37, 46, 17),
+(38, 46, 17),
+(39, 46, 17),
+(40, 46, 17),
+(41, 46, 17),
+(42, 46, 17),
+(88, 173, 17),
+(89, 173, 17),
+(90, 173, 17),
+(91, 173, 17),
+(92, 46, 17),
+(93, 173, 17),
+(94, 173, 17),
+(95, 173, 17),
+(96, 173, 17),
+(97, 110, 17),
+(100, 173, 17),
+(101, 268, 17);
 
 -- --------------------------------------------------------
 
@@ -165,7 +235,7 @@ INSERT INTO `Users` (`user_id`, `username`, `password`, `user_fn`, `user_ln`, `e
 (14, 'teseog', '$2y$10$rBjfCwevk34TQe3iSXyoa.qS12Zll/RsOqmYMltLRYE2.nSHQiUvm', 'Omotese', 'Omotese', 'tese.og@hotmail.com', '2014-02-05', 'Member', 'Who is your favourite Ryan', 'gosling', NULL, NULL, NULL, NULL, NULL, NULL, '2020-04-09 19:28:57'),
 (15, 'test', '$2y$10$OCnfF0dF76CbK3Fn1D9/e.3MB.JOmQPCpA1ARiPDQq8mlDh2ZmMZu', 'Omotese', 'Omotese', 'tese.og@hotmail.com', '2003-06-04', 'Member', 'Who is your favourite Ryan', '$2y$10$t2G1SsH529YL.peoTuqjs.6wIrcshim7.kNuykq8YxbsKJBbtsIW2', NULL, NULL, NULL, NULL, NULL, NULL, '2020-04-11 14:20:49'),
 (16, 'test', '$2y$10$00YszUVxfj.xAZ8OJSHDR./LyDMYTqPnUj9W4/I6g2Dm0uVqMZwSq', 'Omotese', 'Omotese', 'tese.og@hotmail.com', '2008-02-07', 'Member', 'Who is your favourite Ryan', '$2y$10$xKIMDm6yFMp7ljwuaILtU.fOoLPhK1eQ7hiooKKIjnpam22reIIHi', NULL, NULL, NULL, NULL, NULL, NULL, '2020-04-11 14:21:15'),
-(17, 'sweetee', '$2y$10$PJUsRzFUJ.cEBgupNkZJBO/bp7SdEe.p0qEG5CrBNmawZWPrWCbii', 'TESE', 'Hello', 'tese.og@hotmail.com', '1997-09-04', 'Blogger', 'Who is your favourite Ryan', '$2y$10$qZorYewVFNa6uzj5zlAUBOgxfiRbWh4ctKcyX91kwUz5k9nT78z92', NULL, 'views/images/5dde91cb79d7576693279df7.jpeg', 'My name is sweetie and I like sweets', NULL, NULL, NULL, '2020-04-11 16:38:24');
+(17, 'sweetee', '$2y$10$PJUsRzFUJ.cEBgupNkZJBO/bp7SdEe.p0qEG5CrBNmawZWPrWCbii', 'Tese', 'Ogbeifun', 'tese.og@hotmail.com', '1997-09-04', 'Blogger', 'Who is your favourite Ryan', '$2y$10$qZorYewVFNa6uzj5zlAUBOgxfiRbWh4ctKcyX91kwUz5k9nT78z92', NULL, 'views/images/5dde91cb79d7576693279df7.jpeg', 'My name is sweetie and I like sweets', 'twitter.com', 'instagram.com', 'facebook.com', '2020-04-11 16:38:24');
 
 --
 -- Indexes for dumped tables
@@ -199,7 +269,7 @@ ALTER TABLE `comments`
 ALTER TABLE `favourites`
   ADD PRIMARY KEY (`fav_id`),
   ADD KEY `blog_id` (`blog_id`),
-  ADD KEY `user_id` (`user_id`);
+  ADD KEY `favourites_ibfk_2` (`user_id`);
 
 --
 -- Indexes for table `tags`
@@ -221,19 +291,19 @@ ALTER TABLE `Users`
 -- AUTO_INCREMENT for table `blog_posts`
 --
 ALTER TABLE `blog_posts`
-  MODIFY `blog_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=229;
+  MODIFY `blog_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=275;
 
 --
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
+  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=138;
 
 --
 -- AUTO_INCREMENT for table `favourites`
 --
 ALTER TABLE `favourites`
-  MODIFY `fav_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `fav_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
 
 --
 -- AUTO_INCREMENT for table `Users`
@@ -270,7 +340,7 @@ ALTER TABLE `comments`
 --
 ALTER TABLE `favourites`
   ADD CONSTRAINT `favourites_ibfk_1` FOREIGN KEY (`blog_id`) REFERENCES `blog_posts` (`blog_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `favourites_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `Users` (`user_id`);
+  ADD CONSTRAINT `favourites_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `Users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

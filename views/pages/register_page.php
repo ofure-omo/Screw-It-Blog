@@ -54,15 +54,13 @@
 </body>
 </html>-->
 
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Register</title>
-    </head>
-    <body>
+<div class="flex-container">
+    
+                <section class="intro-section-about"> 
+                    <h1>Register with us </h1>
+                    </section>
+    
         <section class="main-section">
-            <h1>Register a New Account</h1>
             <span>
                 <div>
 

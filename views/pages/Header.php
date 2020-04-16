@@ -12,9 +12,19 @@
         color: #70D6FF;
         cursor: pointer;
     }
+    
+
+.social-media-desktop {
+  display: block;
+}
+@media only screen and (min-width: 980px) {
+  .social-media-desktop {
+    display: none;
+  }
+}
 </style>
 <nav class="navbar justify-content-between" id="navbar" >
-    <ul class="nav mr-auto">     
+    <ul class="nav ml-auto">     
         <?php
         // display menu options if user is not logged in
         if (!isset($_SESSION["loggedin"])) {
@@ -33,25 +43,23 @@
             <div class="dropdown-menu" id="drop" aria-labelledby="navbarDropdownMenuLink">';
                 }
                 if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSION ['user_type']=== "Member") {
-                    echo '<a class="nav-link" id="droptext" href="?controller=dashboard&action=mem_details" style="font-size: 16px;">Your dashboard</a>';
-                    echo '<a class="nav-link" href="?controller=signout&action=signout" style="font-size: 16px;">Log out</a>';
+                    echo '<a class="nav-link" id="droptext" href="?controller=dashboard&action=mem_details" style="font-size: 16px;">Your Dashboard</a>';
+                    echo '<a class="nav-link" id="droptext" href="?controller=signout&action=signout" style="font-size: 16px;">Log out</a>';
                 }
                 if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSION ['user_type']=== "Blogger"){
-                    echo '<a class="nav-link" href="?controller=blog&action=create" style="font-size: 16px;">Post Blog</a>';
-                    echo '<a class="nav-link" href="?controller=blogger&action=dashboard">Dashboard</a>';
-                    echo '<a class="nav-link" href="?controller=signout&action=signout" style="font-size: 16px;">Log out</a>';
+                    echo '<a class="nav-link" id="droptext" href="?controller=blog&action=create" style="font-size: 16px;">Post Blog</a>';
+                    echo '<a class="nav-link" id="droptext" href="?controller=blogger&action=dashboard">Dashboard</a>';
+                    echo '<a class="nav-link" id="droptext" href="?controller=signout&action=signout" style="font-size: 16px;">Log out</a>';
+                }
+                if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSION ['user_type']=== "Moderator"){
+                    echo '<a class="nav-link" id="droptext" href="?controller=mod&action=showAll" style="font-size: 16px;">Dashboard</a>';
+                    echo '<a class="nav-link" id="droptext" href="?controller=signout&action=signout" style="font-size: 16px;">Log out</a>';
                 };
                 ?>
-        </li>
+    </li>
+        
     </ul>
 
-    <ul class="nav ml-auto">  
-        <li><a href="http://facebook.com/"><i class="fa fa-facebook"></i></a></li>
-        <li><a href="http://instagram.com/"><i class="fa fa-instagram"></i></a></li>
-        <li><a href="http://twitter.com/"><i class="fa fa-twitter"></i></a></li>
-        <li><a href="http://pintrest.com/"><i class="fa fa-pinterest"></i></a></li>
-        <li><a><i onclick="openSearch()" class="fa searchfa fa-search"></i></a></li>
-    </ul>
 </nav>
 <div class="header">
     <a href="?controller=home&action=home"><img src="views/images/screwit3.png" alt="Screw it"></a>
@@ -81,9 +89,7 @@
                 <li class="nav-item mx-4">
                     <a class="nav-link" href="?controller=categories&action=searchCategory&category=renovate">RENOVATE</a>
                 </li>
-
-            </ul>
-
+        
             </ul>
 
         </div>
@@ -102,6 +108,14 @@
 
 </div>
 
+
+<div class="icon-bar">
+      <a href="http://facebook.com/"><i class="fa fa-facebook fa-lg" id="icon"></i></a>
+      <a href="http://instagram.com/"><i class="fa fa-instagram fa-lg" id="icon"></i></a>
+     <a href="http://twitter.com/"><i class="fa fa-twitter fa-lg" id="icon" ></i></a>
+      <a href="http://pintrest.com/"><i class="fa fa-pinterest fa-lg" id="icon"></i></a>
+      <a><i onclick="openSearch()" class="fa searchfa fa-search fa-lg"></i></a>
+</div>
 
 <script>
     function openSearch() {

@@ -1,13 +1,8 @@
-
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Login</title>
-    </head>
-    <body>
-        <br><br>
-        <h2 style="padding-left:2.7em">Login</h2>
+<div class="flex-container">
+    
+                <section class="intro-section-about"> 
+                    <h1>Log in</h1>
+                    </section>
         <section class="main-section">
             
 
@@ -17,7 +12,7 @@
                     <input type="text" name="username" autocomplete='off' required>
                 </div>    
                 <div>
-                    <label>&nbsp;Password</label>
+                    <label>Password</label>
                     <input type="password" name="password" required>
                 </div>
                 <br>

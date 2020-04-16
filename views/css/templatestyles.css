@@ -1,7 +1,7 @@
 /*---------- ACROSS THE SITE -----------*/
 
 html, h1, h2, h3, h4, h5, h6 {
- font-family: 'Playfair Display', serif;
+ font-family: 'Roboto Slab', serif;
 }
 
 p, i, a {
@@ -103,9 +103,36 @@ ul li a i:hover {
 
 /* Navbar links in responsive mode */
 #navbar a {
-  color: #70D6FF;
-
+  color: #FFFFFF;
 }
+
+#icon 
+{
+  color: #70D6FF;
+}
+
+.icon-bar {
+  position: fixed;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  z-index: 2;
+}
+
+.icon-bar a {
+  display: block;
+  text-align: center;
+  padding: 10px;
+  transition: all 0.3s ease;
+  font-size: 20px;
+}
+
+#icon:hover {
+  color: #3F7CAC;
+  cursor: pointer;
+}
+
 
 .navbar.navbar-brand {
    position: absolute;
@@ -120,8 +147,7 @@ ul li a i:hover {
     /*background-color: #FFFFFF;*/
 }
 
-.collapse.navbar-collapse {
-}
+
 
 
 
@@ -152,9 +178,7 @@ img {max-width:100%}
 }
 
 
-i.fa {
-    font-size: 20px;
-}
+
 
 /* The overlay effect with black background */
 .overlay {
