@@ -95,7 +95,9 @@
           <th><h3>Date Posted</h3></th>
           <th><h3>Favourite Count</h3></th>
           <th><h4>Comment Count</h4></th>
+           <th><h4>Publish status</h4></th> 
           <th><h4>Actions</h4></th>
+         
       </tr>
       <?php foreach ($blogsfavscomments as $posts) { ?>
       <tr>
@@ -106,6 +108,7 @@
           </td>
           <td><?php echo $posts['favourite_count'] ?></td>
           <td><?php echo $posts['comment_count'] ?></td>
+          <td><?php echo $posts['published'] ?></td>
           <td>  
               <a  href='?controller=blog&action=read&blog_id=<?php echo $posts['blog_id']; ?>'>View</a>&nbsp; 
               <a  href='?controller=blog&action=update&blog_id=<?php echo $posts['blog_id']; ?>'>Update</a>&nbsp;
@@ -132,6 +135,7 @@
           <th><h3>Date Posted</h3></th>
           <th><h3>Your Comments</h3></th>
           <th><h4>Actions</h4></th>
+          <th><h4>Publish status</h4></th>
       </tr>
       <?php foreach ($commenttext as $comment) { ?>
       <tr>

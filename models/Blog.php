@@ -191,7 +191,7 @@ class Blog {
              echo '<h3 style="text-align:center; margin-top:30px; margin-bottom:20px;"> Your blog has been updated,<br> you will be redirected back to your dashboard!</h3>'
         . '<img style="display: block; margin-left: auto; margin-right: auto; width: 40%;" src="views/images/bloguploaded.png"/>';
 //        
- //echo '<meta http-equiv="refresh" content="6;  url=?controller=blogger&action=dashboard"/>';
+ echo '<meta http-equiv="refresh" content="5;  url=?controller=blogger&action=dashboard"/>';
     //echo "<script type='text/javascript'>location.href = '?controller=blogger&action=dashboard';</script>";
     
     }
@@ -226,9 +226,9 @@ class Blog {
         if (isset($_POST['layout']) && $_POST['layout'] != "") {
             $filteredLayout = filter_input(INPUT_POST, 'layout', FILTER_SANITIZE_SPECIAL_CHARS);
         }
-        if (isset($_POST['published']) && $_POST['published'] != "") {
+        if (isset($_POST['published'])) {
             $filteredPublished = filter_input(INPUT_POST, 'published', FILTER_SANITIZE_SPECIAL_CHARS);
-        }
+    } else {$filteredPublished = '1';}
   
         $filteredImage = filter_input(INPUT_POST, 'myfile[]', FILTER_SANITIZE_SPECIAL_CHARS);
 

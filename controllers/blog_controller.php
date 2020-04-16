@@ -20,8 +20,11 @@ class BlogController {
             $blog = Blog::find($_GET['blog_id']);
             $likes = Blog::getlikes($_GET['blog_id']);
             $tag = Blog::findTagForBlog($_GET['blog_id']);
-            //code for postComments
-            require_once('views/blogpost/read.php');
+            if($blog['layout'] === '1'){
+            require_once('views/blogpost/read.php');}
+            else {
+            require_once('views/blogpost/read2.php');}
+            
             
         } catch (Exception $ex) {
             return call('pages', 'error');

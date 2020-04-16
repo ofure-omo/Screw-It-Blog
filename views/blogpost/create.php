@@ -293,7 +293,7 @@
                     </div>
 
                     <div class="form-group form-check-inline">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1" name ="published" value="0">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1" name ="published" value="saved">
                         <label class="form-check-label" for="exampleCheck1">Save to drafts</label>
                     </div>
                     <div class="pure-form pure-form-aligned container-btn">
