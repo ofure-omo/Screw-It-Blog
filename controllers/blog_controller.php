@@ -20,6 +20,9 @@ class BlogController {
             $blog = Blog::find($_GET['blog_id']);
             $likes = Blog::getlikes($_GET['blog_id']);
             $tag = Blog::findTagForBlog($_GET['blog_id']);
+            Blog::checkLikes($_GET['blog_id']);
+//            $cards = Blog::moreBlogs($_SESSION['user_id']);
+            
             if($blog['layout'] === '1'){
             require_once('views/blogpost/read.php');}
             else {

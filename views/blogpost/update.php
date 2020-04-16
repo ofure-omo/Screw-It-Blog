@@ -343,7 +343,7 @@
                     </div>
 
                     <div class="form-group form-check-inline">
-                        <input type="radio" class="form-check-input" id="exampleCheck1" name ="published" value="saved">
+                        <input type="radio" class="form-check-input" id="exampleCheck1" name ="published" value="draft">
                         <label class="form-check-label" for="exampleCheck1">Save to drafts</label>
                     </div>
 

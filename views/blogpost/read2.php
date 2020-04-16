@@ -296,7 +296,6 @@ crossorigin="anonymous"></script>
 
     #read-title {
         font-family: 'Playfair Display', serif;
-        text-transform: uppercase;
         font-size: 45px;
         margin-bottom: 20px;
     }
