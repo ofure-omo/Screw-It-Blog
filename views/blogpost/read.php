@@ -1,7 +1,8 @@
 
+
 <body>
     <!--          HEADER       -->
- <?php if($blog['layout'] == '1'): ?>
+ <?php if($blog['layout'] == '1' && $blog['published'] === '1'): ?>
     <div class='read-header'>
 
 

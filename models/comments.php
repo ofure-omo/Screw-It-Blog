@@ -2,7 +2,7 @@
 
 class comments {
 
-    public function addComment() {
+    public function addComment($blog_id) {
 
         $db = Screw_it::getInstance();
 
@@ -35,7 +35,7 @@ class comments {
         echo json_encode($data);
     }
 
-    public function postComment() {
+    public function postComment($blog_id) {
 
         $db = Screw_it::getInstance();
 

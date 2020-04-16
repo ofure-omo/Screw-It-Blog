@@ -1,4 +1,4 @@
- <?php if($blog['layout'] === '2'): ?>
+ <?php if($blog['layout'] === '2' && $blog['published'] === '1'): ?>
 
     <div class='read-header'>
 

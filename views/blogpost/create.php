@@ -289,14 +289,13 @@
 
                     <div class="form-group">
                         <label for="exampleFormControlFile1">Upload 3 images</label>
-                        <input type="file" name="myfile[]" class="form-control-file" id="exampleFormControlFile1" multiple >
+                        <input type="file" name="myfile[]" accept="image/*" class="form-control-file" id="exampleFormControlFile1" multiple >
                     </div>
 
                     <div class="form-group form-check-inline">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1" name ="published" value="1">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1" name ="published" value="0">
                         <label class="form-check-label" for="exampleCheck1">Save to drafts</label>
                     </div>
-
                     <div class="pure-form pure-form-aligned container-btn">
                         <input type="submit" value="SUBMIT" name= "submit" class="button" >
                     </div>  
