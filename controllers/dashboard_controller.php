@@ -26,6 +26,7 @@ class dashboardcontroller {
           //  require_once('Views/pages/home.php');
 
       }
+}
     /*
     public function fav_blog() {
         if (isset($_SESSION['user_id'])) {

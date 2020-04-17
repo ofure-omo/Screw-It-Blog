@@ -62,7 +62,7 @@
                 </a>
                 <?php endif; ?>
                 <?php if(!isset($_SESSION['loggedin'])): ?>
-                <i onclick="myFunction(this)" class="fa fa-heart-o like" name="like"></i>
+                <i onclick="myFunction2(this)" class="fa fa-heart-o like" name="like"></i>
                  <span style="margin-left:2px; font-size:0.5em;"><?php echo $likes; ?></span>
                 <?php endif; ?>
             </div>
@@ -162,15 +162,13 @@
         <!--        COMMENTS-->
 
         <div style='margin-top: 40px;' class="comment-title"><h4> comments</h4> </div>
-    <?php if (isset($_SESSION['loggedin'])): ?>
+
+    <?php if (isset($_SESSION['loggedin'])): ?>  <!--        IF USER IS LOGGED IN THEY CAN ADD A COMMENT-->
 
         <form method='POST' action="?controller=blog&action=read&blog_id=<?= $_GET['blog_id'] ?>&req=addComment" enctype="multipart/form-data">
-            <textarea style='width:700px; resize: none;' name='message' rows='4'></textarea><br>
+            <textarea style='width:700px; resize: none;' name='comment' rows='4'></textarea><br>
             <input style='width:100px; height: 40px; background-color:#fca15f; border:none; font-weight: 400; border-radius: 8px; cursor: pointer;' type='submit' value='Comment' name='submit'>
         </form>
-        
-        
-      
         
         <?php endif; ?>
         
@@ -179,8 +177,19 @@
         <p style='text-align: center; color: #3F7CAC;'>Want to comment? Why not
             <a href='?controller=register&action=registerUser' style='text-decoration: none; 
                      text-transform:bold;'> sign up </a>and become a member or <a href='?controller=login&action=loginUser' 
-                  style='text-decoration: none; text-transform:bold;'> log in</a></p>";
+                  style='text-decoration: none; text-transform:bold;'> log in</a></p>
                   <?php endif; ?>
+                  
+                  <?php foreach($comments as $row): ?>
+                <div class="comment" style="margin-top: 50px; color:black;">
+             <b> <div class="panel-heading username" style="font-size: 1.1em;"><span class="user-comment"> By <?php $row['username']?> </span></b><br> <i style="font-size:0.8em;"> on<?php $row['comment_date']?></i> </div>
+                  <div class="comment" style="margin-bottom:10px;" > <?php  $row['comment']  ?></div>
+             
+                      <div class="panel-footer" align="left"><button type="button" class="btn btn-info reply" id= <?php $row['comment_id']?>>
+                          <span class="reply" style="font-size: 0.8em; padding:0px;" >REPLY</span></button>
+                          </div>
+             </div>
+                  <?php endforeach; ?>
 
     </body>
 
@@ -207,7 +216,7 @@
                             alert('You\'ve liked this blogpost!');
                         }
                         
-                        function myFunction(x) {
+                        function myFunction2(x) {
                            
                             alert('Please login or register to like this post!');
                         }
