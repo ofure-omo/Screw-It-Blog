@@ -1,3 +1,6 @@
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="richtext.min.css">
+<link rel="stylesheet" href="richtext.min.css">
 
 <body>
 
@@ -214,10 +217,12 @@
                     <label for="formGroupExampleInput"><p><b>TITLE</b></p></label>
                     <input type="text" class="form-control" id="formGroupExampleInput" name="title" placeholder="Title of your blog" required>
                 </div>
+                       
                 <div class="form-group" id='body1'>
                     <label for="exampleFormControlTextarea1"><p><b>BODY</b></p></label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" name="body" rows="20" placeholder="Body text" required></textarea>
+                    <textarea class="form-control " id="exampleFormControlTextarea1" name="body" rows="20" placeholder="Body text" required></textarea>
                 </div>
+                        
                 <div class="form-group hide" id="body2">
                     <label for="exampleFormControlTextarea1"><p><b>BODY 2</b></p></label>
                     <textarea class="form-control" id="exampleFormControlTextarea1" name="body2" rows="10" placeholder="Body text" ></textarea>
@@ -293,7 +298,7 @@
                     </div>
 
                     <div class="form-group form-check-inline">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1" name ="published" value="saved">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1" name ="published" value="draft">
                         <label class="form-check-label" for="exampleCheck1">Save to drafts</label>
                     </div>
                     <div class="pure-form pure-form-aligned container-btn">
@@ -325,7 +330,16 @@ crossorigin="anonymous"></script>
 function show1(){
   document.getElementById('body2').style.display ='none';
 }
+('.content').richText();
+
+
     </script>
+    
+    <script type="text/javascript">
+$(document).ready( function() {
+$("#txtEditor").Editor();                    
+});
+</script>
     
     
 

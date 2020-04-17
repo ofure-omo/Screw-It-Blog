@@ -1,4 +1,4 @@
-<?php declare(strict_types = 1) ?>
+<?php declare(strict_types=1) ?>
 
 </head>
 
@@ -14,9 +14,8 @@
         $(document).ready(function () {
             $('.toogle').click(function () {
                     $('ul').toogleClass('active');
-                })
-                << << << < HEAD
-        })
+                    })
+    })
 </script>
 <!------------accordion block ----------->  
 <!-- Members details list --->
@@ -46,15 +45,18 @@
                 <td><?= $details['username'] ?></td>
                 <td><?= $details['user_fn'] ?></td>
                 <td><?= $details['user_ln'] ?></td>
-                <td><?= $details['dob'] ?></td>
+                <td><?= $details['dob'] ?></td>Ï
                 <td><?= $details['email'] ?></td>
 
-                <td class="actions">
-                    <a href="userUpdate.php?user_ID=<?= $user['user_ID'] ?>" class="edit"><i class="fas fa-pen fa-xs"></i></a>
+                <div class="actions">
+                    <a href="userUpdate.php?user_ID=<?= $details['user_ID'] ?>" class="edit"><i class="fas fa-pen fa-xs"></i></a>
                     <!--click button to delete controller, can it be deleted without a view as its just a button???-->
-                    <delete button here<?=$deleteUser ?> ></i></a>
-                </td>
-            </tr>
+                </div>
+                    <div class="row">
+        <button id="delete-btn" onclick="deleteAccount(<?php echo $details['user_id']; ?>)"><i class="fas fa-trash-alt"></i> Delete Account</a></button>
+      <input type="submit" value="Update">
+    </div>
+
         </tbody>
 </div>
 <!---favourite blog posts--->
@@ -63,24 +65,24 @@
     <table class="table table-striped">
         <tbody>
             <tr>
-                <td><?php $fave['date_posted']?></td>
-                <td><?php $fave['title'] ?></td>
-                <td><button here <?=$unfavourite ?> </td>
+                <td><?php $favourites['date_posted'] ?></td>
+                <td><?php $favourites['title'] ?></td>
+                <td><button here <?= $unfavourite ?> </td>
             </tr>
             <tr>
-                <td><?php $fave['date_posted'] ?></td>
-                <td><?php $fave['title'] ?></td>
-                <td><button here <?=$unfavourite ?> </td>
+                <td><?php $favourites['date_posted'] ?></td>
+                <td><?php $favourites['title'] ?></td>
+                <td><button here <?= $unfavourite ?> </td>
             </tr>
             <tr>
-                <td><?php $fave['date_posted'] ?></td>
-                <td><?php $fave['title'] ?></td>
-                <td><button here <?=$unfavourite ?> </td>
+                <td><?php $favourites['date_posted'] ?></td>
+                <td><?php $favourites['title'] ?></td>
+                <td><button here <?= $unfavourite ?> </td>
             </tr>
             <tr>
-                <td><?php $fave['date_posted'] ?></td>
-                <td><?php $fave['title'] ?></td>
-                <td><button here <?=$unfavourite ?> </td>
+                <td><?php $favourites['date_posted'] ?></td>
+                <td><?php $favourites['title'] ?></td>
+                <td><button here <?= $unfavourite ?> </td>
             </tr>
 
 
@@ -98,25 +100,25 @@
                 <td><?php $comms['comment_date'] ?></td>
                 <td><?php $comms['comment'] ?></td>
                 <td><?php $comms['title'] ?></td>
-                <td><button here <?=$deleteComment ?> </td>
+                <td><button here <?= $deleteComment ?> </td>
             </tr>
             <tr>
                 <td><?php $comms['comment_date'] ?></td>
                 <td><?php $comms['comment'] ?></td>
                 <td><?php $comms['title'] ?></td>
-                <td><button here <?=$deleteComment ?> </td>
+                <td><button here <?= $deleteComment ?> </td>
             </tr>
             <tr>
                 <td><?php $comms['comment_date'] ?></td>
                 <td><?php $comms['comment'] ?></td>
                 <td><?php $comms['title'] ?></td>
-                <td><button here <?=$deleteComment ?> </td>
+                <td><button here <?= $deleteComment ?> </td>
             </tr>
             <tr>
                 <td><?php $comms['comment_date'] ?></td>
                 <td><?php $comms['comment'] ?></td>
                 <td><?php $comms['title'] ?></td>
-                <td><button here <?=$deleteComment ?> </td>
+                <td><button here <?= $deleteComment ?> </td>
             </tr>
 
 
@@ -135,22 +137,22 @@
         <tbody>
             <tr>
                 <td>Blogger 1 <!--pull through blogger's name could go here--> <!--</td>
-                <td><?php //echo bloggers URL     ?></td>
+                <td><?php //echo bloggers URL               ?></td>
                 <td>Unfavourite button </td>
             </tr>
             <tr>
                 <td>Blogger 2</td>
-                <td><?php //echo bloggers URL    ?></td>
+                <td><?php //echo bloggers URL              ?></td>
                 <td>Unfavourite button</td>
             </tr>
             <tr>
                 <td>Blogger 3</td>
-                <td><?php //echo bloggers URL    ?></td>
+                <td><?php //echo bloggers URL              ?></td>
                 <td>Unfavourite button</td>
             </tr>
             <tr>
                 <td>Blogger 4 </td>
-                <td><?php //echo bloggers URL    ?></td>
+                <td><?php //echo bloggers URL              ?></td>
                 <td>Edit</td>
             </tr>
 
@@ -165,52 +167,6 @@
 </div>
 
 </tbody>
-=======
-</script>
-<!------------accordion block ----------->  
-<!-- Members details list --->
-<button class="accordion">View/Edit Your Details</button>
-<div class="panel"> 
-    <table class="table table-striped">
-        <tbody>    
-        <thead>
-
-            <tr>
-                <th>User ID</th>
-                <th>Username</th>
-                 <!--<th>Password</th>  not showing password??--> 
-                <th>First Name</th>
-                <th>Last Name</th> 
-                <th>Date of Birth</th>
-                <th>Email</th>
-                <th>User type</th>
-
-
-                <th></th>
-            </tr>
-        </thead>
-
-
-        <tr>
-            <td><?= $details['user_id'] ?></td>
-            <td><?= $details['username'] ?></td>
-            <td><?= $details['user_fn'] ?></td>
-            <td><?= $details['user_ln'] ?></td>
-            <td><?= $details['dob'] ?></td>
-            <td><?= $details['email'] ?></td>
-            <td><?= $details['user_type'] ?></td>
-
-            <td class="actions">
-                <a href="userUpdate.php?user_ID=<?= $user['user_ID'] ?>" class="edit"><i class="fas fa-pen fa-xs"></i></a>
-                <!--click button to delete controller, can it be deleted without a view as its just a button???-->
-                <a href="delete_controller.php?user_ID=<?= $user['user_ID'] ?>" class="trash"><i class="fas fa-trash fa-xs"></i></a>
-            </td>
-            </tbody>
-    </table>
-</div>
-
-</tbody>
-
 
 
 <!--- following list-->
@@ -222,22 +178,22 @@
         <tbody>
             <tr>
                 <td>Blogger 1 <!--pull through blogger's name could go here--> <!--</td>
-                <td><?php //echo bloggers URL    ?></td>
+                <td><?php //echo bloggers URL              ?></td>
                 <td>Unfavourite button </td>
             </tr>
             <tr>
                 <td>Blogger 2</td>
-                <td><?php //echo bloggers URL   ?></td>
+                <td><?php //echo bloggers URL             ?></td>
                 <td>Unfavourite button</td>
             </tr>
             <tr>
                 <td>Blogger 3</td>
-                <td><?php //echo bloggers URL   ?></td>
+                <td><?php //echo bloggers URL             ?></td>
                 <td>Unfavourite button</td>
             </tr>
             <tr>
                 <td>Blogger 4 </td>
-                <td><?php //echo bloggers URL   ?></td>
+                <td><?php //echo bloggers URL             ?></td>
                 <td>Edit</td>
             </tr>
 
@@ -257,22 +213,45 @@
 </div>
 
         <script>
-        <!------------JS for accordion block ----------->
-        var acc = document.getElementsByClassName("accordion");
-                    var i;
-                    for (i = 0; i < acc.length; i++) 
-                {
-                        acc[i].addEventListener("click", function () {
-                    this.classList.toggle("active");
-                    var panel = this.nextElementSibling;
-                    if (panel.style.display === "block") {
-                        panel.style.display = "none";
-                } else {
-                    panel.style.display = "block";
+            <!------------JS for accordion block ----------->
+                    var acc = document.getElementsByClassName("accordion");
+                var i;
+            for (i = 0; i < acc.length; i++) 
+
+
+            {
+                                acc[i].addEventListener("click", function () {
+                            this.classList.toggle("active");
+                            var panel = this.nextElementSibling;
+                            if (panel.style.display === "block") {
+                                panel.style.display = "none";
+                    } else {
+                        panel.style.display = "block";
+                    }
+                });
+                function deleteAccount(id) {
+                    var xmlhttp = new XMLHttpRequest();
+                    xmlhttp.open("GET", "?controller=blogger&action=delete&user_id=" + id, true);
+                    xmlhttp.send();
+                    goBackToHome();
                 }
-            });
-                     }
+                function goBackToHome() {
+                    window.refresh;
+                    window.location.href = "?controller=home&action=home";
+                }
+                    }
+                
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
             
-    </script>
+
+                  
+                    </script>
 </body>
 

@@ -228,7 +228,7 @@ class Blog {
         }
         if (isset($_POST['published'])) {
             $filteredPublished = filter_input(INPUT_POST, 'published', FILTER_SANITIZE_SPECIAL_CHARS);
-    } else {$filteredPublished = '1';}
+    } else {$filteredPublished = 'published';}
   
         $filteredImage = filter_input(INPUT_POST, 'myfile[]', FILTER_SANITIZE_SPECIAL_CHARS);
 
@@ -362,6 +362,17 @@ class Blog {
         }
         }
     }
+    
+    public function moreBlogs (){
+         $db = Screw_it::getInstance();
+         
+         $req=$db->prepare("SELECT * FROM blog_posts WHERE user_id = '".$_SESSION['user_id']."' AND user_type = 'Blogger' LIMIT 3;");
+         $req->execute();
+         $blogs3 = $req->fetchAll();
+         
+         return $blogs3;
+         
+    }
 
     public static function remove($blog_id) {
         $db = Screw_it::getInstance();
@@ -389,6 +400,21 @@ class Blog {
             
             return $likes['count(*)'];
         }
+        
+    
+        public static function checkLikes($blog_id){
+            $db = Screw_it::getInstance();
+        $blog_id = intval($blog_id);
+        
+        $query = "SELECT * FROM favourites WHERE EXISTS
+                 (SELECT * FROM favourites WHERE blog_id = '".$blog_id."' AND user_id = '".$_SESSION['user_id']."')";
+            $req = $db->prepare($query);
+            $req->execute();
+            $if_liked = $req->fetch();
+           
+            return $if_liked;
+        }
+        
 
 
     

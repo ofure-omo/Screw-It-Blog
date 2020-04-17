@@ -35,15 +35,47 @@
            
           <!-- blog 1 -->   
           <div class="carousel-item active">
-             
-                <!-- title -->
-                <div class="container" style="background-color: white; z-index: 1; position: absolute; max-height: 23%; opacity: 0.8; overflow:hidden; margin-left: 2rem; margin-top: 30rem; max-width:50rem; justify-content: center;">
-                        <h3 style=""><?php echo $blog1->titleShort ?></h3>
-                        <p style="padding-bottom:2rem;">
-                            <?php echo $blog1->bodyLong ?>
-                        </p>
-                </div>
               
+              <div class="container" style="background-color: white; text-align: center; z-index: 1; position: absolute; right: 0; bottom:0; margin-bottom: 1rem; max-width: 40em;">
+                  <div class="row">
+                        <div class="col-sm-2">                         
+                        </div>
+                      
+                        <div class="col-sm-8" style="border-bottom: 0.2rem; border-bottom-style: solid; ">
+                             <h3 style="padding:1rem;"><?php echo $blog1->titleShort ?></h3>
+                        </div>
+                      
+                        <div class="col-sm-2">                          
+                        </div>  
+                      
+                        <!-- new row -->
+                         
+                        <div class="col-sm-1">
+                        </div>
+                        
+                        <div class="col-sm-10">
+                             <p style="padding:1rem;"><?php echo $blog1->bodyLong ?></p>
+                        </div>
+                        
+                        <div class="col-sm-1">
+                        </div> 
+                        
+                        <!-- new row -->
+                         
+                        <div class="col-sm-1">
+                        </div>
+                        
+                        <div class="col-sm-10">
+                            <p style=""><a style="color:#3F7CAC" href='?controller=blog&action=read&blog_id=<?php echo $blog1->blog_id;?>'>Read More...</a></p>
+                        </div>
+                        
+                        <div class="col-sm-1">
+                        </div> 
+                        
+                        
+                  </div>
+              </div>
+                                       
               <!-- image -->   
                 <a href='?controller=blog&action=read&blog_id=<?php echo $blog1->blog_id;?>'>
                             <?php 
@@ -57,13 +89,45 @@
           <!-- blog 2 -->
           <div class="carousel-item">
               
-                <!-- title -->
-                <div class="container" style="background-color: white; z-index: 1; position: absolute; max-height: 23%; opacity: 0.8; overflow:hidden; margin-left: 2rem; margin-top: 30rem; max-width:50rem; ">
-                        <h3 style=""><?php echo $blog2->titleShort ?></h3>
-                        <p style="padding-bottom:2rem;">
-                            <?php echo $blog2->bodyLong ?>
-                        </p>
-                </div>
+                <div class="container" style="background-color: white; text-align: center; z-index: 1; position: absolute; right: 0; bottom:0; margin-bottom: 1rem; max-width: 40em;">
+                  <div class="row">
+                        <div class="col-sm-2">                         
+                        </div>
+                      
+                        <div class="col-sm-8" style="border-bottom: 0.2rem; border-bottom-style: solid; ">
+                             <h3 style="padding:1rem;"><?php echo $blog2->titleShort ?></h3>
+                        </div>
+                      
+                        <div class="col-sm-2">                          
+                        </div>  
+                      
+                        <!-- new row -->
+                         
+                        <div class="col-sm-1">
+                        </div>
+                        
+                        <div class="col-sm-10">
+                             <p style="padding:1rem;"><?php echo $blog2->bodyLong ?></p>
+                        </div>
+                        
+                        <div class="col-sm-1">
+                        </div> 
+                        
+                        <!-- new row -->
+                         
+                        <div class="col-sm-1">
+                        </div>
+                        
+                        <div class="col-sm-10">
+                            <p style=""><a style="color:#3F7CAC" href='?controller=blog&action=read&blog_id=<?php echo $blog2->blog_id;?>'>Read More...</a></p>
+                        </div>
+                        
+                        <div class="col-sm-1">
+                        </div> 
+                        
+                        
+                  </div>
+              </div>
             
               <!-- image -->   
                 <a href='?controller=blog&action=read&blog_id=<?php echo $blog2->blog_id;?>'>
@@ -78,13 +142,45 @@
           <!-- blog 3 -->
           <div class="carousel-item">
               
-              <!-- title -->
-                <div class="container" style="background-color: white; z-index: 1; position: absolute; max-height: 23%; opacity: 0.8; overflow:hidden; margin-left: 2rem; margin-top: 30rem; max-width:50rem; justify-content: center;">
-                        <h3 style=""><?php echo $blog3->titleShort ?></h3>
-                        <p style="padding-bottom:2rem;">
-                            <?php echo $blog3->bodyLong ?>
-                        </p>
-                </div>
+               <div class="container" style="background-color: white; text-align: center; z-index: 1; position: absolute; right: 0; bottom:0; margin-bottom: 1rem; max-width: 40em;">
+                  <div class="row">
+                        <div class="col-sm-2">                         
+                        </div>
+                      
+                        <div class="col-sm-8" style="border-bottom: 0.2rem; border-bottom-style: solid; ">
+                             <h3 style="padding:1rem;"><?php echo $blog3->titleShort ?></h3>
+                        </div>
+                      
+                        <div class="col-sm-2">                          
+                        </div>  
+                      
+                        <!-- new row -->
+                         
+                        <div class="col-sm-1">
+                        </div>
+                        
+                        <div class="col-sm-10">
+                             <p style="padding:1rem;"><?php echo $blog3->bodyLong ?></p>
+                        </div>
+                        
+                        <div class="col-sm-1">
+                        </div> 
+                        
+                        <!-- new row -->
+                         
+                        <div class="col-sm-1">
+                        </div>
+                        
+                        <div class="col-sm-10">
+                            <p style=""><a style="color:#3F7CAC" href='?controller=blog&action=read&blog_id=<?php echo $blog3->blog_id;?>'>Read More...</a></p>
+                        </div>
+                        
+                        <div class="col-sm-1">
+                        </div> 
+                        
+                        
+                  </div>
+              </div>
             
               <!-- image -->   
                 <a href='?controller=blog&action=read&blog_id=<?php echo $blog3->blog_id;?>'>
@@ -226,8 +322,8 @@
                                         <li><br></li>
                                         
                                         <li class="HP-catagories-gallery-item-likes" style="color:white; font-size: 16px">
-                                            <i class="fa fa-heart-o"></i><?php //echo $blog1->likes?>&nbsp;&nbsp;&nbsp;&nbsp;
-                                            <i class="fa fa-comment-o"></i><?php //echo $blog1->comments?></li>
+                                            <i class="fa fa-heart-o"></i><?php echo " ".$blog1->likes?>&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <i class="fa fa-comment-o"></i><?php echo " ".$blog1->comments?></li>
 
                                     </ul>
 
@@ -268,8 +364,8 @@
                                         <li style="color:white; font-size: 16px; font-family: 'Playfair Display', serif;"><?php echo $blog2->viewHTML; ?></li>
                                         <li><br></li>
                                         <li class="HP-catagories-gallery-item-likes" style="color:white; font-size: 16px">
-                                            <i class="fa fa-heart-o"></i><?php //echo $blog1->likes?>&nbsp;&nbsp;&nbsp;&nbsp;
-                                            <i class="fa fa-comment-o"></i><?php //echo $blog1->comments?></li>
+                                            <i class="fa fa-heart-o"></i><?php echo " ".$blog2->likes?>&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <i class="fa fa-comment-o"></i><?php echo " ".$blog2->comments?></li>
 
                                     </ul>
 
@@ -309,8 +405,8 @@
                                         <li style="color:white; font-size: 16px; font-family: 'Playfair Display', serif;"><?php echo $blog3->viewHTML; ?></li>
                                         <li><br></li>
                                         <li class="HP-catagories-gallery-item-likes" style="color:white; font-size: 16px">
-                                            <i class="fa fa-heart-o"></i><?php //echo $blog1->likes?>&nbsp;&nbsp;&nbsp;&nbsp;
-                                            <i class="fa fa-comment-o"></i><?php //echo $blog1->comments?></li>
+                                            <i class="fa fa-heart-o"></i><?php echo " ".$blog3->likes?>&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <i class="fa fa-comment-o"></i><?php echo " ".$blog3->comments?></li>
 
                                     </ul>
 
@@ -359,8 +455,8 @@
                                         <li style="color:white; font-size: 16px; font-family: 'Playfair Display', serif;"><?php echo $blog4->viewHTML; ?></li>
                                         <li><br></li>
                                         <li class="HP-catagories-gallery-item-likes" style="color:white; font-size: 16px">
-                                            <i class="fa fa-heart-o"></i><?php //echo $blog4->likes?>&nbsp;&nbsp;&nbsp;&nbsp;
-                                            <i class="fa fa-comment-o"></i><?php //echo $blog4->comments?></li>
+                                            <i class="fa fa-heart-o"></i><?php echo " ".$blog4->likes?>&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <i class="fa fa-comment-o"></i><?php echo " ".$blog4->comments?></li>
 
                                     </ul>
 
@@ -401,8 +497,8 @@
                                         <li style="color:white; font-size: 16px; font-family: 'Playfair Display', serif;"><?php echo $blog5->viewHTML; ?></li>
                                         <li><br></li>
                                         <li class="HP-catagories-gallery-item-likes" style="color:white; font-size: 16px">
-                                            <i class="fa fa-heart-o"></i><?php //echo $blog1->likes?>&nbsp;&nbsp;&nbsp;&nbsp;
-                                            <i class="fa fa-comment-o"></i><?php //echo $blog1->comments?></li>
+                                            <i class="fa fa-heart-o"></i><?php echo " ".$blog5->likes?>&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <i class="fa fa-comment-o"></i><?php echo " ".$blog5->comments?></li>
 
                                     </ul>
 
@@ -443,8 +539,8 @@
                                         <li style="color:white; font-size: 16px; font-family: 'Playfair Display', serif;"><?php echo $blog6->viewHTML; ?></li>
                                         <li><br></li>
                                         <li class="HP-catagories-gallery-item-likes" style="color:white; font-size: 16px">
-                                            <i class="fa fa-heart-o"></i><?php //echo $blog6->likes?>&nbsp;&nbsp;&nbsp;&nbsp;
-                                            <i class="fa fa-comment-o"></i><?php //echo $blog6->comments?></li>
+                                            <i class="fa fa-heart-o"></i><?php echo " ".$blog6->likes?>&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <i class="fa fa-comment-o"></i><?php echo " ".$blog6->comments?></li>
 
                                     </ul>
 
@@ -491,8 +587,8 @@
                                         <li style="color:white; font-size: 16px; font-family: 'Playfair Display', serif;"><?php echo $blog7->viewHTML; ?></li>
                                         <li><br></li>
                                         <li class="HP-catagories-gallery-item-likes" style="color:white; font-size: 16px">
-                                            <i class="fa fa-heart-o"></i><?php //echo $blog7->likes?>&nbsp;&nbsp;&nbsp;&nbsp;
-                                            <i class="fa fa-comment-o"></i><?php //echo $blog7->comments?></li>
+                                            <i class="fa fa-heart-o"></i><?php echo " ".$blog7->likes?>&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <i class="fa fa-comment-o"></i><?php echo " ".$blog7->comments?></li>
 
                                     </ul>
 
@@ -533,8 +629,8 @@
                                         <li style="color:white; font-size: 16px; font-family: 'Playfair Display', serif;"><?php echo $blog8->viewHTML; ?></li>
                                         <li><br></li>
                                         <li class="HP-catagories-gallery-item-likes" style="color:white; font-size: 16px">
-                                            <i class="fa fa-heart-o"></i><?php //echo $blog8->likes?>&nbsp;&nbsp;&nbsp;&nbsp;
-                                            <i class="fa fa-comment-o"></i><?php //echo $blog8->comments?></li>
+                                            <i class="fa fa-heart-o"></i><?php echo " ".$blog8->likes?>&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <i class="fa fa-comment-o"></i><?php echo " ".$blog8->comments?></li>
 
                                     </ul>
 
@@ -575,8 +671,8 @@
                                         <li style="color:white; font-size: 16px; font-family: 'Playfair Display', serif;"><?php echo $blog9->viewHTML; ?></li>
                                         <li><br></li>
                                         <li class="HP-catagories-gallery-item-likes" style="color:white; font-size: 16px">
-                                            <i class="fa fa-heart-o"></i><?php //echo $blog9->likes?>&nbsp;&nbsp;&nbsp;&nbsp;
-                                            <i class="fa fa-comment-o"></i><?php //echo $blog9->comments?></li>
+                                            <i class="fa fa-heart-o"></i><?php echo " ".$blog9->likes?>&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <i class="fa fa-comment-o"></i><?php echo " ".$blog9->comments?></li>
 
                                     </ul>
 
@@ -623,8 +719,8 @@
                                         <li style="color:white; font-size: 16px; font-family: 'Playfair Display', serif;"><?php echo $blog10->viewHTML; ?></li>
                                         <li><br></li>
                                         <li class="HP-catagories-gallery-item-likes" style="color:white; font-size: 16px">
-                                            <i class="fa fa-heart-o"></i><?php //echo $blog10->likes?>&nbsp;&nbsp;&nbsp;&nbsp;
-                                            <i class="fa fa-comment-o"></i><?php //echo $blog10->comments?></li>
+                                            <i class="fa fa-heart-o"></i><?php echo " ".$blog10->likes?>&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <i class="fa fa-comment-o"></i><?php echo " ".$blog10->comments?></li>
 
                                     </ul>
 
@@ -664,8 +760,8 @@
                                         <li style="color:white; font-size: 16px; font-family: 'Playfair Display', serif;"><?php echo $blog11->viewHTML; ?></li>
                                         <li><br></li>
                                         <li class="HP-catagories-gallery-item-likes" style="color:white; font-size: 16px">
-                                            <i class="fa fa-heart-o"></i><?php //echo $blog11->likes?>&nbsp;&nbsp;&nbsp;&nbsp;
-                                            <i class="fa fa-comment-o"></i><?php //echo $blog11->comments?></li>
+                                            <i class="fa fa-heart-o"></i><?php echo " ".$blog11->likes?>&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <i class="fa fa-comment-o"></i><?php echo " ".$blog11->comments?></li>
 
                                     </ul>
 
@@ -690,7 +786,7 @@
                             
             <a href='?controller=blog&action=read&blog_id=<?php echo $blog12->blog_id; ?>'>
                 
-                <div class="gallery-item-info">
+                <div class="gallery-item-info" style="">
 
 				<!-- Likes and Comments -->
 
@@ -705,8 +801,8 @@
                                         <li style="color:white; font-size: 16px; font-family: 'Playfair Display', serif;"><?php echo $blog12->viewHTML; ?></li>
                                         <li><br></li>
                                         <li class="HP-catagories-gallery-item-likes" style="color:white; font-size: 16px">
-                                            <i class="fa fa-heart-o"></i><?php //echo $blog12->likes?>&nbsp;&nbsp;&nbsp;&nbsp;
-                                            <i class="fa fa-comment-o"></i><?php //echo $blog12->comments?></li>
+                                            <i class="fa fa-heart-o"></i><?php echo " ".$blog12->likes?>&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <i class="fa fa-comment-o"></i><?php echo " ".$blog12->comments?></li>
 
                                     </ul>
 

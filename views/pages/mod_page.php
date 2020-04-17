@@ -244,7 +244,7 @@ foreach ($comms as $comment){
                     
                         echo "<div class='dropdown-menu' aria-labelledby='dropdownMenuLink'>";
                             echo "<a class='dropdown-item' href='?controller=blog&action=read&blog_id=$blog'>View</a>";
-                            echo "<button class='dropdown-item' type='button' onclick()href='deleteComment/".$comment['comment_id']."'>Delete</a>";
+                            echo "<a class='dropdown-item' href='?controller=mod&action=showAll&req=deleteComment&commentID=".$comment['comment_id']."'>Delete</a>";
                         echo "</div>";
 
 

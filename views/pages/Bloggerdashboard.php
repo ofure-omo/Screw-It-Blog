@@ -1,5 +1,36 @@
 <section class="main-section-dashboard">
     
+    <!-- HEADER DETAILS -->
+
+    <div class="container-fluid">
+        <div class="row">
+            
+            
+            <div class="dropdown" style="padding-left:2rem;">
+                <a style="background-color: #fafafa; color:#FCA15F; border:none; border-radius: 0px; border-color: #fafafa;" class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Useful Links
+                </a>
+
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                  <a class="dropdown-item" href="https://analytics.google.com/analytics/web/#/">Google Analytics</a>
+                  <a class="dropdown-item" href="https://www.insightdiy.co.uk/news-uk.htm">DIY News</a>
+                  <a class="dropdown-item" href="https://www.diy.com/">B&Q</a>
+                  <a class="dropdown-item" href="https://cat-bounce.com/">Click for cats</a>
+                </div>
+            </div>
+            
+            <!-- TODAY'S DATE --> 
+            <p><i class="fa fa-calendar" style="font-size: 1rem; padding-top:0.6rem; padding-left:2rem;"></i>    
+                <?php
+                echo date("jS F Y");
+                ?>
+            </p>
+            
+        </div>
+    </div>
+    
+     <!-- Profile -->
+     
                 <div class="table-container-intro-dashboard" role="table" aria-label="">
                     <div class="flex-table-dashboard row" role="rowgroup">  
                         
@@ -24,61 +55,7 @@
                   </div>
                 </div>
                   
-     <style>
-
-/* Style the tab */
-.tab {
-  overflow: hidden;
-  border: 1px solid #ccc;
-  background-color: #3F7CAC;
-}
-
-/* Style the buttons inside the tab */
-.tab button {
-  background-color: inherit;
-  float: left;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  padding: 14px 16px;
-  transition: 0.3s;
-  font-size: 14px;
-  color: #FFFFFF;
-}
-
-/* Change background color of buttons on hover */
-.tab button:hover {
-  background-color: #70D6FF;
-  color: #000000;
-}
-
-/* Create an active/current tablink class */
-.tab button.active {
-  background-color: #FCB078;
-  color: #FFFFFF
-}
-
-/* Style the tab content */
-.tabcontent {
-  display: none;
-  padding: 6px 12px;
-  border: 1px solid #ccc;
-  border-top: none;
-}
-
-::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-  color: #FCA15F;
-  opacity: 1; /* Firefox */
-}
-         
-:-ms-input-placeholder { /* Internet Explorer 10-11 */
-  color: #FCA15F;
-}
-
-::-ms-input-placeholder { /* Microsoft Edge */
-  color: #FCA15F;
-}
-</style>
+    
 
 <div class="tab">
     <button class="tablinks" onclick="openTab(event, 'MBlogs')" id="defaultOpen"><b>BLOGS</b></button>
@@ -89,13 +66,14 @@
 <div id="MBlogs" class="tabcontent">
   <p></p>
             <?php if (count($blogsfavscomments) > 0) { ?>
+  <div style="overflow-x:auto;">
   <table style="width:100%">     
       <tr>
-          <th><h3>Blog</h3></th>
-          <th><h3>Date Posted</h3></th>
-          <th><h3>Favourite Count</h3></th>
+          <th><h4>Blog</h4></th>
+          <th><h4>Date Posted</h4></th>
+          <th><h4>Favourite Count</h4></th>
           <th><h4>Comment Count</h4></th>
-           <th><h4>Publish status</h4></th> 
+          <th><h4>Publish status</h4></th> 
           <th><h4>Actions</h4></th>
          
       </tr>
@@ -123,13 +101,15 @@
             ?>
   </table>
         </div> 
+  </div>
 
 <div id="MComments" class="tabcontent">
   <p></p> 
 
   <p></p>
             <?php if (count($commenttext) > 0) { ?>
-  <table style="width:100%">     
+  <div style="overflow-x:auto;">
+      <table style="width:100%">     
       <tr>
           <th><h3>Blog</h3></th>
           <th><h3>Date Posted</h3></th>
@@ -158,6 +138,7 @@
             }
             ?>
   </table>
+      </div>
 </div>
 
 
@@ -384,6 +365,59 @@ input[type=submit]:hover {
     margin-top: 0;
     text-align: left;
   }
+}
+
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #3F7CAC;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 14px;
+  color: #FFFFFF;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #70D6FF;
+  color: #000000;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #FCB078;
+  color: #FFFFFF
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #FCA15F;
+  opacity: 1; /* Firefox */
+}
+         
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #FCA15F;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: #FCA15F;
 }
 </style>
 
