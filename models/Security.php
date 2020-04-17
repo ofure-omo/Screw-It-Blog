@@ -49,7 +49,7 @@ class Security {
                 $_SESSION['username'] = $user['username'];
                 $_SESSION["user_id"] = $user['user_id']; 
                 $_SESSION["user_type"] = $user['user_type'];
-                 echo "Welcome!";// will send to member dashboard
+                 echo "<script type='text/javascript'>location.href = '?controller=home&action=home';</script>";// will send to member dashboard
             } else {
                 echo "Something went wrong. Please try again";
             }

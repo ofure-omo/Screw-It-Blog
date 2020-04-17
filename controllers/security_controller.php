@@ -15,7 +15,7 @@ class SecurityController {
         if (!isset($_SESSION['loggedin'])) {
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 Security::securityQuestionLogin();
-                return call('home', 'home');
+               // return call('home', 'home');
             }
         } else {
 
