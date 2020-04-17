@@ -70,4 +70,48 @@
             </div>
         </div>-->
 
+
+
+
+
+    <?php if (!isset($_SESSION['loggedin'])): ?>
+
+        <p style='text-align: center; color: #3F7CAC;'>Want to comment? Why not
+            <a href='?controller=register&action=registerUser' style='text-decoration: none; 
+                     text-transform:bold;'> sign up </a>and become a member or <a href='?controller=login&action=loginUser' 
+                  style='text-decoration: none; text-transform:bold;'> log in</a></p>";
+
+
+        <div class="comment-container" style="width:52%;">
+        </form>
+        <span id="comment_message"></span>
+        <br/>
+        <div id="display_comment">
+            <div class="panel panel-default">
+
+            </div>
+
+        </div>
+        </div>
+    <?php endif; ?>
+
+                  
+                          <div style='margin-top: 40px;' class="comment-title"><h4> comments</h4> </div>
+    <?php if (isset($_SESSION['loggedin'])): ?>
+
+        <form method='POST' action="" enctype="multipart/form-data">
+            <textarea style='width:700px; resize: none;' name='message' rows='4'></textarea><br>
+            <input style='width:100px; height: 40px; background-color:#fca15f; border:none; font-weight: 400; border-radius: 8px; cursor: pointer;' type='submit' value='Comment' name='submit'>
+        </form>
+      
+        
+        <?php endif; ?>
+        
+        <?php if (!isset($_SESSION['loggedin'])): ?>
+
+        <p style='text-align: center; color: #3F7CAC;'>Want to comment? Why not
+            <a href='?controller=register&action=registerUser' style='text-decoration: none; 
+                     text-transform:bold;'> sign up </a>and become a member or <a href='?controller=login&action=loginUser' 
+                  style='text-decoration: none; text-transform:bold;'> log in</a></p>";
+                  <?php endif; ?>
       

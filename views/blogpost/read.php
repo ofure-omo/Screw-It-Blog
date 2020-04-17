@@ -7,7 +7,6 @@
 
             <h1 id="read-title"><?php echo $blog['title']; ?></h1> <!--header section to retrieve data from db -->
 
-
             <div>
                 <?php
                 if (isset($blog['profile_pic'])) {
@@ -71,7 +70,7 @@
         <div class='read-blog-container'>
             <div id='body-container'> 
                 <p class='body' id='body1'> 
-                    <?php $body = $blog['body'];
+                    <?php $body = (nl2br($blog['body']));
                     echo $body; //echo nl2br($body);  
                     ?> 
                 </p>
@@ -98,50 +97,10 @@
                 </div>
             </div>
             <div id='body-container'> 
-                <p class='body'> <?php echo $blog['body2']; ?> </p>
+                <p class='body'> <?php (nl2br($blog['body2'])); ?> </p>
                 <div class='container-fluid' style=''>
         <div class="row">
-            
-<!--            <div class="row row-cols-1 row-cols-md-5" style="padding-left:2rem; padding-right:2rem;">  shows 5 cards per 1 row 
-        
-         CARD 
-        
-        <?php
-    
-
-                foreach($cards as $card):  ?>
-        
-                     <div class='col mb-4'>;
-                        <div class='card h-100' style=''>;
-                           <a href='?controller=blog&action=read&blog_id=<?= $card['blog_id'] ?>class='btn btn-primary'><img style='padding-top: 5%; ; height: 250px; width:300px; object-fit: cover;' class='card-img-top' src=".${"blog$i"}->main_image." alt=".${"blog$i"}->title.">;
-                           </a>;
-                                <div class='card-body'>;
-                                   <h5 class='card-title'><?php $card['title'] ?></h5>;
-                                   <p class='card-text'><?php $card['text'] ?></p>";
-                                   <a href='?controller=blog&action=read&blog_id=<?= $card['blog_id'] ?>'>View blog</a>";
-                                </div>";
-                                <div class='card-footer'>";
-                                    <p class='text-muted'>";
-                                      <?php   $d = strtotime($card['date_posted']);?>
-                                  Posted on <?php date("jS F Y", $d)?> <br></p>; 
-                               </div>;
-                            </div>;
-                    </div>;
-                    
-                }
-                
-                <?php endforeach; ?>
-        
-         end of card 
-            
-        </div>
-        </div>-->
-                                       
-                
-
-    </div>   
-            </div>
-            <div class='third_image'> 
+           
 
     <?php
     $blogimg = $blog['third_image'];
@@ -153,71 +112,68 @@
             </div>
 
 
-            <?php foreach ($tag as $newtag) {
-                ?>
-                <div class="tags"> 
-                    <button class='tag-btn'><p class='tag'> <?php echo $newtag ?></p></button> <!-- will use a foreach function that will show the tag icon foreach tag-->
-                    <!-- will be populated with tags retrieved from the db-->
-                </div>
+            <?php foreach ($tag as $newtag): ?>
+                
+               <div class="tags"> 
+                    <button class='tag-btn'><p class='tag'> <?php echo $newtag ?></p></button> 
 
-    <?php } ?>
+    <?php endforeach; ?>
 
-        </div>
+     </div>
 
-        <!--        MORE BLOGDS BY SAME USER-->
+        <!--        MORE BLOGS-->
+        
         <div class='more-blogs'>
-            <h4 class='more-blogs-header'>more blogs by <?php echo $blog['username']; ?></h4>
+            <h4 class='more-blogs-header' style="margin-bottom:45px;">blogs you might like:</h4>
         </div>
+        <div class='container-fluid' style=''>
+        <div class="row">
+            
+            <div class="row row-cols-1 row-cols-md-3" style="">
+            <?php foreach($list as $card):  ?>
 
+                     <div class='col mb-4'>
+                        <div class='card h-100'>
+                           <a href='?controller=blog&action=read&blog_id=<?= $card['blog_id'] ?>' class='btn btn-primary'>
+                               <img style='padding-top: 5%;  height: 250px; width:600px; object-fit: cover;' class='card-img-top' src="<?= $card['third_image'] ?>" alt="<?= $card['title'] ?>">
+                           </a>
+                                <div class='card-body'>
+                                   <h5 class='card-title'><?php echo $card['title']; ?></h5></div>
+                                   <div style="margin-bottom: 20px;"><a href="?controller=blog&action=read&blog_id=<?= $card['blog_id'] ?>">View blog</a></div>
+                                
+                                <div class='card-footer'>
+                                    <p class='text-muted'>
+                                      <?php   $d = strtotime($card['date_posted']);?>
+                                  Posted on <?php echo date("jS F Y", $d);?> <br></p> 
+                               </div>
+                            </div>
+                    </div>
+                
+                <?php endforeach; ?>
+    </div>
+    </div> 
+        </div>
         <!--        COMMENTS-->
 
+        <div style='margin-top: 40px;' class="comment-title"><h4> comments</h4> </div>
     <?php if (isset($_SESSION['loggedin'])): ?>
 
-
-            <div class="comment-container" style="width:52%;">
-                <form method="POST" id="comment_form" action="">
-                    <div class="form-group">
-                        <b>  <label for="exampleFormControlTextarea1" style="text-align: center; ">COMMENTS</label></b>
-                        <textarea class="form-control" id="comment_content" rows="4" placeholder="write your comment here" name="comment_content"></textarea>
-                    </div>
-                    <div class="pure-form pure-form-aligned container-btn form-group">
-                        <input type="hidden" name="comment_id" id="comment_id" value="0"/>               
-                        <input type="submit" value="comment" name= "submit" id="button" class="btn btn-info" style="float:right;" >
-                    </div> 
-
-            </div>
-            <div class="comment-container" style="width:52%;">
-            </form>
-            <span id="comment_message"></span>
-            <br/>
-            <div id="display_comment">
-                <div class="panel panel-default">
-
-                </div>
-
-            </div>
-        </div>
-    <?php endif; ?>
-
-    <?php if (!isset($_SESSION['loggedin'])): ?>
-
-        <p style='text-align: center; color: #3F7CAC;'>Want to comment? Why not<a href='?controller=register&action=registerUser' style='text-decoration: none; 
-                                                                                  text-transform:bold;'> sign up </a>and become a member or <a href='?controller=login&action=loginUser' 
-                                                                                  style='text-decoration: none; text-transform:bold;'> log in</a></p>";
-
-
-        <div class="comment-container" style="width:52%;">
+        <form method='POST' action="" enctype="multipart/form-data">
+            <textarea style='width:700px; resize: none;' name='message' rows='4'></textarea><br>
+            <input style='width:100px; height: 40px; background-color:#fca15f; border:none; font-weight: 400; border-radius: 8px; cursor: pointer;' type='submit' value='Comment' name='submit'>
         </form>
-        <span id="comment_message"></span>
-        <br/>
-        <div id="display_comment">
-            <div class="panel panel-default">
+      
+        
+        <?php endif; ?>
+        
+        <?php if (!isset($_SESSION['loggedin'])): ?>
 
-            </div>
+        <p style='text-align: center; color: #3F7CAC;'>Want to comment? Why not
+            <a href='?controller=register&action=registerUser' style='text-decoration: none; 
+                     text-transform:bold;'> sign up </a>and become a member or <a href='?controller=login&action=loginUser' 
+                  style='text-decoration: none; text-transform:bold;'> log in</a></p>";
+                  <?php endif; ?>
 
-        </div>
-        </div>
-    <?php endif; ?>
     </body>
 
     <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
@@ -243,49 +199,49 @@
                             alert('You\'ve liked this blogpost!');
                         }
 
-                        $(document).ready(function () {
-
-
-
-                            $('#comment_form').on('submit', function (event) {
-                                event.preventDefault();
-                                var form_data = $(this).serialize();
-                                $.ajax({
-                                    url: "?controller=comments&action=add&blog_id=<?= $blog['blog_id']; ?>",
-                                    method: 'POST',
-                                    data: form_data,
-                                    dataType: 'JSON',
-                                    success: function (data) {
-                                        if (data.error != '') {
-                                            $('#comment_form')[0].reset();
-                                            $('#comment_message').html(data.error);
-                                        }
-                                    }
-                                });
-                            });
-
-                            $('#comment_id').val('0');
-                            load_comment();
-
-    //                            function load_comment() {
-    //
-    //                                $.ajax({
-    //                                    url: "?controller=comments&action=post&blog_id=<?= $blog['blog_id']; ?>",
-    //                                    method: 'POST',
-    //                                    success: function (data) {
-    //                                        $('#display_comment').html(data);
-    //                                    }
-    //                                });
-    //                            }
-    //
-    //                            $(document).on('click', '.reply', function () {
-    //                                var comment_id = $(this).attr("id");
-    //                                $('#comment_id').val(comment_id);
-    //                                $('#comment_content').focus();
-    //                            });
-
-
-                        });
+//                        $(document).ready(function () {
+//
+//
+//
+//                            $('#comment_form').on('submit', function (event) {
+//                                event.preventDefault();
+//                                var form_data = $(this).serialize();
+//                                $.ajax({
+//                                    url: "?controller=comments&action=add&blog_id=<?= $blog['blog_id']; ?>",
+//                                    method: 'POST',
+//                                    data: form_data,
+//                                    dataType: 'JSON',
+//                                    success: function (data) {
+//                                        if (data.error != '') {
+//                                            $('#comment_form')[0].reset();
+//                                            $('#comment_message').html(data.error);
+//                                        }
+//                                    }
+//                                });
+//                            });
+//
+//                            $('#comment_id').val('0');
+//                            load_comment();
+//
+//    //                            function load_comment() {
+//    //
+//    //                                $.ajax({
+//    //                                    url: "?controller=comments&action=post&blog_id=<?= $blog['blog_id']; ?>",
+//    //                                    method: 'POST',
+//    //                                    success: function (data) {
+//    //                                        $('#display_comment').html(data);
+//    //                                    }
+//    //                                });
+//    //                            }
+//    //
+//    //                            $(document).on('click', '.reply', function () {
+//    //                                var comment_id = $(this).attr("id");
+//    //                                $('#comment_id').val(comment_id);
+//    //                                $('#comment_content').focus();
+//    //                            });
+//
+//
+//                        });
 
 
 
@@ -354,14 +310,14 @@
     .header-info {
         margin-left: 35px;
         margin-right: 35px;
-        font-size: 0.45em;
+        font-size: 0.6em;
         margin-top: 10px;
         text-align:center;
         font-style: italic;
     }
 
     .category {
-        font-size: 0.5em;
+        font-size: 0.6em;
         text-align: center;
     }
 
@@ -385,7 +341,7 @@
 
     .tag {
         display: inline-block;           
-        margin: 10px 10px;
+        margin: 7px 5px;
         font-size: 0.7em;
         text-transform: uppercase;
     }
@@ -426,7 +382,7 @@
     .read-fa {
         padding: 10px;
         cursor: pointer;
-        font-size: 0.3em;
+        font-size: 0.8em;
     }
 
     .like {
