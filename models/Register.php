@@ -232,11 +232,11 @@ class Register {
 
         move_uploaded_file($temp, $destinationFile);
         //(move_uploaded_file($_FILES[self::InputKey]['tmp_name'], $destinationFile));
-        if (!move_uploaded_file($temp, $destinationFile)) { //file does upload not usre why throwing error?
+        /*if (!move_uploaded_file($temp, $destinationFile)) { //file does upload not usre why throwing error?
             echo "<p style='text-align:center; margin:0;'>File not uploaded or images already exist! </p><br>";
         } else {
             echo "your files have uploaded";
-        }
+        }*/
 
         //Clean up the temp file
         if (file_exists($temp)) {

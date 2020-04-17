@@ -97,6 +97,7 @@
                             </div> 
                             <div>
                                 <label>Upload a profile pic</label>
+                                <small class="file-type">Formats accepted: jpg/jpeg/png</small> 
                                 <input type="hidden" 
                                        name="MAX_FILE_SIZE" 
                                        value="10000000" />
