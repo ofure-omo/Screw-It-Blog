@@ -452,4 +452,16 @@ class Blog {
       echo '<meta http-equiv="refresh" content="0;  url=?controller=blog&action=read&blog_id=' . $blog_id . '"/>';
     }
 
+    
+    
+    // COMMENTS SECTION
+    
+        public function setComment($user_id,$blog_id){
+        $db = Screw_it::getInstance();
+        $sql = "insert into comments (comment_id, comment, parent_comment_id, blog_id, user_id, comment_date)
+                VALUES (NULL, 'cant get this to pull through as a post!!', '', :blog_id, :user_id, CURRENT_TIMESTAMP);";
+  
+        $stmt = $db->prepare($sql);
+        $stmt->execute(array('user_id' => $user_id,'blog_id' => $blog_id));
+    }
 }

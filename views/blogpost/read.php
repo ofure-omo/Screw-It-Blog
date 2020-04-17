@@ -164,10 +164,12 @@
         <div style='margin-top: 40px;' class="comment-title"><h4> comments</h4> </div>
     <?php if (isset($_SESSION['loggedin'])): ?>
 
-        <form method='POST' action="" enctype="multipart/form-data">
+        <form method='POST' action="?controller=blog&action=read&blog_id=<?= $_GET['blog_id'] ?>&req=addComment" enctype="multipart/form-data">
             <textarea style='width:700px; resize: none;' name='message' rows='4'></textarea><br>
             <input style='width:100px; height: 40px; background-color:#fca15f; border:none; font-weight: 400; border-radius: 8px; cursor: pointer;' type='submit' value='Comment' name='submit'>
         </form>
+        
+        
       
         
         <?php endif; ?>
