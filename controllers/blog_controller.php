@@ -21,7 +21,7 @@ class BlogController {
             $likes = Blog::getlikes($_GET['blog_id']);
             $tag = Blog::findTagForBlog($_GET['blog_id']);
             Blog::checkLikes($_GET['blog_id']);
-//            $cards = Blog::moreBlogs($_SESSION['user_id']);
+            $list = Blog::moreBlogs();
             
             if($blog['layout'] === '1'){
             require_once('views/blogpost/read.php');}
@@ -33,20 +33,10 @@ class BlogController {
             return call('pages', 'error');
         }
     }
-    
-//    public function chooseLayout(){
-//        if($_SERVER['REQUEST_METHOD'] == 'GET') {
-//           require_once('views/blogpost/choose_layout.php');
-//           
-//    } else {
-//        Blog::layout();
-//        require_once('views/blogpost/create.php');
-//    }
-//    }
 
     public function create() {
 
-        if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_SESSION['loggedin'])) {
+        if($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_SESSION['loggedin'])) {
 
             $tag = Blog::getTag();
             require_once('views/blogpost/create.php');
@@ -98,4 +88,3 @@ class BlogController {
     }
 }
 
-?>

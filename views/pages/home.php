@@ -36,7 +36,7 @@
           <!-- blog 1 -->   
           <div class="carousel-item active">
               
-              <div class="container" style="background-color: white; text-align: center; z-index: 1; position: absolute; right: 0; bottom:0; margin-bottom: 1rem; max-width: 40em;">
+              <div class="container" style="background-color: white; text-align: center; z-index: 1; position: absolute; right: 0; bottom:0; margin-bottom: 1rem; max-width: 40em; opacity: 0.85;">
                   <div class="row">
                         <div class="col-sm-2">                         
                         </div>
@@ -89,7 +89,7 @@
           <!-- blog 2 -->
           <div class="carousel-item">
               
-                <div class="container" style="background-color: white; text-align: center; z-index: 1; position: absolute; right: 0; bottom:0; margin-bottom: 1rem; max-width: 40em;">
+                <div class="container" style="background-color: white; text-align: center; z-index: 1; position: absolute; right: 0; bottom:0; margin-bottom: 1rem; max-width: 40em; opacity: 0.85;">
                   <div class="row">
                         <div class="col-sm-2">                         
                         </div>
@@ -142,7 +142,7 @@
           <!-- blog 3 -->
           <div class="carousel-item">
               
-               <div class="container" style="background-color: white; text-align: center; z-index: 1; position: absolute; right: 0; bottom:0; margin-bottom: 1rem; max-width: 40em;">
+               <div class="container" style="background-color: white; text-align: center; z-index: 1; position: absolute; right: 0; bottom:0; margin-bottom: 1rem; max-width: 40em; opacity: 0.85;">
                   <div class="row">
                         <div class="col-sm-2">                         
                         </div>

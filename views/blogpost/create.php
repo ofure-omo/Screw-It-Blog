@@ -215,17 +215,17 @@
                     <div class="main-form">
                 <div class="form-group">
                     <label for="formGroupExampleInput"><p><b>TITLE</b></p></label>
-                    <input type="text" class="form-control" id="formGroupExampleInput" name="title" placeholder="Title of your blog" required>
+                    <input type="text" class="form-control shadow-sm p-3 mb-5 bg-white rounded" id="formGroupExampleInput" name="title" placeholder="Title of your blog" required>
                 </div>
                        
                 <div class="form-group" id='body1'>
                     <label for="exampleFormControlTextarea1"><p><b>BODY</b></p></label>
-                    <textarea class="form-control " id="exampleFormControlTextarea1" name="body" rows="20" placeholder="Body text" required></textarea>
+                    <textarea class="form-control shadow-sm p-3 mb-5 bg-white rounded " id="exampleFormControlTextarea1" name="body" rows="20" placeholder="Body text" required></textarea>
                 </div>
                         
                 <div class="form-group hide" id="body2">
                     <label for="exampleFormControlTextarea1"><p><b>BODY 2</b></p></label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" name="body2" rows="10" placeholder="Body text" ></textarea>
+                    <textarea class="form-control shadow-sm p-3 mb-5 bg-white rounded" id="exampleFormControlTextarea1" name="body2" rows="10" placeholder="Body text" ></textarea>
                 </div>
 
                 <div class="form-group cat">
@@ -240,9 +240,9 @@
                 </div>
 
                         <p><b> TAGS </b></p>
-                <div class='checkbox-container'>
+                <div class='checkbox-container '>
 
-                    <div class="form-group form-check-inline" required>
+                    <div class="form-group form-check-inline " required>
                         <input type="checkbox" class="form-check-input" id="exampleCheck1" name ="tag[]" value="<?php echo $tag[0]; ?>">
                         <label class="form-check-label" for="exampleCheck1"><?php echo $tag[0]; ?></label>
                     </div>

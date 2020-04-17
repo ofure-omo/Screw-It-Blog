@@ -77,7 +77,7 @@ class CategoriesController {
             
             // HTML
             
-            ${"blog$i"}->views = $blog[$position]['views'];
+            //${"blog$i"}->views = $blog[$position]['views'];
             ${"blog$i"}->date_posted = $blog[$position]['date_posted'];
             
             $position++;
@@ -208,7 +208,7 @@ class CategoriesController {
             
             // HTML
             
-            ${"blog$i"}->views = $blog[$position]['views'];
+            //${"blog$i"}->views = $blog[$position]['views'];
             ${"blog$i"}->date_posted = $blog[$position]['date_posted'];
             
             $position++;

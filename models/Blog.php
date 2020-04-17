@@ -4,31 +4,33 @@ class Blog {
 
     public $title;
     public $body;
-    public $body2;
+//    public $body2;
     public $date_posted;
     //public $tag;
-    public $main_image;
-    public $second_image;
+//    public $main_image;
+//    public $second_image;
     public $third_image;
-    public $category;
-    public $facebook_url;
-    public $insta_url;
-    public $twitter_url;
+//    public $category;
+//    public $facebook_url;
+//    public $insta_url;
+//    public $twitter_url;
+    public $username;
 
-    function __construct($title, $body, $body2, $date_posted, $category, $main_image, $second_image, $third_image, $facebook_url, $insta_url, $twitter_url) {
+    function __construct($title, $body, $date_posted, $username, $third_image) {
 
         $this->title = $title;
         $this->body = $body;
-        $this->body2 = $body2;
+//        $this->body2 = $body2;
         $this->date_posted = $date_posted;
-        $this->main_image = $main_image;
-        $this->second_image = $second_image;
+//        $this->main_image = $main_image;
+//        $this->second_image = $second_image;
         $this->third_image = $third_image;
-        $this->category = $category;
+//        $this->category = $category;
         //$this->tag= $tag;
-        $this->facebook_url = $facebook_url;
-        $this->insta_url = $insta_url;
-        $this->twitter_url = $twitter_url;
+//        $this->facebook_url = $facebook_url;
+//        $this->insta_url = $insta_url;
+//        $this->twitter_url = $twitter_url;
+        $this->username = $username;
     }
     
 
@@ -116,6 +118,13 @@ class Blog {
         if (isset($_POST['published']) && $_POST['published'] != "") {
             $filteredPublished = filter_input(INPUT_POST, 'published', FILTER_SANITIZE_SPECIAL_CHARS);
         }
+        
+        $pattern = '/;&#[0-9][0-9];/';
+        $replacement = "<br/>";
+       
+
+        $filteredBody = preg_replace($pattern,$replacement, $filteredBody);    
+        $filteredBody2 = preg_replace($pattern,$replacement, $filteredBody2); 
         
         if(!empty($_POST['file[]'])){
        $filteredImage = filter_input(INPUT_POST, 'myfile[]', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -231,7 +240,14 @@ class Blog {
     } else {$filteredPublished = 'published';}
   
         $filteredImage = filter_input(INPUT_POST, 'myfile[]', FILTER_SANITIZE_SPECIAL_CHARS);
+        
+        $pattern = '/;&#[0-9][0-9];/';
+        $replacement = "<br/>";
+       
 
+        $filteredBody = preg_replace($pattern,$replacement, $filteredBody);    
+        $filteredBody2 = preg_replace($pattern,$replacement, $filteredBody2); 
+        
         //$filteredImage = $_FILES['myfile']['name'];
         foreach ($_FILES["myfile"]["tmp_name"] as $key => $tmp_name) {
 
@@ -363,14 +379,20 @@ class Blog {
         }
     }
     
-    public function moreBlogs (){
+    public function moreBlogs(){
          $db = Screw_it::getInstance();
          
-         $req=$db->prepare("SELECT * FROM blog_posts WHERE user_id = '".$_SESSION['user_id']."' AND user_type = 'Blogger' LIMIT 3;");
+         $query = "SELECT * FROM blog_posts 
+                            INNER JOIN Users ON blog_posts.user_id = users.user_id
+                            WHERE user_type = 'Blogger'
+                            ORDER BY RAND() 
+                            LIMIT 3;";
+         $req=$db->prepare($query);
          $req->execute();
-         $blogs3 = $req->fetchAll();
-         
-         return $blogs3;
+         $list=$req->fetchAll(PDO::FETCH_ASSOC);
+            
+       
+        return $list;
          
     }
 
