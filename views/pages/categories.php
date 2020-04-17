@@ -37,7 +37,7 @@
                     echo                "<p class='card-text'>".${"blog$i"}->bodyShort."</p>";
                     echo                "<a href='?controller=blog&action=read&blog_id=".${"blog$i"}->blog_id."class=''>View blog</a>";
                     echo            "</div>";
-                    echo            "<div class='card-footer'>";
+                    echo            "<div class='card-footer' style='min-height: 4rem; font-size: 0.8rem;'>";
                     echo                "<p class='text-muted'>";
                                          $d = strtotime(${"blog$i"}->date_posted);
                     echo                "Posted on " . date("jS F Y", $d) . "<br></p>";

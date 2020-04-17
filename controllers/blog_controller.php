@@ -14,7 +14,34 @@ class BlogController {
         if (!isset($_GET['blog_id'])) {
             return call('pages', 'error');
         }
+        
+        // COMMENTS SECTION ------------------------------------------------------
+        
+                // Use this function when post comment pulls through
 
+                // function addComment($comment,$userID,$blog_id){
+                //    Blog::setComment($comment,$userID,$blog_id);
+                //}
+                
+        
+        // Functions
+        function addComment($userID,$blog_id){
+            Blog::setComment($userID,$blog_id);
+        }
+        
+        if (isset($_GET['req'])){
+            $userID = $_SESSION['user_id'];
+            $blog_id = $_GET['blog_id'];
+            //$comment = $_POST['Comment'];
+            //echo "hello,$userID";
+
+            //addComment($comment,$userID,$blog_id);
+            addComment($userID,$blog_id);
+        } 
+        
+        
+        // end of comments section ----------------------------------------------
+       
         try {
             // we use the given id to get the correct post
             $blog = Blog::find($_GET['blog_id']);
@@ -29,9 +56,15 @@ class BlogController {
             require_once('views/blogpost/read2.php');}
             
             
+            
+            
+            
         } catch (Exception $ex) {
             return call('pages', 'error');
         }
+        
+
+ 
     }
 
     public function create() {
