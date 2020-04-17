@@ -71,7 +71,7 @@ class CategoriesController {
             
             ${"blog$i"}->bodyShort = $bodyShort;
             ${"blog$i"}->bodyLong = $bodyLong;   
-            ${"blog$i"}->main_image = $blog[$position]['main_image'];
+            ${"blog$i"}->main_image = $blog[$position]['third_image'];
             //${"blog$i"}->likes = $likes[$position];
             //${"blog$i"}->comments = $comments[$position];
             
@@ -202,7 +202,7 @@ class CategoriesController {
             
             ${"blog$i"}->bodyShort = $bodyShort;
             ${"blog$i"}->bodyLong = $bodyLong;   
-            ${"blog$i"}->main_image = $blog[$position]['main_image'];
+            ${"blog$i"}->main_image = $blog[$position]['third_image'];
             //${"blog$i"}->likes = $likes[$position];
             //${"blog$i"}->comments = $comments[$position];
             

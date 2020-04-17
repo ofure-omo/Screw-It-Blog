@@ -36,8 +36,14 @@ public function showAll(){
         function deleteComment($commentID){
             Mod::deleteComment($commentID);
         }
-            
-            
+        if (isset($_GET['req'])){
+            deleteComment($_GET['commentID']);
+        }
+
+        //if (isset($_GET('function'))){
+            //deleteComment($userID);
+        ///}
+        //else echo "nice try!";
             require_once('views/pages/mod_page.php');
 
     } 

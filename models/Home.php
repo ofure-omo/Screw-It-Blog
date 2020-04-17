@@ -133,33 +133,32 @@ class BlogHP {
         return $result;
     }
     
+    
+    
     // WIP -----------------------------------------------------------------------
     
-    /*
-        public function getAllLikes(){
-        $sql = "select likes from blog_posts order by date_posted desc";
-        $stmt = Screw_it::getInstance()->query($sql);
-        $result = $stmt->fetchAll();
+     public function getLikes($blog_id) {
+        $db = Screw_it::getInstance();
+        $sql = "select count(fav_id) as likes
+                    from favourites
+                WHERE blog_id = :blog_id;";
+        $stmt = $db->prepare($sql);
+        $stmt->execute(array('blog_id' => $blog_id));
+        $favourites = $stmt->fetchAll();
 
-        foreach( $result as $row ) {
-        $likes[] = $row['date_posted'];
-        }
+        return $favourites; 
+     }
+     
+          public function getComments($blog_id) {
+        $db = Screw_it::getInstance();
+        $sql = "select count(comment_id) as likes
+                    from comments
+                WHERE blog_id = :blog_id;";
+        $stmt = $db->prepare($sql);
+        $stmt->execute(array('blog_id' => $blog_id));
+        $favourites = $stmt->fetchAll();
 
-        return $likes;
-    }
-    
-        public function getAllComments(){
-        $sql = "select comments from blog_posts order by date_posted desc";
-        $stmt = Screw_it::getInstance()->query($sql);
-        $result = $stmt->fetchAll();
-
-        foreach( $result as $row ) {
-        $comments[] = $row['date_posted'];
-        }
-
-        return $comments;
-    }
-     */
-    
+        return $favourites; 
+     }
 
 }

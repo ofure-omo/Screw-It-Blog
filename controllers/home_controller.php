@@ -67,6 +67,12 @@ class HomeController {
             ${"blog$i"}->bodyShort = $bodyShort;
             ${"blog$i"}->bodyLong = $bodyLong;   
             ${"blog$i"}->main_image = "'".$main_image[$position]."'";
+            
+            $likes = BlogHP::getLikes($blog_id[$position]);
+            ${"blog$i"}->likes = $likes[0]['likes'];
+            
+            $comments = BlogHP::getComments($blog_id[$position]);
+            ${"blog$i"}->comments = $comments[0]['likes'];
             //${"blog$i"}->likes = $likes[$position];
             //${"blog$i"}->comments = $comments[$position];
             
