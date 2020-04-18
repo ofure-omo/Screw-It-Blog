@@ -4,10 +4,24 @@
         a:active { color:#FCA15F; text-decoration: none; }
         a { color:#3F7CAC; text-decoration: none; }
     </style>
+    
+    <script>
+    $(document).ready(function(){
+      $("h6").click(function(){
+        $(this).hide();
+      });
+    });
+</script>
 
 </head>
 
+<?php 
 
+if ($_SESSION ['user_type'] != "Moderator"){
+    return call('pages', 'error');
+}
+
+?>
 <body>
     
 <!-- HEADER DETAILS -->
@@ -43,6 +57,19 @@
     
     <!-- PROFILE -->    
     <center>
+
+        <h6>
+        <?php 
+            if (isset($_GET['resp'])){
+                $notification = "Your comment has been deleted - yay! #moderatorGoals";
+            }
+            else {
+                $notification = "<i class='fas fa-comment-alt'></i> You have 0 new notifications | Click to dismiss";
+            }
+            echo $notification;
+        ?>  
+        </h6>
+        <br>
     <div class="container" style="max-width:28rem;">
         <div class="col" style="">
             <div class="row" style="">
@@ -101,72 +128,49 @@
         <div class="container">
             <h6 style="background-color: #fafafa; padding: 0.5rem;"><b>Screw-It:</b>  website performance</h6>
             <div class="row row-cols-3">
-                <div class="col"><i class='fas fa-pencil-alt'></i><b><a href="?controller=categories&action=showAll" style="color: black;"> Total Blogs</a></b></div>
+                <div class="col" style=""><i class='fas fa-pencil-alt'></i><b><a href="?controller=categories&action=showAll" style="color: black;"> Total Blogs</a></b></div>
                 <div class="col"><i class='fas fa-user-circle'></i><b> Total users</b></div>
                 <div class="col"><i class='fas fa-users'></i><b> Total Bloggers</b></div>
                 
-                <div class="col" style=""><?php echo $blogsCount[0]['count'] ?></div>
-                <div class="col" style=""><?php echo $memCount[0]['count'] ?></div>
-                <div class="col" style=""><?php echo $bloggerCount[0]['count'] ?></div>
+                <div class="col" style="font-size:3rem;"><?php echo $blogsCount[0]['count'] ?></div>
+                <div class="col" style="font-size:3rem;"><?php echo $memCount[0]['count'] ?></div>
+                <div class="col" style="font-size:3rem;"><?php echo $bloggerCount[0]['count'] ?></div>
                 
-                <div class="col" style="">new</div>
-                <div class="col">new</div>
-                <div class="col">new</div>
+                <div class="col" style="color: #54b368"><p>+ <?php echo $blogsCountLW[0]['count'] ?> this week</p></div>
+                <div class="col" style="color: #54b368"><p>+ <?php echo $memCountLW[0]['count'] ?> this week</p></div>
+                <div class="col" style="color: #f2bf5e"><p>no change</p></div>
                 
                 
                 <div class="col"><i class='far fa-heart'></i><b> Total Likes</b></div>
                 <div class="col"><i class='far fa-comment-dots'></i><b> Total Comments</b></div>
                 <div class="col"><i class='far fa-comments'></i><b> Total replies</b></div>
-                <div class="col"style=""><?php echo $likesCount[0]['count'] ?></div>
-                <div class="col" style=""><?php echo $commsCount[0]['count'] ?></div>
-                <div class="col" style=""><?php echo $repliesCount[0]['count'] ?></div>
+                <div class="col" style="font-size:3rem;"><?php echo $likesCount[0]['count'] ?></div>
+                <div class="col" style="font-size:3rem;"><?php echo $commsCount[0]['count'] ?></div>
+                <div class="col" style="font-size:3rem;"><?php echo $repliesCount[0]['count'] ?></div>
+                
+                <div class="col" style="color: #54b368"><p>+ <?php echo $likesCountLW[0]['count'] ?> this week</p></div>
+                <div class="col" style="color: #54b368"><p>+ <?php echo $commsCountLW[0]['count'] ?> this week</p></div>
+                <div class="col" style="color: #54b368"><p>+ <?php echo $repliesCount[0]['count'] ?> this week</p></div>
             </div>
         </div>
-        <br><br><br>
+        <br>
         
+            
+<!-- ------------------------------------------------------------------------------------------------>  
+
         <!-- ADMIN -->
         
         <div class="container">
             <h6 style="background-color: #fafafa; padding: 0.5rem;"><b>Screw-It:</b>  admin</h6>
-            <div class="row row-cols-1">
-                
-                <div class="col"><i class='fas fa-user-plus'></i> Create blogger</div>
-                
-                <div class="col"><i class='fas fa-comment-slash'></i> Review Comments</div>
-                
-                <div class="col"><i class='fas fa-user-slash'></i> Remove User</div>
-                
-                <div class="col"><i class='fas fa-lock'></i> Lock Account</div>
 
-            </div>
         </div>
-            
-            
-            
-            
-            
-<!-- ------------------------------------------------------------------------------------------------>  
-
-
-<h6>Admin</h6>
-<div>
-    <div><i class='fas fa-user-plus'></i> <?php echo "Create new blogger" ?>   </div>
-    <div><i class='fas fa-comment-slash'></i> <?php echo "Review Comments" ?>   </div>
-    <div><i class='fas fa-user-slash'></i> <?php echo "Remove User" ?>   </div>
-    <div><i class='fas fa-lock'></i> <?php echo "Lock account" ?>   </div>
-
-</div>
-
-
-
-
 
 <!-- review comments -->
 <br> 
 
 <p>
   <a style="background-color: #fafafa; color:#FCA15F; border:none; border-radius: 0px;" class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-    Review latest comments
+    Review latest comments <i class='fas fa-comment-slash'></i>
   </a>
 <div class="collapse" id="collapseExample">
     <div class="container">
@@ -261,11 +265,51 @@ foreach ($comms as $comment){
     }
 
 ?>
+        
+
       
 <a href="#">Next ></a>
 <br>
-  </div>
 </div>
+</div>
+
+<!-- Create Blogger -->
+
+<p>
+  <a style="background-color: #fafafa; color:#FCA15F; border:none; border-radius: 0px;" class="btn btn-primary" data-toggle="collapse" href="#collapseBlogger" role="button" aria-expanded="false" aria-controls="collapseExample">
+    Create Blogger <i class='fas fa-user-plus'></i>
+  </a>
+<div class="collapse" id="collapseBlogger">
+    <div class="container">
+        <p> some text here </p>
+    </div>
+</div>
+
+
+<!-- Lock User -->
+
+<p>
+  <a style="background-color: #fafafa; color:#FCA15F; border:none; border-radius: 0px;" class="btn btn-primary" data-toggle="collapse" href="#collapseLock" role="button" aria-expanded="false" aria-controls="collapseExample">
+    Lock User Account <i class='fas fa-lock'></i>
+  </a>
+<div class="collapse" id="collapseLock">
+    <div class="container">
+        <p> some text here </p>
+    </div>
+</div>
+
+<!-- Remove User -->
+
+<p>
+  <a style="background-color: #fafafa; color:#FCA15F; border:none; border-radius: 0px;" class="btn btn-primary" data-toggle="collapse" href="#collapseRemove" role="button" aria-expanded="false" aria-controls="collapseExample">
+    Remove User <i class='fas fa-user-slash'></i>
+  </a>
+<div class="collapse" id="collapseRemove">
+    <div class="container">
+        <p> some text here </p>
+    </div>
+</div>
+
 <br><br>        
 <a href="#">Back to Top</a>        
 </center>    
