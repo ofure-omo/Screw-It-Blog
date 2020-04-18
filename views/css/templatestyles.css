@@ -1,15 +1,11 @@
 /*---------- ACROSS THE SITE -----------*/
 
-h4 { font-family: 'Roboto Slab', serif; font-size: 2rem; } /* Your basics */
 
-@media only screen and (min-width: 600px) {
- h4 { font-size: 5rem; } /* Override for 600px+ */
-}
-@media only screen and (min-width: 980px) {
- h4 { font-size: 7rem; } /* Override for 980px+ */
+@media screen and (min-width: 25em){
+  html { font-size: calc( 8px + (12 - 8) * (80vw - 320px) / (1200 - 320) ); }
 }
 
-html, h1, h2, h3, h5, h6 {
+html, h1, h2, h3, h4, h5, h6 {
  font-family: 'Roboto Slab', serif;
 }
 

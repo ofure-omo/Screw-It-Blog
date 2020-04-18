@@ -19,6 +19,7 @@ class BloggerController {
             $comments = Blogger::getCountComments(($_SESSION['user_id']));
             $blogsfavscomments = Blogger::getBlogsFavsComments(($_SESSION['user_id'])); 
             $commenttext = Blogger::getComments(($_SESSION['user_id'])); 
+          
            // $blogcontents = Blogger::getUserBlogs($_SESSION['user_id']);
             require_once('views/pages/Bloggerdashboard.php');
             
@@ -26,6 +27,8 @@ class BloggerController {
            Blogger::updateProfile($id);
  require_once('views/pages/Bloggerdashboard.php');
     }}}
+   
+ 
    
     
         public function delete() {

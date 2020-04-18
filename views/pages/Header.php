@@ -43,17 +43,17 @@
             <div class="dropdown-menu" id="drop" aria-labelledby="navbarDropdownMenuLink">';
                 }
                 if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSION ['user_type']=== "Member") {
-                    echo '<a class="nav-link" id="droptext" href="?controller=dashboard&action=mem_details" style="font-size: 16px;">Your Dashboard</a>';
-                    echo '<a class="nav-link" id="droptext" href="?controller=signout&action=signout" style="font-size: 16px;">Log out</a>';
+                    echo '<a class="nav-link" id="droptext" href="?controller=dashboard&action=mem_details" >Your Dashboard</a>';
+                    echo '<a class="nav-link" id="droptext" href="?controller=signout&action=signout">Log out</a>';
                 }
                 if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSION ['user_type']=== "Blogger"){
-                    echo '<a class="nav-link" id="droptext" href="?controller=blog&action=create" style="font-size: 16px;">Post Blog</a>';
+                    echo '<a class="nav-link" id="droptext" href="?controller=blog&action=create">Post Blog</a>';
                     echo '<a class="nav-link" id="droptext" href="?controller=blogger&action=dashboard">Dashboard</a>';
-                    echo '<a class="nav-link" id="droptext" href="?controller=signout&action=signout" style="font-size: 16px;">Log out</a>';
+                    echo '<a class="nav-link" id="droptext" href="?controller=signout&action=signout" >Log out</a>';
                 }
                 if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSION ['user_type']=== "Moderator"){
-                    echo '<a class="nav-link" id="droptext" href="?controller=mod&action=showAll" style="font-size: 16px;">Dashboard</a>';
-                    echo '<a class="nav-link" id="droptext" href="?controller=signout&action=signout" style="font-size: 16px;">Log out</a>';
+                    echo '<a class="nav-link" id="droptext" href="?controller=mod&action=showAll">Dashboard</a>';
+                    echo '<a class="nav-link" id="droptext" href="?controller=signout&action=signout">Log out</a>';
                 };
                 ?>
     </li>

@@ -64,17 +64,17 @@
 </div>
 
 <div id="MBlogs" class="tabcontent">
-  <p></p>
+    <br>
             <?php if (count($blogsfavscomments) > 0) { ?>
   <div style="overflow-x:auto;">
   <table style="width:100%">     
       <tr>
-          <th><h4>Blog</h4></th>
-          <th><h4>Date Posted</h4></th>
-          <th><h4>Favourite Count</h4></th>
-          <th><h4>Comment Count</h4></th>
-          <th><h4>Publish status</h4></th> 
-          <th><h4>Actions</h4></th>
+          <th><h3>Blog</h3></th>
+          <th><h3>Date Posted</h3></th>
+          <th><h3>Favourite Count</h3></th>
+          <th><h3>Comment Count</h3></th>
+          <th><h3>Publish status</h3></th> 
+          <th><h3>Actions</h3></th>
          
       </tr>
       <?php foreach ($blogsfavscomments as $posts) { ?>
@@ -104,9 +104,7 @@
   </div>
 
 <div id="MComments" class="tabcontent">
-  <p></p> 
-
-  <p></p>
+    <br>
             <?php if (count($commenttext) > 0) { ?>
   <div style="overflow-x:auto;">
       <table style="width:100%">     
@@ -114,12 +112,11 @@
           <th><h3>Blog</h3></th>
           <th><h3>Date Posted</h3></th>
           <th><h3>Your Comments</h3></th>
-          <th><h4>Actions</h4></th>
-          <th><h4>Publish status</h4></th>
+          <th><h3>Actions</h3></th>
       </tr>
       <?php foreach ($commenttext as $comment) { ?>
       <tr>
-          <td><?php echo $comment['blog_id'] ?></td> 
+          <td><?php echo $comment['title'] ?></td> 
           <td> <?php
                     $d = strtotime($comment['comment_date']);
                     echo date("jS F Y", $d);?>
@@ -143,7 +140,6 @@
 
 
 <div id="MProfile" class="tabcontent">
-    <p></p>
   
 <div class="container">
   <form action="" method="POST" enctype="multipart/form-data">

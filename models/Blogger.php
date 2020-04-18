@@ -233,7 +233,7 @@ public function getBlogsFavsComments($user_id) {
 }
    
 
-    
+  /*  
             public function getComments($user_id) {
       $db = Screw_it::getInstance();
       
@@ -246,6 +246,43 @@ public function getBlogsFavsComments($user_id) {
             $comments = $stmt->fetchAll(PDO::FETCH_ASSOC);
         
         return $comments;
+    }
+    */
+    
+          public function getComments($user_id) {
+        $db = Screw_it::getInstance();
+        $sql = "select blog_posts.blog_id, 
+                blog_posts.user_id as blogger,
+                blog_posts.title,
+                blog_posts.body,
+                blog_posts.date_posted,
+                blog_posts.category,
+                comments.comment_id, 
+                comments.comment,
+                comments.parent_comment_id,
+                comments.blog_id,
+                comments.user_id as commenter,
+                comments.comment_date,
+                users.user_id as commenter,
+                users.username,
+                users.user_fn,
+                users.user_ln,
+                users.dob,
+                users.profile_pic,
+                users.date_joined
+                    from blog_posts
+                        inner join comments
+                    on blog_posts.blog_id = comments.blog_id
+                        inner join users
+                    on comments.user_id = users.user_id
+                WHERE users.user_id = :user_id;
+                ORDER BY comments.comment_date desc";
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(':user_id',$user_id,PDO::PARAM_INT);
+        $stmt->execute(array('user_id' => $user_id));
+        $comms = $stmt->fetchAll();
+
+        return $comms;
     }
     
  
