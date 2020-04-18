@@ -221,10 +221,10 @@ if(file_exists($file)){
 
 else
 {
-echo "<img src='views/images/profileplaceholderimage.png' width='150' />";
+echo "<img src='views/images/profileplaceholder.png' width='150' />";
 }
 ?>
-  <input type="file" name="myUploader" class="w3-btn w3-pink" />
+  <input type="file" name="profile_pic"/>
  
           </div></div>
           <br>
