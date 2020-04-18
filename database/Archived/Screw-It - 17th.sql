@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 18, 2020 at 09:33 PM
+-- Generation Time: Apr 17, 2020 at 02:24 PM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 7.0.21
 
@@ -129,15 +129,6 @@ CREATE TABLE `comments` (
   `comment_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `comments`
---
-
-INSERT INTO `comments` (`comment_id`, `comment`, `parent_comment_id`, `blog_id`, `user_id`, `comment_date`) VALUES
-(6, 'Love this, cant wait to try!.', 0, 286, 19, '2020-04-18 18:54:57'),
-(7, 'Thanks for sharing this with us!', 0, 283, 19, '2020-04-18 18:55:40'),
-(8, 'I really like this idea!', 0, 285, 19, '2020-04-18 18:55:40');
-
 -- --------------------------------------------------------
 
 --
@@ -147,21 +138,8 @@ INSERT INTO `comments` (`comment_id`, `comment`, `parent_comment_id`, `blog_id`,
 CREATE TABLE `favourites` (
   `fav_id` int(11) NOT NULL,
   `blog_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `fave_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `favourites`
---
-
-INSERT INTO `favourites` (`fav_id`, `blog_id`, `user_id`, `fave_date`) VALUES
-(103, 279, 21, '2020-04-18 15:40:23'),
-(104, 282, 21, '2020-04-13 15:40:23'),
-(105, 279, 19, '2020-04-11 15:40:23'),
-(106, 288, 19, '2020-03-18 15:40:23'),
-(107, 285, 19, '2020-02-18 15:40:23'),
-(108, 284, 21, '2020-01-18 15:41:21');
 
 -- --------------------------------------------------------
 
@@ -230,9 +208,9 @@ INSERT INTO `users` (`user_id`, `username`, `password`, `user_fn`, `user_ln`, `e
 (15, 'test', '$2y$10$OCnfF0dF76CbK3Fn1D9/e.3MB.JOmQPCpA1ARiPDQq8mlDh2ZmMZu', 'Omotese', 'Omotese', 'tese.og@hotmail.com', '2003-06-04', 'Member', 'Who is your favourite Ryan', '$2y$10$t2G1SsH529YL.peoTuqjs.6wIrcshim7.kNuykq8YxbsKJBbtsIW2', NULL, NULL, NULL, NULL, NULL, NULL, '2020-04-11 14:20:49'),
 (16, 'test', '$2y$10$00YszUVxfj.xAZ8OJSHDR./LyDMYTqPnUj9W4/I6g2Dm0uVqMZwSq', 'Omotese', 'Omotese', 'tese.og@hotmail.com', '2008-02-07', 'Member', 'Who is your favourite Ryan', '$2y$10$xKIMDm6yFMp7ljwuaILtU.fOoLPhK1eQ7hiooKKIjnpam22reIIHi', NULL, NULL, NULL, NULL, NULL, NULL, '2020-04-11 14:21:15'),
 (17, 'sweetee', '$2y$10$PJUsRzFUJ.cEBgupNkZJBO/bp7SdEe.p0qEG5CrBNmawZWPrWCbii', 'Tese', 'Ogbeifun', 'tese.og@hotmail.com', '1997-09-04', 'Blogger', 'Who is your favourite Ryan', '$2y$10$qZorYewVFNa6uzj5zlAUBOgxfiRbWh4ctKcyX91kwUz5k9nT78z92', NULL, 'views/images/5dde91cb79d7576693279df7.jpeg', 'My name is sweetie and I like sweets', 'twitter.com', 'instagram.com', 'facebook.com', '2020-04-11 16:38:24'),
-(19, 'member', '$2y$10$gEhGkZ0DWt7tr7SiGrH/SeKmcbmnQ9iiIMZJJrmPMYrESZLjbb8zm', 'Mandy', 'Member', 'email1@gmail.com', '1991-03-22', 'Member', 'Who is your favourite Ryan', '$2y$10$GUjbh5Zbve3Sni29ZXEPBe0B5DYBic9o7fDBjcsBaLDrV5EuFZHna', NULL, 'views/images/profile_pics/', NULL, NULL, NULL, NULL, '2020-01-17 10:15:50'),
-(20, 'blogger', '$2y$10$Ze8y.9j/0pCYUvRbUgJPB.rXdphwY3nyHV.4DHzEWGVPNALDvloNm', 'Boris', 'Blog', 'email2@gmail.com', '1988-01-11', 'Blogger', 'Who is your favourite Ryan', '$2y$10$L7hi7yD4savVdG9S8pS9tejyi7QKhxwCGrZT6u2aDYoQQEaiziITS', NULL, 'views/images/profile_pics/', NULL, NULL, NULL, NULL, '2020-01-17 10:16:23'),
-(21, 'mod', '$2y$10$cOFyJf.IZWm7CqOCxTf6e.d7pSB9l6gLv5VrsYBhroHWqGekTTiqa', 'Minnie', 'Mod', 'email3@gmail.com', '1904-01-11', 'Moderator', 'Who is your favourite Ryan', '$2y$10$DArBSStuedb5j8XIf1N7c.7LSyQuXQTBWKDJzCin3c.c8H974J13q', NULL, 'views/images/profile_pics/', NULL, NULL, NULL, NULL, '2020-01-17 10:16:45');
+(19, 'steph', '$2y$10$gEhGkZ0DWt7tr7SiGrH/SeKmcbmnQ9iiIMZJJrmPMYrESZLjbb8zm', 'Stephanie', 'Foster', 'email1@gmail.com', '1991-03-22', 'Member', 'Who is your favourite Ryan', '$2y$10$GUjbh5Zbve3Sni29ZXEPBe0B5DYBic9o7fDBjcsBaLDrV5EuFZHna', NULL, 'views/images/profile_pics/', NULL, NULL, NULL, NULL, '2020-01-17 10:15:50'),
+(20, 'steph2', '$2y$10$Ze8y.9j/0pCYUvRbUgJPB.rXdphwY3nyHV.4DHzEWGVPNALDvloNm', 'Stephanie', 'Foster', 'email2@gmail.com', '1988-01-11', 'Blogger', 'Who is your favourite Ryan', '$2y$10$L7hi7yD4savVdG9S8pS9tejyi7QKhxwCGrZT6u2aDYoQQEaiziITS', NULL, 'views/images/profile_pics/', NULL, NULL, NULL, NULL, '2020-01-17 10:16:23'),
+(21, 'steph3', '$2y$10$cOFyJf.IZWm7CqOCxTf6e.d7pSB9l6gLv5VrsYBhroHWqGekTTiqa', 'Stephanie', 'Foster', 'email3@gmail.com', '1904-01-11', 'Moderator', 'Who is your favourite Ryan', '$2y$10$DArBSStuedb5j8XIf1N7c.7LSyQuXQTBWKDJzCin3c.c8H974J13q', NULL, 'views/images/profile_pics/', NULL, NULL, NULL, NULL, '2020-01-17 10:16:45');
 
 --
 -- Indexes for dumped tables
@@ -298,7 +276,7 @@ ALTER TABLE `comments`
 -- AUTO_INCREMENT for table `favourites`
 --
 ALTER TABLE `favourites`
-  MODIFY `fav_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=109;
+  MODIFY `fav_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
 --
 -- AUTO_INCREMENT for table `users`
 --

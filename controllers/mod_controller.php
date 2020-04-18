@@ -8,12 +8,29 @@ public function showAll(){
         
         //S T A T S
         
+        //Comments Count
         $commsCount = Mod::commentsCount();
+        $commsCountLW = Mod::commentsCount();
+        
+        // Blogs Count
         $blogsCount = Mod::blogsCount();
+        $blogsCountLW = Mod::blogsCountLW();
+        
+        //user count
         $memCount = Mod::memberCount();
+        $memCountLW = Mod::memberCountLW();
+        
+        //blogger count
         $bloggerCount = Mod::bloggerCount();
+        $bloggerCountLW = Mod::bloggerCountLW();
+        
+        // Likes Count
         $likesCount = Mod::likesCount();
+        $likesCountLW = Mod::likesCountLW();
+        
+        // replies count
         $repliesCount = Mod::repliesCount();
+        $repliesCountLW = Mod::repliesCountLW();
         //print_r($bloggerCount);
 
             
@@ -35,6 +52,8 @@ public function showAll(){
         // Functions
         function deleteComment($commentID){
             Mod::deleteComment($commentID);
+            echo "<script>$('#myModal').modal('show');</script>";
+            echo "<script>window.location.replace('?controller=mod&action=showAll&resp=success')</script>";
         }
         if (isset($_GET['req'])){
             deleteComment($_GET['commentID']);

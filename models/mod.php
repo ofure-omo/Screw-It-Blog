@@ -97,9 +97,32 @@ class Mod {
         return $commsCount;
     }
     
+        public function commentsCountLW(){
+        $db = Screw_it::getInstance();
+        $sql = "select count(comment_id) AS count from comments
+                where parent_comment_id = 0 
+                    and comment_date >= curdate() - INTERVAL DAYOFWEEK(curdate())+6 DAY";
+        $stmt = $db->prepare($sql);
+        $stmt->execute(array());
+        $commsCount = $stmt->fetchAll();
+
+        return $commsCount;
+    }
+    
     public function blogsCount(){
         $db = Screw_it::getInstance();
         $sql = "select count(blog_id) AS count from blog_posts;";
+        $stmt = $db->prepare($sql);
+        $stmt->execute(array());
+        $blogCount = $stmt->fetchAll();
+
+        return $blogCount;
+    }
+    
+    public function blogsCountLW(){
+        $db = Screw_it::getInstance();
+        $sql = "select count(blog_id) AS count from blog_posts
+                where date_posted >= curdate() - INTERVAL DAYOFWEEK(curdate())+6 DAY;";
         $stmt = $db->prepare($sql);
         $stmt->execute(array());
         $blogCount = $stmt->fetchAll();
@@ -117,9 +140,33 @@ class Mod {
         return $memCount;
     }
     
+    public function memberCountLW(){
+        $db = Screw_it::getInstance();
+        $sql = "select count(user_id) AS count from users 
+                where user_type = 'Member'
+                AND date_joined >= curdate() - INTERVAL DAYOFWEEK(curdate())+6 DAY;";
+        $stmt = $db->prepare($sql);
+        $stmt->execute(array());
+        $memCount = $stmt->fetchAll();
+
+        return $memCount;
+    }
+    
     public function bloggerCount(){
         $db = Screw_it::getInstance();
         $sql = "select count(user_id) AS count from users where user_type = 'Blogger';";
+        $stmt = $db->prepare($sql);
+        $stmt->execute(array());
+        $memCount = $stmt->fetchAll();
+
+        return $memCount;
+    }
+    
+    public function bloggerCountLW(){
+        $db = Screw_it::getInstance();
+        $sql = "select count(user_id) AS count from users
+                where user_type = 'Blogger'
+                AND date_joined >= curdate() - INTERVAL DAYOFWEEK(curdate())+6 DAY;";
         $stmt = $db->prepare($sql);
         $stmt->execute(array());
         $memCount = $stmt->fetchAll();
@@ -137,9 +184,32 @@ class Mod {
         return $memCount;
     }
     
+    public function likesCountLW(){
+        $db = Screw_it::getInstance();
+        $sql = "select count(fav_id) AS count from favourites
+                where fave_date >= curdate() - INTERVAL DAYOFWEEK(curdate())+6 DAY;";
+        $stmt = $db->prepare($sql);
+        $stmt->execute(array());
+        $memCount = $stmt->fetchAll();
+
+        return $memCount;
+    }
+    
         public function repliesCount(){
         $db = Screw_it::getInstance();
         $sql = "select count(comment_id) AS count from comments where parent_comment_id > 0;";
+        $stmt = $db->prepare($sql);
+        $stmt->execute(array());
+        $memCount = $stmt->fetchAll();
+
+        return $memCount;
+    }
+    
+    public function repliesCountLW(){
+        $db = Screw_it::getInstance();
+        $sql = "select count(comment_id) AS count from comments where parent_comment_id > 0
+                and comment_date >= curdate() - INTERVAL DAYOFWEEK(curdate())+6 DAY;";
+        
         $stmt = $db->prepare($sql);
         $stmt->execute(array());
         $memCount = $stmt->fetchAll();
@@ -155,4 +225,6 @@ class Mod {
         $stmt = $db->prepare($sql);
         $stmt->execute(array('commentid' => $commentID));
     }
+    
+    
 }
