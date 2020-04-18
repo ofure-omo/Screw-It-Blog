@@ -39,7 +39,7 @@ class LoginController {
         if (!isset($_SESSION['loggedin'])) {
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 Login::login();
-             //return call('home', 'home');
+             echo "<script type='text/javascript'>location.href = '?controller=home&action=home';</script>";
             }
         } else {
 
