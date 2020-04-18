@@ -1,7 +1,5 @@
-<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="richtext.min.css">
-<link rel="stylesheet" href="richtext.min.css">
 
+<meta charset="UTF-8">
 <body>
 
     <style>
@@ -108,17 +106,6 @@
             margin-bottom: 10px;
         }
 
-        .blog-template {
-            float: right; 
-            height: 800px;
-            margin-right: 10px;
-        }
-
-        #template-container {
-
-            margin-top: 50px;
-        }
-
         .blog-container {
             margin-left: 170px;
             text-transform: uppercase;
@@ -167,51 +154,29 @@
        
 
     </style>
-    <!--<form action="" method="POST" class="w3-container" enctype="multipart/form-data">
-       
-      <h2>Add New Item</h2>
-   </div>
-       <p>
-           <input class="w3-input" type="text" name="name" required autofocus>
-           <label>Name</label>
-       </p>
-           <p>
-           <input class="w3-input" type="text" name="price" required>
-           <label>Price</label>
-       </p>
-               
-     <input type="hidden" 
-              name="MAX_FILE_SIZE" 
-            value="10000000"
-            />
-   
-     <input type="file" name="myUploader" class="w3-btn w3-pink" required />
-     <p>
-       <input class="w3-btn w3-pink" type="submit" value="Add Product">
-     </p>
-   </form>-->
-    <h1>Fill in the following form to create a new blog post</h1>
+    
+    <h2 style="text-align: center; margin-top: 50px;">CREATE A BLOG POST</h2>
 
     <span>
 
         <div class=' form-container'>
-            <form action="" method="POST" class="w3-container" enctype="multipart/form-data">
-                    <h2 class="title">STEP 1: CHOOSE A LAYOUT</h2>
+            <form action="" method="POST" class="w3-container" accept-charset="utf-8" enctype="multipart/form-data">
+                    <h4 class="title">STEP 1: CHOOSE A LAYOUT</h4>
         <div class="layout">
         <div class="form-check form-check-inline" id="Check1">
             <input class="form-check-input" type="radio"  id="inlineRadio1 layout1" onclick="show2();" name="layout" value="1">
-            <label class="form-check-label label1" for="inlineRadio1">layout 1</label>
+            <label style="font-size:15px;"class="form-check-label label1" for="inlineRadio1">layout 1</label>
         </div>
         <div class="form-check form-check-inline" id="Check2">
             <input class="form-check-input" type="radio" id="inlineRadio2 layout2"name="layout" onclick="show1();" value="2">
-            <label class="form-check-label label1" for="inlineRadio2">layout 2</label>
+            <label style="font-size:15px;" class="form-check-label label1" for="inlineRadio2">layout 2</label>
         </div>
         </div>
 
         <div id="template-container" class="column">              
             <img src="views/images/layout.png" alt="layout 1" class="blog-template1"/>
         </div>
-                    <h2 class="title">STEP 2: WRITE THE CONTENT</h2>
+                    <h4 class="title">STEP 2: WRITE THE CONTENT</h4>
                     <div class="main-form">
                 <div class="form-group">
                     <label for="formGroupExampleInput"><p><b>TITLE</b></p></label>
@@ -220,12 +185,12 @@
                        
                 <div class="form-group" id='body1'>
                     <label for="exampleFormControlTextarea1"><p><b>BODY</b></p></label>
-                    <textarea class="form-control shadow-sm p-3 mb-5 bg-white rounded " id="exampleFormControlTextarea1" name="body" rows="20" placeholder="Body text" required></textarea>
+                    <textarea class="form-control shadow-sm p-3 mb-5 bg-white rounded " style="resize:none;" id="exampleFormControlTextarea1" name="body" rows="20" placeholder="Body text" required></textarea>
                 </div>
                         
                 <div class="form-group hide" id="body2">
                     <label for="exampleFormControlTextarea1"><p><b>BODY 2</b></p></label>
-                    <textarea class="form-control shadow-sm p-3 mb-5 bg-white rounded" id="exampleFormControlTextarea1" name="body2" rows="10" placeholder="Body text" ></textarea>
+                    <textarea class="form-control shadow-sm p-3 mb-5 bg-white rounded" style="resize:none;" id="exampleFormControlTextarea1" name="body2" rows="10" placeholder="Body text" ></textarea>
                 </div>
 
                 <div class="form-group cat">
@@ -294,7 +259,7 @@
 
                     <div class="form-group">
                         <label for="exampleFormControlFile1">Upload 3 images</label>
-                        <input type="file" name="myfile[]" accept="image/*" class="form-control-file" id="exampleFormControlFile1" multiple >
+                        <input type="file" name="myfile[]"  class="form-control-file" id="exampleFormControlFile1" multiple >
                     </div>
 
                     <div class="form-group form-check-inline">
@@ -332,14 +297,36 @@ function show1(){
 }
 ('.content').richText();
 
+ var _validFileExtensions = [".jpg", ".jpeg", ".png"];
+        function Validate(oForm) {
+            var arrInputs = oForm.getElementsByTagName("input");
+            for (var i = 1; i < arrInputs.length; i++) {
+                var oInput = arrInputs[i];
+                if (oInput.type == "file") {
+                    var sFileName = oInput.value;
+                    if (sFileName.length > 0) {
+                        var blnValid = false;
+                        for (var j = 0; j < _validFileExtensions.length; j++) {
+                            var sCurExtension = _validFileExtensions[j];
+                            if (sFileName.substr(sFileName.length - sCurExtension.length, sCurExtension.length).toLowerCase() == sCurExtension.toLowerCase()) {
+                                blnValid = true;
+                                break;
+                            }
+                        }
+
+                        if (!blnValid) {
+                            alert("Sorry, " + sFileName + " is invalid, allowed extensions are: " + _validFileExtensions.join(", "));
+                            return false;
+                        }
+                    }
+                }
+            }
+
+            return true;
+        }
 
     </script>
     
-    <script type="text/javascript">
-$(document).ready( function() {
-$("#txtEditor").Editor();                    
-});
-</script>
     
     
 

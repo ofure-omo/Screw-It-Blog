@@ -1,5 +1,6 @@
 <?php
 
+
 class Blog {
 
     public $title;
@@ -119,6 +120,7 @@ class Blog {
             $filteredPublished = filter_input(INPUT_POST, 'published', FILTER_SANITIZE_SPECIAL_CHARS);
         }
         
+        
         $pattern = '/;&#[0-9][0-9];/';
         $replacement = "<br/>";
        
@@ -197,10 +199,10 @@ class Blog {
         } else {echo "";}
 //         Blog::updateImages($imagename);
 //upload product image if it exists
-             echo '<h3 style="text-align:center; margin-top:30px; margin-bottom:20px;"> Your blog has been updated,<br> you will be redirected back to your dashboard!</h3>'
+             echo '<h3 style="text-align:center; margin-top:30px; margin-bottom:20px;"> Your blog has been updated,<br> you will be redirected to your blogpost to view your changes!</h3>'
         . '<img style="display: block; margin-left: auto; margin-right: auto; width: 40%;" src="views/images/bloguploaded.png"/>';
 //        
- echo '<meta http-equiv="refresh" content="5;  url=?controller=blogger&action=dashboard"/>';
+ echo '<meta http-equiv="refresh" content="5;  url=?controller=blog&action=read&blog_id='.$blog_id.'"/>';
     //echo "<script type='text/javascript'>location.href = '?controller=blogger&action=dashboard';</script>";
     
     }
@@ -247,6 +249,8 @@ class Blog {
 
         $filteredBody = preg_replace($pattern,$replacement, $filteredBody);    
         $filteredBody2 = preg_replace($pattern,$replacement, $filteredBody2); 
+        
+
         
         //$filteredImage = $_FILES['myfile']['name'];
         foreach ($_FILES["myfile"]["tmp_name"] as $key => $tmp_name) {
@@ -342,7 +346,7 @@ class Blog {
             //save this in the db!!
         
         if (empty($_FILES["myfile"]["tmp_name"])) {
-            echo ("File Missing! <br>");
+            die("File Missing! <br>");
         } else {
             echo "";
         }
@@ -350,11 +354,11 @@ class Blog {
         if (isset($_FILES["myfile"]["tmp_name"][2])) {
             echo"";
         } else {
-            echo ("Please upload 3 images<br>");
+            die("Please upload 3 images<br>");
         }
 
          if (!in_array($_FILES["myfile"]["tmp_name"], self::AllowedTypes)) {
-          echo"<p style='text-align:center; margin:0; margin-top:10px;'>File type not allowed</p>  ";
+          die ("<p style='text-align:center; margin:0; margin-top:10px;'>File type not allowed</p> ");
           } else {
           echo "";
           } 
@@ -367,7 +371,7 @@ class Blog {
         move_uploaded_file($temp, $destinationFile);
         //(move_uploaded_file($_FILES[self::InputKey]['tmp_name'], $destinationFile));
         if (!move_uploaded_file($temp, $destinationFile)) { //file does upload not usre why throwing error?
-            echo "<p style='text-align:center; margin:0;'>File not uploaded or images already exist! </p><br>";
+           die ("<p style='text-align:center; margin:0;'>File not uploaded or images already exist! </p><br>");
         } else {
             echo "your files have uploaded";
         }
@@ -444,6 +448,9 @@ class Blog {
         public function setComment($user_id,$blog_id){
         $db = Screw_it::getInstance();
         
+        $blog_id = intval($blog_id);
+        $user_id = intval($user_id);
+        
          if (isset($_POST['comment']) && $_POST['comment'] != "") {
             $filteredComment = filter_input(INPUT_POST, 'comment', FILTER_SANITIZE_SPECIAL_CHARS);
         }
@@ -467,10 +474,14 @@ class Blog {
                                 INNER JOIN Users ON comments.user_id = users.user_id
                                 WHERE blog_id = '".$blog_id."'");
             $req->execute();
-            $comment = $req->fetchAll(PDO::FETCH_ASSOC);
+            $data = $req->fetchAll(PDO::FETCH_ASSOC);
+            $comments = $data;
+         foreach($comments as $row) {
+             echo $row['comment_date'];
+         }
 
-            return $comment;
+            return $comments;
 
-           
+              
         }
 }

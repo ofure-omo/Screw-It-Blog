@@ -14,7 +14,6 @@ class BlogController {
         if (!isset($_GET['blog_id'])) {
             return call('pages', 'error');
         }
-       
 
         try {
             $blog_id = $_GET['blog_id'];
@@ -23,12 +22,11 @@ class BlogController {
             $likes = Blog::getlikes($_GET['blog_id']);
             $tag = Blog::findTagForBlog($_GET['blog_id']);
             $list = Blog::moreBlogs();
-            $comments = Blog::getComment($blog_id);
             
             if($blog['layout'] === '1'){
             require_once('views/blogpost/read.php');}
             else {
-            require_once('views/blogpost/read2.php');} 
+            require_once('views/blogpost/read2.php');}
             
         } catch (Exception $ex) {
             return call('pages', 'error');
@@ -36,21 +34,29 @@ class BlogController {
         
     }
     
-    public function comment (){
-        if($_SERVER['REQUEST_METHOD'] == 'GET') {
-            
+//    public function comment (){
+//        function addComment($userID,$blog_id){
+//            Blog::setComment($userID,$blog_id);
+//        }
+//        
 //        function retriveComment($blog_id){
 //            $comments = Blog::getComment($blog_id);
 //        }
-        $blog_id = $_GET['blog_id'];
-        $user_id = $_SESSION['user_id'];
-  
-            Blog::setComment($user_id,$blog_id);
-            require_once('views/blogpost/read.php');
-        } 
-
-            
-    }
+//        
+//        if (isset($_GET['req'])){
+//            $userID = $_SESSION['user_id'];
+//            $blog_id = $_GET['blog_id'];
+//            //$comment = $_POST['Comment'];
+//            //echo "hello,$userID";
+//            //addComment($comment,$userID,$blog_id);
+//            addComment($userID,$blog_id);
+//            retriveComment($blog_id);
+//             if($blog['layout'] === '1'){
+//            require_once('views/blogpost/read.php');}
+//            else {
+//            require_once('views/blogpost/read2.php');}
+//        } 
+//    }
 
     public function create() {
 
