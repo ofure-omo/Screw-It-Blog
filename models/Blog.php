@@ -120,12 +120,13 @@ class Blog {
             $filteredPublished = filter_input(INPUT_POST, 'published', FILTER_SANITIZE_SPECIAL_CHARS);
         }
         
-//        $pattern = '/[;&#][0-9][0-9]/';
-//        $replacement = "<br/>";
-//       
-//
-//        $filteredBody = preg_replace($pattern,$replacement, $filteredBody);    
-//        $filteredBody2 = preg_replace($pattern,$replacement, $filteredBody2); 
+        
+        $pattern = '/;&#[0-9][0-9];/';
+        $replacement = "<br/>";
+       
+
+        $filteredBody = preg_replace($pattern,$replacement, $filteredBody);    
+        $filteredBody2 = preg_replace($pattern,$replacement, $filteredBody2); 
         
         if(!empty($_POST['file[]'])){
        $filteredImage = filter_input(INPUT_POST, 'myfile[]', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -248,6 +249,8 @@ class Blog {
 
         $filteredBody = preg_replace($pattern,$replacement, $filteredBody);    
         $filteredBody2 = preg_replace($pattern,$replacement, $filteredBody2); 
+        
+
         
         //$filteredImage = $_FILES['myfile']['name'];
         foreach ($_FILES["myfile"]["tmp_name"] as $key => $tmp_name) {

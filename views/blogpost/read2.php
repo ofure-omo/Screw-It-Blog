@@ -1,5 +1,5 @@
  <?php if($blog['layout'] === '2' && $blog['published'] === 'published'): ?>
-
+<meta charset="UTF-8">
     <div class='read-header'>
 
 

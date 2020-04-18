@@ -106,7 +106,8 @@
                 </div>
             </div>
             <div id='body-container'> 
-                <p class='body'> <?php (nl2br($blog['body2'])); ?> </p>
+                <p class='body'> <?php $body2 = (nl2br($blog['body2'])); 
+                echo $body2;?> </p>
                 <div class='container-fluid' style=''>
         <div class="row">
            
