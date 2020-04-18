@@ -1,4 +1,4 @@
-<section class="main-section">
+
     <center>
         <br>
     <br>
@@ -11,6 +11,4 @@
     <br>
     <br>
     <br>
-    
-       
-</section>
+   

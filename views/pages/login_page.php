@@ -1,11 +1,10 @@
-<div class="flex-container">
+<div class="container-fluid">
     
                 <section class="intro-section-about"> 
                     <h1>Log in</h1>
                     </section>
         <section class="main-section">
             
-
             <form action="" method="post">
                 <div> 
                     <label>Username</label>
@@ -26,6 +25,8 @@
                     <p>Don't have an account? <a href='?controller=register&action=registerUser'>Sign up now</a></p>
                 </div>
             </form>
+ 
         </section>
+
     </body>
 </html>
