@@ -23,7 +23,7 @@
 
                 </div>
             </div>
-        <?php endforeach; ?>
+        <?php endforeach; ?> 
 
           </section>
     </div>

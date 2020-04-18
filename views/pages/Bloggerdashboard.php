@@ -124,7 +124,7 @@
           <td><?php echo $comment['comment'] ?> </td>
           <td>  
               <a  href='?controller=blog&action=read&blog_id=<?php echo $comment['blog_id']; ?>'>View</a>&nbsp;&nbsp;
-              <a  href='?controller=comments&action=delete&comment_id=<?php echo $comment['comment_id']; ?>'>Delete</a>&nbsp;
+              <a  href='?controller=blogger&action=dashboard&req=deleteComment&commentID=<?php echo $comment['comment_id']; ?>'>Delete</a>&nbsp;
           </td>
       </tr>  
                     <?php
@@ -258,7 +258,7 @@ document.getElementById("defaultOpen").click();
 
   function deleteAccount(id) {
         var xmlhttp = new XMLHttpRequest();
-        xmlhttp.open("GET", "?controller=blogger&action=delete&user_id=" + id, true);
+        xmlhttp.open("GET", "?controller=blogger&action=dashboard&delreq=delete&user_id=" + id, true);
         xmlhttp.send();
         goBackToHome();
     }
@@ -266,6 +266,15 @@ document.getElementById("defaultOpen").click();
         window.refresh;
         window.location.href = "?controller=home&action=home";
 }
+
+        
+      
+function deleteComment(id) {
+            var xmlhttp = new XMLHttpRequest();
+        xmlhttp.open("GET", "?controller=blogger&action=dashboard&req=deleteComment&commentID=" + id, true);
+        xmlhttp.send();
+        goToUpdate(id);
+    }
 
 </script>
 
