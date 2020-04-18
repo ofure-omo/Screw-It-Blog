@@ -35,7 +35,7 @@
                     echo            "<div class='card-body'>";
                     echo                "<h5 class='card-title'>".${"blog$i"}->titleShort."</h5>";
                     echo                "<p class='card-text'>".${"blog$i"}->bodyShort."</p>";
-                    echo                "<a href='?controller=blog&action=read&blog_id=".${"blog$i"}->blog_id."class=''>View blog</a>";
+                    echo                "<a href='?controller=blog&action=read&blog_id=".${"blog$i"}->blog_id."class=''>Read More</a>";
                     echo            "</div>";
                     echo            "<div class='card-footer' style='min-height: 4rem; font-size: 0.8rem;'>";
                     echo                "<p class='text-muted'>";

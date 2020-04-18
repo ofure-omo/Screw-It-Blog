@@ -88,9 +88,9 @@
           <td><?php echo $posts['comment_count'] ?></td>
           <td><?php echo $posts['published'] ?></td>
           <td>  
-              <a  href='?controller=blog&action=read&blog_id=<?php echo $posts['blog_id']; ?>'>View</a>&nbsp; 
-              <a  href='?controller=blog&action=update&blog_id=<?php echo $posts['blog_id']; ?>'>Update</a>&nbsp;
-              <a  href='?controller=blog&action=delete&blog_id=<?php echo $posts['blog_id']; ?>'>Delete</a>&nbsp;
+              <a  href='?controller=blog&action=read&blog_id=<?php echo $posts['blog_id']; ?>'>View</a>&nbsp;&nbsp;
+              <a  href='?controller=blog&action=update&blog_id=<?php echo $posts['blog_id']; ?>'>Update</a>&nbsp;&nbsp;
+              <a  href='?controller=blog&action=delete&blog_id=<?php echo $posts['blog_id']; ?>'>Delete</a>&nbsp;&nbsp;
           </td>
       </tr>  
                     <?php
@@ -123,8 +123,7 @@
           </td>
           <td><?php echo $comment['comment'] ?> </td>
           <td>  
-              <a  href='?controller=blog&action=read&blog_id=<?php echo $comment['blog_id']; ?>'>View</a>&nbsp; 
-              <a  href='?controller=comments&action=update&comment_id=<?php echo $comment['comment_id']; ?>'>Update</a>&nbsp;
+              <a  href='?controller=blog&action=read&blog_id=<?php echo $comment['blog_id']; ?>'>View</a>&nbsp;&nbsp;
               <a  href='?controller=comments&action=delete&comment_id=<?php echo $comment['comment_id']; ?>'>Delete</a>&nbsp;
           </td>
       </tr>  

@@ -25,6 +25,7 @@
 </style>
 <nav class="navbar justify-content-between" id="navbar" >
     <ul class="nav ml-auto">     
+        
         <?php
         // display menu options if user is not logged in
         if (!isset($_SESSION["loggedin"])) {
@@ -55,7 +56,9 @@
                     echo '<a class="nav-link" id="droptext" href="?controller=mod&action=showAll">Dashboard</a>';
                     echo '<a class="nav-link" id="droptext" href="?controller=signout&action=signout">Log out</a>';
                 };
-                ?>
+                
+                ?>&nbsp;&nbsp;
+        <li><a><i onclick="openSearch()" class="fa searchfatop fa-search fa-lg"></i></a></li>
     </li>
         
     </ul>

@@ -10,8 +10,8 @@
       <div class="flex-table-about row" role="rowgroup"> 
 
         <?php foreach ($bloggers as $profile) : ?>
-            <div class="flex-row-about"><div class="card h-100">
-                    <img class="card-img-top" src="<?php echo $profile['profile_pic'] ?>" height="250" width="100%" >
+            <div class="flex-row-about"><div class="card h-100" style="border: none;">
+                    <img class="card-img-top" src="<?php echo $profile['profile_pic'] ?>" height="250" width="80%" >
                     <div class="card-body">
                         <h5 class="card-title"><?php echo $profile['user_fn'] . " " . $profile['user_ln'] ?></h5>
                         <p class="card-text"><?php echo $profile['bio'] ?></p>  

@@ -91,6 +91,17 @@ ul li a i:hover {
 }
 */
 
+
+.searchfatop {
+    padding-top: 0.5em;
+    color: #FCB078;
+}
+
+.searchfatop:hover {
+    color: #70D6FF;
+    cursor: pointer;
+}
+
 .searchfa {
     font-size: 16px;
     color: #FCB078;
@@ -118,7 +129,7 @@ ul li a i:hover {
 
 .icon-bar {
   position: fixed;
-  top: 50%;
+  top: 55%;
   -webkit-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
@@ -354,14 +365,14 @@ img {max-width:100%}
 }
 
 
-.flex-table-about {width:100%;
+.flex-table-about {width:140%;
                     display: flex;
                     flex-flow: row wrap;
                     transition: 0.5s;
                     justify-content: flex-start;
 }   
 
-.flex-row-about{ width:440px;height:480px;  padding:10px;
+.flex-row-about{ width:350px;height:400px;  padding:10px;
 }  
 
 
