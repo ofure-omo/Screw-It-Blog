@@ -1,4 +1,5 @@
-
+<?php include_once $_SERVER ['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'Screw-it' . DIRECTORY_SEPARATOR . 'controllers/comments_controller.php'; ?>
+<meta charset="UTF-8">
 <body>
     <!--          HEADER       -->
     <?php if ($blog['layout'] == '1' && $blog['published'] === 'published'): ?>
@@ -22,9 +23,11 @@
                 on the <?php
                 $d = strtotime($blog['date_posted']);
                 echo date('jS F Y', $d);
-                ?></p>
+                ?></p>  
+            
+            <!--links to a different category oage depending on the blogs category -->
             <?php
-            $categories = $blog['category'];
+            $categories = $blog['category']; 
             if ($categories == 'RENOVATE') {
                 $category = "<p class='category'><a href='?controller=categories&action=searchCategory&category=renovate' style='text-decoration: none;'> $categories</p></a> ";
                 echo $category;
@@ -55,14 +58,16 @@
                 <a href="<?php echo 'http://.' . $blog['facebook_url']; ?>"><i class="fa read-fa fa-facebook" aria-hidden="true"></i></a>
                 <a href="<?php echo 'http://' . $blog['insta_url']; ?>"><i class="fa read-fa fa-instagram" aria-hidden="true"></i></a>
                 <a href="<?php echo 'http://' . $blog['twitter_url']; ?>"><i class="fa read-fa fa-twitter" aria-hidden="true"></i></a>
-                <?php if(isset($_SESSION['loggedin'])): ?>
+                
+<!--                 can only like if you are logged in  -->
+                    <?php if(isset($_SESSION['loggedin'])): ?>
                 <a href="?controller=blog&action=likes&blog_id=<?= $blog['blog_id'] ?>" style="text-decoration: none;"> 
-                    <i onclick="myFunction(this)" class="fa fa-heart-o like" name="like"></i>
-                    <span style="margin-left:2px; font-size:0.5em;"><?php echo $likes; ?></span>
-                </a>
+                    <i onclick="myFunction(this)" class="fa fa-heart-o read-fa like" name="like"></i>
+                    
+                </a><span style="margin-left:2px; font-size:0.5em;"><?php echo $likes; ?></span>
                 <?php endif; ?>
                 <?php if(!isset($_SESSION['loggedin'])): ?>
-                <i onclick="myFunction2(this)" class="fa fa-heart-o like" name="like"></i>
+                <i onclick="myFunction2(this)" class="fa fa-heart-o read-fa like" name="like"></i>
                  <span style="margin-left:2px; font-size:0.5em;"><?php echo $likes; ?></span>
                 <?php endif; ?>
             </div>
@@ -70,7 +75,6 @@
         </div>
 
         <!--        BLOG CONTENT-->
-
 
         <div class='read-blog-container'>
             <div id='body-container'> 
@@ -112,11 +116,8 @@
     $img = "<img class='d-block w-100' src=$blogimg alt='First slide' style='width:100%' alt='blog image1'/>";
     echo $img;
     ?>
-
-
             </div>
-
-
+<!--                   DISPLAY TAGS-->
             <?php foreach ($tag as $newtag): ?>
                 
                <div class="tags"> 
@@ -127,12 +128,12 @@
      </div>
                 </div>
 
-        <!--        MORE BLOGS-->
+        <!--        MORE BLOGS: pulls 3 random blogs from the database-->
         
         <div class='more-blogs'>
             <h4 class='more-blogs-header' style="margin-bottom:45px;">blogs you might like:</h4>
         </div>
-        <div class='container-fluid' style=''>
+        <div class='container-fluid'>
         <div class="row">
             
             <div class="row row-cols-1 row-cols-md-3" style="">
@@ -159,39 +160,41 @@
     </div>
     </div> 
         </div>
-        <!--        COMMENTS-->
-
-        <div style='margin-top: 40px;' class="comment-title"><h4> comments</h4> </div>
-
-    <?php if (isset($_SESSION['loggedin'])): ?>  <!--        IF USER IS LOGGED IN THEY CAN ADD A COMMENT-->
-
-        <form method='POST' action="?controller=blog&action=read&blog_id=<?= $_GET['blog_id'] ?>&req=addComment" enctype="multipart/form-data">
-            <textarea style='width:700px; resize: none;' name='comment' rows='4'></textarea><br>
-            <input style='width:100px; height: 40px; background-color:#fca15f; border:none; font-weight: 400; border-radius: 8px; cursor: pointer;' type='submit' value='Comment' name='submit'>
-        </form>
-        
-        <?php endif; ?>
-        
-        <?php if (!isset($_SESSION['loggedin'])): ?>
-
-        <p style='text-align: center; color: #3F7CAC;'>Want to comment? Why not
-            <a href='?controller=register&action=registerUser' style='text-decoration: none; 
-                     text-transform:bold;'> sign up </a>and become a member or <a href='?controller=login&action=loginUser' 
-                  style='text-decoration: none; text-transform:bold;'> log in</a></p>
-                  <?php endif; ?>
-                  
-                  <?php foreach($comments as $row): ?>
-                <div class="comment" style="margin-top: 50px; color:black;">
-             <b> <div class="panel-heading username" style="font-size: 1.1em;"><span class="user-comment"> By <?php $row['username']?> </span></b><br> <i style="font-size:0.8em;"> on<?php $row['comment_date']?></i> </div>
-                  <div class="comment" style="margin-bottom:10px;" > <?php  $row['comment']  ?></div>
-             
-                      <div class="panel-footer" align="left"><button type="button" class="btn btn-info reply" id= <?php $row['comment_id']?>>
-                          <span class="reply" style="font-size: 0.8em; padding:0px;" >REPLY</span></button>
-                          </div>
-             </div>
-                  <?php endforeach; ?>
-
+       
+            </div>
+     
     </body>
+    
+     <!--        COMMENTS AND REPLIES-->
+      <div style='margin-top: 40px; text-align: center; text-transform: uppercase;' class="comment-title"><h4> comments</h4> </div>
+
+         <div class="comment-container" style="width: 750px;">
+        <div class="comment-row">
+            <div class="col-md-12">
+                <label for="exampleFormControlTextarea1">Comment</label>
+                <textarea style=" resize:none;" class="form-control comment-form-control" name="comment" id="mainComment" rows="3" placeholder="write your comment here" ></textarea><br>
+                <button style="float:right;"class="btn-primary btn"  id='addComment'>Comment </button><br>
+            </div>
+        </div>
+        <div class="comment-row">
+            <div class="col-md-12">
+                <h4><b>355 comments</b></h4>
+                <div class="user_comments">
+                    <div class='comment'>
+                        <div class='user'>Tese O <span class='time'>04/05/2020</span></div>
+                        <div class='user_comment'>my comment</div>
+                        <div class='replies'>
+                            <div class='comment'>
+                                <div class='user'>Tese O <span class='time'>04/05/2020</span></div>
+                                <div class='user_comment'>my comment</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>        
+            </div>
+        </div>
+    </div>
+
 
     <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
@@ -200,15 +203,7 @@
         src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
     crossorigin="anonymous"></script>
-    <!--<script type="text/javascript">
-                    $(document).ready(function () {
-                        $("#like-btn").click(function () {
-                            $("#like-btn").css("color", "red");
-                        });
-                    });
 
-
-    </script>-->
     <script scr='text/javascript'>
 
                         function myFunction(x) {
@@ -220,52 +215,29 @@
                            
                             alert('Please login or register to like this post!');
                         }
+                        
+                        
+$(document).ready(function () {
 
-//                        $(document).ready(function () {
-//
-//
-//
-//                            $('#comment_form').on('submit', function (event) {
-//                                event.preventDefault();
-//                                var form_data = $(this).serialize();
-//                                $.ajax({
-//                                    url: "?controller=comments&action=add&blog_id=<?= $blog['blog_id']; ?>",
-//                                    method: 'POST',
-//                                    data: form_data,
-//                                    dataType: 'JSON',
-//                                    success: function (data) {
-//                                        if (data.error != '') {
-//                                            $('#comment_form')[0].reset();
-//                                            $('#comment_message').html(data.error);
-//                                        }
-//                                    }
-//                                });
-//                            });
-//
-//                            $('#comment_id').val('0');
-//                            load_comment();
-//
-//    //                            function load_comment() {
-//    //
-//    //                                $.ajax({
-//    //                                    url: "?controller=comments&action=post&blog_id=<?= $blog['blog_id']; ?>",
-//    //                                    method: 'POST',
-//    //                                    success: function (data) {
-//    //                                        $('#display_comment').html(data);
-//    //                                    }
-//    //                                });
-//    //                            }
-//    //
-//    //                            $(document).on('click', '.reply', function () {
-//    //                                var comment_id = $(this).attr("id");
-//    //                                $('#comment_id').val(comment_id);
-//    //                                $('#comment_content').focus();
-//    //                            });
-//
-//
-//                        });
+$("#addComment").on('click', function () {
+    var comment = $("#mainComment").val();
+    
+    if(comment !== "") {
+        $.ajax({
+            url: 'controllers/comments_controller.php',
+            method: 'POST',
+            datatype: 'JSON',
+            data: {
+                addComment: comment
+            }, success: function(response) {
+                console.log(response);
+            }
+        });
+    } else 
+              alert('Please check your comment!');
+});
 
-
+});
 
     </script>
 <?php endif; ?>
@@ -358,7 +330,6 @@
 
     #body1 {
         margin-top: 55px;
-
     }
 
     .tag {
@@ -392,7 +363,7 @@
     }
 
 
-    i.fa{
+    i.read-fa{
         font-size: 16px;
     }
 
@@ -475,7 +446,7 @@
             font-size: 0.35em;
 
         }
-        i.fa {
+        i.read-fa {
             font-size: 10px;
         }
 

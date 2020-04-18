@@ -56,12 +56,12 @@
                 <a href="<?php echo 'http://' . $blog['twitter_url']; ?>"><i class="fa read-fa fa-twitter" aria-hidden="true"></i></a>
                 <?php if(isset($_SESSION['loggedin'])): ?>
                 <a href="?controller=blog&action=likes&blog_id=<?= $blog['blog_id'] ?>" style="text-decoration: none;"> 
-                    <i onclick="myFunction(this)" class="fa fa-heart-o like" name="like"></i>
-                    <span style="margin-left:2px; font-size:0.5em;"><?php echo $likes; ?></span>
-                </a>
+                    <i onclick="myFunction(this)" class="fa read-fa fa-heart-o like" name="like"></i>
+                    
+                </a><span style="margin-left:2px; font-size:0.5em;"><?php echo $likes; ?></span>
                 <?php endif; ?>
                 <?php if(!isset($_SESSION['loggedin'])): ?>
-                <i onclick="myFunction(this)" class="fa fa-heart-o like" name="like"></i>
+                <i onclick="myFunction2(this)" class="fa read-fa fa-heart-o like" name="like"></i>
                  <span style="margin-left:2px; font-size:0.5em;"><?php echo $likes; ?></span>
                 <?php endif; ?>
             </div>
@@ -200,7 +200,7 @@
                             alert('You\'ve liked this blogpost!');
                         }
                         
-                        function myFunction(x) {
+                        function myFunction2(x) {
                            
                             alert('Please login or register to like this post!');
                         }
@@ -376,7 +376,7 @@
     }
 
 
-    i.fa{
+    i.read-fa{
         font-size: 16px;
     }
 

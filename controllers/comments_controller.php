@@ -1,4 +1,5 @@
 <?php
+include_once $_SERVER ['DOCUMENT_ROOT'] .DIRECTORY_SEPARATOR . 'Screw-it' . DIRECTORY_SEPARATOR.'models/comments.php';
 
 class CommentsController {
     
@@ -6,17 +7,26 @@ class CommentsController {
         
         if($_SERVER['REQUEST_METHOD'] == 'GET') {
 
-       return call('pages', 'error'); } else {
-       
             $blog_id = $_GET['blog_id'];
-            Comments::setComment($blog_id);
-            require_once('views/blogpost/read.php');
+              if (isset($_POST['addComment'])) {
+            $comment = filter_input(INPUT_POST, 'comment', FILTER_SANITIZE_SPECIAL_CHARS);
         }
+
+          $req = $db->prepare("INSERT INTO comments(comment, blog_id, user_id)
+                    VALUES ('$comment, '.$blog_id.', '".$_SESSION['user_id']."')");
+          
+          $req->execute();
+         
+          exit('success');
+
+
+    }
     }
     
     public function get(){
         
         Comments::getComment($blog_id);
+    }
     }
         
 //    
@@ -46,7 +56,7 @@ class CommentsController {
 //         }
 
   
-   }
+
 
 
   

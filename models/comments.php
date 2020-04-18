@@ -8,16 +8,18 @@ class Comments {
         $db = Screw_it::getInstance();
         $blog_id = intval($blog_id);
         
-           if (isset($_POST['comment']) && $_POST['comment'] != "") {
-            $filteredComment = filter_input(INPUT_POST, 'message', FILTER_SANITIZE_SPECIAL_CHARS);
+           if (isset($_POST['addComment'])) {
+            $comment = filter_input(INPUT_POST, 'comment', FILTER_SANITIZE_SPECIAL_CHARS);
         }
+
+          $req = $db->prepare("INSERT INTO comments(comment, blog_id, user_id)
+                    VALUES ('$comment, '.$blog_id.', '".$_SESSION['user_id']."')");
           
-          $req = $db->prepare("INSERT INTO comments(comment, blog_id, user_id, parent_comment_id)
-                    VALUES (:comment, '".$blog_id."', '".$_SESSION['user_id']."'", '0');
-          
-          $req->bindParam(':comment', $comment);
-          $comment = $filteredComment;
+
           $req->execute();
+          
+          return $req;
+          exit('success');
   
         }
         
