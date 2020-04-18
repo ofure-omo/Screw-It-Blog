@@ -52,14 +52,19 @@
             ?>
 
             <div id="social-media" style="dispaly:inline-block; "> <!--retrieve url links from user table-->
-                <a href="<?php echo 'www.' . $blog['facebook_url']; ?>"><i class="fa read-fa fa-facebook" aria-hidden="true"></i></a>
-                <a href="<?php echo 'www.' . $blog['insta_url']; ?>"><i class="fa read-fa fa-instagram" aria-hidden="true"></i></a>
-                <a href="http://twitter.com/share?text=An%20intersting%20blog&url=http://www.Screw-it"
-                   target="_blank"><i class="fa read-fa fa-twitter" aria-hidden="true"></i></a>
+                <a href="<?php echo 'http://.' . $blog['facebook_url']; ?>"><i class="fa read-fa fa-facebook" aria-hidden="true"></i></a>
+                <a href="<?php echo 'http://' . $blog['insta_url']; ?>"><i class="fa read-fa fa-instagram" aria-hidden="true"></i></a>
+                <a href="<?php echo 'http://' . $blog['twitter_url']; ?>"><i class="fa read-fa fa-twitter" aria-hidden="true"></i></a>
+                <?php if(isset($_SESSION['loggedin'])): ?>
                 <a href="?controller=blog&action=likes&blog_id=<?= $blog['blog_id'] ?>" style="text-decoration: none;"> 
-                    <i onclick="myFunction(this)" class="fa fa-thumbs-o-up like" name="like"></i>
+                    <i onclick="myFunction(this)" class="fa fa-heart-o like" name="like"></i>
+                    <span style="margin-left:2px; font-size:0.5em;"><?php echo $likes; ?></span>
                 </a>
-                <span style="margin-left:4px; font-size:0.6em;"><?php echo $likes; ?></span>
+                <?php endif; ?>
+                <?php if(!isset($_SESSION['loggedin'])): ?>
+                <i onclick="myFunction2(this)" class="fa fa-heart-o like" name="like"></i>
+                 <span style="margin-left:2px; font-size:0.5em;"><?php echo $likes; ?></span>
+                <?php endif; ?>
             </div>
 
         </div>
@@ -120,6 +125,7 @@
     <?php endforeach; ?>
 
      </div>
+                </div>
 
         <!--        MORE BLOGS-->
         
@@ -134,7 +140,7 @@
 
                      <div class='col mb-4'>
                         <div class='card h-100'>
-                           <a href='?controller=blog&action=read&blog_id=<?= $card['blog_id'] ?>' class='btn btn-primary'>
+                           <a href='?controller=blog&action=read&blog_id=<?= $card['blog_id'] ?>'>
                                <img style='padding-top: 5%;  height: 250px; width:600px; object-fit: cover;' class='card-img-top' src="<?= $card['third_image'] ?>" alt="<?= $card['title'] ?>">
                            </a>
                                 <div class='card-body'>
@@ -142,7 +148,7 @@
                                    <div style="margin-bottom: 20px;"><a href="?controller=blog&action=read&blog_id=<?= $card['blog_id'] ?>">View blog</a></div>
                                 
                                 <div class='card-footer'>
-                                    <p class='text-muted'>
+                                    <p class='text-muted' style='font-size:0.75em;'>
                                       <?php   $d = strtotime($card['date_posted']);?>
                                   Posted on <?php echo date("jS F Y", $d);?> <br></p> 
                                </div>
@@ -156,13 +162,13 @@
         <!--        COMMENTS-->
 
         <div style='margin-top: 40px;' class="comment-title"><h4> comments</h4> </div>
-    <?php if (isset($_SESSION['loggedin'])): ?>
 
-        <form method='POST' action="" enctype="multipart/form-data">
-            <textarea style='width:700px; resize: none;' name='message' rows='4'></textarea><br>
+    <?php if (isset($_SESSION['loggedin'])): ?>  <!--        IF USER IS LOGGED IN THEY CAN ADD A COMMENT-->
+
+        <form method='POST' action="?controller=blog&action=read&blog_id=<?= $_GET['blog_id'] ?>&req=addComment" enctype="multipart/form-data">
+            <textarea style='width:700px; resize: none;' name='comment' rows='4'></textarea><br>
             <input style='width:100px; height: 40px; background-color:#fca15f; border:none; font-weight: 400; border-radius: 8px; cursor: pointer;' type='submit' value='Comment' name='submit'>
         </form>
-      
         
         <?php endif; ?>
         
@@ -171,8 +177,19 @@
         <p style='text-align: center; color: #3F7CAC;'>Want to comment? Why not
             <a href='?controller=register&action=registerUser' style='text-decoration: none; 
                      text-transform:bold;'> sign up </a>and become a member or <a href='?controller=login&action=loginUser' 
-                  style='text-decoration: none; text-transform:bold;'> log in</a></p>";
+                  style='text-decoration: none; text-transform:bold;'> log in</a></p>
                   <?php endif; ?>
+                  
+                  <?php foreach($comments as $row): ?>
+                <div class="comment" style="margin-top: 50px; color:black;">
+             <b> <div class="panel-heading username" style="font-size: 1.1em;"><span class="user-comment"> By <?php $row['username']?> </span></b><br> <i style="font-size:0.8em;"> on<?php $row['comment_date']?></i> </div>
+                  <div class="comment" style="margin-bottom:10px;" > <?php  $row['comment']  ?></div>
+             
+                      <div class="panel-footer" align="left"><button type="button" class="btn btn-info reply" id= <?php $row['comment_id']?>>
+                          <span class="reply" style="font-size: 0.8em; padding:0px;" >REPLY</span></button>
+                          </div>
+             </div>
+                  <?php endforeach; ?>
 
     </body>
 
@@ -195,8 +212,13 @@
     <script scr='text/javascript'>
 
                         function myFunction(x) {
-                            x.classList.toggle("fa-thumbs-up");
+                            x.classList.toggle("fa-heart");
                             alert('You\'ve liked this blogpost!');
+                        }
+                        
+                        function myFunction2(x) {
+                           
+                            alert('Please login or register to like this post!');
                         }
 
 //                        $(document).ready(function () {
@@ -288,7 +310,7 @@
         text-align: center;
         font-size: 1.5em;
         margin: auto;
-        width: 90%;
+        width: 65%;
         margin-top: 50px;
     }
 
@@ -370,23 +392,19 @@
     }
 
 
-    #social-media{
-        font-size: 0.5em;
-
-    }
-
     i.fa{
-        font-size: 18px;
+        font-size: 16px;
     }
 
     .read-fa {
         padding: 10px;
         cursor: pointer;
         font-size: 0.8em;
+        color: #fca15f;
     }
 
     .like {
-
+        color: #fca15f;
         cursor: pointer;
     }
 

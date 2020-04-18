@@ -422,21 +422,6 @@ class Blog {
             
             return $likes['count(*)'];
         }
-        
-    
-        public static function checkLikes($blog_id){
-            $db = Screw_it::getInstance();
-        $blog_id = intval($blog_id);
-        
-        $query = "SELECT * FROM favourites WHERE EXISTS
-                 (SELECT * FROM favourites WHERE blog_id = '".$blog_id."' AND user_id = '".$_SESSION['user_id']."')";
-            $req = $db->prepare($query);
-            $req->execute();
-            $if_liked = $req->fetch();
-           
-            return $if_liked;
-        }
-        
 
 
     
@@ -452,4 +437,40 @@ class Blog {
       echo '<meta http-equiv="refresh" content="0;  url=?controller=blog&action=read&blog_id=' . $blog_id . '"/>';
     }
 
+    
+    
+    // COMMENTS SECTION
+    
+        public function setComment($user_id,$blog_id){
+        $db = Screw_it::getInstance();
+        
+         if (isset($_POST['comment']) && $_POST['comment'] != "") {
+            $filteredComment = filter_input(INPUT_POST, 'comment', FILTER_SANITIZE_SPECIAL_CHARS);
+        }
+        $comment = $filteredComment;
+          
+        $sql = "insert into comments (comment, parent_comment_id, blog_id, user_id)
+                VALUES ( :comment, '0', :blog_id, :user_id);";
+  
+        $stmt = $db->prepare($sql);
+        $stmt->execute(array('user_id' => $user_id,
+                            'blog_id' => $blog_id,
+                            'comment' => $comment));
+    }
+    
+    
+        public static function getComment($blog_id){
+            
+            $db = Screw_it::getInstance();
+            
+            $req = $db->prepare("SELECT * FROM comments 
+                                INNER JOIN Users ON comments.user_id = users.user_id
+                                WHERE blog_id = '".$blog_id."'");
+            $req->execute();
+            $comment = $req->fetchAll(PDO::FETCH_ASSOC);
+
+            return $comment;
+
+           
+        }
 }

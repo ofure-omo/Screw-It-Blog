@@ -14,24 +14,42 @@ class BlogController {
         if (!isset($_GET['blog_id'])) {
             return call('pages', 'error');
         }
+       
 
         try {
+            $blog_id = $_GET['blog_id'];
             // we use the given id to get the correct post
             $blog = Blog::find($_GET['blog_id']);
             $likes = Blog::getlikes($_GET['blog_id']);
             $tag = Blog::findTagForBlog($_GET['blog_id']);
-            Blog::checkLikes($_GET['blog_id']);
             $list = Blog::moreBlogs();
+            $comments = Blog::getComment($blog_id);
             
             if($blog['layout'] === '1'){
             require_once('views/blogpost/read.php');}
             else {
-            require_once('views/blogpost/read2.php');}
-            
+            require_once('views/blogpost/read2.php');} 
             
         } catch (Exception $ex) {
             return call('pages', 'error');
         }
+        
+    }
+    
+    public function comment (){
+        if($_SERVER['REQUEST_METHOD'] == 'GET') {
+            
+//        function retriveComment($blog_id){
+//            $comments = Blog::getComment($blog_id);
+//        }
+        $blog_id = $_GET['blog_id'];
+        $user_id = $_SESSION['user_id'];
+  
+            Blog::setComment($user_id,$blog_id);
+            require_once('views/blogpost/read.php');
+        } 
+
+            
     }
 
     public function create() {
