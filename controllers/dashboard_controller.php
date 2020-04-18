@@ -1,7 +1,5 @@
 <?php
 
-include 'Users.php';
-
 class dashboardcontroller {
 
     public function mem_details() {
@@ -10,6 +8,8 @@ class dashboardcontroller {
             $details = dashboard::getDetails(($_SESSION['user_id']));
             $comms = dashboard::getCountComments(($_SESSION['user_id']));
             $commenttext = dashboard::getComments(($_SESSION['user_id']));
+            $favourites = dashboard::getFavourites(($_SESSION['user_id']));
+            $unfavourite = dashboard::getUnfavourite(($_SESSION['user_id']),'blog_id');
             require_once('views/pages/mem_dash.php');
             echo $_SESSION["user_type"];
             

@@ -49,7 +49,7 @@
                 <td><?= $details['email'] ?></td>
 
                 <div class="actions">
-                    <a href="userUpdate.php?user_ID=<?= $details['user_ID'] ?>" class="edit"><i class="fas fa-pen fa-xs"></i></a>
+                    <a href="userUpdate.php?user_id=<?= $details['user_id'] ?>" class="edit"><i class="fas fa-pen fa-xs"></i></a>
                     <!--click button to delete controller, can it be deleted without a view as its just a button???-->
                 </div>
                     <div class="row">
