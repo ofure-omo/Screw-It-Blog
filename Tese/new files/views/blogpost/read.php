@@ -21,10 +21,10 @@
                 }
                 ?>
             </div>
-            <p class='header-info' id ='author'>Written by:<a href='?controller=blogger&action=about' style='text-decoration: none;'> <?php echo $blog['user_fn'] . PHP_EOL . $blog['user_ln']; ?></a> <!--should be replaced with username based on the session id-->
+            <p class='header-info' id ='author'>Written by:<a href='?controller=blogger&action=about' style='text-decoration: none;'> <?php echo $blog['username']; ?></a> <!--should be replaced with username based on the session id-->
                 on the <?php
-                $d = strtotime($blog['date_posted']);
-                echo date('jS F Y', $d);
+//                $d = strtotime($blog['date_posted']);
+//                echo date('jS F Y', $d);
                 ?></p>
             <?php
             $categories = $blog['category'];

@@ -155,7 +155,7 @@
         <label for="user_ln">Last Name</label>
       </div>
       <div class="col-75">
-        <input type="text" id="user_ln" name=user_ln placeholder="Last Name" value="<?= $blogger['user_ln'] ?>" >
+        <input type="text" id="user_ln" name="user_ln" placeholder="Last Name" value="<?= $blogger['user_ln'] ?>" >
       </div>
     </div>
       <div class="row">

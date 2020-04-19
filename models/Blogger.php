@@ -93,31 +93,31 @@ class Blogger extends Users {
         $db = Screw_it::getInstance(); 
 
         if (isset($_POST['username']) && $_POST['username'] != "") {
-            $filteredUsername = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_SPECIAL_CHARS);
+            $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_SPECIAL_CHARS);
         }
         if (isset($_POST['bio']) && $_POST['bio'] != "") {
-            $filteredBio = filter_input(INPUT_POST, 'bio', FILTER_SANITIZE_SPECIAL_CHARS);
+            $bio = filter_input(INPUT_POST, 'bio', FILTER_SANITIZE_SPECIAL_CHARS);
         }
      // if (isset($_POST['dob']) && $_POST['dob'] != "") {
      //       $filtereddob = filter_input(INPUT_POST, 'dob', FILTER_SANITIZE_SPECIAL_CHARS);
      //   }
         if (isset($_POST['user_fn']) && $_POST['user_fn'] != "") {
-            $filteredfn = filter_input(INPUT_POST, 'user_fn', FILTER_SANITIZE_SPECIAL_CHARS);
+            $fn = filter_input(INPUT_POST, 'user_fn', FILTER_SANITIZE_SPECIAL_CHARS);
         }
         if (isset($_POST['user_ln']) && $_POST['user_ln'] != "") {
-            $filteredln = filter_input(INPUT_POST, 'user_ln', FILTER_SANITIZE_SPECIAL_CHARS);
+            $ln = filter_input(INPUT_POST, 'user_ln', FILTER_SANITIZE_SPECIAL_CHARS);
         }
         if (isset($_POST['email']) && $_POST['email'] != "") {
-            $filteredemail = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_SPECIAL_CHARS);
+            $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_SPECIAL_CHARS);
         }
         if (isset($_POST['facebook']) && $_POST['facebook'] != "") {
-            $filteredfacebook = filter_input(INPUT_POST, 'facebook', FILTER_SANITIZE_SPECIAL_CHARS);
+            $facebook = filter_input(INPUT_POST, 'facebook', FILTER_SANITIZE_URL);
         }
         if (isset($_POST['twitter']) && $_POST['twitter'] != "") {
-            $filteredtwitter = filter_input(INPUT_POST, 'twitter', FILTER_SANITIZE_SPECIAL_CHARS);
+            $twitter = filter_input(INPUT_POST, 'twitter', FILTER_SANITIZE_URL);
         }
         if (isset($_POST['insta']) && $_POST['insta'] != "") {
-            $filteredinsta = filter_input(INPUT_POST, 'insta', FILTER_SANITIZE_SPECIAL_CHARS);
+            $insta = filter_input(INPUT_POST, 'insta', FILTER_SANITIZE_URL);
         }
         
                 //if a new image is uploaded - upload and replace it
@@ -136,15 +136,7 @@ class Blogger extends Users {
        //    $filteredimage = "Views/images/".filter_input(INPUT_POST,'profile_pic', FILTER_SANITIZE_SPECIAL_CHARS);
        // }
         
-        $username = $filteredUsername;
-        $bio = $filteredBio;
-        //$dob = $filtereddob;
-        $fn = $filteredfn;
-        $ln = $filteredln;
-        $email = $filteredemail;
-        $twitter = $filteredtwitter;
-        $insta = $filteredinsta;
-        $facebook = $filteredfacebook;
+   
         $profilepic = $imagepath;
         //$profilepic = $filteredimage;
         
@@ -192,13 +184,13 @@ class Blogger extends Users {
 
 //        if($error === 0) {
             
-	if (!move_uploaded_file($tempFile, $destinationFile)) {
-		echo "oops";            
+	//if (!move_uploaded_file($tempFile, $destinationFile)) {
+	//	echo "oops";            
         } 
-        if (file_exists($tempFile)) {
-		unlink($tempFile); 
-        } 
-        }
+       // if (file_exists($tempFile)) {
+	//	unlink($tempFile); 
+      // } 
+        //}
 
 
     public function deleteAccount($user_id) {

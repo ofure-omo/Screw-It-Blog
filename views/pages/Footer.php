@@ -27,7 +27,7 @@
       <!-- Grid column -->
       <div class="footertext col-md-2">
         <h6>
-          <a href="#">Contact</a>
+          <a href="?controller=pages&action=Contact">Contact</a>
         </h6>
       </div>
       <!-- Grid column -->

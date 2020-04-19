@@ -32,6 +32,13 @@ public function showAll(){
         $repliesCount = Mod::repliesCount();
         $repliesCountLW = Mod::repliesCountLW();
         //print_r($bloggerCount);
+        
+        //All users - locked
+        $users = Mod::getAllusers();
+        
+        //All users - locked
+        $usersL = Mod::getAllUsersLocked();
+
 
             
         // Gets the member details
@@ -58,7 +65,30 @@ public function showAll(){
         if (isset($_GET['req'])){
             deleteComment($_GET['commentID']);
         }
+        
+        function lockUser($user_id){
+           Mod::lockUser($user_id);
+           //echo $_POST['lockUser'];
+        }
+        
+        function unlockUser($user_id){
+           Mod::unlockUser($user_id);
+           //echo $_POST['lockUser'];
+        }
 
+        // LOCK USER
+        if (!empty($_POST['lockUser'])){
+            lockUser($_POST['lockUser']);
+            echo "<script>window.location.replace('?controller=mod&action=showAll&res=locked&user')</script>";
+        } 
+        
+                // LOCK USER
+        if (!empty($_POST['unlockUser'])){
+            unlockUser($_POST['unlockUser']);
+            echo "<script>window.location.replace('?controller=mod&action=showAll&unlock=true')</script>";
+        } 
+            
+            
         //if (isset($_GET('function'))){
             //deleteComment($userID);
         ///}

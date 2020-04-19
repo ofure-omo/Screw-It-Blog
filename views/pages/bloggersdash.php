@@ -1,23 +1,6 @@
-<?php declare(strict_types=1) ?>
-
-</head>
 
 
 <body>
-    
-<?php 
-
-if ($_SESSION ['user_type'] != "Member"){
-    return call('pages', 'error');
-}
-
-?>
-    <div class="page-header">
-
-    </div>
-    <!--javascript function that triggers the hamburger menu when min-width is 480px-->
-    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-
 
 
 <section class="main-section-dashboard">
@@ -34,9 +17,9 @@ if ($_SESSION ['user_type'] != "Member"){
                 </a>
 
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                  <a class="dropdown-item" href="?controller=pages&action=FAQs">FAQs</a>
-                  <a class="dropdown-item" href="#">Contact Us</a>
-                  <a class="dropdown-item" href="?controller=pages&action=privacy">Privacy Policy</a>
+                  <a class="dropdown-item" href="#">Google</a>
+                  <a class="dropdown-item" href="#">B&Q</a>
+                  <a class="dropdown-item" href="#">Cats</a>
                 </div>
             </div>
             
@@ -56,20 +39,20 @@ if ($_SESSION ['user_type'] != "Member"){
                     <div class="flex-table-dashboard row" role="rowgroup">  
                         
                         <div class="flex-row-intro-dashboard" role="cell"> 
-                        <img src="<?php echo $details['profile_pic'];?>" class="dashboard-img"   alt="profile">
+                        <img src="<?php echo $blogger['profile_pic'];?>" class="dashboard-img"   alt="profile" style="object-fit: cover;">
                         </div>                        
                         
                         <div class="flex-row-intro-dashboard" id="blogger-name" role="cell"> 
-                        <h1><?php echo $details['username'];?></h1>
+                        <h1><?php echo $blogger['username'];?></h1>
                         <div style="font-size: 12px">
                             
                         Member since
                         <?php
-                    $d = strtotime($details['date_joined']);
+                    $d = strtotime($blogger['date_joined']);
                     echo date("jS F Y", $d);
                     ?></div><br>
-                        <p><?php echo $comments[0]['count'];?> Comments posted<br>
-                        <?php echo $likes[0];?> Blogs Liked</p>
+                        <p><?php echo $blogs;?> Comments posted<br>
+                        <?php echo $comments;?> Blogs Liked</p>
                  
                         </div> 
 
@@ -79,9 +62,115 @@ if ($_SESSION ['user_type'] != "Member"){
     
 <!-- TABS -->
 <div class="tab">
-    <button class="tablinks" onclick="openTab(event, 'MProfile')" id="defaultOpen"><b>YOUR PROFILE</b></button>
-    <button class="tablinks" onclick="openTab(event, 'MFavourites')"><b>VIEW FAVOURITES</b></button>
-    <button class="tablinks" onclick="openTab(event, 'MComments')"><b>VIEW COMMENTS</b></button>
+        <button class="tablinks" onclick="openTab(event, 'MBlogs')"><b>YOUR BLOGS</b></button>
+        <button class="tablinks" onclick="openTab(event, 'MComments')"><b>YOUR COMMENTS</b></button>
+        <button class="tablinks" onclick="openTab(event, 'MProfile')" ><b>YOUR PROFILE</b></button>
+
+</div>
+
+
+
+
+
+
+<!-- VIEW BLOGS -->
+<div id="MBlogs" class="tabcontent">
+    <br>
+    <?php if (count($blogsfavscomments) > 0) { ?>
+    <table class="table table-striped" style="">
+        
+        <thead>
+
+            <tr>
+                <th>Blog</th>
+                <th>Date Posted</th>
+                <th>Favourite Count</th>
+                <th>Comment count</th>
+                <th>Publish Status</th>
+                <th>Actions</th>
+            </tr>
+            
+        </thead>
+        
+        
+   
+        <tbody>
+            <?php
+            
+            $number = 1;
+  
+            foreach ($blogsfavscomments as $posts){
+                echo "<tr>";
+                
+                echo "<td>".$posts['title']."</td>";
+                $d = strtotime($posts['date_posted']);
+                echo "<td>".date("jS F Y", $d)."</td>";
+
+                echo "<td>".$posts['favourite_count']."</td>";
+                echo "<td>".$posts['comment_count']."</td>";
+                echo "<td>".$posts['published']."</td>";
+                echo "<td><a href='?controller=blog&action=read&blog_id=".$posts['blog_id']."'><i class='far fa-eye'></i></a>&nbsp;&nbsp;";
+                echo "<a href='?controller=blog&action=update&blog_id=".$posts['blog_id']."'><i class='far fa-edit'></i></a>&nbsp;&nbsp;";
+                echo "<a href='?controller=blog&action=delete&blog_id=".$posts['blog_id']."'><i class='far fa-trash-alt'></i></a>&nbsp;&nbsp;";
+                echo "</td></tr>";
+                
+                $number++;
+
+    }} else {
+                echo '<p>You currently have no published blogs. </p><a href="?controller=blog&action=create"> Create a blog </a>now.</p>';
+            }
+            ?>
+         </tbody>
+    </table>
+</div>
+
+<!-- VIEW COMMENTS -->
+<div id="MComments" class="tabcontent">
+    <br>
+    <?php if (count($commenttext) > 0) { ?>
+    
+    <table class="table table-striped" style="">
+        
+            <thead>    
+            <tr>
+                <th><h3>Blog</h3></th>
+                <th><h3>Date Posted</h3></th>
+                <th><h3>Your Comments</h3></th>
+                <th><h3>Actions</h3></th>
+  
+            </tr>
+            </thead>
+            
+            <tbody>
+ 
+            <?php
+            
+            $number = 1;
+  
+            foreach ($commenttext as $comment){
+                echo "<tr>";
+                
+                echo "<td>".$comment['title']."</td>";
+                
+                $d = strtotime($comment['comment_date']);
+                echo "<td>".date("jS F Y", $d);
+
+                echo "<td>".$comment['comment'];
+                echo "<td><a href='?controller=blog&action=read&blog_id=".$comment['blog_id']."'>View</a>&nbsp;&nbsp;";
+                echo "<a href='?controller=blog&action=req=deleteComment&commentID=".$comment['comment_id']."'>Delete</a></td>&nbsp;";
+      
+                echo "</tr>";
+                
+                $number++;
+
+    }} else {
+        echo '<p>You have not posted any comments yet.</p>';
+    }
+            ?>
+
+        </tbody>
+    </table>
+    
 </div>
 
 <!-- EDIT YOUR DETAILS -->
@@ -95,7 +184,7 @@ if ($_SESSION ['user_type'] != "Member"){
         <label for="user_fn">First Name</label>
       </div>
       <div class="col-75">
-        <input type="text" id="user_fn" name="user_fn" placeholder="First Name" value="<?= $details['user_fn'] ?>" >
+        <input type="text" id="user_fn" name="user_fn" placeholder="First Name" value="<?= $blogger['user_fn'] ?>" >
       </div>
     </div>
     <div class="row">
@@ -103,7 +192,7 @@ if ($_SESSION ['user_type'] != "Member"){
         <label for="user_ln">Last Name</label>
       </div>
       <div class="col-75">
-        <input type="text" id="user_ln" name=user_ln placeholder="Last Name" value="<?= $details['user_ln'] ?>" >
+        <input type="text" id="user_ln" name="user_ln" placeholder="Last Name" value="<?= $blogger['user_ln'] ?>" >
       </div>
     </div>
       <div class="row">
@@ -111,7 +200,7 @@ if ($_SESSION ['user_type'] != "Member"){
         <label for="username">Username</label>
       </div>
       <div class="col-75">
-        <input type="text" id="username" name="username" placeholder="Username" value="<?= $details['username'] ?>">
+        <input type="text" id="username" name="username" placeholder="Username" value="<?= $blogger['username'] ?>">
       </div>
     </div>
      <div class="row">
@@ -119,7 +208,7 @@ if ($_SESSION ['user_type'] != "Member"){
         <label for="email">Email</label>
       </div>
       <div class="col-75">
-        <input type="email" id="email" name="email" value="<?= $details['email'] ?>">
+        <input type="email" id="email" name="email" value="<?= $blogger['email'] ?>">
       </div>
     </div>
       <div class="row">
@@ -127,7 +216,7 @@ if ($_SESSION ['user_type'] != "Member"){
     <label for="bio">Bio</label>
       </div>
       <div class="col-75">
-       <input type="text" id="bio" name="bio" placeholder="Tell our readers a little about you" value="<?= $details['bio'] ?>">
+       <input type="text" id="bio" name="bio" placeholder="Tell our readers a little about you" value="<?= $blogger['bio'] ?>">
       </div>
     </div>
        <div class="row">
@@ -135,7 +224,7 @@ if ($_SESSION ['user_type'] != "Member"){
     <label for="twitter">Twitter</label>
       </div>
       <div class="col-75">
-       <input type="text" id="twitter" name="twitter" placeholder="e.g. twitter.com/example" value="<?= $details['twitter_url'] ?>">
+       <input type="text" id="twitter" name="twitter" placeholder="e.g. twitter.com/example" value="<?= $blogger['twitter_url'] ?>">
       </div>
     </div>
        <div class="row">
@@ -143,7 +232,7 @@ if ($_SESSION ['user_type'] != "Member"){
     <label for="insta">Instagram</label>
       </div>
       <div class="col-75">
-       <input type="text" id="insta" name="insta" placeholder="e.g. instagram.com/example" value="<?= $details['insta_url'] ?>">
+       <input type="text" id="insta" name="insta" placeholder="e.g. instagram.com/example" value="<?= $blogger['insta_url'] ?>">
       </div>
     </div>
        <div class="row">
@@ -151,7 +240,7 @@ if ($_SESSION ['user_type'] != "Member"){
     <label for="facebook">Facebook</label>
       </div>
       <div class="col-75">
-       <input type="text" id="facebook" name="facebook" placeholder="e.g. facebook.com/example" value="<?= $details['facebook_url'] ?>">
+       <input type="text" id="facebook" name="facebook" placeholder="e.g. facebook.com/example" value="<?= $blogger['facebook_url'] ?>">
       </div>
     </div>
       <div class="row">
@@ -161,7 +250,7 @@ if ($_SESSION ['user_type'] != "Member"){
           <div class="col-75">
        <input type="hidden" name="MAX_FILE_SIZE" value="10000000" />
 <?php 
-$file = $details['profile_pic'];
+$file = $blogger['profile_pic'];
 if(file_exists($file)){
     $img = "<img src='$file' width='150' />"; 
     echo $img;
@@ -169,127 +258,20 @@ if(file_exists($file)){
 
 else
 {
-echo "<img src='views/images/profileplaceholderimage.png' width='150' />";
+echo "<img src='views/images/profileplaceholder.png' width='150' />";
 }
 ?>
-  <input type="file" name="myUploader" class="w3-btn w3-pink" />
+  <input type="file" name="profile_pic" />
  
           </div></div>
           <br>
     <div class="row">
-        <button id="delete-btn" onclick="deleteAccount(<?php echo $details['user_id']; ?>)"><i class="fas fa-trash-alt"></i> Delete Account</a></button>
+        <button id="delete-btn" onclick="deleteAccount(<?php echo $blogger['user_id']; ?>)"><i class="fas fa-trash-alt"></i> Delete Account</a></button>
       <input type="submit" value="Update">
     </div>
   </form>
 </div>   
 </div>
-
-<!-- VIEW COMMENTS -->
-<div id="MComments" class="tabcontent">
-    
-    <table class="table table-striped" style="">
-        
-            
-            <thead>    
-            <tr>
-                <th>Comment</th>
-                <th>Comment Date</th>
-                <th>Blog Title</th>
-                <th>Category</th>
-                <th>Comment</th>
-                <th>View Blog</th>
-                 <!--<th>Password</th>  not showing password??--> 
-                <th>Delete Comment</th>
-            </tr>
-            </thead>
-            
-            <tbody>
- 
-            <?php
-            
-            $number = 1;
-  
-            foreach ($comms as $comment){
-                echo "<tr>";
-                
-                echo "<td>".$number."</td>";
-                
-                $d = strtotime($comment['comment_date']);
-                echo "<td>".date("jS F Y", $d);
-
-                echo "<td>".$comment['title'];
-                echo "<td>".$comment['category'];
-                echo "<td>".$comment['comment'];
-<<<<<<< HEAD
-                echo "<td><a href='?controller=blog&action=read&blog_id=".$comment['blog_id']."'><i style='font-size: 16px;' class='fas fa-pen-square'></i></a>";
-                echo "<td><p>delete comment <i class='fas fa-trash-alt'></i> </p></td>";
-=======
-                echo "<td><a href='?controller=blog&action=read&blog_id=".$comment['blog_id']."'><i style='font-size: 16px;' class='fas fa-eye'></i></a>";
-                echo "<td><a href='?controller=dashboard&action=mem_details&deleteComment=true&commentid=".$comment['comment_id']."'><i class='fas fa-trash-alt'></i></a></td>";
-
->>>>>>> 6646def804162272ac597c0fc5ddce2e8188627e
-                echo "</tr>";
-                
-                $number++;
-
-            }
-            ?>
-
-        </tbody>
-    </table>
-    
-</div>
-
-<!-- VIEW FAVOURITES -->
-
-<div id="MFavourites" class="tabcontent">
-    
-    <table class="table table-striped" style="">
-        
-        <thead>
-
-            <tr>
-                <th>Favourite</th>
-                <th>Blog Posted</th>
-                <th>Title</th>
-                <th>Category</th>
-                <th>View Post</th>
-                 <!--<th>Password</th>  not showing password??--> 
-                <th>Remove Like</th>
-            </tr>
-            
-        </thead>
-        
-        
-        
-        <tbody>
-            <?php
-            
-            $number = 1;
-  
-            foreach ($favourites as $favourite){
-                echo "<tr>";
-                
-                echo "<td>".$number,"</td>";
-                $d = strtotime($favourite['date_posted']);
-                echo "<td>".date("jS F Y", $d);
-
-                echo "<td>".$favourite['title'];
-                echo "<td>".$favourite['category'];
-                echo "<td><a href='?controller=blog&action=read&blog_id=".$favourite['blog_id']."'><i style='font-size: 16px;' class='fas fa-pen-square'></i></a>";
-                //echo "<td><p>delete button <i class='fas fa-trash-alt'></i> </p></td>";
-                echo "<td><a href='?controller=dashboard&action=unfavourite&blog_id=".$favourite['blog_id']."'><i class='fas fa-trash-alt'></i></a>";
-                echo "</tr>";
-                
-                $number++;
-
-            }
-            ?>
-         </tbody>
-    </table>
-</div>
-
-
 
 
 <script>
@@ -321,12 +303,6 @@ document.getElementById("defaultOpen").click();
         window.location.href = "?controller=home&action=home";
 }
 
-function unfavourite(id) {
-            var xmlhttp = new XMLHttpRequest();
-        xmlhttp.open("GET", "?controller=dashboard&action=dashboard&req=unfavourite&user_id&blog_id=" + id, true);
-        xmlhttp.send();
-        goToUpdate(id);
-    }
 </script>
 
    
@@ -475,14 +451,3 @@ input[type=submit]:hover {
   color: #FCA15F;
 }
 </style>
-
-
-
-
-
-
-
-
-
-
-

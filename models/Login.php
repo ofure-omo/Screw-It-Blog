@@ -42,13 +42,24 @@ class Login {
         $stmt->execute(array(':username' => $username));
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($stmt->rowCount() > 0) {
-            if (password_verify($password, $user['password'])) {
+            // Checks if the user is a member and if the account is locked
+            if ($user['user_type'] === "Member" && $user['Locked'] === "Y"){
+                echo "<script type='text/javascript'>location.href = '?controller=login&action=loginUser&error=loginFailed';</script>";
+            }
+            else if (password_verify($password, $user['password'])) {
                 
                 $_SESSION['loggedin'] = TRUE;
                 $_SESSION['username'] = $user['username'];
                 $_SESSION["user_id"] = $user['user_id']; 
                 $_SESSION["user_type"] = $user['user_type'];
-                echo "<script type='text/javascript'>location.href = '?controller=home&action=home';</script>";
+                
+                // Checks if the user is a mod, if yes, redirect
+                if ($user['user_type'] === "Moderator"){
+                    echo "<script type='text/javascript'>location.href = '?controller=mod&action=showAll';</script>";
+                }
+                else {
+                    echo "<script type='text/javascript'>location.href = '?controller=home&action=home';</script>";
+                }
                  //echo "Welcome!";// will send to member dashboard
             } else {
                 echo "<script type='text/javascript'>location.href = '?controller=login&action=loginUser&result=loginFailed';</script>";
