@@ -352,8 +352,14 @@ class Blog {
         Blog::uploadFiles($imagename);
         echo '<h3 style="text-align:center; margin-top:30px; margin-bottom:20px;"> Your blog has been uploaded!</h3>'
         . '<img style="display: block; margin-left: auto; margin-right: auto; width: 40%;" src="views/images/bloguploaded.png"/>';
+        
+        //redirect blogger to the post they just created wher
+if($filteredLayout == '1') {
+        echo '<meta http-equiv="refresh" content="4;  url=?controller=blog&action=read" />';
+} else {
+     echo '<meta http-equiv="refresh" content="4;  url=?controller=blog&action=read2" />';
+}
 
-        echo '<meta http-equiv="refresh" content="4;  url=?controller=blog&action=read&id=' . $id . '" />';
     }
 
     const AllowedTypes = ['image/jpeg', 'image/jpg', 'image/png'];

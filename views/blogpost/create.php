@@ -164,7 +164,7 @@
                 <h4 class="title">STEP 1: CHOOSE A LAYOUT</h4>
                 <div class="layout">
                     <div class="form-check form-check-inline" id="Check1">
-                        <input class="form-check-input" type="radio"  id="inlineRadio1 layout1" onclick="show2();" name="layout" value="1">
+                        <input class="form-check-input" type="radio"  id="inlineRadio1 layout1" onclick="show2();" name="layout" selected value="1">
                         <label style="font-size:15px;"class="form-check-label label1" for="inlineRadio1">layout 1</label>
                     </div>
                     <div class="form-check form-check-inline" id="Check2">
