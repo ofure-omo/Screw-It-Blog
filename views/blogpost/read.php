@@ -1,5 +1,3 @@
-<?php 
-?>
 <meta charset="UTF-8">
 <body>
     <!--          HEADER       -->
@@ -173,7 +171,7 @@
     <!--        COMMENTS AND REPLIES-->
 
     <!--    checks if user is logged in if they're not displays a message that prompts them to sign up or log in-->
-    <?php //  if (isset($_SESSION['user_id'])): ?>
+    <?php if (isset($_SESSION['user_id'])): ?>
         <div class='comment-container'>
             <form method='POST' id='comment_form' accept-charset="utf-8" enctype="multipart/form-data">
                 <div class='form-group'> 
@@ -188,14 +186,24 @@
                 </div>
             </form>
             <span id="comment_message"></span>
-            <br/> 
-            <div id="display_comment"></div>
-        </div>
             
-          
+        </div>
+    <?php endif; ?>  
+    <?php if (!isset($_SESSION['loggedin'])): ?>
+
+        <p style='text-align: center; color: #3F7CAC;'>Want to comment? Why not
+            <a href='?controller=register&action=registerUser' style='text-decoration: none; 
+                     text-transform:bold;'> sign up </a>and become a member or <a href='?controller=login&action=loginUser' 
+                  style='text-decoration: none; text-transform:bold;'> log in</a></p>
+                  <?php endif; ?>
+    <?php if($blog['blog_id'] == $_GET['blog_id']) ?>
+    <div id="display_comment"></div>
 
 
-    <?php endif; ?>        
+    <?php endif; ?>
+    
+    
+    
     <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
@@ -215,7 +223,47 @@
                         alert('Please login or register to like this post!');
                     }
                     
-         
+               $(document).ready(function(){
+                      
+                      //send comments to the database
+                    $('#comment_form').on('submit', function(event){
+                        event.preventDefault();
+                        
+                        var form_data = $(this).serialize();
+                        
+                        $.ajax({
+                            url: 'models/add_comment.php',
+                            method:"POST",
+                            data: form_data,
+                            dataType: "JSON",
+                            success:function(data)
+                            {
+                                if(data.error != '')
+                                {
+                                    $('#comment_form').get(0).reset();
+                                     $('#comment_message').html(data.error);
+                                     load_comment();
+                                }
+                            }
+                        })
+                    });
+                    
+                    load_comment();
+
+                    //load comment onto the webpage
+                    function load_comment()
+                    {
+                        $.ajax({
+                            url:'models/post_comment.php',
+                            method: 'POST',
+                            success:function(data)
+                            {
+                                $('#display_comment').html(data);
+                            }
+                        })
+                    }
+    
+    });
                     
                     
  </script>                   
@@ -339,7 +387,7 @@
 
 
     .tags{
-        text-align: center;
+      
         display: inline;
     }
 

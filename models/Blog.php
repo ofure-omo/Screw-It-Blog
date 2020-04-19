@@ -99,14 +99,14 @@ class Blog {
         $query = "SELECT * FROM comments
          INNER JOIN Users ON comments.user_id = users.user_id
          WHERE blog_id = :blog_id
-         ORDER BY comment_date DESC";
+         ";
 
         $stmt = $db->prepare($query);
 
         $stmt->execute(array(
         ':blog_id' => $blog_id));
 //fetch all the comments and use a foreach loop to show each comment
-        $result = $stmt->fetchAll();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $comments = $result;
 
         return $comments;

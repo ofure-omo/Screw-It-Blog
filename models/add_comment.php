@@ -9,6 +9,7 @@ $comment_content = '';
 $blog_id = '';
 $user_id = '';
 
+
 if(empty($_POST["comment_content"])) 
 {
     
@@ -20,6 +21,7 @@ if(empty($_POST["comment_content"]))
     $comment_content = filter_input(INPUT_POST, 'comment_content', FILTER_SANITIZE_SPECIAL_CHARS);
     $blog_id = $_POST['blog_id']; 
     $user_id = $_POST['user_id']; 
+
     
 }
 
@@ -44,6 +46,7 @@ $data = array(
 );
 
 echo json_encode($data);
-
+    
+    
 
 
