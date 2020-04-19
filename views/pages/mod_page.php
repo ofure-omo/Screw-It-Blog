@@ -69,6 +69,9 @@ if ($_SESSION ['user_type'] != "Moderator"){
             else if (isset($_GET['res'])){
                 $notification = "Your user has been locked - bad user!";
             }
+            else if (isset($_GET['unlock'])){
+                $notification = "Your user has been unlocked - keep an eye on them!";
+            }
             else {
                 $notification = "<i class='fas fa-comment-alt'></i> You have 0 new notifications | Click to dismiss.";
             }
@@ -123,7 +126,7 @@ if ($_SESSION ['user_type'] != "Moderator"){
             if (!empty($details['bio'])) {
                 echo $details['bio'];
             } else {
-                echo "add a bio? <i class='fa fa-edit' style='font-size:14px'></i></i>";
+                echo "<a href='#'>add a bio? <i class='fa fa-edit' style='font-size:14px'></i></i></a>";
             }
             ?>
 
@@ -281,7 +284,7 @@ foreach ($comms as $comment){
 <div class="collapse" id="collapseBlogger">
     <div class="container">
  
-<div class="container" style="border-style: solid;">
+<div class="container" style="border-style: solid; border-width: 1px; border-radius: 5px; padding:5px; border-color: #3F7CAC ">
     <p><br>Enter the blogger details below<br><br></p>
 <form action="?controller=mod&action=showAll&result=Success">
     <center>
@@ -343,16 +346,17 @@ foreach ($comms as $comment){
       <input type="text" style="text-align: center; max-width:25rem;" id="insta_url" class="form-control" placeholder="">
     </div>
     
-    <a href="?controller=mod&action=showAll&result=Success">Submit</a>
+    <a style="margin: 2px; background-color: #fafafa;" href="?controller=mod&action=showAll&result=Success">Submit</a>
     </center>
 </form> 
     <p><br><i style="font-size: 20px;" class="fas fa-exclamation-circle"></i><br><br>The Blogger will be sent an email automatically when the account is created.<br>Please inform them to use this link to reset their password and set up their security answer.</p>
 </div>
         
-        
+ <br>       
         
     </div>
 </div>
+
 
 
 <!-- Lock User -->
@@ -393,6 +397,49 @@ foreach ($comms as $comment){
     </div>
 </div>
 
+<!-- unlock User -->
+
+<p>
+  <a style="background-color: #fafafa; color:#FCA15F; border:none; border-radius: 0px; border-color: #fafafa" class="btn btn-primary" data-toggle="collapse" href="#collapseunLock" role="button" aria-expanded="false" aria-controls="collapseExample">
+    Unlock User Account <i class='fas fa-lock-open'></i>
+  </a>
+<div class="collapse" id="collapseunLock">
+    <div class="container">
+        <br>
+        
+        <form action="?controller=mod&action=showAll" method="POST" enctype="multipart/form-data">
+            <div class="form-group col-md-4" style="text-align:center;">
+                <label for="inputUser">Select User</label>
+                <select id="inputUser" class="form-control" name="unlockUser">
+                <?php
+                $position = 0;
+                
+                if (count($usersL) == 0) {
+                    echo "<option value=''>No members to unlock!</option>";
+                }
+                else {
+                foreach ($usersL as $userL) {
+                    
+                    $user_id = $userL['user_id'];
+                    $lockedUser = $userL['username'];
+                    echo "<option value=".$user_id.">".$userL['username']."</option>";
+                    $position++;
+                }
+                }
+                ?>
+      </select>
+                
+                <p></p>
+    </div>
+            
+    <button type="submit" class="btn btn-primary">Unlock Account</button>        
+        </form>
+        <br>
+        
+        
+    </div>
+</div>
+
 <!-- Remove User -->
 
 <p>
@@ -405,8 +452,8 @@ foreach ($comms as $comment){
     </div>
 </div>
 
-<br><br>        
-<a href="#">Back to Top</a>        
+      
+<a style="font-size:14px;" href="#">Back to Top</a>        
 </center>    
 </body>
 

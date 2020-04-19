@@ -1,6 +1,21 @@
 <?php
 
 class dashboard {
+    
+   
+    public function getCountLikes($user_id) {
+      $db = Screw_it::getInstance();
+      
+            $user_id = intval($user_id);
+      
+            $query = "SELECT count(*) FROM favourites WHERE user_id = :user_id;";
+            $stmt = $db->prepare($query);
+            $stmt->bindParam(':user_id',$user_id,PDO::PARAM_INT);
+            $stmt->execute();
+            $likes = $stmt->fetch();
+        
+            return  $likes['count(*)'];
+    }
 
     public function getDetails($user_id) {
         $db = Screw_it::getInstance();

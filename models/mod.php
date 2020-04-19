@@ -30,6 +30,22 @@ class Mod {
   
     }
     
+        public function getAllUsersLocked(){
+        $db = Screw_it::getInstance();      
+        $req = $db->prepare("SELECT * FROM users where user_type = 'member' and locked = 'Y';");
+        
+                if (!$req) {
+                    echo "error, pls handle";
+                }
+
+        $req->execute();
+        $mem_details = $req->fetchAll();
+        $details = $mem_details;
+
+        return $details;
+  
+    }
+    
 
     
     
@@ -251,5 +267,11 @@ class Mod {
         $stmt->execute(array('user_id' => $user_id));
     }
     
+    public function unlockUser($user_id){
+        $db = Screw_it::getInstance();
+        $sql = "UPDATE users SET Locked = 'N' WHERE user_id = :user_id;";
+        $stmt = $db->prepare($sql);
+        $stmt->execute(array('user_id' => $user_id));
+    }
     
 }
