@@ -180,7 +180,7 @@
                 <td>Blogger 1 <!--pull through blogger's name could go here--> <!--</td>
                 <td><?php //echo bloggers URL              ?></td>
                 <td>Unfavourite button </td>
-            </tr>
+            </tr>s
             <tr>
                 <td>Blogger 2</td>
                 <td><?php //echo bloggers URL             ?></td>
