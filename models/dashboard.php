@@ -64,8 +64,8 @@ class dashboard {
     }
 
     public function deleteUser($user_id) {
-        if (isset($_GET['user_ID'])) {
-            $id = $_GET['user_ID'];
+        if (isset($_GET['user_id'])) {
+            $id = $_GET['user_id'];
             $pdo->query("DELETE FROM Users WHERE user_id = :user_id;");
         }
         $deleteUser = $req->fetch();
@@ -83,8 +83,8 @@ class dashboard {
     
 
     public function deleteComment($user_id) {
-        if (isset($_GET['user_ID'])) {
-            $id = $_GET['user_ID'];
+        if (isset($_GET['user_id'])) {
+            $id = $_GET['user_id'];
             $pdo->query("DELETE FROM comments WHERE (user_id = :user_id;");
         }
         $deleteComment = $req->fetch();

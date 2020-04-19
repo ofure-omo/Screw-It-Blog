@@ -18,13 +18,6 @@ if ($_SESSION ['user_type'] != "Member"){
     <!--javascript function that triggers the hamburger menu when min-width is 480px-->
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('.toogle').click(function () {
-                    $('ul').toogleClass('active');
-                    })
-    })
-</script>
 
 
 <section class="main-section-dashboard">
@@ -229,7 +222,6 @@ echo "<img src='views/images/profileplaceholderimage.png' width='150' />";
                 echo "<td>".$comment['comment'];
                 echo "<td><a href='?controller=blog&action=read&blog_id=".$comment['blog_id']."'><i style='font-size: 16px;' class='fas fa-pen-square'></i></a>";
                 echo "<td><p>delete comment <i class='fas fa-trash-alt'></i> </p></td>";
-
                 echo "</tr>";
                 
                 $number++;
@@ -258,7 +250,7 @@ echo "<img src='views/images/profileplaceholderimage.png' width='150' />";
                 <th>Category</th>
                 <th>View Post</th>
                  <!--<th>Password</th>  not showing password??--> 
-                <th>Remove from favourites</th>
+                <th>Remove Like</th>
             </tr>
             
         </thead>
@@ -280,8 +272,8 @@ echo "<img src='views/images/profileplaceholderimage.png' width='150' />";
                 echo "<td>".$favourite['title'];
                 echo "<td>".$favourite['category'];
                 echo "<td><a href='?controller=blog&action=read&blog_id=".$favourite['blog_id']."'><i style='font-size: 16px;' class='fas fa-pen-square'></i></a>";
-                echo "<td><p>delete button <i class='fas fa-trash-alt'></i> </p></td>";
-
+                //echo "<td><p>delete button <i class='fas fa-trash-alt'></i> </p></td>";
+                echo "<td><a href='?controller=dashboard&action=unfavourite&blog_id=".$favourite['blog_id']."'><i class='fas fa-trash-alt'></i></a>";
                 echo "</tr>";
                 
                 $number++;
@@ -324,6 +316,12 @@ document.getElementById("defaultOpen").click();
         window.location.href = "?controller=home&action=home";
 }
 
+function unfavourite(id) {
+            var xmlhttp = new XMLHttpRequest();
+        xmlhttp.open("GET", "?controller=dashboard&action=dashboard&req=unfavourite&user_id&blog_id=" + id, true);
+        xmlhttp.send();
+        goToUpdate(id);
+    }
 </script>
 
    
