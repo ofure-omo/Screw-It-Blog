@@ -9,6 +9,15 @@ class dashboardcontroller {
             $comms = dashboard::getCountComments(($_SESSION['user_id']));
             $comms = dashboard::getComments(($_SESSION['user_id']));
             $favourites = dashboard::getFavourites(($_SESSION['user_id']));
+            
+            function deleteFave(){
+                dashboard::unfavourite(($_SESSION['user_id']),'blog_id');
+            }
+            
+            function deleteComment(){
+                dashboard::deleteComment(($_SESSION['user_id']),'blog_id');
+            }
+            
             $unfavourite = dashboard::unfavourite(($_SESSION['user_id']),'blog_id');
             require_once('views/pages/mem_dash.php');
             //echo $_SESSION["user_type"];
