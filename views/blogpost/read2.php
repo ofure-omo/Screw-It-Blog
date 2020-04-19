@@ -156,24 +156,37 @@
         </div>
         <!--        COMMENTS-->
 
-        <div style='margin-top: 40px;' class="comment-title"><h4> comments</h4> </div>
-    <?php if (isset($_SESSION['loggedin'])): ?>
+    <!--    checks if user is logged in if they're not displays a message that prompts them to sign up or log in-->
+    <?php if (isset($_SESSION['user_id'])): ?>
+        <div class='comment-container'>
+            <form method='POST' id='comment_form' accept-charset="utf-8" enctype="multipart/form-data">
+                <div class='form-group'> 
+                    <textarea class="form-control comment-form-control shadow-sm p-3 mb-5 bg-white rounded " style="resize:none;" name='comment_content' id="comment_content" rows="3" placeholder="Enter comment"></textarea>
+                   
+                </div>
+                <div class='form-group'>
+                     <input type='hidden' id="user_id" name="user_id" value="<?= $_SESSION['user_id'] ?>"/>
+                    <input type='hidden' id="blog_id" name="blog_id" value="<?= $_GET['blog_id'] ?>"/>
 
-        <form method='POST' action="" enctype="multipart/form-data">
-            <textarea style='width:700px; resize: none;' name='message' rows='4'></textarea><br>
-            <input style='width:100px; height: 40px; background-color:#fca15f; border:none; font-weight: 400; border-radius: 8px; cursor: pointer;' type='submit' value='Comment' name='submit'>
-        </form>
-      
-        
-        <?php endif; ?>
-        
-        <?php if (!isset($_SESSION['loggedin'])): ?>
+                    <input type='submit' name='submit' id='submit' class='btn btn-info' value='Submit'/>
+                </div>
+            </form>
+            <span id="comment_message"></span>
+            
+        </div>
+    <?php endif; ?>  
+    <?php if (!isset($_SESSION['loggedin'])): ?>
 
         <p style='text-align: center; color: #3F7CAC;'>Want to comment? Why not
             <a href='?controller=register&action=registerUser' style='text-decoration: none; 
                      text-transform:bold;'> sign up </a>and become a member or <a href='?controller=login&action=loginUser' 
-                  style='text-decoration: none; text-transform:bold;'> log in</a></p>";
+                  style='text-decoration: none; text-transform:bold;'> log in</a></p>
                   <?php endif; ?>
+    
+    <div id="display_comment"></div>
+
+
+    <?php endif; ?>
 
 
 
@@ -205,54 +218,53 @@
                             alert('Please login or register to like this post!');
                         }
 
-//                        $(document).ready(function () {
-//
-//
-//
-//                            $('#comment_form').on('submit', function (event) {
-//                                event.preventDefault();
-//                                var form_data = $(this).serialize();
-//                                $.ajax({
-//                                    url: "?controller=comments&action=add&blog_id=<?= $blog['blog_id']; ?>",
-//                                    method: 'POST',
-//                                    data: form_data,
-//                                    dataType: 'JSON',
-//                                    success: function (data) {
-//                                        if (data.error != '') {
-//                                            $('#comment_form')[0].reset();
-//                                            $('#comment_message').html(data.error);
-//                                        }
-//                                    }
-//                                });
-//                            });
-//
-//                            $('#comment_id').val('0');
-//                            load_comment();
-//
-//    //                            function load_comment() {
-//    //
-//    //                                $.ajax({
-//    //                                    url: "?controller=comments&action=post&blog_id=<?= $blog['blog_id']; ?>",
-//    //                                    method: 'POST',
-//    //                                    success: function (data) {
-//    //                                        $('#display_comment').html(data);
-//    //                                    }
-//    //                                });
-//    //                            }
-//    //
-//    //                            $(document).on('click', '.reply', function () {
-//    //                                var comment_id = $(this).attr("id");
-//    //                                $('#comment_id').val(comment_id);
-//    //                                $('#comment_content').focus();
-//    //                            });
-//
-//
-//                        });
+//            
+               $(document).ready(function(){
+                      
+                      //send comments to the database
+                    $('#comment_form').on('submit', function(event){
+                        event.preventDefault();
+                        
+                        var form_data = $(this).serialize();
+                        
+                        $.ajax({
+                            url: 'models/add_comment.php',
+                            method:"POST",
+                            data: form_data,
+                            dataType: "JSON",
+                            success:function(data)
+                            {
+                                if(data.error != '')
+                                {
+                                    $('#comment_form').get(0).reset();
+                                     $('#comment_message').html(data.error);
+                                     load_comment();
+                                }
+                            }
+                        })
+                    });
+                    
+                    load_comment();
+
+                    //load comment onto the webpage
+                    function load_comment()
+                    {
+                        $.ajax({
+                            url:'models/post_comment.php',
+                            method: 'POST',
+                            success:function(data)
+                            {
+                                $('#display_comment').html(data);
+                            }
+                        })
+                    }
+
+                        });
 
 
 
     </script>
-<?php endif; ?>
+
 <style>
 
     .user {

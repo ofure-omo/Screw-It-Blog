@@ -196,7 +196,7 @@
                      text-transform:bold;'> sign up </a>and become a member or <a href='?controller=login&action=loginUser' 
                   style='text-decoration: none; text-transform:bold;'> log in</a></p>
                   <?php endif; ?>
-    <?php if($blog['blog_id'] == $_GET['blog_id']) ?>
+
     <div id="display_comment"></div>
 
 
