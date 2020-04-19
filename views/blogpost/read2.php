@@ -1,5 +1,6 @@
  <?php if($blog['layout'] === '2' && $blog['published'] === 'published'): ?>
 <meta charset="UTF-8">
+<body>
     <div class='read-header'>
 
 
@@ -58,11 +59,11 @@
                 <a href="?controller=blog&action=likes&blog_id=<?= $blog['blog_id'] ?>" style="text-decoration: none;"> 
                     <i onclick="myFunction(this)" class="fa read-fa fa-heart-o like" name="like"></i>
                     
-                </a><span style="margin-left:2px; font-size:0.5em;"><?php echo $likes; ?></span>
+                </a><span class="likes" style="margin-left:2px; font-size:0.5em;"><?php echo $likes; ?></span>
                 <?php endif; ?>
                 <?php if(!isset($_SESSION['loggedin'])): ?>
                 <i onclick="myFunction2(this)" class="fa read-fa fa-heart-o like" name="like"></i>
-                 <span style="margin-left:2px; font-size:0.5em;"><?php echo $likes; ?></span>
+                 <span class="likes" style="margin-left:2px; font-size:0.5em;"><?php echo $likes; ?></span>
                 <?php endif; ?>
             </div>
 
@@ -127,22 +128,21 @@
         <div class='more-blogs'>
             <h4 class='more-blogs-header' style="margin-bottom:45px;">blogs you might like:</h4>
         </div>
-        <div class='container-fluid' style=''>
-        <div class="row">
+
             
             <div class="row row-cols-1 row-cols-md-3" style="">
             <?php foreach($list as $card):  ?>
 
                      <div class='col mb-4'>
-                        <div class='card h-100'>
+                        <div class='card h-100' id="more-onhover">
                            <a href='?controller=blog&action=read&blog_id=<?= $card['blog_id'] ?>'>
-                               <img style='padding-top: 5%;  height: 250px; width:600px; object-fit: cover;' class='card-img-top' src="<?= $card['third_image'] ?>" alt="<?= $card['title'] ?>">
+                               <img style='height: 220px; width:500px; object-fit: cover;' class='card-img-top' src="<?= $card['third_image'] ?>" alt="<?= $card['title'] ?>">
                            </a>
-                                <div class='card-body'>
+                                <div style="text-align:center;" class='card-body'>
                                    <h5 class='card-title'><?php echo $card['title']; ?></h5></div>
-                                   <div style="margin-bottom: 20px;"><a href="?controller=blog&action=read&blog_id=<?= $card['blog_id'] ?>">View blog</a></div>
+                                   <div style="margin-bottom: 20px; text-align:center;"><a href="?controller=blog&action=read&blog_id=<?= $card['blog_id'] ?>">View blog</a></div>
                                 
-                                <div class='card-footer'>
+                                <div style="text-align:center;" class='card-footer'>
                                     <p class='text-muted' style='font-size:0.75em;'>
                                       <?php   $d = strtotime($card['date_posted']);?>
                                   Posted on <?php echo date("jS F Y", $d);?> <br></p> 
@@ -150,10 +150,12 @@
                             </div>
                     </div>
                 
+                
                 <?php endforeach; ?>
     </div>
-    </div> 
-        </div>
+
+        
+
         <!--        COMMENTS-->
 
     <!--    checks if user is logged in if they're not displays a message that prompts them to sign up or log in-->
@@ -168,7 +170,7 @@
                      <input type='hidden' id="user_id" name="user_id" value="<?= $_SESSION['user_id'] ?>"/>
                     <input type='hidden' id="blog_id" name="blog_id" value="<?= $_GET['blog_id'] ?>"/>
 
-                    <input type='submit' name='submit' id='submit' class='btn btn-info' value='Submit'/>
+                    <input style="float: right;" type='submit' name='submit' id='submit' class='btn btn-info' value='Submit'/>
                 </div>
             </form>
             <span id="comment_message"></span>
@@ -176,19 +178,24 @@
         </div>
     <?php endif; ?>  
     <?php if (!isset($_SESSION['loggedin'])): ?>
-
-        <p style='text-align: center; color: #3F7CAC;'>Want to comment? Why not
+   
+    <div style="margin-top:30px;" class="sign-up">
+        <p style='text-align: center; color: #3F7CAC; font-size:1.2em;'>Want to comment? Why not
             <a href='?controller=register&action=registerUser' style='text-decoration: none; 
                      text-transform:bold;'> sign up </a>and become a member or <a href='?controller=login&action=loginUser' 
                   style='text-decoration: none; text-transform:bold;'> log in</a></p>
+    </div>
+    
                   <?php endif; ?>
+    
+    <center> <h5 style="margin-top:30px;"><?php // echo $comment_count; ?> COMMENTS</h5></center>
     
     <div id="display_comment"></div>
 
 
     <?php endif; ?>
 
-
+</body>
 
     <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
@@ -281,14 +288,6 @@
         color: black;
     }
 
-    .replies .comment {
-        margin-top: 20px;
-    }
-
-    .replies {
-        margin-left: 20px;
-    }
-
     .read-blog-container{
         margin: auto;
         width: 65%;
@@ -297,7 +296,7 @@
 
     .comment-container{
         margin: auto;
-        width: 55%;
+        width: 70%;
         margin-top: 30px;
         margin-bottom: 50px;
     }
@@ -317,7 +316,7 @@
         border-radius: 55%;
         margin-right: 20px;
         margin: auto;
-
+        object-fit: cover;
     }
 
     #read-title {
@@ -346,10 +345,10 @@
 
     }
 
-    .body {
+   .body {
         margin-top: 10px;
-        line-height: 2.5em;
-        font-size: 0.95em;
+        line-height: 2.3em;
+        font-size: 1.2em;
     }
 
     #body1 {
@@ -364,12 +363,14 @@
         text-transform: uppercase;
     }
 
-    .tag-btn {
+   .tag-btn {
         text-align: center;
         background: #ebebeb;
-        border-radius: 5px;
+        border-radius: 3px;
         margin: 5px;
         margin-top: 30px;
+        transition: 0.2s;
+
 
         border-style: none;
 
@@ -380,10 +381,13 @@
         background-color: #fca15f;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.12), 0 6px 20px 0 rgba(0, 0, 0, 0.05);
     }
+    
+    #more-onhover:hover {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.12), 0 6px 20px 0 rgba(0, 0, 0, 0.05);
+    }
 
 
     .tags{
-        text-align: center;
         display: inline;
     }
 
@@ -472,7 +476,7 @@
 
         }
         i.fa {
-            font-size: 10px;
+            font-size: 13px;
         }
 
         .read-blog-container{
@@ -487,7 +491,25 @@
             width: 82%;
             margin-top: 50px;
         }
+        
+           #tags-btn{
+            font-size: 0.2em;
+            margin-top:10px;
+        }
+        
+        .comment-container{
 
+        width: 100%;
+
+    }
+    
+    .sign-up{
+        font-size: 1.2em;
+    }
+.likes{
+        font-size:0.3em;
+    }
+    
     }
 
 

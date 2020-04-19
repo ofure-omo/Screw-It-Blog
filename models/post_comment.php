@@ -34,7 +34,7 @@ $output = '';
 foreach ($result as $row) {
 
     $output .= '
-              <div id="comm-cont"class="comment" style="margin-top: 50px; color:black;">
+              <div id="comm-cont" class="comment" style="margin-top: 50px; color:black;">
              <b> <div class="panel-heading username" style="font-size: 1.1em;"><span class="user-comment"> By ' . $row["username"] . ' </span></b><br> <i style="font-size:0.8em;"> on ' . $row["comment_date"] . '</i> </div>
                   <div class="comment" style="margin-bottom:10px;" > ' . $row["comment"] . '</div>           
              </div>
@@ -71,7 +71,7 @@ echo $output;
 
     .comm-cont {
         margin: auto;
-        widht:50%;
+        width:40%;
     }
 
     @media only screen and (max-width: 400px) {

@@ -142,13 +142,13 @@ class Blog {
             $filteredPublished = filter_input(INPUT_POST, 'published', FILTER_SANITIZE_SPECIAL_CHARS);
         }
 
-        if (empty($_POST['published']))
-            $pattern = '/;&#[0-9][0-9];/';
-        $replacement = "<br/>";
-
-
-        $filteredBody = preg_replace($pattern, $replacement, $filteredBody);
-        $filteredBody2 = preg_replace($pattern, $replacement, $filteredBody2);
+//        if (empty($_POST['published']))
+//            $pattern = '/;&#[0-9][0-9];/';
+//           $replacement = "<br/>";
+//
+//
+//        $filteredBody = preg_replace($pattern, $replacement, $filteredBody);
+//        $filteredBody2 = preg_replace($pattern, $replacement, $filteredBody2);
 
         if (!empty($_POST['file[]'])) {
             $filteredImage = filter_input(INPUT_POST, 'myfile[]', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -471,41 +471,39 @@ if($filteredLayout == '1') {
 
     // COMMENTS SECTION
 
-    public function setComment($user_id, $blog_id) {
+//    public function setComment($user_id, $blog_id) {
+//        $db = Screw_it::getInstance();
+//
+//        $blog_id = intval($blog_id);
+//        $user_id = intval($user_id);
+//
+//        if (isset($_POST['comment']) && $_POST['comment'] != "") {
+//            $filteredComment = filter_input(INPUT_POST, 'comment', FILTER_SANITIZE_SPECIAL_CHARS);
+//        }
+//        $comment = $filteredComment;
+//
+//        $sql = "insert into comments (comment, parent_comment_id, blog_id, user_id)
+//                VALUES ( :comment, '0', :blog_id, :user_id);";
+//
+//        $stmt = $db->prepare($sql);
+//        $stmt->execute(array('user_id' => $user_id,
+//            'blog_id' => $blog_id,
+//            'comment' => $comment));
+//    }
+
+    public static function getCommentCount($blog_id) {
+
         $db = Screw_it::getInstance();
 
         $blog_id = intval($blog_id);
-        $user_id = intval($user_id);
-
-        if (isset($_POST['comment']) && $_POST['comment'] != "") {
-            $filteredComment = filter_input(INPUT_POST, 'comment', FILTER_SANITIZE_SPECIAL_CHARS);
-        }
-        $comment = $filteredComment;
-
-        $sql = "insert into comments (comment, parent_comment_id, blog_id, user_id)
-                VALUES ( :comment, '0', :blog_id, :user_id);";
-
-        $stmt = $db->prepare($sql);
-        $stmt->execute(array('user_id' => $user_id,
-            'blog_id' => $blog_id,
-            'comment' => $comment));
-    }
-
-    public static function getComment($blog_id) {
-
-        $db = Screw_it::getInstance();
-
-        $req = $db->prepare("SELECT * FROM comments 
-                                INNER JOIN Users ON comments.user_id = users.user_id
-                                WHERE blog_id = '" . $blog_id . "'");
+        
+       $query = "SELECT count(*) FROM comments WHERE blog_id = '" . $blog_id . "'";
+        $req = $db->prepare($query);
         $req->execute();
-        $data = $req->fetchAll(PDO::FETCH_ASSOC);
-        $comments = $data;
-        foreach ($comments as $row) {
-            echo $row['comment_date'];
-        }
+        $comment_count = $req->fetch();
 
-        return $comments;
+        return $comment_count['count(*)'];
+ 
     }
 
 }
