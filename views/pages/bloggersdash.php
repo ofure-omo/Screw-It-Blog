@@ -1,30 +1,6 @@
-<?php declare(strict_types=1) ?>
-
-</head>
 
 
 <body>
-    
-<?php 
-
-if ($_SESSION ['user_type'] != "Blogger"){
-    return call('pages', 'error');
-}
-
-?>
-    <div class="page-header">
-
-    </div>
-    <!--javascript function that triggers the hamburger menu when min-width is 480px-->
-    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('.toogle').click(function () {
-                    $('ul').toogleClass('active');
-                    })
-    })
-</script>
 
 
 <section class="main-section-dashboard">

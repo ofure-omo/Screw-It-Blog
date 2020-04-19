@@ -46,7 +46,7 @@ class BloggerController {
             
            if($_SERVER['REQUEST_METHOD'] == 'POST'){ $id = $blogger[0];
            Blogger::updateProfile($id);
- require_once('views/pages/bloggersdash.php');
+
 }}}
    
 

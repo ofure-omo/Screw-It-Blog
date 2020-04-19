@@ -22,4 +22,8 @@ class PagesController {
       require_once('views/pages/FAQs.php');
     }
     
+    public function Contact() {
+      require_once('views/pages/Contact.php');
+    }
+    
 }
