@@ -35,7 +35,7 @@
         
                     echo "<div class='col mb-4'>";
                     echo    "<div class='card h-100' style=''>";
-                    echo        "<a href='?controller=blog&action=read&blog_id=".${"blog$i"}->blog_id."class='btn btn-primary'><img style=' height: 250px; object-fit: cover;' class='card-img-top' src=".${"blog$i"}->main_image." alt=".${"blog$i"}->title.">";
+                    echo        "<a href='?controller=blog&action=read&blog_id=".${"blog$i"}->blog_id."><img style=' height: 250px; object-fit: cover;' class='card-img-top' src=".${"blog$i"}->main_image." alt=".${"blog$i"}->title.">";
                     echo        "</a>";
                     echo            "<div class='card-body'>";
                     echo                "<h5 class='card-title'>".${"blog$i"}->titleShort."</h5>";

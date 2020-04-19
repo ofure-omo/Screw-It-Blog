@@ -1,4 +1,3 @@
-<?php include_once $_SERVER ['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'Screw-it' . DIRECTORY_SEPARATOR . 'controllers/comments_controller.php'; ?>
 <meta charset="UTF-8">
 <body>
     <!--          HEADER       -->
@@ -24,10 +23,10 @@
                 $d = strtotime($blog['date_posted']);
                 echo date('jS F Y', $d);
                 ?></p>  
-            
+
             <!--links to a different category oage depending on the blogs category -->
             <?php
-            $categories = $blog['category']; 
+            $categories = $blog['category'];
             if ($categories == 'RENOVATE') {
                 $category = "<p class='category'><a href='?controller=categories&action=searchCategory&category=renovate' style='text-decoration: none;'> $categories</p></a> ";
                 echo $category;
@@ -58,17 +57,17 @@
                 <a href="<?php echo 'http://.' . $blog['facebook_url']; ?>"><i class="fa read-fa fa-facebook" aria-hidden="true"></i></a>
                 <a href="<?php echo 'http://' . $blog['insta_url']; ?>"><i class="fa read-fa fa-instagram" aria-hidden="true"></i></a>
                 <a href="<?php echo 'http://' . $blog['twitter_url']; ?>"><i class="fa read-fa fa-twitter" aria-hidden="true"></i></a>
-                
-<!--                 can only like if you are logged in  -->
-                    <?php if(isset($_SESSION['loggedin'])): ?>
-                <a href="?controller=blog&action=likes&blog_id=<?= $blog['blog_id'] ?>" style="text-decoration: none;"> 
-                    <i onclick="myFunction(this)" class="fa fa-heart-o read-fa like" name="like"></i>
-                    
-                </a><span style="margin-left:2px; font-size:0.5em;"><?php echo $likes; ?></span>
+
+                <!--                 can only like if you are logged in  -->
+                <?php if (isset($_SESSION['loggedin'])): ?>
+                    <a href="?controller=blog&action=likes&blog_id=<?= $blog['blog_id'] ?>" style="text-decoration: none;"> 
+                        <i onclick="myFunction(this)" class="fa fa-heart-o read-fa like" name="like"></i>
+
+                    </a><span style="margin-left:2px; font-size:0.5em;"><?php echo $likes; ?></span>
                 <?php endif; ?>
-                <?php if(!isset($_SESSION['loggedin'])): ?>
-                <i onclick="myFunction2(this)" class="fa fa-heart-o read-fa like" name="like"></i>
-                 <span style="margin-left:2px; font-size:0.5em;"><?php echo $likes; ?></span>
+                <?php if (!isset($_SESSION['loggedin'])): ?>
+                    <i onclick="myFunction2(this)" class="fa fa-heart-o read-fa like" name="like"></i>
+                    <span style="margin-left:2px; font-size:0.5em;"><?php echo $likes; ?></span>
                 <?php endif; ?>
             </div>
 
@@ -79,7 +78,8 @@
         <div class='read-blog-container'>
             <div id='body-container'> 
                 <p class='body' id='body1'> 
-                    <?php $body = (nl2br($blog['body']));
+                    <?php
+                    $body = (nl2br($blog['body']));
                     echo $body; //echo nl2br($body);  
                     ?> 
                 </p>
@@ -97,106 +97,113 @@
                 </div>
                 <div id='second_image ' class='column'> 
 
-    <?php
-    $blogimg = $blog['second_image'];
-    $img = "<img class='d-block w-100' src='" . $blogimg . "'alt='First slide' style='width:100%' alt='blog image1'/>";
-    echo $img;
-    ?>
+                    <?php
+                    $blogimg = $blog['second_image'];
+                    $img = "<img class='d-block w-100' src='" . $blogimg . "'alt='First slide' style='width:100%' alt='blog image1'/>";
+                    echo $img;
+                    ?>
 
                 </div>
             </div>
             <div id='body-container'> 
-                <p class='body'> <?php $body2 = (nl2br($blog['body2'])); 
-                echo $body2;?> </p>
+                <p class='body'> <?php
+                    $body2 = (nl2br($blog['body2']));
+                    echo $body2;
+                    ?> </p>
                 <div class='container-fluid' style=''>
-        <div class="row">
-           
+                    <div class="row">
 
-    <?php
-    $blogimg = $blog['third_image'];
-    $img = "<img class='d-block w-100' src=$blogimg alt='First slide' style='width:100%' alt='blog image1'/>";
-    echo $img;
-    ?>
-            </div>
-<!--                   DISPLAY TAGS-->
-            <?php foreach ($tag as $newtag): ?>
-                
-               <div class="tags"> 
-                    <button class='tag-btn'><p class='tag'> <?php echo $newtag ?></p></button> 
 
-    <?php endforeach; ?>
+                        <?php
+                        $blogimg = $blog['third_image'];
+                        $img = "<img class='d-block w-100' src=$blogimg alt='First slide' style='width:100%' alt='blog image1'/>";
+                        echo $img;
+                        ?>
+                    </div>
+                    <!--                   DISPLAY TAGS-->
+                    <?php foreach ($tag as $newtag): ?>
 
-     </div>
+                        <div class="tags"> 
+                            <button class='tag-btn'><p class='tag'> <?php echo $newtag ?></p></button> 
+
+                        <?php endforeach; ?>
+
+                    </div>
                 </div>
 
-        <!--        MORE BLOGS: pulls 3 random blogs from the database-->
-        
-        <div class='more-blogs'>
-            <h4 class='more-blogs-header' style="margin-bottom:45px;">blogs you might like:</h4>
-        </div>
-        <div class='container-fluid'>
-        <div class="row">
-            
-            <div class="row row-cols-1 row-cols-md-3" style="">
-            <?php foreach($list as $card):  ?>
+                <!--        MORE BLOGS: pulls 3 random blogs from the database-->
 
-                     <div class='col mb-4'>
-                        <div class='card h-100'>
-                           <a href='?controller=blog&action=read&blog_id=<?= $card['blog_id'] ?>'>
-                               <img style='padding-top: 5%;  height: 250px; width:600px; object-fit: cover;' class='card-img-top' src="<?= $card['third_image'] ?>" alt="<?= $card['title'] ?>">
-                           </a>
-                                <div class='card-body'>
-                                   <h5 class='card-title'><?php echo $card['title']; ?></h5></div>
-                                   <div style="margin-bottom: 20px;"><a href="?controller=blog&action=read&blog_id=<?= $card['blog_id'] ?>">View blog</a></div>
-                                
-                                <div class='card-footer'>
-                                    <p class='text-muted' style='font-size:0.75em;'>
-                                      <?php   $d = strtotime($card['date_posted']);?>
-                                  Posted on <?php echo date("jS F Y", $d);?> <br></p> 
-                               </div>
-                            </div>
-                    </div>
-                
-                <?php endforeach; ?>
-    </div>
-    </div> 
-        </div>
-       
-            </div>
-     
-    </body>
-    
-     <!--        COMMENTS AND REPLIES-->
-      <div style='margin-top: 40px; text-align: center; text-transform: uppercase;' class="comment-title"><h4> comments</h4> </div>
+                <div class='more-blogs'>
+                    <h4 class='more-blogs-header' style="margin-bottom:45px;">blogs you might like:</h4>
+                </div>
+                <div class='container-fluid'>
+                    <div class="row">
 
-         <div class="comment-container" style="width: 750px;">
-        <div class="comment-row">
-            <div class="col-md-12">
-                <label for="exampleFormControlTextarea1">Comment</label>
-                <textarea style=" resize:none;" class="form-control comment-form-control" name="comment" id="mainComment" rows="3" placeholder="write your comment here" ></textarea><br>
-                <button style="float:right;"class="btn-primary btn"  id='addComment'>Comment </button><br>
-            </div>
-        </div>
-        <div class="comment-row">
-            <div class="col-md-12">
-                <h4><b>355 comments</b></h4>
-                <div class="user_comments">
-                    <div class='comment'>
-                        <div class='user'>Tese O <span class='time'>04/05/2020</span></div>
-                        <div class='user_comment'>my comment</div>
-                        <div class='replies'>
-                            <div class='comment'>
-                                <div class='user'>Tese O <span class='time'>04/05/2020</span></div>
-                                <div class='user_comment'>my comment</div>
-                            </div>
+                        <div class="row row-cols-1 row-cols-md-3" style="">
+                            <?php foreach ($list as $card): ?>
+
+                                <div class='col mb-4'>
+                                    <div class='card h-100'>
+                                        <a href='?controller=blog&action=read&blog_id=<?= $card['blog_id'] ?>'>
+                                            <img style='padding-top: 5%;  height: 250px; width:600px; object-fit: cover;' class='card-img-top' src="<?= $card['third_image'] ?>" alt="<?= $card['title'] ?>">
+                                        </a>
+                                        <div class='card-body'>
+                                            <h5 class='card-title'><?php echo $card['title']; ?></h5></div>
+                                        <div style="margin-bottom: 20px;"><a href="?controller=blog&action=read&blog_id=<?= $card['blog_id'] ?>">View blog</a></div>
+
+                                        <div class='card-footer'>
+                                            <p class='text-muted' style='font-size:0.75em;'>
+                                                <?php $d = strtotime($card['date_posted']); ?>
+                                                Posted on <?php echo date("jS F Y", $d); ?> <br></p> 
+                                        </div>
+                                    </div>
+                                </div>
+
+                            <?php endforeach; ?>
                         </div>
-                    </div>
-                </div>        
+                    </div> 
+                </div>
+
             </div>
+
+    </body>
+
+    <!--        COMMENTS AND REPLIES-->
+
+    <!--    checks if user is logged in if they're not displays a message that prompts them to sign up or log in-->
+    <?php if (isset($_SESSION['user_id'])): ?>
+        <div class='comment-container'>
+            <form method='POST' id='comment_form' accept-charset="utf-8" enctype="multipart/form-data">
+                <div class='form-group'> 
+                    <textarea class="form-control comment-form-control shadow-sm p-3 mb-5 bg-white rounded " style="resize:none;" name='comment_content' id="comment_content" rows="3" placeholder="Enter comment"></textarea>
+                   
+                </div>
+                <div class='form-group'>
+                     <input type='hidden' id="user_id" name="user_id" value="<?= $_SESSION['user_id'] ?>"/>
+                    <input type='hidden' id="blog_id" name="blog_id" value="<?= $_GET['blog_id'] ?>"/>
+
+                    <input type='submit' name='submit' id='submit' class='btn btn-info' value='Submit'/>
+                </div>
+            </form>
+            <span id="comment_message"></span>
+            
         </div>
-    </div>
+    <?php endif; ?>  
+    <?php if (!isset($_SESSION['loggedin'])): ?>
+
+        <p style='text-align: center; color: #3F7CAC;'>Want to comment? Why not
+            <a href='?controller=register&action=registerUser' style='text-decoration: none; 
+                     text-transform:bold;'> sign up </a>and become a member or <a href='?controller=login&action=loginUser' 
+                  style='text-decoration: none; text-transform:bold;'> log in</a></p>
+                  <?php endif; ?>
+
+    <div id="display_comment"></div>
 
 
+    <?php endif; ?>
+    
+    
+    
     <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
@@ -204,44 +211,65 @@
         src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
     crossorigin="anonymous"></script>
-
     <script scr='text/javascript'>
 
-                        function myFunction(x) {
-                            x.classList.toggle("fa-heart");
-                            alert('You\'ve liked this blogpost!');
-                        }
-                        
-                        function myFunction2(x) {
-                           
-                            alert('Please login or register to like this post!');
-                        }
-                        
-                        
-$(document).ready(function () {
+                    function myFunction(x) {
+                        x.classList.toggle("fa-heart");
+                        alert('You\'ve liked this blogpost!');
+                    }
 
-$("#addComment").on('click', function () {
-    var comment = $("#mainComment").val();
+                    function myFunction2(x) {
+
+                        alert('Please login or register to like this post!');
+                    }
+                    
+               $(document).ready(function(){
+                      
+                      //send comments to the database
+                    $('#comment_form').on('submit', function(event){
+                        event.preventDefault();
+                        
+                        var form_data = $(this).serialize();
+                        
+                        $.ajax({
+                            url: 'models/add_comment.php',
+                            method:"POST",
+                            data: form_data,
+                            dataType: "JSON",
+                            success:function(data)
+                            {
+                                if(data.error != '')
+                                {
+                                    $('#comment_form').get(0).reset();
+                                     $('#comment_message').html(data.error);
+                                     load_comment();
+                                }
+                            }
+                        })
+                    });
+                    
+                    load_comment();
+
+                    //load comment onto the webpage
+                    function load_comment()
+                    {
+                        $.ajax({
+                            url:'models/post_comment.php',
+                            method: 'POST',
+                            success:function(data)
+                            {
+                                $('#display_comment').html(data);
+                            }
+                        })
+                    }
     
-    if(comment !== "") {
-        $.ajax({
-            url: 'controllers/comments_controller.php',
-            method: 'POST',
-            datatype: 'JSON',
-            data: {
-                addComment: comment
-            }, success: function(response) {
-                console.log(response);
-            }
-        });
-    } else 
-              alert('Please check your comment!');
-});
+    });
+                    
+                    
+ </script>                   
 
-});
+         
 
-    </script>
-<?php endif; ?>
 <style>
 
     .user {
@@ -359,7 +387,7 @@ $("#addComment").on('click', function () {
 
 
     .tags{
-        text-align: center;
+      
         display: inline;
     }
 
@@ -394,7 +422,7 @@ $("#addComment").on('click', function () {
     .third_image {   
         margin-bottom: 20px;
     }
-    
+
     .more-blogs-header {
         text-align: center;
         text-transform: uppercase;

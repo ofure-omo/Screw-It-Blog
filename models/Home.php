@@ -18,7 +18,7 @@ class BlogHP {
     public $viewHTML;
 
     public function getTitle() {
-        $sql = "SELECT * FROM blog_posts;";
+        $sql = "SELECT * FROM blog_posts where published = 'published';";
         $stmt = Screw_it::getInstance()->query($sql);
         while ($row = $stmt->fetch()) {
             echo $row['title'] . "<br>";
@@ -27,7 +27,7 @@ class BlogHP {
 
     //method? only need prepared statments if we get user input
     public function getLatestBlogTitle() {
-        $sql = "select * from blog_posts order by date_posted desc;";
+        $sql = "select * from blog_posts where published = 'published' order by date_posted desc;";
         $stmt = Screw_it::getInstance()->query($sql);
         while ($row = $stmt->fetch()) {
             return $row['title'] . "<br>";
@@ -35,7 +35,7 @@ class BlogHP {
     }
 
     public function getLatestBlogImage() {
-        $sql = "select * from blog_posts order by date_posted desc;";
+        $sql = "select * from blog_posts where published = 'published' order by date_posted desc;";
         $stmt = Screw_it::getInstance()->query($sql);
         while ($row = $stmt->fetch()) {
             //$rows[] = $row;
@@ -44,14 +44,14 @@ class BlogHP {
     }
 
     public function getLatestBlogText() {
-        $sql = "select * from blog_posts order by date_posted desc;";
+        $sql = "select * from blog_posts where published = 'published' order by date_posted desc;";
         $stmt = Screw_it::getInstance()->query($sql);
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             return $row['body'];
         }
     }
   public function getBlogId() { //new mothod to get blog_id 
-        $sql = "select * from blog_posts order by date_posted desc;";
+        $sql = "select * from blog_posts where published = 'published' order by date_posted desc;";
         $stmt = Screw_it::getInstance()->query($sql);
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             return $row['blog_id'];
@@ -60,7 +60,7 @@ class BlogHP {
 
     // New code ----- 
     public function getAllTitles(){
-        $sql = "select title from blog_posts order by date_posted desc";
+        $sql = "select title from blog_posts where published = 'published' order by date_posted desc";
         $stmt = Screw_it::getInstance()->query($sql);
         $result = $stmt->fetchAll();
 
@@ -72,7 +72,7 @@ class BlogHP {
     }
     
     public function getAllBody(){
-        $sql = "select body from blog_posts order by date_posted desc";
+        $sql = "select body from blog_posts where published = 'published'order by date_posted desc";
         $stmt = Screw_it::getInstance()->query($sql);
         $result = $stmt->fetchAll();
 
@@ -84,7 +84,7 @@ class BlogHP {
     }
     
     public function getAllImage(){
-        $sql = "select third_image from blog_posts order by date_posted desc";
+        $sql = "select third_image from blog_posts where published = 'published' order by date_posted desc";
         $stmt = Screw_it::getInstance()->query($sql);
         $result = $stmt->fetchAll();
 
@@ -98,7 +98,7 @@ class BlogHP {
 
     
     public function getAllBlogID(){
-        $sql = "select blog_id from blog_posts order by date_posted desc";
+        $sql = "select blog_id from blog_posts where published = 'published' order by date_posted desc";
         $stmt = Screw_it::getInstance()->query($sql);
         $result = $stmt->fetchAll();
 
@@ -110,7 +110,7 @@ class BlogHP {
     }
     
     public function getAllDatePosted(){
-        $sql = "select date_posted from blog_posts order by date_posted desc";
+        $sql = "select date_posted from blog_posts where published = 'published' order by date_posted desc";
         $stmt = Screw_it::getInstance()->query($sql);
         $result = $stmt->fetchAll();
 
@@ -126,7 +126,7 @@ class BlogHP {
     // counts
     
         public function countBlogs(){
-        $sql = "select count(blog_id) from blog_posts";
+        $sql = "select count(blog_id) from blog_posts where published = 'published'";
         $stmt = Screw_it::getInstance()->query($sql);
         $result = $stmt->fetch();
 

@@ -1,45 +1,26 @@
 
-<?php
+<?php  include_once $_SERVER ['DOCUMENT_ROOT'] .DIRECTORY_SEPARATOR . 'Screw-it' . DIRECTORY_SEPARATOR.'connection.php';
 
-class Comments {
-    
-    public static function setComment($blog_id){
-        echo $_SESSION['user_id'];
-        $db = Screw_it::getInstance();
-        $blog_id = intval($blog_id);
+
+
         
-           if (isset($_POST['addComment'])) {
-            $comment = filter_input(INPUT_POST, 'comment', FILTER_SANITIZE_SPECIAL_CHARS);
-        }
-
-          $req = $db->prepare("INSERT INTO comments(comment, blog_id, user_id)
-                    VALUES ('$comment, '.$blog_id.', '".$_SESSION['user_id']."')");
-          
-
-          $req->execute();
-          
-          return $req;
-          exit('success');
-  
-        }
-        
-        public static function getComment($blog_id){
+//        public static function getComment($blog_id){
             
-            $db = Screw_it::getInstance();
-            
-            $req = $db->prepare("SELECT * FROM comments WHERE blog_id = '".$blog_id."'");
-            $req->execute();
-            $row = $req->fetch(FETCH::ASSOC);
-            echo $row['comment'];
-        }
-    }
+//            $db = Screw_it::getInstance();
+//            
+//            $req = $db->prepare("SELECT * FROM comments WHERE blog_id = '".$blog_id."'");
+//            $req->execute();
+//            $row = $req->fetch(FETCH::ASSOC);
+//            echo $row['comment'];
+//        }
+//    }
 
 //    public function addComment($blog_id) {
 //       
 //        $db = Screw_it::getInstance();
 //
-////        $error = '';
-////        $comment_content = '';
+//       $error = '';
+//        $comment_content = '';
 //        // $blog_id= '';
 //
 //        if (empty($_POST['comment_content'])) {

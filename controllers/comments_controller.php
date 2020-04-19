@@ -1,34 +1,11 @@
 <?php
-include_once $_SERVER ['DOCUMENT_ROOT'] .DIRECTORY_SEPARATOR . 'Screw-it' . DIRECTORY_SEPARATOR.'models/comments.php';
+ include_once $_SERVER ['DOCUMENT_ROOT'] .DIRECTORY_SEPARATOR . 'Screw-it' . DIRECTORY_SEPARATOR.'connection.php';
 
 class CommentsController {
     
-    public function add(){
-        
-        if($_SERVER['REQUEST_METHOD'] == 'GET') {
-
-            $blog_id = $_GET['blog_id'];
-              if (isset($_POST['addComment'])) {
-            $comment = filter_input(INPUT_POST, 'comment', FILTER_SANITIZE_SPECIAL_CHARS);
-        }
-
-          $req = $db->prepare("INSERT INTO comments(comment, blog_id, user_id)
-                    VALUES ('$comment, '.$blog_id.', '".$_SESSION['user_id']."')");
-          
-          $req->execute();
-         
-          exit('success');
-
-
+ 
     }
-    }
-    
-    public function get(){
-        
-        Comments::getComment($blog_id);
-    }
-    }
-        
+
 //    
 //   public function add() {
 //         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
@@ -55,6 +32,15 @@ class CommentsController {
 //               
 //         }
 
+    if(isset($_POST['comment_sent'])){
+        
+        $user_id = $_POST['user_id'];
+        $blog_id = $_POST['blog_id'];
+        
+        $mainComment = $_POST['mainComment'];
+        
+        $req = Comments::setComments($blog_id, $user_id,$mainComment);
+    }
   
 
 
