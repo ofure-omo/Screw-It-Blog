@@ -150,7 +150,7 @@
 <span>
 
     <div class=' form-container'>
-        <form action="" method="POST" class="w3-container" enctype="multipart/form-data">
+        <form action="" method="POST" name="myForm" class="w3-container" enctype="multipart/form-data">
             <h4 style="margin-top:60px" class="title">STEP 1: CHOOSE A NEW LAYOUT?</h4>
             <?php if ($blog['layout'] === '1'): ?>
                 <div class="layout">
@@ -231,8 +231,10 @@
 
                 <p><b> TAGS </b></p>
                 <p>Tags previously used:</p>
-                <p><?php foreach ($tag as $newtag)
-                        echo $newtag . "\n " . "\n "; ?></p><br>
+                <p><?php
+                    foreach ($tag as $newtag)
+                        echo $newtag . "\n " . "\n ";
+                    ?></p><br>
                 <div class='checkbox-container'>
 
                     <div class="form-group form-check-inline" required>
@@ -292,7 +294,7 @@
 
 
                     <div class="form-group form-check-inline">
-                        <input type="radio" class="form-check-input" id="exampleCheck1" name ="published" value="published">
+                        <input type="radio" class="form-check-input" id="exampleCheck1" name ="published" value="published" checked>
                         <label class="form-check-label" for="exampleCheck1">Publish blog</label>
                     </div>
 
@@ -300,7 +302,7 @@
                         <input type="radio" class="form-check-input" id="exampleCheck1" name ="published" value="draft">
                         <label class="form-check-label" for="exampleCheck1">Save to drafts</label>
                     </div>
-
+                    <p id="state">
                     <div class="pure-form pure-form-aligned container-btn">
                         <input type="submit" value="UPDATE" name= "submit" class="button" >
                     </div>  
@@ -330,6 +332,20 @@ crossorigin="anonymous"></script>
                         function show1() {
                             document.getElementById('body2').style.display = 'none';
                         }
+
+//                       
+//                             var state = document.getElementsByName('published');
+//                        var ischecked_method = false;
+//                        for (var i = 0; i < state.length; i++) {
+//                            if (state[i].checked) {
+//                                ischecked_method = true;
+//                                break;
+//                            }
+//                        };
+//                        if (!ischecked_method) { //payment method button is not checked
+//                            alert("Please choose Offline Payment Method");
+//                        }
+                        
 </script>
 
 

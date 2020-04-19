@@ -1,5 +1,5 @@
 <?php
-
+include_once $_SERVER ['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'Screw-it' . DIRECTORY_SEPARATOR . 'models/post_comment.php';
 class BlogController {
 
     public function readAll() {
@@ -20,9 +20,10 @@ class BlogController {
             // we use the given id to get the correct post
             $blog = Blog::find($_GET['blog_id']);
             $likes = Blog::getlikes($_GET['blog_id']);
+            //$comments = Blog::getComment($_GET['blog_id']);
             $tag = Blog::findTagForBlog($_GET['blog_id']);
             $list = Blog::moreBlogs();
-            
+            //get comments
             if($blog['layout'] === '1'){
             require_once('views/blogpost/read.php');}
             else {
@@ -34,15 +35,24 @@ class BlogController {
         
     }
     
-//    public function comment (){
-//        function addComment($userID,$blog_id){
-//            Blog::setComment($userID,$blog_id);
+//    public function comment(){
+//        
+//        if (isset($_GET['blog_id'])) {
+//            
+//            $blog_id = $_GET['blog_id'];
+//            Blog::setComment($blog_id);
+//             
+//            if($blog['layout'] === '1'){
+//            require_once('views/blogpost/read.php');}
+//            else {
+//            require_once('views/blogpost/read2.php');}
+//            
 //        }
 //        
 //        function retriveComment($blog_id){
 //            $comments = Blog::getComment($blog_id);
 //        }
-//        
+        
 //        if (isset($_GET['req'])){
 //            $userID = $_SESSION['user_id'];
 //            $blog_id = $_GET['blog_id'];
@@ -56,7 +66,8 @@ class BlogController {
 //            else {
 //            require_once('views/blogpost/read2.php');}
 //        } 
-//    }
+//        }
+    
 
     public function create() {
 
