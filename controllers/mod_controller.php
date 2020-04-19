@@ -32,6 +32,10 @@ public function showAll(){
         $repliesCount = Mod::repliesCount();
         $repliesCountLW = Mod::repliesCountLW();
         //print_r($bloggerCount);
+        
+        //All users
+        $users = Mod::getAllusers();
+
 
             
         // Gets the member details
@@ -58,7 +62,19 @@ public function showAll(){
         if (isset($_GET['req'])){
             deleteComment($_GET['commentID']);
         }
+        
+        function lockUser($user_id){
+           Mod::lockUser($user_id);
+           //echo $_POST['lockUser'];
+        }
 
+        // LOCK USER
+        if (!empty($_POST['lockUser'])){
+            lockUser($_POST['lockUser']);
+            echo "<script>window.location.replace('?controller=mod&action=showAll&res=locked&user')</script>";
+        } 
+            
+            
         //if (isset($_GET('function'))){
             //deleteComment($userID);
         ///}

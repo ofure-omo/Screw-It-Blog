@@ -82,13 +82,11 @@ class dashboard {
      
     
 
-    public function deleteComment($user_id) {
-        if (isset($_GET['user_ID'])) {
-            $id = $_GET['user_ID'];
-            $pdo->query("DELETE FROM comments WHERE (user_id = :user_id;");
-        }
-        $deleteComment = $req->fetch();
-        return $deleteComment;
+    public function deleteComment($comment_id) {
+         $db = Screw_it::getInstance();
+         $sql = "DELETE FROM comments WHERE comment_id = :comment_id;";
+         $stmt = $db->prepare($sql);
+         $stmt->execute(array('comment_id' => $comment_id));
     }
     
     // Update Profile

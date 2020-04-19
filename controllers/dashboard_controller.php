@@ -32,6 +32,17 @@ class dashboardcontroller {
                 require_once('views/pages/mem_dash.php');
             } 
             
+            // If get request sent
+            
+            if (isset($_GET['deleteComment'])) {
+                echo "delete";
+                $comment_id = $_GET['commentid'];
+                echo $comment_id;
+                dashboard::deleteComment($comment_id);
+                echo "<script>window.location.replace('?controller=dashboard&action=mem_details')</script>";
+                require_once('views/pages/mem_dash.php');
+            } 
+            
         } 
     }
 
