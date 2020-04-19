@@ -814,26 +814,21 @@
       
   </div>
 </div>
-    <br><br><br>
+    <center>    
+        <br><br>
+    <a style="color: #3F7CAC" href="?controller=categories&action=showAll">View All</a>
+    <p style="font-size:10px;"></p>
+    <br>
+    </center>
 </div>
   
 
-	<!-- End of container -->
-        <center>
-        
+<!-- End of container -->
 
-    <br>
-    <br>
-    <a href="?controller=categories&action=showAll">View All</a>
-    <br>
-    <br>
-    
-    <a href="#">Back to Top</a>
-
-    
-   
-    
-
+<center>
+<br>
+    <a style="color: #FCA15F" href="#">Back to Top</a>
+<br>
 </center>
 
 <?php

@@ -11,7 +11,7 @@
                     <input type="text" name="username" autocomplete='off' required>
                 </div>    
                 <div>
-                    <label>Password</label>
+                    <label>Password&nbsp;</label>
                     <input type="password" name="password" required>
                 </div>
                 <br>
