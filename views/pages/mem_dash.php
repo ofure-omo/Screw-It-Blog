@@ -280,7 +280,7 @@ echo "<img src='views/images/profileplaceholderimage.png' width='150' />";
                 echo "<td>".$favourite['title'];
                 echo "<td>".$favourite['category'];
                 echo "<td><a href='?controller=blog&action=read&blog_id=".$favourite['blog_id']."'><i style='font-size: 16px;' class='fas fa-pen-square'></i></a>";
-                echo "<td><p>delete button <i class='fas fa-trash-alt'></i> </p></td>";
+                echo "<td><p>delete button <i class='fas fa-trash-alt'></i> PUT PHTML CALL DELETE FUNCTION ON CLICK JAVASCRIPT </p></td>";
 
                 echo "</tr>";
                 
@@ -497,7 +497,7 @@ input[type=submit]:hover {
 }
 </style>
 
->>>>>>> 307d7c2372833647f70386be769a4284355f2964
+
 
 
 
