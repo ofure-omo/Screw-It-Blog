@@ -280,7 +280,7 @@ echo "<img src='views/images/profileplaceholderimage.png' width='150' />";
                 echo "<td>".$favourite['title'];
                 echo "<td>".$favourite['category'];
                 echo "<td><a href='?controller=blog&action=read&blog_id=".$favourite['blog_id']."'><i style='font-size: 16px;' class='fas fa-pen-square'></i></a>";
-                echo "<td><p>delete button <i class='fas fa-trash-alt'></i></p></td>";
+                echo "<td><p>delete button <i class='fas fa-trash-alt'></i> </p></td>";
 
                 echo "</tr>";
                 
@@ -313,30 +313,6 @@ function openTab(evt, Area) {
 document.getElementById("defaultOpen").click();
 
 
-<<<<<<< HEAD
-    <table class="table table-striped">
-        <tbody>
-            <tr>
-                <td>Blogger 1 <!--pull through blogger's name could go here--> <!--</td>
-                <td><?php //echo bloggers URL              ?></td>
-                <td>Unfavourite button </td>
-            </tr>s
-            <tr>
-                <td>Blogger 2</td>
-                <td><?php //echo bloggers URL             ?></td>
-                <td>Unfavourite button</td>
-            </tr>
-            <tr>
-                <td>Blogger 3</td>
-                <td><?php //echo bloggers URL             ?></td>
-                <td>Unfavourite button</td>
-            </tr>
-            <tr>
-                <td>Blogger 4 </td>
-                <td><?php //echo bloggers URL             ?></td>
-                <td>Edit</td>
-            </tr>
-=======
   function deleteAccount(id) {
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.open("GET", "?controller=blogger&action=delete&user_id=" + id, true);
@@ -496,7 +472,6 @@ input[type=submit]:hover {
   color: #FCA15F;
 }
 </style>
-
 
 
 
