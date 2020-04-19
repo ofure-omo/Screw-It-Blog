@@ -9,6 +9,8 @@ class dashboardcontroller {
             $comms = dashboard::getCountComments(($_SESSION['user_id']));
             $comms = dashboard::getComments(($_SESSION['user_id']));
             $favourites = dashboard::getFavourites(($_SESSION['user_id']));
+            $likes = dashboard::getCountLikes(($_SESSION['user_id']));
+            $comments = dashboard::getCountComments(($_SESSION['user_id']));
             
             function deleteFave(){
                 dashboard::unfavourite(($_SESSION['user_id']),'blog_id');
@@ -32,12 +34,24 @@ class dashboardcontroller {
                 require_once('views/pages/mem_dash.php');
             } 
             
+            // If get request sent
+            
+            if (isset($_GET['deleteComment'])) {
+                echo "delete";
+                $comment_id = $_GET['commentid'];
+                echo $comment_id;
+                dashboard::deleteComment($comment_id);
+                echo "<script>window.location.replace('?controller=dashboard&action=mem_details')</script>";
+                require_once('views/pages/mem_dash.php');
+            } 
+            
+               
+
         } 
     }
 
 }
-    /*
-    public function fav_blog() {
+    /*    public function fav_blog() {
         if (isset($_SESSION['user_id'])) {
 
             $details = dashboard::getDetails(($_SESSION['user_id']));

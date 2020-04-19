@@ -75,8 +75,8 @@ if ($_SESSION ['user_type'] != "Member"){
                     $d = strtotime($details['date_joined']);
                     echo date("jS F Y", $d);
                     ?></div><br>
-                        <p><?php //echo $blogs;?> Comments posted<br>
-                        <?php //echo $comments;?> Blogs Liked</p>
+                        <p><?php echo $comments[0]['count'];?> Comments posted<br>
+                        <?php echo $likes[0];?> Blogs Liked</p>
                  
                         </div> 
 
@@ -227,8 +227,8 @@ echo "<img src='views/images/profileplaceholderimage.png' width='150' />";
                 echo "<td>".$comment['title'];
                 echo "<td>".$comment['category'];
                 echo "<td>".$comment['comment'];
-                echo "<td><a href='?controller=blog&action=read&blog_id=".$comment['blog_id']."'><i style='font-size: 16px;' class='fas fa-pen-square'></i></a>";
-                echo "<td><p>delete comment <i class='fas fa-trash-alt'></i> </p></td>";
+                echo "<td><a href='?controller=blog&action=read&blog_id=".$comment['blog_id']."'><i style='font-size: 16px;' class='fas fa-eye'></i></a>";
+                echo "<td><a href='?controller=dashboard&action=mem_details&deleteComment=true&commentid=".$comment['comment_id']."'><i class='fas fa-trash-alt'></i></a></td>";
 
                 echo "</tr>";
                 
@@ -244,7 +244,6 @@ echo "<img src='views/images/profileplaceholderimage.png' width='150' />";
 
 <!-- VIEW FAVOURITES -->
 
-<!-- VIEW COMMENTS -->
 <div id="MFavourites" class="tabcontent">
     
     <table class="table table-striped" style="">

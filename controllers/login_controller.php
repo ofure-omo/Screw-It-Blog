@@ -37,7 +37,9 @@ class LoginController {
         if (isset($_GET['result'])){
             echo "<p style = 'font-size: 14px; color: red; padding-left: 2rem;'><br>Sorry, we couldn't validate those details! Please try again or use the <a style='color:red;' href='?controller=security&action=loginUserSecurity'>Forgotton your password?</a> link below.</p>";
         }
+        
 
+        
         
         //check if session is set. If set redirect
         if (!isset($_SESSION['loggedin'])) {
@@ -48,6 +50,10 @@ class LoginController {
         } else {
 
             echo 'You are already logged in!';
+        }
+        
+        if (isset($_GET['error'])){
+            echo "<p style = 'font-size: 14px; color: red; padding-left: 2rem;'><br>Uh oh, your account has been locked! Please contact us!</p>";
         }
         require_once('views/pages/login_page.php');
     }

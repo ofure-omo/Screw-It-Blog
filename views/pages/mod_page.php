@@ -61,10 +61,19 @@ if ($_SESSION ['user_type'] != "Moderator"){
         <h6>
         <?php 
             if (isset($_GET['resp'])){
-                $notification = "Your comment has been deleted - yay! #moderatorGoals";
+                $notification = "Your comment has been deleted - yay! #moderatorGoals.";
+            }
+            else if (isset($_GET['result'])){
+                $notification = "Thank you! Your blogger has been added.";
+            }
+            else if (isset($_GET['res'])){
+                $notification = "Your user has been locked - bad user!";
+            }
+            else if (isset($_GET['unlock'])){
+                $notification = "Your user has been unlocked - keep an eye on them!";
             }
             else {
-                $notification = "<i class='fas fa-comment-alt'></i> You have 0 new notifications | Click to dismiss";
+                $notification = "<i class='fas fa-comment-alt'></i> You have 0 new notifications | Click to dismiss.";
             }
             echo $notification;
         ?>  
@@ -117,7 +126,7 @@ if ($_SESSION ['user_type'] != "Moderator"){
             if (!empty($details['bio'])) {
                 echo $details['bio'];
             } else {
-                echo "add a bio? <i class='fa fa-edit' style='font-size:14px'></i></i>";
+                echo "<a href='#'>add a bio? <i class='fa fa-edit' style='font-size:14px'></i></i></a>";
             }
             ?>
 
@@ -158,12 +167,11 @@ if ($_SESSION ['user_type'] != "Moderator"){
             
 <!-- ------------------------------------------------------------------------------------------------>  
 
-        <!-- ADMIN -->
+<!-- ADMIN -->
         
-        <div class="container">
-            <h6 style="background-color: #fafafa; padding: 0.5rem;"><b>Screw-It:</b>  admin</h6>
-
-        </div>
+<div class="container">
+    <h6 style="background-color: #fafafa; padding: 0.5rem;"><b>Screw-It:</b>  admin</h6>
+</div>
 
 <!-- review comments -->
 <br> 
@@ -174,12 +182,6 @@ if ($_SESSION ['user_type'] != "Moderator"){
   </a>
 <div class="collapse" id="collapseExample">
     <div class="container">
-
-
-
-
-
-
 
 <?php 
 
@@ -281,9 +283,80 @@ foreach ($comms as $comment){
   </a>
 <div class="collapse" id="collapseBlogger">
     <div class="container">
-        <p> some text here </p>
+ 
+<div class="container" style="border-style: solid; border-width: 1px; border-radius: 5px; padding:5px; border-color: #3F7CAC ">
+    <p><br>Enter the blogger details below<br><br></p>
+<form action="?controller=mod&action=showAll&result=Success">
+    <center>
+    
+<!-- User Type -->
+  <fieldset disabled>
+    <!-- User Type -->
+    <div class="form-group row" style="justify-content:center;">
+          <label for="staticEmail" class="col-sm-2 col-form-label">User Type</label>
+      <input type="text" style="text-align: center; max-width:25rem;" id="disabledTextInput" class="form-control" placeholder="Blogger">
+    </div>
+  </fieldset>
+
+    <!-- First Name -->
+    <div class="form-group row" style="justify-content:center;">
+          <label for="staticEmail" class="col-sm-2 col-form-label">First Name</label>
+      <input type="text" style="text-align: center; max-width:25rem;" id="user_fn" class="form-control" placeholder="e.g. Joe">
+    </div>
+    
+    <!-- Last Name -->
+    <div class="form-group row" style="justify-content:center;">
+          <label for="staticEmail" class="col-sm-2 col-form-label">Last Name</label>
+      <input type="text" style="text-align: center; max-width:25rem;" id="user_ln" class="form-control" placeholder="e.g. Exotic">
+    </div>
+    
+    <!-- Username -->
+    <div class="form-group row" style="justify-content:center;">
+          <label for="staticEmail" class="col-sm-2 col-form-label">Username</label>
+      <input type="text" style="text-align: center; max-width:25rem;" id="username" class="form-control" placeholder="e.g. TigerKing">
+    </div>
+    
+    <!-- Email -->
+    <div class="form-group row" style="justify-content:center;">
+          <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+      <input type="text" style="text-align: center; max-width:25rem;" id="email" class="form-control" placeholder="e.g. BigCats@email.com">
+    </div>
+    
+    <!-- Bio -->
+    <div class="form-group row" style="justify-content:center;">
+          <label for="staticEmail" class="col-sm-2 col-form-label">Bio</label>
+      <input type="text" style="text-align: center; max-width:25rem;" id="bio" class="form-control" placeholder="e.g. That ... Carol Baskin.">
+    </div>
+    
+    <!-- Twitter -->
+    <div class="form-group row" style="justify-content:center;">
+          <label for="staticEmail" class="col-sm-2 col-form-label">Twitter URL</label>
+      <input type="text" style="text-align: center; max-width:25rem;" id="twitter_url" class="form-control" placeholder="">
+    </div>
+    
+    <!-- Insta -->
+    <div class="form-group row" style="justify-content:center;">
+          <label for="staticEmail" class="col-sm-2 col-form-label">Facebook URL</label>
+      <input type="text" style="text-align: center; max-width:25rem;" id="facebook_url" class="form-control" placeholder="">
+    </div>
+    
+    <!-- Facebook -->
+    <div class="form-group row" style="justify-content:center;">
+          <label for="staticEmail" class="col-sm-2 col-form-label">Instagram URL</label>
+      <input type="text" style="text-align: center; max-width:25rem;" id="insta_url" class="form-control" placeholder="">
+    </div>
+    
+    <a style="margin: 2px; background-color: #fafafa;" href="?controller=mod&action=showAll&result=Success">Submit</a>
+    </center>
+</form> 
+    <p><br><i style="font-size: 20px;" class="fas fa-exclamation-circle"></i><br><br>The Blogger will be sent an email automatically when the account is created.<br>Please inform them to use this link to reset their password and set up their security answer.</p>
+</div>
+        
+ <br>       
+        
     </div>
 </div>
+
 
 
 <!-- Lock User -->
@@ -294,7 +367,76 @@ foreach ($comms as $comment){
   </a>
 <div class="collapse" id="collapseLock">
     <div class="container">
-        <p> some text here </p>
+        <br>
+        
+        <form action="?controller=mod&action=showAll" method="POST" enctype="multipart/form-data">
+            <div class="form-group col-md-4" style="text-align:center;">
+                <label for="inputUser">Select User</label>
+                <select id="inputUser" class="form-control" name="lockUser">
+                <?php
+                $position = 0;
+                foreach ($users as $user) {
+                    
+                    $user_id = $user['user_id'];
+                    $lockedUser = $user['username'];
+                    echo "<option value=".$user_id.">".$user['username']."</option>";
+                    $position++;
+                }
+                
+                ?>
+      </select>
+                
+                <p></p>
+    </div>
+            
+    <button type="submit" class="btn btn-primary">Lock Account</button>        
+        </form>
+        <br>
+        
+        
+    </div>
+</div>
+
+<!-- unlock User -->
+
+<p>
+  <a style="background-color: #fafafa; color:#FCA15F; border:none; border-radius: 0px; border-color: #fafafa" class="btn btn-primary" data-toggle="collapse" href="#collapseunLock" role="button" aria-expanded="false" aria-controls="collapseExample">
+    Unlock User Account <i class='fas fa-lock-open'></i>
+  </a>
+<div class="collapse" id="collapseunLock">
+    <div class="container">
+        <br>
+        
+        <form action="?controller=mod&action=showAll" method="POST" enctype="multipart/form-data">
+            <div class="form-group col-md-4" style="text-align:center;">
+                <label for="inputUser">Select User</label>
+                <select id="inputUser" class="form-control" name="unlockUser">
+                <?php
+                $position = 0;
+                
+                if (count($usersL) == 0) {
+                    echo "<option value=''>No members to unlock!</option>";
+                }
+                else {
+                foreach ($usersL as $userL) {
+                    
+                    $user_id = $userL['user_id'];
+                    $lockedUser = $userL['username'];
+                    echo "<option value=".$user_id.">".$userL['username']."</option>";
+                    $position++;
+                }
+                }
+                ?>
+      </select>
+                
+                <p></p>
+    </div>
+            
+    <button type="submit" class="btn btn-primary">Unlock Account</button>        
+        </form>
+        <br>
+        
+        
     </div>
 </div>
 
@@ -310,8 +452,8 @@ foreach ($comms as $comment){
     </div>
 </div>
 
-<br><br>        
-<a href="#">Back to Top</a>        
+      
+<a style="font-size:14px;" href="#">Back to Top</a>        
 </center>    
 </body>
 
