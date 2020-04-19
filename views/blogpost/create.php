@@ -259,9 +259,7 @@
 
                         <div class="form-group">
                             <label for="exampleFormControlFile1">Upload 3 images</label>
-                            <input type="file" name="myfile[]"  class="form-control-file" id="file1" ><br>
-                            <input type="file" name="myfile[]"  class="form-control-file" id="file2" ><br>
-                            <input type="file" name="myfile[]"  class="form-control-file" id="file3" >
+                            <input type="file" name="myfile[]"  class="form-control-file" id="file1" accept="image/*" multiple><br>
                         </div>
 
                         <div class="form-group form-check-inline">
