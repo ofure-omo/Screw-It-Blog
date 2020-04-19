@@ -42,11 +42,11 @@ class BloggerController {
         
           
            // $blogcontents = Blogger::getUserBlogs($_SESSION['user_id']);
-            require_once('views/pages/Bloggerdashboard.php');
+            require_once('views/pages/bloggersdash.php');
             
            if($_SERVER['REQUEST_METHOD'] == 'POST'){ $id = $blogger[0];
            Blogger::updateProfile($id);
- require_once('views/pages/Bloggerdashboard.php');
+ require_once('views/pages/bloggersdash.php');
 }}}
    
 
