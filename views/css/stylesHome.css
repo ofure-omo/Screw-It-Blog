@@ -6,7 +6,7 @@
 
 #carouselExampleIndicators { 
 
-   background-color: #fafafa !important; 
+   background-color: #ffffff !important; 
 }
 /* this is the styling for the div the carousel sits in */
 
@@ -80,7 +80,7 @@
 
 main {
     min-height: 90vh;
-    background-color: #fafafa;
+    background-color: #ffffff;
     color: black;
     padding-bottom: 3rem;
 }

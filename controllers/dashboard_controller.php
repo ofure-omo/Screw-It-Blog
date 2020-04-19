@@ -7,25 +7,25 @@ class dashboardcontroller {
         if (isset($_SESSION['user_id'])) {
             $details = dashboard::getDetails(($_SESSION['user_id']));
             $comms = dashboard::getCountComments(($_SESSION['user_id']));
-            $commenttext = dashboard::getComments(($_SESSION['user_id']));
+            $comms = dashboard::getComments(($_SESSION['user_id']));
             $favourites = dashboard::getFavourites(($_SESSION['user_id']));
-            $unfavourite = dashboard::getUnfavourite(($_SESSION['user_id']),'blog_id');
+            $unfavourite = dashboard::unfavourite(($_SESSION['user_id']),'blog_id');
             require_once('views/pages/mem_dash.php');
-            echo $_SESSION["user_type"];
+            //echo $_SESSION["user_type"];
             
-        } if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $id = $details[0];
-            Dashboardcontroller::updateProfile($id);
-            require_once('views/pages/mem_dash.php');
-        } else {
-            return call('pages', 'error');
-        }
+            
+            // If post request sent
+            
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                $id = $details[0];
+                dashboard::updateProfile($id);
+                
+                require_once('views/pages/mem_dash.php');
+            } 
+            
+        } 
     }
-        public function delete() {
-            Blogger::deleteAccount($_GET['user_id']);
-          //  require_once('Views/pages/home.php');
 
-      }
 }
     /*
     public function fav_blog() {

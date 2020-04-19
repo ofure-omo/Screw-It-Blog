@@ -51,7 +51,7 @@ class Login {
                 echo "<script type='text/javascript'>location.href = '?controller=home&action=home';</script>";
                  //echo "Welcome!";// will send to member dashboard
             } else {
-                echo "Something went wrong. Please try again";
+                echo "<script type='text/javascript'>location.href = '?controller=login&action=loginUser&result=loginFailed';</script>";
             }
             //verify password
         }

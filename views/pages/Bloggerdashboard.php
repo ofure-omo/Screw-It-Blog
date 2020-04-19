@@ -88,9 +88,9 @@
           <td><?php echo $posts['comment_count'] ?></td>
           <td><?php echo $posts['published'] ?></td>
           <td>  
-              <a  href='?controller=blog&action=read&blog_id=<?php echo $posts['blog_id']; ?>'>View</a>&nbsp; 
-              <a  href='?controller=blog&action=update&blog_id=<?php echo $posts['blog_id']; ?>'>Update</a>&nbsp;
-              <a  href='?controller=blog&action=delete&blog_id=<?php echo $posts['blog_id']; ?>'>Delete</a>&nbsp;
+              <a  href='?controller=blog&action=read&blog_id=<?php echo $posts['blog_id']; ?>'>View</a>&nbsp;&nbsp;
+              <a  href='?controller=blog&action=update&blog_id=<?php echo $posts['blog_id']; ?>'>Update</a>&nbsp;&nbsp;
+              <a  href='?controller=blog&action=delete&blog_id=<?php echo $posts['blog_id']; ?>'>Delete</a>&nbsp;&nbsp;
           </td>
       </tr>  
                     <?php
@@ -123,9 +123,8 @@
           </td>
           <td><?php echo $comment['comment'] ?> </td>
           <td>  
-              <a  href='?controller=blog&action=read&blog_id=<?php echo $comment['blog_id']; ?>'>View</a>&nbsp; 
-              <a  href='?controller=comments&action=update&comment_id=<?php echo $comment['comment_id']; ?>'>Update</a>&nbsp;
-              <a  href='?controller=comments&action=delete&comment_id=<?php echo $comment['comment_id']; ?>'>Delete</a>&nbsp;
+              <a  href='?controller=blog&action=read&blog_id=<?php echo $comment['blog_id']; ?>'>View</a>&nbsp;&nbsp;
+              <a  href='?controller=blogger&action=dashboard&req=deleteComment&commentID=<?php echo $comment['comment_id']; ?>'>Delete</a>&nbsp;
           </td>
       </tr>  
                     <?php
@@ -222,10 +221,10 @@ if(file_exists($file)){
 
 else
 {
-echo "<img src='views/images/profileplaceholderimage.png' width='150' />";
+echo "<img src='views/images/profileplaceholder.png' width='150' />";
 }
 ?>
-  <input type="file" name="myUploader" class="w3-btn w3-pink" />
+  <input type="file" name="profile_pic"/>
  
           </div></div>
           <br>
@@ -259,7 +258,7 @@ document.getElementById("defaultOpen").click();
 
   function deleteAccount(id) {
         var xmlhttp = new XMLHttpRequest();
-        xmlhttp.open("GET", "?controller=blogger&action=delete&user_id=" + id, true);
+        xmlhttp.open("GET", "?controller=blogger&action=dashboard&delreq=delete&user_id=" + id, true);
         xmlhttp.send();
         goBackToHome();
     }
@@ -267,6 +266,15 @@ document.getElementById("defaultOpen").click();
         window.refresh;
         window.location.href = "?controller=home&action=home";
 }
+
+        
+      
+function deleteComment(id) {
+            var xmlhttp = new XMLHttpRequest();
+        xmlhttp.open("GET", "?controller=blogger&action=dashboard&req=deleteComment&commentID=" + id, true);
+        xmlhttp.send();
+        goToUpdate(id);
+    }
 
 </script>
 

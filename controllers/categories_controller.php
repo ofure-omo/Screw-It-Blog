@@ -146,12 +146,12 @@ class CategoriesController {
             
                 if ($category === "create") {
                     $header = "If you're wanting to create something new, from tables to toothpaste and everything in between, you can find it here.";
-                    $styl = "background-color: #3F7CAC; color: white; padding:10px; margin-left: 80px; margin-right: 80px;";
+                    $styl = "background-color: #FCA15F; color: white; padding:10px; margin-left: 80px; margin-right: 80px;";
 
                 }
                 else if ($category === "decorate") {
                     $header = "Want to give your home an uplift? No matter what your style or your budget, below you can find all kinds of inspiration to make your home your own.";
-                    $styl = "background-color: #3F7CAC; color: white;; padding:10px; margin-left: 80px; margin-right: 80px;";
+                    $styl = "background-color: #70D6FF; color: black; padding:10px; margin-left: 80px; margin-right: 80px;";
                 }
                 else {
                     $header = "If your home could use a little TLC, below you can find new ways to transform your home from shabby to shabby chic.";

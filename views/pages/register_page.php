@@ -48,7 +48,7 @@
                                    name="MAX_FILE_SIZE" 
                                    value="10000000"
                                    />
-                            <input type="file" name="profile_pic" />
+                            <input type="file" name="profile_pic" /><br><br>
                             <input type="submit" value="Register Now" />
                         </div>
 
@@ -57,7 +57,7 @@
                             <br>
                             <input type="submit" name="submit" value="Register Now">
                         </div> -->
-                        <p>Already have an account? </br><a href='?controller=login&action=login'>Login here</a>.</p>
+                        <br><p>Already have an account? <a href='?controller=login&action=login'>Login here</a>.</p>
 
                 </div> 
                 <div id="message">
@@ -70,6 +70,13 @@
                 </form>
         </span>
     </section>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
     <script>
         var myInput = document.getElementById("password");
         var letter = document.getElementById("letter");

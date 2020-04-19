@@ -78,7 +78,7 @@ class HomeController {
             
             // HTML
             
-            ${"blog$i"}->viewHTML = "Click to view post";
+            ${"blog$i"}->viewHTML = "Read more...";
             
             $position++;
             

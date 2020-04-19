@@ -119,6 +119,19 @@ class Blogger extends Users {
         if (isset($_POST['insta']) && $_POST['insta'] != "") {
             $filteredinsta = filter_input(INPUT_POST, 'insta', FILTER_SANITIZE_SPECIAL_CHARS);
         }
+        
+                //if a new image is uploaded - upload and replace it
+        if ($_FILES['profile_pic']['size'] > 0) {
+            $name = $_FILES['profile_pic']['name'];
+            $imagepath = "Views/images/profile_pics/" . $name;
+            self::uploadImage($imagepath);
+            //if no new blog image is uploaded - keep the original one
+        } elseif ($_FILES['profile_pic']['size'] == 0) {
+            $stmt = $db->prepare("SELECT profile_pic from users WHERE user_id = $user_id");
+            $stmt->execute();
+            $existingimage = $stmt->fetchAll();
+            $imagepath = $existingimage['0']['profile_pic'];
+        }
        //if (isset($_POST['profile_pic']) && $_POST['profile_pic'] != "") {
        //    $filteredimage = "Views/images/".filter_input(INPUT_POST,'profile_pic', FILTER_SANITIZE_SPECIAL_CHARS);
        // }
@@ -132,11 +145,12 @@ class Blogger extends Users {
         $twitter = $filteredtwitter;
         $insta = $filteredinsta;
         $facebook = $filteredfacebook;
+        $profilepic = $imagepath;
         //$profilepic = $filteredimage;
         
         /* removed -- , profile_pic=:profile_pic, dob=:dob, from query*/
         
-        $req = $db->prepare("Update Users set username=:username, bio=:bio,  user_fn=:user_fn, user_ln=:user_ln, email=:email, twitter_url=:twitter, insta_url=:insta, facebook_url=:facebook WHERE user_id=:user_id;");
+        $req = $db->prepare("Update Users set username=:username, bio=:bio,  user_fn=:user_fn, user_ln=:user_ln, email=:email, twitter_url=:twitter, insta_url=:insta, facebook_url=:facebook, profile_pic=:profile_pic WHERE user_id=:user_id;");
         $req->bindParam(':user_id', $user_id);
         $req->bindParam(':username', $username);
         $req->bindParam(':bio', $bio);
@@ -147,7 +161,7 @@ class Blogger extends Users {
         $req->bindParam(':twitter', $twitter);
         $req->bindParam(':insta', $insta);
         $req->bindParam(':facebook', $facebook);
-        //$req->bindParam(':profile_pic', $profilepic);
+        $req->bindParam(':profile_pic', $profilepic);
         
         $req->execute();
         
@@ -159,46 +173,27 @@ class Blogger extends Users {
     //}
    
     const AllowedTypes = ['image/jpeg', 'image/jpg', 'image/png'];
-    const InputKey = 'myfile';
+    const InputKey = 'profile_pic';
       
-    public static function uploadImage(string $image) {
-
-	/*if (empty($_FILES[self::InputKey])) {
-		//die("File Missing!");
-                trigger_error("File Missing!");
-	}
-
-	if ($_FILES[self::InputKey]['error'] > 0) {
-		trigger_error("Handle the error! " . $_FILES[InputKey]['error']);
-	}
-
-
-	if (!in_array($_FILES[self::InputKey]['type'], self::AllowedTypes)) {
-		trigger_error("Handle File Type Not Allowed: " . $_FILES[self::InputKey]['type']);
-	}
-
-	$tempFile = $_FILES[self::InputKey]['tmp_name'];
-        $path = "/Applications/XAMPP/xamppfiles/htdocs/Screw-it/views/images/";
-	$destinationFile = $path . $name;
-
-	if (!move_uploaded_file($tempFile, $destinationFile)) {
-		trigger_error("Handle Error");
-	}
-		
-	//Clean up the temp file
-	if (file_exists($tempFile)) {
-		unlink($tempFile); 
-	}*/
+    public function uploadImage($imagepath) {
+           $db = Screw_it::getInstance();
+            
+            $temp = $_FILES["profile_pic"]["tmp_name"];
+            $imagename = $_FILES["profile_pic"]["name"];  
+            $file_type = $_FILES["profile_pic"]["type"];
+            
+         $path = DIRECTORY_SEPARATOR . 'Applications' . DIRECTORY_SEPARATOR . 'XAMPP' . DIRECTORY_SEPARATOR . 'xamppfiles' . DIRECTORY_SEPARATOR . 'htdocs' . DIRECTORY_SEPARATOR . 'Screw-it' . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'profile_pics' . DIRECTORY_SEPARATOR;
+         $destinationFile = $path . $imagename;
         
-            $tempFile = $_FILES[self::InputKey]['tmp_name'];
-            $path = realpath(__DIR__ . '/..') . '/' .  $image;
-	       $destinationFile = $path ;
+
+        move_uploaded_file($temp, $destinationFile);
+        
             $error = $_FILES[self::InputKey]['error'];
 
 //        if($error === 0) {
             
 	if (!move_uploaded_file($tempFile, $destinationFile)) {
-		echo "";            
+		echo "oops";            
         } 
         if (file_exists($tempFile)) {
 		unlink($tempFile); 
@@ -206,7 +201,7 @@ class Blogger extends Users {
         }
 
 
-    public static function deleteAccount($user_id) {
+    public function deleteAccount($user_id) {
       $db = Screw_it::getInstance();
       //make sure $id is an integer
       $user = intval($user_id);
@@ -232,22 +227,6 @@ public function getBlogsFavsComments($user_id) {
     
 }
    
-
-  /*  
-            public function getComments($user_id) {
-      $db = Screw_it::getInstance();
-      
-            $user_id = intval($user_id);
-      
-            $query = "SELECT * FROM comments WHERE user_id = :user_id;";
-            $stmt = $db->prepare($query);
-            $stmt->bindParam(':user_id',$user_id,PDO::PARAM_INT);
-            $stmt->execute(array('user_id' => $user_id));
-            $comments = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        
-        return $comments;
-    }
-    */
     
           public function getComments($user_id) {
         $db = Screw_it::getInstance();
@@ -285,7 +264,13 @@ public function getBlogsFavsComments($user_id) {
         return $comms;
     }
     
- 
+     public function deleteComment($commentID){
+        $db = Screw_it::getInstance();
+        $sql = "delete from comments where comment_id = :commentid;";
+        $stmt = $db->prepare($sql);
+        $stmt->execute(array('commentid' => $commentID));
+    }
+
      }
     
     /* I think this will need the blog model because it's trying to create a new class of blog... 
