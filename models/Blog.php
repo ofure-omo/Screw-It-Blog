@@ -226,11 +226,18 @@ class Blog {
         }
 //         Blog::updateImages($imagename);
 //upload product image if it exists
+        if (isset($_POST['published']) && $_POST['published'] == "published") {
+        
         echo '<h3 style="text-align:center; margin-top:30px; margin-bottom:20px;"> Your blog has been updated,<br> you will be redirected to your blogpost to view your changes!</h3>'
         . '<img style="display: block; margin-left: auto; margin-right: auto; width: 40%;" src="views/images/bloguploaded.png"/>';
 //        
-        echo '<meta http-equiv="refresh" content="5;  url=?controller=blog&action=read&blog_id=' . $blog_id . '"/>';
-        //echo "<script type='text/javascript'>location.href = '?controller=blogger&action=dashboard';</script>";
+        echo '<meta http-equiv="refresh" content="4;  url=?controller=blog&action=read&blog_id=' . $blog_id . '"/>';
+        } else {
+             echo '<h3 style="text-align:center; margin-top:30px; margin-bottom:20px;"> Your blog has been saved to drafts,<br> you will be redirected to your dashboard!</h3>'
+        . '<img style="display: block; margin-left: auto; margin-right: auto; width: 40%;" src="views/images/bloguploaded.png"/>';
+//        
+        echo '<meta http-equiv="refresh" content="4;  url=?controller=blogger&action=dashboard&&user_id=' . $_SESSION['user_id'] . '"/>';
+        }
     }
 
     public static function deleteTags($blog_id) {

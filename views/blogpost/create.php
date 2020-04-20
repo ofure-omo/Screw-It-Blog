@@ -158,7 +158,7 @@
     <h2 style="text-align: center; margin-top: 50px;">CREATE A BLOG POST</h2>
 
     <span>
-
+<!--user chooses a layout-->
         <div class=' form-container'>
             <form action="" method="POST" class="w3-container" accept-charset="utf-8" enctype="multipart/form-data">
                 <h4 class="title">STEP 1: CHOOSE A LAYOUT</h4>
@@ -176,6 +176,8 @@
                 <div id="template-container" class="column">              
                     <img src="views/images/layout.png" alt="layout 1" class="blog-template1"/>
                 </div>
+                
+<!--                user writes the content, boxes are pre populated with existing info-->
                 <h4 class="title">STEP 2: WRITE THE CONTENT</h4>
                 <div class="main-form">
                     <div class="form-group">
@@ -261,7 +263,8 @@
                             <label for="exampleFormControlFile1">Upload 3 images</label>
                             <input type="file" name="myfile[]"  class="form-control-file" id="file1" accept="image/*" multiple><br>
                         </div>
-
+     
+<!--                        user can save their posts to drafts or publish, publish is automatically checked-->
                         <div class="form-group form-check-inline">
                             <input type="checkbox" class="form-check-input" id="exampleCheck1" name ="published" value="draft">
                             <label class="form-check-label" for="exampleCheck1">Save to drafts</label>

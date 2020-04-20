@@ -24,7 +24,7 @@
                 echo date('jS F Y', $d);
                 ?></p>  
 
-            <!--links to a different category oage depending on the blogs category -->
+            <!--links to a different category page depending on the blogs category -->
             <?php
             $categories = $blog['category'];
             if ($categories == 'RENOVATE') {
@@ -180,7 +180,7 @@
 
 
 
-            <!--        COMMENTS AND REPLIES-->
+            <!--        COMMENTS-->
 
                   <center> <h5 style="margin-top:30px;" class='more-blogs-header'><?php // echo $comment_count;   ?> COMMENTS</h5></center>
                   
