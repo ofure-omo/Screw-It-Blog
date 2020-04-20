@@ -160,7 +160,7 @@ if ($_SESSION ['user_type'] != "Moderator"){
                 
                 <div class="col" style="color: #54b368"><p>+ <?php echo $likesCountLW[0]['count'] ?> this week</p></div>
                 <div class="col" style="color: #54b368"><p>+ <?php echo $commsCountLW[0]['count'] ?> this week</p></div>
-                <div class="col" style="color: #54b368"><p>+ <?php echo $repliesCount[0]['count'] ?> this week</p></div>
+                <div class="col" style="color: #f2bf5e"><p>no change</p></div>
             </div>
         </div>
         <br>

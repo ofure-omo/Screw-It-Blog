@@ -16,7 +16,7 @@ class Mod {
 
     public function getAllUsers(){
         $db = Screw_it::getInstance();      
-        $req = $db->prepare("SELECT * FROM users where user_type = 'member' and locked = 'N';");
+        $req = $db->prepare("SELECT * FROM users where user_type = 'member' and locked = 'N' order by username;");
         
                 if (!$req) {
                     echo "error, pls handle";
@@ -32,7 +32,7 @@ class Mod {
     
         public function getAllUsersLocked(){
         $db = Screw_it::getInstance();      
-        $req = $db->prepare("SELECT * FROM users where user_type = 'member' and locked = 'Y';");
+        $req = $db->prepare("SELECT * FROM users where user_type = 'member' and locked = 'Y' order by username;");
         
                 if (!$req) {
                     echo "error, pls handle";
