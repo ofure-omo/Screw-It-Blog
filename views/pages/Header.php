@@ -44,7 +44,7 @@
             <div class="dropdown-menu" id="drop" aria-labelledby="navbarDropdownMenuLink">';
                 }
                 if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSION ['user_type']=== "Member") {
-                    echo '<a class="nav-link" id="droptext" href="?controller=dashboard&action=mem_details" >Your Dashboard</a>';
+                    echo '<a class="nav-link" id="droptext" href="?controller=dashboard&action=mem_details" >Dashboard</a>';
                     echo '<a class="nav-link" id="droptext" href="?controller=signout&action=signout">Log out</a>';
                 }
                 if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSION ['user_type']=== "Blogger"){
@@ -57,7 +57,7 @@
                     echo '<a class="nav-link" id="droptext" href="?controller=signout&action=signout">Log out</a>';
                 };
                 
-                ?>&nbsp;&nbsp;
+                ?>
         <li><a><i onclick="openSearch()" class="fa searchfatop fa-search fa-lg"></i></a></li>
     </li>
         
