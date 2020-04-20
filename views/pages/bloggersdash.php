@@ -157,7 +157,7 @@
 
                 echo "<td>".$comment['comment'];
                 echo "<td><a href='?controller=blog&action=read&blog_id=".$comment['blog_id']."'>View</a>&nbsp;&nbsp;";
-                echo "<a href='?controller=blog&action=req=deleteComment&commentID=".$comment['comment_id']."'>Delete</a></td>&nbsp;";
+                echo "<a href='?controller=blogger&action=dashboard&req=deleteComment&commentID=".$comment['comment_id']."'>Delete</a></td>&nbsp;";
       
                 echo "</tr>";
                 
