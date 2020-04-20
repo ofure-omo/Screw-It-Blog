@@ -87,31 +87,26 @@ class dashboard {
         return $deleteUser;
     }
 
-    public function unfavourite($user_id, $blog_id) {
+    /*public function unfavourite($user_id, $blog_id) {
         $db = Screw_it::getInstance();
         $sql = "DELETE FROM favourites WHERE user_id = :user_id and blog_id = :blog_id;";
         $stmt = $db->prepare($sql);
         $stmt->execute(array('user_id' => $user_id,'blog_id' => $blog_id));
-    }
-
-     
+    */
     
-
-<<<<<<< HEAD
-    public function deleteComment($user_id) {
-        if (isset($_GET['user_id'])) {
-            $id = $_GET['user_id'];
-            $pdo->query("DELETE FROM comments WHERE (user_id = :user_id;");
-        }
-        $deleteComment = $req->fetch();
-        return $deleteComment;
-=======
+        public function unfavourite($fav_id) {
+        $db = Screw_it::getInstance();
+        $sql = "DELETE FROM favourites WHERE fav_id = :fav_id;";
+        $stmt = $db->prepare($sql);
+        $stmt->execute(array('fav_id' => $fav_id));
+    }
+    
+   
     public function deleteComment($comment_id) {
          $db = Screw_it::getInstance();
          $sql = "DELETE FROM comments WHERE comment_id = :comment_id;";
          $stmt = $db->prepare($sql);
          $stmt->execute(array('comment_id' => $comment_id));
->>>>>>> 6646def804162272ac597c0fc5ddce2e8188627e
     }
     
     // Update Profile

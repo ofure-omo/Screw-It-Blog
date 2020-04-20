@@ -496,7 +496,7 @@ if($filteredLayout == '1') {
         $blog_id = intval($blog_id);
 
         $req = $db->prepare("SELECT count(*) FROM favourites WHERE
-                             user_id = '" . $_SESSION['user_id'] . "' AND blog_id = '".$blog_id."'");
+                             blog_id = '".$blog_id."'");
         $req->execute();
         $fav_count = $req->fetch();
         //$fav_count = count($favourite);

@@ -87,10 +87,11 @@ if ($_SESSION ['user_type'] != "Moderator"){
                     // PROFILE PIC
         
                         if (!empty($details['user_id'])){
-                            $imageSrc = $details['user_id'];
-                            echo "<img src='views/images/jasper.jpg' style='height: 7rem; width: 7rem; object-fit: cover; margin-top: 0.1rem; border-radius: 50%;'>";
+                            $imageSrc = $details['profile_pic'];
+                            //echo $imageSrc;
+                            echo "<img src='".$imageSrc."' style='height: 7rem; width: 7rem; object-fit: cover; margin-top: 0.1rem; border-radius: 50%;'>";
                         } else {
-                            $imageSrc = $details['user_id'];
+                            $imageSrc = 'views/images/profile_pics/Cat1.png';
                         }
         
                 ?> 
@@ -159,7 +160,7 @@ if ($_SESSION ['user_type'] != "Moderator"){
                 
                 <div class="col" style="color: #54b368"><p>+ <?php echo $likesCountLW[0]['count'] ?> this week</p></div>
                 <div class="col" style="color: #54b368"><p>+ <?php echo $commsCountLW[0]['count'] ?> this week</p></div>
-                <div class="col" style="color: #54b368"><p>+ <?php echo $repliesCount[0]['count'] ?> this week</p></div>
+                <div class="col" style="color: #f2bf5e"><p>no change</p></div>
             </div>
         </div>
         <br>
@@ -282,9 +283,9 @@ foreach ($comms as $comment){
     Create Blogger <i class='fas fa-user-plus'></i>
   </a>
 <div class="collapse" id="collapseBlogger">
-    <div class="container">
+    <div class="container" style="">
  
-<div class="container" style="border-style: solid; border-width: 1px; border-radius: 5px; padding:5px; border-color: #3F7CAC ">
+<div class="container" style="border-style: solid; border-radius: 0px 5px 5px 0px; border-color: #e3e3e3; border-width:0.1rem; border-left-color: #3F7CAC; border-left-style: solid; border-left-width: 1rem; margin:1rem; padding:0.5rem;">
     <p><br>Enter the blogger details below<br><br></p>
 <form action="?controller=mod&action=showAll&result=Success">
     <center>
@@ -346,7 +347,7 @@ foreach ($comms as $comment){
       <input type="text" style="text-align: center; max-width:25rem;" id="insta_url" class="form-control" placeholder="">
     </div>
     
-    <a style="margin: 2px; background-color: #fafafa;" href="?controller=mod&action=showAll&result=Success">Submit</a>
+    <a style="border:3px; margin: 2px; background-color: #fafafa;" href="?controller=mod&action=showAll&result=Success">Submit</a>
     </center>
 </form> 
     <p><br><i style="font-size: 20px;" class="fas fa-exclamation-circle"></i><br><br>The Blogger will be sent an email automatically when the account is created.<br>Please inform them to use this link to reset their password and set up their security answer.</p>
@@ -366,7 +367,7 @@ foreach ($comms as $comment){
     Lock User Account <i class='fas fa-lock'></i>
   </a>
 <div class="collapse" id="collapseLock">
-    <div class="container">
+    <div class="container" style="border-style: solid; border-radius: 0px 5px 5px 0px; border-color: #e3e3e3; border-width:0.1rem; border-left-color: #3F7CAC; border-left-style: solid; border-left-width: 1rem; margin:1rem; padding:0.5rem;">
         <br>
         
         <form action="?controller=mod&action=showAll" method="POST" enctype="multipart/form-data">
@@ -404,7 +405,7 @@ foreach ($comms as $comment){
     Unlock User Account <i class='fas fa-lock-open'></i>
   </a>
 <div class="collapse" id="collapseunLock">
-    <div class="container">
+    <div class="container" style="border-style: solid; border-radius: 0px 5px 5px 0px; border-color: #e3e3e3; border-width:0.1rem; border-left-color: #3F7CAC; border-left-style: solid; border-left-width: 1rem; margin:1rem; padding:0.5rem;">
         <br>
         
         <form action="?controller=mod&action=showAll" method="POST" enctype="multipart/form-data">
