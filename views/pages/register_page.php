@@ -8,7 +8,7 @@
     <section>
         <span>
             <h1 style="text-align:center; margin-bottom: 40px;">Register with us </h1>
-<h5>Enter your details to create an account</h5>
+
             <form action="" method="POST" enctype="multipart/form-data" onsubmit="return Validate(this);">
                 
                 <div class="form-group">
@@ -119,8 +119,6 @@
             </form>
         </span>
     </section>
-    <br>
-    <br>
     <br>
     <br>
     <br>
