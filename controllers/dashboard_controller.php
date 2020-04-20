@@ -12,7 +12,7 @@ class dashboardcontroller {
             $likes = dashboard::getCountLikes(($_SESSION['user_id']));
             $comments = dashboard::getCountComments(($_SESSION['user_id']));
             
-            function deleteFave(){
+            function unfavourite(){
                 dashboard::unfavourite(($_SESSION['user_id']),'blog_id');
             }
             
@@ -46,7 +46,16 @@ class dashboardcontroller {
             } 
             
                
-
+            // If get request sent
+            //is it fav_id or user_id/blog_id
+            if (isset($_GET['unfavourite'])) {
+                echo "unlike";
+                $fav_id = $_GET['favid'];
+                echo $fav_id;
+                dashboard::unfavourite($fav_id);
+                echo "<script>window.location.replace('?controller=dashboard&action=mem_details')</script>";
+                require_once('views/pages/mem_dash.php');
+            } 
         } 
     }
 
