@@ -10,13 +10,13 @@
 <div class="container">
   <form action="/action_page.php">
     <label for="fname">Name</label>
-    <input type="text" id="fname" name="firstname" placeholder="">
+    <input id="contact" type="text" id="fname" name="firstname" placeholder="">
 
     <label for="lname">Email</label>
-    <input type="text" id="lname" name="lastname" placeholder="">
+    <input id="contact" type="text" id="lname" name="lastname" placeholder="">
 
     <label for="subject">Message</label>
-    <textarea id="subject" name="message" placeholder="" style="height:200px"></textarea>
+    <textarea id="contact" id="subject" name="message" placeholder="" style="height:200px"></textarea>
 
     <input type="submit" value="Submit">
   </form>
@@ -28,9 +28,9 @@
 
 
 <style>
-* {box-sizing: border-box;}
 
-input[type=text], select, textarea {
+
+#contact {
   width: 100%;
   padding: 12px;
   border: 1px solid #ccc;

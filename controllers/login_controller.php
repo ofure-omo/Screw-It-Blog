@@ -35,7 +35,7 @@ class LoginController {
     public function loginUser() {
         
         if (isset($_GET['result'])){
-            echo "<p style = 'font-size: 14px; color: red; padding-left: 2rem;'><br>Sorry, we couldn't validate those details! Please try again or use the <a style='color:red;' href='?controller=security&action=loginUserSecurity'>Forgotton your password?</a> link below.</p>";
+            echo "<p style = 'font-size: 14px; color: red; padding-left: 2rem;'><br>Sorry, we couldn't validate those details! Please try again or use the <a style='color:red;' href='?controller=security&action=loginUserSecurity'>Forgotten your password?</a> link below.</p>";
         }
         
 

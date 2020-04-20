@@ -207,7 +207,7 @@ class Blogger extends Users {
 public function getBlogsFavsComments($user_id) {
     $db = Screw_it::getInstance();
       $user_id = intval($user_id);
-      $query = "SELECT b.blog_id, b.published, b.title, b.date_posted, COUNT(DISTINCT f.user_id) AS favourite_count, COUNT(DISTINCT c.comment) AS comment_count FROM blog_posts b LEFT JOIN favourites f ON f.blog_id = b.blog_id LEFT JOIN comments c ON c.blog_id = b.blog_id WHERE b.user_id = :user_id GROUP BY 1 ORDER BY b.date_posted ASC";
+      $query = "SELECT b.blog_id, b.published, b.title, b.date_posted, COUNT(DISTINCT f.user_id) AS favourite_count, COUNT(DISTINCT c.comment) AS comment_count FROM blog_posts b LEFT JOIN favourites f ON f.blog_id = b.blog_id LEFT JOIN comments c ON c.blog_id = b.blog_id WHERE b.user_id = :user_id GROUP BY 1 ORDER BY b.date_posted DESC";
       $stmt = $db->prepare($query);
       $stmt->execute(array('user_id' => $user_id));
         //$results = $stmt->fetch();

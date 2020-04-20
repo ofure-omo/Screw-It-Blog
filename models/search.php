@@ -6,7 +6,7 @@ Class Search {
     public function find($search) {
       $db = Screw_it::getInstance();
       
-      $query = "SELECT * FROM blog_posts WHERE title LIKE ? OR Category LIKE ? OR body LIKE ? or body2 LIKE ?";
+      $query = "SELECT * FROM blog_posts WHERE published = 'published' AND (title LIKE ? OR Category LIKE ? OR body LIKE ? or body2 LIKE ?)";
       $stmt = $db->prepare($query);
       
       $userentry = filter_input(INPUT_POST,'search', FILTER_SANITIZE_SPECIAL_CHARS);

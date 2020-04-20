@@ -56,7 +56,7 @@ if ($_SESSION ['user_type'] != "Member"){
                     <div class="flex-table-dashboard row" role="rowgroup">  
                         
                         <div class="flex-row-intro-dashboard" role="cell"> 
-                        <img src="<?php echo $details['profile_pic'];?>" class="dashboard-img"   alt="profile">
+                        <img src="<?php echo $details['profile_pic'];?>" class="dashboard-img"   alt="profile" style="object-fit: cover;">
                         </div>                        
                         
                         <div class="flex-row-intro-dashboard" id="blogger-name" role="cell"> 
