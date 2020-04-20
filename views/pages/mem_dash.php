@@ -271,7 +271,7 @@ echo "<img src='views/images/profileplaceholderimage.png' width='150' />";
                 echo "<td>".$favourite['title'];
                 echo "<td>".$favourite['category'];
                 echo "<td><a href='?controller=blog&action=read&blog_id=".$favourite['blog_id']."'><i style='font-size: 16px;' class='fas fa-pen-square'></i></a>";
-                echo "<td><a href='?controller=dashboard&action=mem_details&unfavourite=true&favid=".$favourite['fav_id']."'><i class='fas fa-trash-alt'></i></a>";
+                echo "<td><a href='?controller=dashboard&action=mem_details&unfavourite&user_id&blog_id=true&favid=".$favourite['fav_id']."'><i class='fas fa-trash-alt'></i></a>";
                 echo "</tr>";
                 
                 $number++;

@@ -87,13 +87,21 @@ class dashboard {
         return $deleteUser;
     }
 
-    public function unfavourite($user_id, $blog_id) {
+    /*public function unfavourite($user_id, $blog_id) {
         $db = Screw_it::getInstance();
         $sql = "DELETE FROM favourites WHERE user_id = :user_id and blog_id = :blog_id;";
         $stmt = $db->prepare($sql);
         $stmt->execute(array('user_id' => $user_id,'blog_id' => $blog_id));
+    */
+    
+        public function unfavourite($fav_id) {
+        $db = Screw_it::getInstance();
+        $sql = "DELETE FROM favourites WHERE fav_id = :fav_id;";
+        $stmt = $db->prepare($sql);
+        $stmt->execute(array('fav_id' => $fav_id));
     }
-
+    
+   
     public function deleteComment($comment_id) {
          $db = Screw_it::getInstance();
          $sql = "DELETE FROM comments WHERE comment_id = :comment_id;";

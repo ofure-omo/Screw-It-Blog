@@ -52,7 +52,7 @@ class dashboardcontroller {
                 echo "unlike";
                 $fav_id = $_GET['favid'];
                 echo $fav_id;
-                dashboard::unfavourite($fav_id, $blog_id);
+                dashboard::unfavourite($fav_id);
                 echo "<script>window.location.replace('?controller=dashboard&action=mem_details')</script>";
                 require_once('views/pages/mem_dash.php');
             } 
