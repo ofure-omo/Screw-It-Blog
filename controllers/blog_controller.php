@@ -23,7 +23,7 @@ class BlogController {
             $comment_count = Blog::getCommentCount($_GET['blog_id']);
             $tag = Blog::findTagForBlog($_GET['blog_id']);
             $list = Blog::moreBlogs();
-            //get comments
+            $fav_count = Blog::favCount($blog_id);
             if($blog['layout'] === '1'){
             require_once('views/blogpost/read.php'); 
             
@@ -87,6 +87,14 @@ class BlogController {
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
             Blog::addlikes($_GET['blog_id']);
+            
+        }       
+    }
+    
+    public function unlike() {
+        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+
+            Blog::unlike($_GET['blog_id']);
             
         }       
     }

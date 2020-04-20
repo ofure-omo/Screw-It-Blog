@@ -25,12 +25,12 @@
 
         #Check1 {
             margin:auto;
-            padding-left:29rem;        
+            padding-left:34rem;        
         }
 
         #Check2 {
             margin:auto;
-            padding-left:15rem;  
+            padding-left:19rem;  
         }
 
         .checkall {

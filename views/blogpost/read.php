@@ -58,16 +58,26 @@
                 <a href="<?php echo 'http://' . $blog['insta_url']; ?>"><i class="fa read-fa fa-instagram" aria-hidden="true"></i></a>
                 <a href="<?php echo 'http://' . $blog['twitter_url']; ?>"><i class="fa read-fa fa-twitter" aria-hidden="true"></i></a>
 
-                <!--                 can only like if you are logged in  -->
-                <?php if (isset($_SESSION['loggedin'])): ?>
+                <!-- can only like if you are logged in,  -->
+                <?php if (isset($_SESSION['loggedin']) && $fav_count === '0' ): ?>
                     <a href="?controller=blog&action=likes&blog_id=<?= $blog['blog_id'] ?>" style="text-decoration: none;"> 
                         <i onclick="myFunction(this)" class="fa fa-heart-o read-fa like" name="like"></i>
 
-                    </a><span style="margin-left:2px; font-size:0.5em;"><?php echo $likes; ?></span>
+                    </a><span style=" font-size:0.65em;"><?php echo $likes; ?></span>
                 <?php endif; ?>
+                    
+<!--           remembers if you've liked a post already and if you click button again it will unlike the post and delete it from the db-->
+                    <?php if (isset($_SESSION['loggedin']) && $fav_count > '0' ): ?>
+                    <a href="?controller=blog&action=unlike&blog_id=<?= $blog['blog_id'] ?>" style="text-decoration: none;"> 
+                        <i onclick="unlike(this)" class="fa fa-heart read-fa like" name="like"></i>
+
+                    </a><span style=" font-size:0.65em;"><?php echo $likes; ?></span>                    
+                <?php endif; ?>
+                    
+<!--         a user that isn't logged in can not like a blogpost when they try to like it an alert pops up-->
                 <?php if (!isset($_SESSION['loggedin'])): ?>
                     <i onclick="myFunction2(this)" class="fa fa-heart-o read-fa like" name="like"></i>
-                    <span style="margin-left:2px; font-size:0.5em;"><?php echo $likes; ?></span>
+                    <span style="font-size:0.65em;"><?php echo $likes; ?></span>
                 <?php endif; ?>
             </div>
 
@@ -85,7 +95,7 @@
                 </p>
 
             </div>
-            <div id='img_container r' class='row'> 
+            <div id='img_container ' class='row'> 
                 <div id='main_image ' class='column'>
 
                     <?php
@@ -120,6 +130,7 @@
                         echo $img;
                         ?>
                     </div>
+                    
                     <!--                   DISPLAY TAGS-->
                     <?php foreach ($tag as $newtag): ?>
 
@@ -130,6 +141,7 @@
 
                     </div>
                 </div>
+            </div>
 
                 <!--        MORE BLOGS: pulls 3 random blogs from the database-->
 
@@ -216,12 +228,17 @@
 
                 function myFunction(x) {
                     x.classList.toggle("fa-heart");
-                    alert('You\'ve liked this blogpost!');
+                    alert('You\'ve liked this post!');
                 }
 
                 function myFunction2(x) {
 
                     alert('Please login or register to like this post!');
+                }
+                
+                function unlike(x) {
+                    x.classList.toggle("fa-heart");
+                    alert('You\'ve unliked this post!');
                 }
 
                 $(document).ready(function () {

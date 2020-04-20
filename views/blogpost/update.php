@@ -20,15 +20,15 @@
     }
 
 
-    #Check1 {
-        margin:auto;
-        padding-left:29rem;        
-    }
+     #Check1 {
+            margin:auto;
+            padding-left:34rem;        
+        }
 
-    #Check2 {
-        margin:auto;
-        padding-left:15rem;  
-    }
+        #Check2 {
+            margin:auto;
+            padding-left:19rem;  
+        }
 
     .checkall {
         margin-top:2rem;
@@ -198,6 +198,7 @@
 
                 <div class="form-group cat">
                     <label for="exampleFormControlSelect1"><p><b>CATEGORY</b></p></label>
+                    
                     <?php if ($blog['category'] === 'CREATE'): ?>
                         <select class="form-control" name ="category" id="exampleFormControlSelect1" >
                             <option value="CREATE" selected="selected"><?= $blog['category']; ?></option>
@@ -205,6 +206,7 @@
                             <option value="DECORATE">DECORATE</option>
                         </select>
                     <?php endif; ?>
+                    
                     <?php if ($blog['category'] === 'RENOVATE'): ?>
                         <select class="form-control" name ="category" id="exampleFormControlSelect1" >
                             <option value="RENOVATE" selected="selected"><?= $blog['category']; ?></option>
@@ -212,6 +214,7 @@
                             <option value="DECORATE">DECORATE</option>
                         </select>
                     <?php endif; ?>
+                    
                     <?php if ($blog['category'] === 'DECORATE'): ?>
                         <select class="form-control" name ="category" id="exampleFormControlSelect1" >
                             <option value="DECORATE" selected="selected"><?= $blog['category']; ?></option>
@@ -219,6 +222,7 @@
                             <option value="RENOVATE">RENOVATE</option>
                         </select>
                     <?php endif; ?>
+                    
                     <?php if ($blog['category'] === '' || $blog['category'] === 'Choose a category'): ?>
                         <select class="form-control" name ="category" id="exampleFormControlSelect1" >
                             <option value='' selected="selected">Choose a category</option>

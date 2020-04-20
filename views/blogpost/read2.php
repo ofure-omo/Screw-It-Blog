@@ -1,5 +1,6 @@
- <?php if($blog['layout'] === '2' && $blog['published'] === 'published'): ?>
-<meta charset="UTF-8">
+ <meta charset="UTF-8">
+<?php if($blog['layout'] === '2' && $blog['published'] === 'published'): ?>
+
 <body>
     <div class='read-header'>
 
@@ -55,15 +56,27 @@
                 <a href="<?php echo 'http://.' . $blog['facebook_url']; ?>"><i class="fa read-fa fa-facebook" aria-hidden="true"></i></a>
                 <a href="<?php echo 'http://' . $blog['insta_url']; ?>"><i class="fa read-fa fa-instagram" aria-hidden="true"></i></a>
                 <a href="<?php echo 'http://' . $blog['twitter_url']; ?>"><i class="fa read-fa fa-twitter" aria-hidden="true"></i></a>
-                <?php if(isset($_SESSION['loggedin'])): ?>
-                <a href="?controller=blog&action=likes&blog_id=<?= $blog['blog_id'] ?>" style="text-decoration: none;"> 
-                    <i onclick="myFunction(this)" class="fa read-fa fa-heart-o like" name="like"></i>
-                    
-                </a><span class="likes" style="margin-left:2px; font-size:0.5em;"><?php echo $likes; ?></span>
+                
+                <!-- can only like if you are logged in,  -->
+               <?php if (isset($_SESSION['loggedin']) && $fav_count === '0' ): ?>
+                    <a href="?controller=blog&action=likes&blog_id=<?= $blog['blog_id'] ?>" style="text-decoration: none;"> 
+                        <i onclick="myFunction(this)" class="fa fa-heart-o read-fa like" name="like"></i>
+
+                    </a><span style=" font-size:0.65em;"><?php echo $likes; ?></span>
                 <?php endif; ?>
-                <?php if(!isset($_SESSION['loggedin'])): ?>
-                <i onclick="myFunction2(this)" class="fa read-fa fa-heart-o like" name="like"></i>
-                 <span class="likes" style="margin-left:2px; font-size:0.5em;"><?php echo $likes; ?></span>
+                    
+<!--           remembers if you've liked a post already and if you click button again it will unlike the post and delete it from the db-->
+                    <?php if (isset($_SESSION['loggedin']) && $fav_count > '0' ): ?>
+                    <a href="?controller=blog&action=unlike&blog_id=<?= $blog['blog_id'] ?>" style="text-decoration: none;"> 
+                        <i onclick="unlike(this)" class="fa fa-heart read-fa like" name="like"></i>
+
+                    </a><span style=" font-size:0.65em;"><?php echo $likes; ?></span>                    
+                <?php endif; ?>
+                    
+<!--         a user that isn't logged in can not like a blogpost when they try to like it an alert pops up-->
+                <?php if (!isset($_SESSION['loggedin'])): ?>
+                    <i onclick="myFunction2(this)" class="fa fa-heart-o read-fa like" name="like"></i>
+                    <span style="font-size:0.65em;"><?php echo $likes; ?></span>
                 <?php endif; ?>
             </div>
 
@@ -110,12 +123,10 @@
 </div>
 
        
-
- 
-       
+                <!--    DISPLAY TAGS-->
             <?php foreach ($tag as $newtag): ?>
                 
-               <div class="tags"> 
+               <div class="tags" id="tags-btn"> 
                     <button class='tag-btn'><p class='tag'> <?php echo $newtag ?></p></button> 
 
     <?php endforeach; ?>
@@ -130,7 +141,7 @@
         </div>
 
             
-            <div class="row row-cols-1 row-cols-md-3" style="">
+            <div class="row row-cols-1 row-cols-md-3 more-container" style="">
             <?php foreach($list as $card):  ?>
 
                      <div class='col mb-4'>
@@ -215,15 +226,20 @@
     </script>-->
     <script scr='text/javascript'>
 
-                        function myFunction(x) {
-                            x.classList.toggle("fa-heart");
-                            alert('You\'ve liked this blogpost!');
-                        }
-                        
-                        function myFunction2(x) {
-                           
-                            alert('Please login or register to like this post!');
-                        }
+                         function myFunction(x) {
+                    x.classList.toggle("fa-heart");
+                    alert('You\'ve liked this post!');
+                }
+
+                function myFunction2(x) {
+
+                    alert('Please login or register to like this post!');
+                }
+                
+                function unlike(x) {
+                    x.classList.toggle("fa-heart");
+                    alert('You\'ve unliked this post!');
+                }
 
 //            
                $(document).ready(function(){
@@ -324,6 +340,11 @@
         margin-bottom: 20px;
     }
 
+/*    .more-container{
+        margin: auto;
+        width:68%;
+    }*/
+    
     .header-info {
         margin-left: 35px;
         margin-right: 35px;
@@ -454,7 +475,6 @@
 
         #body1 {
             margin-top: 30px;  
-            text-align: center;
 
         }
 

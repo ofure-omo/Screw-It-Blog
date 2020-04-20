@@ -17,7 +17,7 @@ $blog_id = $row['blog_id'];
 //selects the comment from the db
 $query = "SELECT * FROM comments 
          INNER JOIN users ON comments.user_id = users.user_id
-         WHERE blog_id = '".$blog_id."'
+         WHERE blog_id = '" . $blog_id . "'
          ORDER by comment_id desc
          ";
 
@@ -34,7 +34,8 @@ $output = '';
 foreach ($result as $row) {
 
     $output .= '
-              <div id="comm-cont" class="comment" style="margin-top: 50px; color:black;">
+              <div id="comm-cont" class="comment" style="margin-top: 50px; color:black; margin-bottom: 90px;">
+              <div id="comment-pic"><img src="' . $row["profile_pic"] . '" alt="profile picture" class="avatar"></div>
              <b> <div class="panel-heading username" style="font-size: 1.1em;"><span class="user-comment"> By ' . $row["username"] . ' </span></b><br> <i style="font-size:0.8em;"> on ' . $row["comment_date"] . '</i> </div>
                   <div class="comment" style="margin-bottom:10px;" > ' . $row["comment"] . '</div>           
              </div>
@@ -72,6 +73,23 @@ echo $output;
     .comm-cont {
         margin: auto;
         width:40%;
+        margin-bottom: 50px;
+    }
+
+    #comment-pic {
+        display: inline-block;
+        float:left;
+        margin-right: 15px;
+    }
+
+    .avatar {
+        vertical-align: middle;
+        width: 30px;
+        height: 30px;
+        border-radius: 55%;
+        margin: auto;
+        object-fit: cover;
+
     }
 
     @media only screen and (max-width: 400px) {

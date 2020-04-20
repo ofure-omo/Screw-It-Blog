@@ -178,6 +178,10 @@ class Register {
           }
           // Close statement
           unset($stmt); */
+         echo '<h3 style="text-align:center; margin-top:30px; margin-bottom:20px;"> You have successfully registered, you will be re-directed to the log in page!</h3>'
+        . '<img style="display: block; margin-left: auto; margin-right: auto; width: 40%;" src="views/images/welcomemessage.jpg"/>';
+         
+        echo '<meta http-equiv="refresh" content="4;  url=?controller=login&action=loginUser">';
     }
 
     public function usernameExists($userArray) {
@@ -231,6 +235,11 @@ class Register {
         
 
         move_uploaded_file($temp, $destinationFile);
+         if (!move_uploaded_file($temp, $destinationFile)) { //file does upload not usre why throwing error?
+                echo ("<p style='text-align:center; margin:0;'>File not uploaded or images already exist! </p><br>");
+            } else {
+                echo "your files have uploaded";
+            }
         //(move_uploaded_file($_FILES[self::InputKey]['tmp_name'], $destinationFile));
         /*if (!move_uploaded_file($temp, $destinationFile)) { //file does upload not usre why throwing error?
             echo "<p style='text-align:center; margin:0;'>File not uploaded or images already exist! </p><br>";

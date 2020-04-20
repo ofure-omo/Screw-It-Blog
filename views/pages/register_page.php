@@ -9,7 +9,7 @@
         <span>
             <h1 style="text-align:center; margin-bottom: 40px;">Register with us </h1>
 <h5>Enter your details to create an account</h5>
-            <form>
+            <form action="" method="POST" enctype="multipart/form-data" onsubmit="return Validate(this);">
                 
                 <div class="form-group">
                     <label for="exampleInputPassword1">First name</label>
@@ -44,7 +44,7 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Date of Birth</label>
-                    <input style="width: 60%;" type="date" class="form-control" id="exampleInputPassword1" name="dob" autocomplete='off' required value="">
+                    <input style="width: 70%;" type="date" class="form-control" id="exampleInputPassword1" name="dob" autocomplete='off' required value="">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Security question: Who is your favourite Ryan?</label>

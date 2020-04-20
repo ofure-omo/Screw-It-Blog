@@ -26,7 +26,7 @@ function call($controller, $action) {
 // Add an entry for each new controller and its actions
 
 $controllers = array('pages' => ['home', 'error', 'cookies', 'privacy', 'FAQs', 'Contact'],
-    'blog' => ['readAll', 'read', 'create', 'update', 'delete','likes'],
+    'blog' => ['readAll', 'read', 'create', 'update', 'delete','likes', 'unlike'],
     'search' => ['search'],
     'home' => ['home'],
     'register' => ['registerUser'], 

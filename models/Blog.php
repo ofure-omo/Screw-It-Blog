@@ -142,13 +142,12 @@ class Blog {
             $filteredPublished = filter_input(INPUT_POST, 'published', FILTER_SANITIZE_SPECIAL_CHARS);
         }
 
-//        if (empty($_POST['published']))
-//            $pattern = '/;&#[0-9][0-9];/';
-//           $replacement = "<br/>";
-//
-//
-//        $filteredBody = preg_replace($pattern, $replacement, $filteredBody);
-//        $filteredBody2 = preg_replace($pattern, $replacement, $filteredBody2);
+            $pattern = '/;&#[0-9][0-9];/';
+           $replacement = "<br/>";
+
+
+        $filteredBody = preg_replace($pattern, $replacement, $filteredBody);
+        $filteredBody2 = preg_replace($pattern, $replacement, $filteredBody2);
 
         if (!empty($_POST['file[]'])) {
             $filteredImage = filter_input(INPUT_POST, 'myfile[]', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -202,10 +201,23 @@ class Blog {
         $req->execute();
 
         if (!empty($_POST['tag'])) {
+            
             $filteredTag = $_POST['tag'];
-
             $newtag = $filteredTag;
+            
+            //delete existing tags from db
+            foreach ($newtag as $key => $tag1) {
+                $deltag = $tag1;
 
+                $req = $db->prepare("DELETE FROM blog_tags WHERE tag = :tag;");
+
+                $req->bindParam(':tag', $tagdel);
+                $tagdel = $deltag;
+
+                $req->execute();
+            }
+                       
+            //add new tags into the db
             foreach ($newtag as $key => $tags) {
                 $tag2 = $tags;
 
@@ -216,9 +228,7 @@ class Blog {
 
                 $req->execute();
             }
-        } else {
-            echo '';
-        }
+        } 
 
         if (!isset($_FILES['myfile']['name'])) {
             Blog::uploadFiles($imagename);
@@ -355,9 +365,9 @@ class Blog {
         
         //redirect blogger to the post they just created wher
 if($filteredLayout == '1') {
-        echo '<meta http-equiv="refresh" content="4;  url=?controller=blog&action=read" />';
+        echo '<meta http-equiv="refresh" content="4;  url=?controller=blog&action=read&blog_id= '.$id.'" />';
 } else {
-     echo '<meta http-equiv="refresh" content="4;  url=?controller=blog&action=read2" />';
+     echo '<meta http-equiv="refresh" content="4;  url=?controller=blog&action=read2&blog_id= '.$id.'" />';
 }
 
     }
@@ -468,6 +478,33 @@ if($filteredLayout == '1') {
 
         echo '<meta http-equiv="refresh" content="0;  url=?controller=blog&action=read&blog_id=' . $blog_id . '"/>';
     }
+    
+    public static function unlike($blog_id) {
+
+        $db = Screw_it::getInstance();
+        $blog_id = intval($blog_id);
+
+        $req = $db->prepare("DELETE FROM favourites WHERE blog_id = '".$blog_id."' AND user_id = '" . $_SESSION["user_id"] . "'");
+        $req->execute();
+
+        echo '<meta http-equiv="refresh" content="0;  url=?controller=blog&action=read&blog_id=' . $blog_id . '"/>';
+    }
+    
+    public static function favCount($blog_id) {
+
+        $db = Screw_it::getInstance();
+        $blog_id = intval($blog_id);
+
+        $req = $db->prepare("SELECT count(*) FROM favourites WHERE
+                             user_id = '" . $_SESSION['user_id'] . "' AND blog_id = '".$blog_id."'");
+        $req->execute();
+        $fav_count = $req->fetch();
+        //$fav_count = count($favourite);
+        return $fav_count['count(*)'];
+        
+    //echo '<meta http-equiv="refresh" content="0;  url=?controller=blog&action=read&blog_id=' . $blog_id . '"/>';
+    }
+    
 
     // COMMENTS SECTION
 
