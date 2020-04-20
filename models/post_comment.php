@@ -34,7 +34,7 @@ $output = '';
 foreach ($result as $row) {
 
     $output .= '
-              <div id="comm-cont" class="comment" style="margin-top: 50px; color:black; margin-bottom: 90px;">
+              <div id="comm-cont" class="comment" style=" margin:auto; margin-top: 10px; color:black; margin-bottom: 50px; width:72%;">
               <div id="comment-pic"><img src="' . $row["profile_pic"] . '" alt="profile picture" class="avatar"></div>
              <b> <div class="panel-heading username" style="font-size: 1.1em;"><span class="user-comment"> By ' . $row["username"] . ' </span></b><br> <i style="font-size:0.8em;"> on ' . $row["comment_date"] . '</i> </div>
                   <div class="comment" style="margin-bottom:10px;" > ' . $row["comment"] . '</div>           

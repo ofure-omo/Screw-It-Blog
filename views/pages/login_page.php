@@ -41,6 +41,7 @@
             margin:auto;
             width:20%;
             padding: 8px;
+            margin-bottom: 35px;
         }
         
         #login-btn:hover {

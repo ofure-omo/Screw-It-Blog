@@ -181,20 +181,32 @@
             <div id="template-container" class="column">              
                 <img src="views/images/layout.png" alt="layout 1" class="blog-template1"/>
             </div>
-            <h4 class="title">STEP 2: REWRITE THE CONTENT</h4>
+            <h4 class="title">STEP 2: REWRITE THE CONTENT</h4> 
+            
             <div class="main-form">
+                
                 <div class="form-group">
                     <label for="formGroupExampleInput"><p><b>TITLE</b></p></label>
                     <input type="text" class="form-control" id="formGroupExampleInput" name="title" placeholder="Title of your blog" value="<?= nl2br($blog['title']); ?>" required>
                 </div>
+                
                 <div class="form-group" id='body1'>
                     <label for="exampleFormControlTextarea1"><p><b>BODY</b></p></label>
                     <textarea class="form-control" id="exampleFormControlTextarea1" style="resize:none;" name="body" rows="20" placeholder="Body text" required><?= nl2br($blog['body']); ?></textarea>
                 </div>
+                
+                <?php if($blog['layout'] === '2'): ?>
+                <div class="form-group hide" id="body2" style="display: none;">
+                    <label for="exampleFormControlTextarea1"><p><b>BODY 2</b></p></label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" name="body2" style="resize:none;" rows="10" placeholder="Body text" ><?= nl2br($blog['body2']); ?></textarea>
+                </div>
+                <?php else: ?>
+                
                 <div class="form-group hide" id="body2">
                     <label for="exampleFormControlTextarea1"><p><b>BODY 2</b></p></label>
                     <textarea class="form-control" id="exampleFormControlTextarea1" name="body2" style="resize:none;" rows="10" placeholder="Body text" ><?= nl2br($blog['body2']); ?></textarea>
                 </div>
+                <?php endif; ?>
 
                 <div class="form-group cat">
                     <label for="exampleFormControlSelect1"><p><b>CATEGORY</b></p></label>
@@ -231,6 +243,7 @@
                             <option value="DECORATE">DECORATE</option>
                         </select>
                     <?php endif; ?>
+                    
                 </div>
 
                 <p><b> TAGS </b></p>

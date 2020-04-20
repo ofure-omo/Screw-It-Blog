@@ -149,7 +149,7 @@ class Blog {
         $filteredBody = preg_replace($pattern, $replacement, $filteredBody);
         $filteredBody2 = preg_replace($pattern, $replacement, $filteredBody2);
 
-        if (!empty($_POST['file[]'])) {
+        if (isset($_POST['file[]'])) {
             $filteredImage = filter_input(INPUT_POST, 'myfile[]', FILTER_SANITIZE_SPECIAL_CHARS);
 
             //$filteredImage = $_FILES['myfile']['name'];
@@ -200,22 +200,11 @@ class Blog {
 
         $req->execute();
 
-        if (!empty($_POST['tag'])) {
+        if(isset($_POST['tag'])) {
             
             $filteredTag = $_POST['tag'];
             $newtag = $filteredTag;
-            
-            //delete existing tags from db
-            foreach ($newtag as $key => $tag1) {
-                $deltag = $tag1;
-
-                $req = $db->prepare("DELETE FROM blog_tags WHERE tag = :tag;");
-
-                $req->bindParam(':tag', $tagdel);
-                $tagdel = $deltag;
-
-                $req->execute();
-            }
+          
                        
             //add new tags into the db
             foreach ($newtag as $key => $tags) {
@@ -279,7 +268,8 @@ class Blog {
         } else {
             $filteredPublished = 'published';
         }
-
+        
+        
         $filteredImage = filter_input(INPUT_POST, 'myfile[]', FILTER_SANITIZE_SPECIAL_CHARS);
 
         $pattern = '/;&#[0-9][0-9];/';
@@ -502,7 +492,8 @@ if($filteredLayout == '1') {
         //$fav_count = count($favourite);
         return $fav_count['count(*)'];
         
-    //echo '<meta http-equiv="refresh" content="0;  url=?controller=blog&action=read&blog_id=' . $blog_id . '"/>';
+
+    echo '<meta http-equiv="refresh" content="0;  url=?controller=blog&action=read&blog_id=' . $blog_id . '"/>';
     }
     
 
