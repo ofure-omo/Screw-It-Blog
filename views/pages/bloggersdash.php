@@ -51,8 +51,8 @@
                     $d = strtotime($blogger['date_joined']);
                     echo date("jS F Y", $d);
                     ?></div><br>
-                        <p><?php echo $blogs;?> Comments posted<br>
-                        <?php echo $comments;?> Blogs Liked</p>
+                        <p><?php echo $blogs;?> Blogs posted<br>
+                        <?php echo $comments;?> Comments posted</p>
                  
                         </div> 
 
